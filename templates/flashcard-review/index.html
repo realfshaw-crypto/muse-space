@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Flashcards — Muse Space Template | Spaced Repetition &amp; Memorize</title>
+<meta name="description" content="Flashcards — a Muse Space template for spaced repetition flashcards, memorizing vocabulary and tracking mastery levels.">
+<style>
+:root {
+  color-scheme: light dark;
+
+  /* ===== Color: core semantic ===== */
+  --color-accent: light-dark(#0064E0, #0171E3);
+  --color-accent-muted: light-dark(#0082FB33, #0082FB3F);
+  --color-on-accent: light-dark(#FFFFFF, #FFFFFF);
+  --color-neutral: light-dark(rgba(5, 54, 89, 0.1), rgba(223, 226, 229, 0.2));
+  --color-background-body: light-dark(#F1F4F7, #111112);
+  --color-background-surface: light-dark(#FFFFFF, #1F1F22);
+  --color-background-card: light-dark(#FFFFFF, #1F1F22);
+  --color-background-popover: light-dark(#FFFFFF, #28292C);
+  --color-background-muted: light-dark(#0536590C, #1111127F);
+  --color-background-inverted: light-dark(#0A1317, #FFFFFF);
+  --color-overlay: light-dark(#01122866, #11111299);
+  --color-overlay-hover: light-dark(#0536590C, #FFFFFF0C);
+  --color-overlay-pressed: light-dark(#05365919, #FFFFFF19);
+
+  /* Text */
+  --color-text-primary: light-dark(#0A1317, #DFE2E5);
+  --color-text-secondary: light-dark(#4E606F, #AAAFB5);
+  --color-text-disabled: light-dark(#A4B0BC, #6F747C);
+  --color-text-accent: light-dark(#0064E0, #3E9EFB);
+  --color-on-dark: light-dark(#FFFFFF, #FFFFFF);
+  --color-on-light: light-dark(#000000, #000000);
+
+  /* Icon（与 text 同值域） */
+  --color-icon-accent: light-dark(#0064E0, #2694FE);
+  --color-icon-primary: light-dark(#0A1317, #DFE2E5);
+  --color-icon-secondary: light-dark(#4E606F, #AAAFB5);
+  --color-icon-disabled: light-dark(#A4B0BC, #6F747C);
+
+  /* Status fills + muted + on-* */
+  --color-info: light-dark(#0064E0, #0064E0);
+  --color-info-muted: light-dark(#0082FB33, #0082FB3F);
+  --color-on-info: light-dark(#FFFFFF, #FFFFFF);
+  --color-success: light-dark(#0D8626, #0D8626);
+  --color-success-muted: light-dark(#0B991F33, #0B991F3F);
+  --color-on-success: light-dark(#FFFFFF, #FFFFFF);
+  --color-error: light-dark(#E3193B, #F5394F);
+  --color-error-muted: light-dark(#E3193B33, #F5394F3F);
+  --color-on-error: light-dark(#FFFFFF, #0A1317);
+  --color-background-error-inverted: light-dark(#AA071E, #E3193B);
+  --color-warning: light-dark(#E9AF08, #F2C00B);
+  --color-warning-muted: light-dark(#E2A40033, #E2A4003F);
+  --color-on-warning: light-dark(#0A1317, #0A1317);
+
+  /* Status text / icon / border（落在页面与卡片面上、对比 >= 4.5:1 的一档） */
+  --color-text-blue: light-dark(#042F97, #AFD7FF);
+  --color-text-green: light-dark(#09441F, #A5F690);
+  --color-text-yellow: light-dark(#753F07, #FBCE03);
+  --color-text-red: light-dark(#7B0210, #FFB2B8);
+  --color-text-info: var(--color-text-blue);
+  --color-text-success: var(--color-text-green);
+  --color-text-warning: var(--color-text-yellow);
+  --color-text-error: var(--color-text-red);
+  --color-icon-info: var(--color-text-info);
+  --color-icon-success: var(--color-text-success);
+  --color-icon-warning: var(--color-text-warning);
+  --color-icon-error: var(--color-text-error);
+  --color-border-info: var(--color-text-info);
+  --color-border-success: var(--color-text-success);
+  --color-border-warning: var(--color-text-warning);
+  --color-border-error: var(--color-text-error);
+  --color-on-info-muted: var(--color-text-blue);
+  --color-on-success-muted: var(--color-text-green);
+  --color-on-warning-muted: var(--color-text-yellow);
+  --color-on-error-muted: var(--color-text-red);
+
+  /* Border / effects */
+  --color-border: light-dark(#05365919, #F2F4F619);
+  --color-border-emphasized: light-dark(#CCD3DB, #494D53);
+  --color-skeleton: light-dark(#CCD3DB, #5A5E66);
+  --color-track: light-dark(#CCD3DB, #5A5E66);
+  --color-shadow: light-dark(rgba(5, 54, 89, 0.1), rgba(0, 0, 0, 0.3));
+  --color-tint-hover: light-dark(black, white);
+
+  /* Hue families: background(33 alpha) / border / icon / text */
+  --color-background-blue: light-dark(#0171E333, #0171E333);
+  --color-border-blue: light-dark(#0064E0, #2694FE);
+  --color-icon-blue: light-dark(#0064E0, #2694FE);
+  --color-background-cyan: light-dark(#03A7D733, #03A7D733);
+  --color-border-cyan: light-dark(#089DD0, #0171A4);
+  --color-icon-cyan: light-dark(#00ACC1, #26C6DA);
+  --color-text-cyan: light-dark(#014975, #A1EEF9);
+  --color-background-gray: light-dark(#0A131733, #666A724C);
+  --color-border-gray: light-dark(#647685, #748695);
+  --color-icon-gray: light-dark(#4E606F, #AAAFB5);
+  --color-text-gray: light-dark(#0A1317, #E7EAED);
+  --color-background-green: light-dark(#24BB5E33, #24BB5E33);
+  --color-border-green: light-dark(#0D8626, #0B991F);
+  --color-icon-green: light-dark(#0D8626, #26A756);
+  --color-background-orange: light-dark(#F2790233, #F2790233);
+  --color-border-orange: light-dark(#EB6E00, #B34A01);
+  --color-icon-orange: light-dark(#E9690B, #FB8C00);
+  --color-text-orange: light-dark(#6B2203, #FDB876);
+  --color-background-pink: light-dark(#E638B333, #E638B333);
+  --color-border-pink: light-dark(#F351C0, #C02294);
+  --color-icon-pink: light-dark(#C2185B, #EC407A);
+  --color-text-pink: light-dark(#650053, #FEADE3);
+  --color-background-purple: light-dark(#7952FF33, #7952FF33);
+  --color-border-purple: light-dark(#9081FF, #7340FE);
+  --color-icon-purple: light-dark(#5B08D8, #7952FF);
+  --color-text-purple: light-dark(#3E0697, #B3B0FE);
+  --color-background-red: light-dark(#E3193B33, #E3193B33);
+  --color-border-red: light-dark(#E3193B, #F5394F);
+  --color-icon-red: light-dark(#D31130, #E3193B);
+  --color-background-teal: light-dark(#0DB7AF33, #0DB7AF33);
+  --color-border-teal: light-dark(#08A3A3, #08767D);
+  --color-icon-teal: light-dark(#009688, #26A69A);
+  --color-text-teal: light-dark(#083943, #40DCCD);
+  --color-background-yellow: light-dark(#E2A40033, #E2A40033);
+  --color-border-yellow: light-dark(#C58600, #B47700);
+  --color-icon-yellow: light-dark(#FBC02D, #FFEE58);
+
+  /* ===== Spacing: 4px 基准、rem 制（随根字号缩放），步进 0..12 ===== */
+  --spacing-0: 0rem;
+  --spacing-0-5: 0.125rem;
+  --spacing-1: 0.25rem;
+  --spacing-1-5: 0.375rem;
+  --spacing-2: 0.5rem;
+  --spacing-3: 0.75rem;
+  --spacing-4: 1rem;
+  --spacing-5: 1.25rem;
+  --spacing-6: 1.5rem;
+  --spacing-7: 1.75rem;
+  --spacing-8: 2rem;
+  --spacing-9: 2.25rem;
+  --spacing-10: 2.5rem;
+  --spacing-11: 2.75rem;
+  --spacing-12: 3rem;
+
+  /* ===== Size: 控件高度 ===== */
+  --size-element-sm: 28px;
+  --size-element-md: 32px;
+  --size-element-lg: 36px;
+
+  /* ===== Border / Focus ===== */
+  --border-width: 1px;
+  --focus-outline-width: 2px;
+  --focus-outline-style: solid;
+  --focus-outline-color: var(--color-accent);
+  --focus-outline-offset: 3px;
+
+  /* ===== Radius（core 默认；neutral 主题的 6/10/12/28 变体不采用） ===== */
+  --radius-none: 0px;
+  --radius-inner: 4px;
+  --radius-element: 8px;
+  --radius-container: 12px;
+  --radius-page: 28px;
+  --radius-chat: 28px;
+  --radius-full: 9999px;
+
+  /* ===== Shadow ===== */
+  --shadow-low: 0px 1px 1px light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), 0px 2px 8px light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2));
+  --shadow-med: 0px 1px 2px light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), 0px 2px 12px light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2));
+  --shadow-high: 0px 2px 2px light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), 0px 8px 24px light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.3));
+  --shadow-inset-hover: inset 0px 0px 0px 2px light-dark(rgba(5, 54, 89, 0.15), rgba(223, 226, 229, 0.2));
+  --shadow-inset-selected: inset 0px 0px 0px 2px rgba(1, 113, 227, 0.5);
+  --shadow-inset-success: inset 0px 0px 0px 2px rgba(38, 167, 86, 0.3);
+  --shadow-inset-warning: inset 0px 0px 0px 2px rgba(226, 164, 0, 0.3);
+  --shadow-inset-error: inset 0px 0px 0px 2px rgba(227, 25, 59, 0.3);
+
+  /* ===== Motion ===== */
+  --duration-fast-min: 130ms;
+  --duration-fast: 175ms;
+  --duration-fast-max: 230ms;
+  --duration-medium-min: 310ms;
+  --duration-medium: 410ms;
+  --duration-medium-max: 550ms;
+  --duration-slow-min: 730ms;
+  --duration-slow: 975ms;
+  --duration-slow-max: 1300ms;
+  --duration-exit: var(--duration-fast);
+  --ease-standard: cubic-bezier(0.24, 1, 0.4, 1);
+  --ease-entrance: cubic-bezier(0.24, 1, 0.4, 1);
+  --ease-move: cubic-bezier(0.24, 1, 0.4, 1);
+  --ease-exit: cubic-bezier(0.3, 0, 0.6, 0.6);
+
+  /* ===== Typography ===== */
+  --font-family-body: "Figtree", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-family-heading: "Figtree", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-family-code: "SF Mono", Monaco, Consolas, monospace;
+
+  /* 几何字阶：round(14 x 1.2^step) */
+  --font-size-4xs: 0.375rem;
+  --font-size-3xs: 0.4375rem;
+  --font-size-2xs: 0.5rem;
+  --font-size-xs: 0.625rem;
+  --font-size-sm: 0.75rem;
+  --font-size-base: 0.875rem;
+  --font-size-lg: 1.0625rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.8125rem;
+  --font-size-4xl: 2.1875rem;
+  --font-size-5xl: 2.625rem;
+
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* 语义字型（size / weight / leading 三件套，组件只许用这一层） */
+  --text-heading-1-size: var(--font-size-2xl); --text-heading-1-weight: var(--font-weight-semibold); --text-heading-1-leading: 1.3333;
+  --text-heading-2-size: var(--font-size-xl); --text-heading-2-weight: var(--font-weight-semibold); --text-heading-2-leading: 1.4;
+  --text-heading-3-size: var(--font-size-lg); --text-heading-3-weight: var(--font-weight-semibold); --text-heading-3-leading: 1.4118;
+  --text-heading-4-size: var(--font-size-base); --text-heading-4-weight: var(--font-weight-semibold); --text-heading-4-leading: 1.4286;
+  --text-heading-5-size: var(--font-size-sm); --text-heading-5-weight: var(--font-weight-semibold); --text-heading-5-leading: 1.6667;
+  --text-heading-6-size: var(--font-size-xs); --text-heading-6-weight: var(--font-weight-semibold); --text-heading-6-leading: 1.6;
+  --text-body-size: var(--font-size-base); --text-body-weight: var(--font-weight-normal); --text-body-leading: 1.4286;
+  --text-large-size: var(--font-size-lg); --text-large-weight: var(--font-weight-semibold); --text-large-leading: 1.4118;
+  --text-label-size: var(--font-size-base); --text-label-weight: var(--font-weight-medium); --text-label-leading: 1.4286;
+  --text-code-size: var(--font-size-base); --text-code-weight: var(--font-weight-normal); --text-code-leading: 1.4286;
+  --text-supporting-size: var(--font-size-sm); --text-supporting-weight: var(--font-weight-normal); --text-supporting-leading: 1.6667;
+  --text-display-1-size: var(--font-size-5xl); --text-display-1-weight: var(--font-weight-normal); --text-display-1-leading: 1.2381;
+  --text-display-2-size: var(--font-size-4xl); --text-display-2-weight: var(--font-weight-normal); --text-display-2-leading: 1.2571;
+  --text-display-3-size: var(--font-size-3xl); --text-display-3-weight: var(--font-weight-normal); --text-display-3-leading: 1.2414;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--color-background-body);color:var(--color-text-primary);font-family:var(--font-family-body);font-size:var(--text-body-size);font-weight:var(--text-body-weight);line-height:var(--text-body-leading)}
+h1,h2,p{margin:0}
+.wrap{max-width:52rem;margin:0 auto;padding:var(--spacing-6) var(--spacing-4) var(--spacing-12)}
+.top{display:flex;justify-content:space-between;align-items:flex-start;gap:var(--spacing-4);margin-bottom:var(--spacing-5)}
+h1{font-size:var(--text-heading-1-size);font-weight:var(--text-heading-1-weight);line-height:var(--text-heading-1-leading)}
+.sub{color:var(--color-text-secondary);margin-top:var(--spacing-1)}
+h2{font-size:var(--text-heading-3-size);font-weight:var(--text-heading-3-weight);line-height:var(--text-heading-3-leading);margin-bottom:var(--spacing-3)}
+.card{background:var(--color-background-card);border:var(--border-width) solid var(--color-border);border-radius:var(--radius-container);padding:var(--spacing-5);box-shadow:var(--shadow-low);margin-bottom:var(--spacing-4)}
+.muted{color:var(--color-text-secondary)}
+.small{font-size:var(--text-supporting-size);line-height:var(--text-supporting-leading)}
+.stats{display:flex;flex-wrap:wrap;gap:var(--spacing-6);align-items:center}
+.stat b{display:block;font-size:var(--text-heading-2-size);font-weight:var(--text-heading-2-weight);line-height:var(--text-heading-2-leading)}
+.bar{height:var(--spacing-2);background:var(--color-track);border-radius:var(--radius-full);overflow:hidden;margin-top:var(--spacing-3)}
+.bar>i{display:block;height:100%;background:var(--color-accent);border-radius:var(--radius-full);transition:width var(--duration-medium) var(--ease-standard)}
+.form{display:grid;gap:var(--spacing-3)}
+@media(min-width:40rem){.form{grid-template-columns:repeat(2,1fr)}.form .full{grid-column:1/-1}}
+label{display:grid;gap:var(--spacing-1);font-size:var(--text-supporting-size);color:var(--color-text-secondary)}
+input{height:var(--size-element-lg);padding:0 var(--spacing-3);border:var(--border-width) solid var(--color-border-emphasized);border-radius:var(--radius-element);background:var(--color-background-surface);color:var(--color-text-primary);font:inherit;width:100%}
+.btn{min-height:var(--size-element-lg);padding:0 var(--spacing-4);border:var(--border-width) solid transparent;border-radius:var(--radius-element);background:var(--color-accent);color:var(--color-on-accent);font:inherit;font-weight:var(--font-weight-medium);cursor:pointer;transition:transform var(--duration-fast) var(--ease-standard),opacity var(--duration-fast) var(--ease-standard)}
+.btn:hover{opacity:.92}
+.btn:active{transform:scale(.97)}
+.btn-ghost{background:var(--color-background-muted);color:var(--color-text-primary);border-color:var(--color-border)}
+.btn-danger{background:var(--color-error-muted);color:var(--color-text-error)}
+.btn-ok{background:var(--color-success-muted);color:var(--color-text-success)}
+.btn-sm{min-height:var(--size-element-sm);padding:0 var(--spacing-3);font-size:var(--text-supporting-size)}
+.actions{display:flex;flex-wrap:wrap;gap:var(--spacing-2);justify-content:center;margin-top:var(--spacing-4)}
+.badge{display:inline-flex;align-items:center;padding:var(--spacing-0-5) var(--spacing-2);border-radius:var(--radius-full);background:var(--color-accent-muted);color:var(--color-text-accent);font-size:var(--text-supporting-size);white-space:nowrap}
+.empty{color:var(--color-text-secondary);text-align:center;padding:var(--spacing-6) var(--spacing-4)}
+footer{color:var(--color-text-disabled);text-align:center;margin-top:var(--spacing-6)}
+.scene{perspective:60rem}
+.flip{position:relative;min-height:13rem;cursor:pointer}
+.flip-inner{position:absolute;inset:0;transform-style:preserve-3d;transition:transform var(--duration-medium) var(--ease-standard)}
+.flip.flipped .flip-inner{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:var(--spacing-2);text-align:center;padding:var(--spacing-5);background:var(--color-background-muted);border:var(--border-width) solid var(--color-border);border-radius:var(--radius-container);backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.face.back{transform:rotateY(180deg);background:var(--color-accent-muted)}
+.face .word{font-size:var(--text-heading-2-size);font-weight:var(--text-heading-2-weight);line-height:var(--text-heading-2-leading)}
+.center{text-align:center}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+<div>
+<h1 data-i18n="title">Flashcards</h1>
+<p class="sub" data-i18n="sub">Spaced repetition flashcards with mastery levels.</p>
+</div>
+<button class="btn btn-ghost" id="langBtn" type="button">中文</button>
+</header>
+<main>
+<section class="card" aria-label="Mastery stats">
+<div class="stats">
+<div class="stat"><span class="muted small" data-i18n="total">Cards</span><b id="statTotal">0</b></div>
+<div class="stat"><span class="muted small" data-i18n="mastered">Mastered</span><b id="statMastered">0</b></div>
+<div class="stat"><span class="muted small" data-i18n="mastery">Mastery</span><b id="statPct">0%</b></div>
+</div>
+<div class="bar" role="progressbar" aria-label="Mastery progress"><i id="masteryBar"></i></div>
+</section>
+<section class="card" aria-label="Review card">
+<p class="small muted center" id="counter">Card 0 of 0</p>
+<div class="scene">
+<div class="flip" id="flipCard" role="button" tabindex="0" aria-label="Flip card">
+<div class="flip-inner">
+<div class="face front"><span class="badge" id="levelBadge">Level 0</span><p class="word" id="frontText">—</p><p class="small muted" data-i18n="tapFlip">Tap to flip</p></div>
+<div class="face back"><p class="word" id="backText">—</p><p class="small muted" data-i18n="tapFlip">Tap to flip</p></div>
+</div>
+</div>
+</div>
+<div class="actions">
+<button class="btn btn-ghost" id="prevBtn" type="button" data-i18n="prev">Prev</button>
+<button class="btn btn-ghost" id="shuffleBtn" type="button" data-i18n="shuffle">Shuffle</button>
+<button class="btn btn-danger" id="dontBtn" type="button" data-i18n="dont">Don't know</button>
+<button class="btn btn-ok" id="knowBtn" type="button" data-i18n="know">Know it</button>
+<button class="btn btn-ghost" id="nextBtn" type="button" data-i18n="next">Next</button>
+<button class="btn btn-ghost" id="delBtn" type="button" data-i18n="del">Delete card</button>
+</div>
+<div id="emptyBox"></div>
+</section>
+<section class="card" aria-label="Add a card">
+<h2 data-i18n="addTitle">Add a card</h2>
+<form class="form" id="form">
+<label><span data-i18n="front">Front</span><input name="front" required placeholder="serendipity"></label>
+<label><span data-i18n="back">Back</span><input name="back" required placeholder="意外发现珍宝的运气"></label>
+<button class="btn full" type="submit" data-i18n="add">Add card</button>
+</form>
+</section>
+</main>
+<footer><p class="small">Muse Space · Flashcards — data stays in this Space (localStorage). 数据只存在本空间内。</p></footer>
+</div>
+<script>
+const KEY='muse-space:flashcard-review';
+const I18N={
+en:{title:'Flashcards',sub:'Spaced repetition flashcards with mastery levels.',total:'Cards',mastered:'Mastered',mastery:'Mastery',tapFlip:'Tap to flip',prev:'Prev',next:'Next',shuffle:'Shuffle',know:'Know it',dont:"Don't know",del:'Delete card',addTitle:'Add a card',front:'Front',back:'Back',add:'Add card',empty:'No cards yet. Add your first card.',card:'Card',of:'of',level:'Level'},
+zh:{title:'闪卡复习',sub:'间隔重复闪卡，跟踪掌握度。',total:'卡片数',mastered:'已掌握',mastery:'掌握度',tapFlip:'点按翻面',prev:'上一张',next:'下一张',shuffle:'打乱',know:'认识',dont:'不认识',del:'删卡',addTitle:'添加卡片',front:'正面',back:'背面',add:'添加',empty:'还没有卡片，添加第一张。',card:'第',of:'/',level:'等级'}};
+let uid=1;
+function defaults(){return {lang:'en',idx:0,flipped:false,cards:[
+{id:uid++,front:'serendipity',back:'意外发现珍宝的运气；机缘巧合',level:2},
+{id:uid++,front:'resilient',back:'有韧性的；能快速恢复的',level:1},
+{id:uid++,front:'ephemeral',back:'短暂的；瞬息的',level:0},
+{id:uid++,front:'photosynthesis',back:'光合作用',level:1},
+{id:uid++,front:'mitochondria',back:'线粒体，细胞的能量工厂',level:0},
+{id:uid++,front:'algorithm',back:'算法；解决问题的一组步骤',level:2}]}}
+let S;try{S=JSON.parse(localStorage.getItem(KEY))||defaults()}catch(e){S=defaults()}
+if(!S||!Array.isArray(S.cards))S=defaults();
+uid=S.cards.reduce(function(m,c){return Math.max(m,c.id)},0)+1;
+if(S.idx>=S.cards.length)S.idx=0;
+function save(){localStorage.setItem(KEY,JSON.stringify(S))}
+function t(k){return (I18N[S.lang]&&I18N[S.lang][k])||I18N.en[k]||k}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+function applyI18n(){document.querySelectorAll('[data-i18n]').forEach(function(el){el.textContent=t(el.getAttribute('data-i18n'))});document.getElementById('langBtn').textContent=S.lang==='en'?'中文':'EN';document.documentElement.lang=S.lang==='en'?'en':'zh-CN'}
+function render(){
+const total=S.cards.length;
+const mastered=S.cards.filter(function(c){return c.level>=2}).length;
+const pct=total?Math.round(mastered/total*100):0;
+document.getElementById('statTotal').textContent=total;
+document.getElementById('statMastered').textContent=mastered;
+document.getElementById('statPct').textContent=pct+'%';
+document.getElementById('masteryBar').style.width=pct+'%';
+const cur=S.cards[S.idx];
+document.getElementById('counter').textContent=total?(t('card')+' '+(S.idx+1)+' '+t('of')+' '+total):'0 / 0';
+document.getElementById('frontText').textContent=cur?cur.front:'—';
+document.getElementById('backText').textContent=cur?cur.back:'—';
+document.getElementById('levelBadge').textContent=cur?(t('level')+' '+cur.level):'';
+document.getElementById('flipCard').classList.toggle('flipped',!!S.flipped&&!!cur);
+document.getElementById('emptyBox').innerHTML=total?'':'<p class="empty">'+t('empty')+'</p>';
+applyI18n();
+}
+function flip(){if(!S.cards.length)return;S.flipped=!S.flipped;save();render()}
+function go(d){if(!S.cards.length)return;S.idx=(S.idx+d+S.cards.length)%S.cards.length;S.flipped=false;save();render()}
+document.getElementById('flipCard').addEventListener('click',flip);
+document.getElementById('flipCard').addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();flip()}});
+document.getElementById('prevBtn').addEventListener('click',function(){go(-1)});
+document.getElementById('nextBtn').addEventListener('click',function(){go(1)});
+document.getElementById('knowBtn').addEventListener('click',function(){const c=S.cards[S.idx];if(!c)return;c.level=Math.min(3,c.level+1);go(1)});
+document.getElementById('dontBtn').addEventListener('click',function(){const c=S.cards[S.idx];if(!c)return;c.level=0;go(1)});
+document.getElementById('shuffleBtn').addEventListener('click',function(){for(let i=S.cards.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const tmp=S.cards[i];S.cards[i]=S.cards[j];S.cards[j]=tmp}S.idx=0;S.flipped=false;save();render()});
+document.getElementById('delBtn').addEventListener('click',function(){if(!S.cards.length)return;S.cards.splice(S.idx,1);if(S.idx>=S.cards.length)S.idx=Math.max(0,S.cards.length-1);S.flipped=false;save();render()});
+document.getElementById('form').addEventListener('submit',function(e){e.preventDefault();const f=new FormData(e.target);const front=String(f.get('front')).trim(),back=String(f.get('back')).trim();if(!front||!back)return;S.cards.push({id:uid++,front:front,back:back,level:0});S.idx=S.cards.length-1;S.flipped=false;save();e.target.reset();render()});
+document.getElementById('langBtn').addEventListener('click',function(){S.lang=S.lang==='en'?'zh':'en';save();render()});
+save();render();
+</script>
+</body>
+</html>
