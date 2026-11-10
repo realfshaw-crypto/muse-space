@@ -1,8 +1,8 @@
 {
   "name": "Muse Space — muse空间",
-  "version": "0.1.0",
-  "description_en": "20 ready-to-use mini-app templates for Muse Spaces.",
-  "description_zh": "20 个开箱即用的 Muse Space 小程序模板。",
+  "version": "0.2.0",
+  "description_en": "25 ready-to-use mini-app templates for Muse Spaces.",
+  "description_zh": "25 个开箱即用的 Muse Space 小程序模板。",
   "categories": [
     "AI Work",
     "Productivity",
@@ -151,6 +151,29 @@
       "description_en": "A three-column board with drag, priority and due dates.",
       "description_zh": "三列看板、拖拽、优先级。",
       "path": "templates/task-kanban/"
+    },
+    {
+      "slug": "recurring-todos",
+      "name_en": "Recurring To-Dos",
+      "name_zh": "循环待办",
+      "category": "Productivity",
+      "keywords_en": [
+        "recurring tasks",
+        "routine",
+        "chores",
+        "repeating todo",
+        "habit routine"
+      ],
+      "keywords_zh": [
+        "循环待办",
+        "周期任务",
+        "家务",
+        "定期事项",
+        "日常待办"
+      ],
+      "description_en": "Recurring to-dos with due dates that reset when done.",
+      "description_zh": "周期待办，到期提醒，做完自动顺延。",
+      "path": "templates/recurring-todos/"
     },
     {
       "slug": "budget-planner",
@@ -409,6 +432,98 @@
       "description_en": "Track stock, expiry dates and who does which chore.",
       "description_zh": "库存、保质期、家务分工。",
       "path": "templates/home-inventory/"
+    },
+    {
+      "slug": "gift-tracker",
+      "name_en": "Gift Tracker",
+      "name_zh": "礼物清单",
+      "category": "Life & Home",
+      "keywords_en": [
+        "gift tracker",
+        "gift list",
+        "holiday shopping",
+        "gift ideas",
+        "christmas gifts"
+      ],
+      "keywords_zh": [
+        "礼物清单",
+        "送礼",
+        "礼物",
+        "节日购物",
+        "买礼物"
+      ],
+      "description_en": "Gift ideas, sizes and budgets, sorted by person.",
+      "description_zh": "按人记礼物点子、尺码与预算。",
+      "path": "templates/gift-tracker/"
+    },
+    {
+      "slug": "game-score-tracker",
+      "name_en": "Game Score Tracker",
+      "name_zh": "桌游记分",
+      "category": "Life & Home",
+      "keywords_en": [
+        "game score tracker",
+        "board game",
+        "scoreboard",
+        "game night",
+        "wins"
+      ],
+      "keywords_zh": [
+        "桌游记分",
+        "记分",
+        "桌游",
+        "游戏之夜",
+        "胜负"
+      ],
+      "description_en": "Track every win, loss and rivalry across game nights.",
+      "description_zh": "每局胜负与对手战绩都记下来。",
+      "path": "templates/game-score-tracker/"
+    },
+    {
+      "slug": "pet-day-tracker",
+      "name_en": "Pet Day Tracker",
+      "name_zh": "宠物日程",
+      "category": "Life & Home",
+      "keywords_en": [
+        "pet tracker",
+        "dog day",
+        "pet care",
+        "pet schedule",
+        "walks"
+      ],
+      "keywords_zh": [
+        "宠物日程",
+        "宠物",
+        "遛狗",
+        "宠物记录",
+        "喂食"
+      ],
+      "description_en": "Walks, meals and naps — your pet's whole day in one place.",
+      "description_zh": "遛弯、吃饭、午睡，宠物的一天都在这。",
+      "path": "templates/pet-day-tracker/"
+    },
+    {
+      "slug": "restaurant-wishlist",
+      "name_en": "Restaurant Wishlist",
+      "name_zh": "餐厅心愿单",
+      "category": "Life & Home",
+      "keywords_en": [
+        "restaurant wishlist",
+        "saved restaurants",
+        "want to try",
+        "food list",
+        "dining"
+      ],
+      "keywords_zh": [
+        "餐厅心愿单",
+        "想吃的店",
+        "餐厅收藏",
+        "美食清单",
+        "探店"
+      ],
+      "description_en": "Every restaurant you saved and never went to, with prices and ratings.",
+      "description_zh": "收藏了却没去过的店，价格评分都记着。",
+      "path": "templates/restaurant-wishlist/"
     }
   ]
 }
