@@ -1,0 +1,30 @@
+# Muse Space — muse空间
+
+> Muse Space is a Muse Skill and template library: 20 ready-to-use mini-app templates for Muse Spaces, modeled on WeChat Mini Programs. A user says one sentence ("Open my expense tracker" / 「打开记账」) and Muse generates a working Space from the matching template. All templates are single-file HTML, use Meta Astryx design tokens, store data locally (localStorage), and are bilingual (English default, Chinese alongside).
+
+Repository: https://github.com/realfshaw-crypto/muse-space
+License: MIT. Author: realfshaw-crypto.
+
+## What is Muse Space?
+
+Muse Space is to Muse Spaces what WeChat Mini Programs are to WeChat: small apps that need no install and no coding. The repository contains a Skill definition (SKILL.md), a machine-readable template index (templates.json), shared Astryx design tokens (assets/tokens.css), 20 template folders, and an Astro preview site.
+
+## When should someone use Muse Space?
+
+Use it when you need a small daily tool inside Muse: tracking expenses or subscriptions, a Pomodoro focus timer, habit tracking, flashcards with spaced repetition, a workout log, a trip planner, a prompt library, meeting notes, and similar single-purpose tools. Say the tool's name to Muse and the Space is generated for you.
+
+## What templates does Muse Space include?
+
+20 templates in 6 categories. AI Work: Prompt Studio, Meeting Notes, Resume Coach, Content Calendar. Productivity: Focus Timer, Habit Tracker, Task Board. Money: Budget Planner, Expense Tracker, Subscription Tracker, Savings Goals. Health: Workout Log, Meal & Calorie, Sleep & Mood. Learn: Study Planner, Flashcards, Reading Tracker. Life & Home: Trip Planner, Grocery & Meals, Home Inventory. Full details are in llms-full.txt and templates.json.
+
+## How does Muse Space work technically?
+
+Each template is one self-contained HTML file using Astryx CSS custom properties (semantic tokens, automatic light/dark via light-dark()), vanilla JavaScript, inline SVG icons and animation timed by token durations (175ms micro-interactions, 410ms enter/exit), and localStorage persistence. Muse reads templates.json, loads templates/<slug>/index.html, fills in the user's data, and creates the Space without changing the visual layer.
+
+## Key files
+
+- SKILL.md — Skill definition: triggers and generation rules
+- templates.json — structured index of all 20 templates
+- assets/tokens.css — Astryx design tokens (verbatim)
+- README.md — bilingual overview (English first, Chinese after)
+- README.zh-CN.md — full Chinese version

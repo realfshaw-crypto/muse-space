@@ -1,0 +1,15 @@
+# Placeholder — GitHub Pages deployment for the Astro preview site.
+# This workflow is finalized in the site stage: it will install deps in
+# site/, run `astro build`, and deploy site/dist via actions/deploy-pages.
+# It is intentionally a no-op note for the scaffold release so the repo
+# does not publish a half-built site yet.
+name: pages
+
+on:
+  workflow_dispatch:
+
+jobs:
+  note:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Pages deployment is enabled in the site stage."
