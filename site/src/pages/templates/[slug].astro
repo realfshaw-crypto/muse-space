@@ -45,7 +45,7 @@ const appLd = { '@context': 'https://schema.org', '@type': 'SoftwareApplication'
     <p><a class="btn" href={previewHref}>Open template preview / 打开模板预览</a></p>
     <p>That link uses the relative path <strong>../../templates/{t.slug}/index.html</strong>, which resolves to the template file when you browse the repository or a full local checkout. On this preview site alone it points outside the site root, so for the live file use the repository: <a href={'https://github.com/realfshaw-crypto/muse-space/blob/main/templates/' + t.slug + '/index.html'}>view {t.slug}/index.html on GitHub</a>.</p>
 
-    <h2>Keywords / 关键词</h2>
+    <h2>Related terms / 相关说法</h2>
     <p>{t.keywords_en.join(', ')}</p>
     <p>{t.keywords_zh.join('、')}</p>
   </article></div>

@@ -6,6 +6,19 @@
 
 ![License: MIT](https://img.shields.io/badge/License-MIT-green.svg) ![Templates: 20](https://img.shields.io/badge/Templates-20-blue.svg) ![Design: Astryx](https://img.shields.io/badge/Design-Astryx-black.svg)
 
+## Screenshots
+
+![Muse Space preview site home page — 20 mini-app templates in 6 categories with search](docs/screenshots/preview-home.png)
+
+*The preview site home page: the 20 templates in 6 categories, with a search box.*
+
+| | |
+|---|---|
+| ![Expense Tracker template — log expenses by category, data stored locally](docs/screenshots/template-expense-tracker.png) | ![Focus Timer template — Pomodoro countdown ring with today's focus count](docs/screenshots/template-focus-pomodoro.png) |
+| *Expense Tracker: log an expense and see totals by category.* | *Focus Timer: a 25-minute Pomodoro countdown with today's focus count.* |
+| ![Prompt Studio template — prompt list with categories and one-tap copy](docs/screenshots/template-ai-prompt-studio.png) | ![Habit Tracker template — habit list with streaks and 7-day check-in dots](docs/screenshots/template-habit-tracker.png) |
+| *Prompt Studio: saved prompts by category, one tap to copy.* | *Habit Tracker: today's check-ins, streaks, and the last 7 days.* |
+
 ## What is Muse Space?
 
 Think of WeChat Mini Programs — small apps you open instantly, no install, no setup. Muse Space does the same for Muse Spaces.
@@ -14,7 +27,19 @@ You say one sentence to Muse — "Open my expense tracker" or "Give me a focus t
 
 This repository is three things in one: a **Muse Skill** (`SKILL.md`), a **template library** (20 single-file HTML templates), and a **preview site** (Astro, in `site/`).
 
-Keywords: Muse Space templates, mini programs for Muse, AI daily tools, Muse skill, Astryx design system.
+### Frequently asked questions
+
+**What is Muse Space?**
+Muse Space is a Muse Skill and a library of 20 ready-to-use mini-app templates for Muse Spaces. It is modeled on WeChat Mini Programs: small, single-purpose apps that open instantly, with no install and no coding.
+
+**How does Muse Space work?**
+You name the tool you need in one sentence, in English or Chinese. Muse reads `templates.json`, loads the matching template from `templates/<slug>/index.html`, fills it with your data, and generates a ready-to-use Space.
+
+**What templates does Muse Space include?**
+20 templates in 6 categories: AI Work (4), Productivity (3), Money (4), Health (3), Learn (3), and Life & Home (3). Every template is a single self-contained HTML file, and data is stored locally in the browser (`localStorage`).
+
+**Is Muse Space free and open source?**
+Yes. Muse Space is released under the MIT License. You can copy, adapt, and reuse any template.
 
 ## Why
 
@@ -69,7 +94,7 @@ Keywords: Muse Space templates, mini programs for Muse, AI daily tools, Muse ski
 | [Grocery & Meals](templates/grocery-meal-planner/) | Weekly menu to grocery list, automatically. |
 | [Home Inventory](templates/home-inventory/) | Stock, expiry dates, chores. |
 
-> Status: scaffold release. Template bodies (`index.html`) land in batches — see each template folder for its status.
+> All 20 template bodies are included and ready to open.
 
 ## Quick Start
 
@@ -92,11 +117,6 @@ All templates share one token file: [`assets/tokens.css`](assets/tokens.css) (Me
 - Motion uses token durations only: fast 175ms for micro-interactions, medium 410ms for enter/exit. SVG animations respect `prefers-reduced-motion`.
 - Control heights: 28 / 32 / 36px. Spacing: 4px steps.
 
-## SEO + GEO
-
-- **SEO:** the Astro preview site gives every template its own URL, title and description, with Open Graph, canonical, hreflang (en / zh-CN), sitemap and structured data (`SoftwareApplication`, `ItemList`, FAQ).
-- **GEO:** [`llms.txt`](llms.txt) and [`llms-full.txt`](llms-full.txt) describe this project in Q&A and list form so AI engines (ChatGPT, Claude, Perplexity) can cite it accurately. [`templates.json`](templates.json) is the single structured source of truth.
-
 ## Repository layout
 
 ```
@@ -105,7 +125,7 @@ templates.json    Machine-readable index of all 20 templates
 assets/tokens.css Astryx design tokens (verbatim)
 templates/        One folder per template: index.html + README.md
 site/             Astro 5 preview site (GitHub Pages)
-llms.txt          GEO summary for AI engines
+llms.txt          Plain-text project summary
 ```
 
 ## License

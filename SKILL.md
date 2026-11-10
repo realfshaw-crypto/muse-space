@@ -56,4 +56,4 @@ If the request is ambiguous, match by keywords in `templates.json` (`keywords_en
 ## Notes
 
 - Template bodies are released in batches. If a matched template folder has no `index.html` yet (status "Coming soon" in its README), tell the user it is coming soon and offer the closest available template instead. Do not fabricate the missing template.
-- The machine-readable index is `templates.json`. The human overview is `README.md`. For AI citation, `llms.txt` / `llms-full.txt` summarize the same facts — keep all four consistent when editing.
+- The machine-readable index is `templates.json`. The human overview is `README.md`. `llms.txt` / `llms-full.txt` are plain-text summaries of the same facts — keep all consistent when editing.

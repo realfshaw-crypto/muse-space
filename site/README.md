@@ -8,10 +8,8 @@ https://realfshaw-crypto.github.io/muse-space/
   detail page per template at `/templates/<slug>/`.
 - Design: Astryx tokens copied verbatim to `src/styles/tokens.css`; components
   use only `var(--...)`.
-- SEO/GEO: per-page title/description, canonical, Open Graph / Twitter Card,
-  JSON-LD (WebSite + ItemList + FAQPage on home, SoftwareApplication on detail
-  pages), sitemap via @astrojs/sitemap, `public/robots.txt` allowing search and
-  AI crawlers, and `public/llms.txt`.
+- Static site; the source lives in this directory (`src/`, `public/`,
+  `astro.config.mjs`).
 
 Build: `npm install && npm run build` (output in `dist/`).
 Deploy: `.github/workflows/pages.yml` (requires Pages Source = GitHub Actions).

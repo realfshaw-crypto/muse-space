@@ -1,6 +1,6 @@
 # Muse Space — muse空间 (full)
 
-Muse Space is a Muse Skill and template library with 20 ready-to-use mini-app templates for Muse Spaces, modeled on WeChat Mini Programs. Repository: https://github.com/realfshaw-crypto/muse-space. License: MIT. All templates are single-file HTML, Astryx design tokens, localStorage persistence, bilingual English/Chinese, SEO and GEO ready.
+Muse Space is a Muse Skill and template library with 20 ready-to-use mini-app templates for Muse Spaces, modeled on WeChat Mini Programs. Repository: https://github.com/realfshaw-crypto/muse-space. License: MIT. All templates are single-file HTML, Astryx design tokens, localStorage persistence, bilingual English/Chinese.
 
 ## Questions and answers
 
