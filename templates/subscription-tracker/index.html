@@ -288,6 +288,7 @@ footer{color:var(--color-text-disabled);font-size:var(--text-supporting-size);te
 <div class="stat"><b id="stMonth">–</b><span data-i="perMonth"></span></div>
 <div class="stat"><b id="stYear">–</b><span data-i="perYear"></span></div>
 <div class="stat"><b id="stCount">–</b><span data-i="active"></span></div>
+<div class="stat"><b id="stDue30">–</b><span data-i="due30"></span></div>
 </section>
 <section class="card" aria-label="Add subscription">
 <h2 data-i="addTitle"></h2>
@@ -322,25 +323,27 @@ const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&g
 const today=()=>new Date().toISOString().slice(0,10);
 const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,7);
 
-const T={en:{sub:'List every subscription, renewal date and yearly cost.',perMonth:'Per month (avg)',perYear:'Per year',active:'Active subscriptions',addTitle:'Add a subscription',name:'Name',namePh:'e.g. Music streaming',price:'Price',cycle:'Cycle',monthly:'Monthly',yearly:'Yearly',nextDate:'Next renewal',addBtn:'Add subscription',listTitle:'Your subscriptions',emptyAll:'No subscriptions yet. Add your first one above.',dueSoon:'Due soon',days:'days',today:'Today',del:'Delete'},
-zh:{sub:'订阅清单、续费日期与年支出，一屏看清。',perMonth:'月均支出',perYear:'年支出',active:'订阅数量',addTitle:'添加订阅',name:'名称',namePh:'如：音乐会员',price:'价格',cycle:'周期',monthly:'每月',yearly:'每年',nextDate:'下次续费',addBtn:'添加订阅',listTitle:'我的订阅',emptyAll:'还没有订阅，在上面添加第一个。',dueSoon:'即将续费',days:'天后',today:'今天',del:'删除'}};
+const T={en:{sub:'List every subscription, renewal date and yearly cost.',perMonth:'Per month (avg)',perYear:'Per year',active:'Active subscriptions',due30:'Due in 30 days',addTitle:'Add a subscription',name:'Name',namePh:'e.g. Music streaming',price:'Price',cycle:'Cycle',monthly:'Monthly',yearly:'Yearly',nextDate:'Next renewal',addBtn:'Add subscription',listTitle:'Your subscriptions',emptyAll:'No subscriptions yet. Add your first one above.',dueSoon:'Due soon',days:'days',today:'Today',del:'Delete'},
+zh:{sub:'订阅清单、续费日期与年支出，一屏看清。',perMonth:'月均支出',perYear:'年支出',active:'订阅数量',due30:'30 天内续费',addTitle:'添加订阅',name:'名称',namePh:'如：音乐会员',price:'价格',cycle:'周期',monthly:'每月',yearly:'每年',nextDate:'下次续费',addBtn:'添加订阅',listTitle:'我的订阅',emptyAll:'还没有订阅，在上面添加第一个。',dueSoon:'即将续费',days:'天后',today:'今天',del:'删除'}};
 let S;try{S=JSON.parse(localStorage.getItem(KEY))}catch(e){S=null}
 if(!S||!Array.isArray(S.subs)){const d=n=>{const x=new Date();x.setDate(x.getDate()+n);return x.toISOString().slice(0,10)};
  S={lang:lang,subs:[{id:uid(),name:'Video streaming',price:15.49,cycle:'monthly',next:d(4)},{id:uid(),name:'Music streaming',price:10.99,cycle:'monthly',next:d(12)},{id:uid(),name:'Cloud storage 2TB',price:99.99,cycle:'yearly',next:d(40)},{id:uid(),name:'AI assistant Pro',price:20,cycle:'monthly',next:d(6)},{id:uid(),name:'Fitness app',price:59.99,cycle:'yearly',next:d(90)}]}}
 lang=S.lang||lang;
 function save(){S.lang=lang;localStorage.setItem(KEY,JSON.stringify(S))}
 const monthly=s=>s.cycle==='monthly'?+s.price:+s.price/12;
+const yearly=s=>s.cycle==='monthly'?+s.price*12:+s.price;
 const daysTo=ds=>Math.round((new Date(ds+'T00:00:00')-new Date(today()+'T00:00:00'))/86400000);
 function render(){
  const m=S.subs.reduce((a,s)=>a+monthly(s),0);
  document.getElementById('stMonth').textContent=money(m);
  document.getElementById('stYear').textContent=money(m*12);
  document.getElementById('stCount').textContent=S.subs.length;
+ document.getElementById('stDue30').textContent=money(S.subs.filter(s=>{const dd=daysTo(s.next);return dd>=0&&dd<=30}).reduce((a,s)=>a+ +s.price,0));
  const list=document.getElementById('sList');list.innerHTML='';
  document.getElementById('sEmpty').hidden=S.subs.length>0;
  [...S.subs].sort((a,b)=>a.next.localeCompare(b.next)).forEach(s=>{const dd=daysTo(s.next),soon=dd>=0&&dd<=7;
   const d=document.createElement('div');d.className='item';
-  d.innerHTML='<div><span class="strong">'+esc(s.name)+'</span>'+(soon?'<span class="badge">'+t('dueSoon')+'</span>':'')+'<br><span class="muted">'+money(s.price)+' / '+(s.cycle==='monthly'?t('monthly'):t('yearly'))+' · '+esc(s.next)+' · '+(dd===0?t('today'):dd+' '+t('days'))+'</span></div><button class="del" type="button" aria-label="'+t('del')+'">×</button>';
+  d.innerHTML='<div><span class="strong">'+esc(s.name)+'</span>'+(soon?'<span class="badge">'+t('dueSoon')+'</span>':'')+'<br><span class="muted">'+money(s.price)+' / '+(s.cycle==='monthly'?t('monthly'):t('yearly'))+' · '+money(yearly(s))+' / yr · '+esc(s.next)+' · '+(dd===0?t('today'):dd+' '+t('days'))+'</span></div><button class="del" type="button" aria-label="'+t('del')+'">×</button>';
   d.querySelector('.del').addEventListener('click',()=>{S.subs=S.subs.filter(x=>x.id!==s.id);save();render();});
   list.appendChild(d);});
 }

@@ -1,8 +1,8 @@
 # Subscription Tracker — 订阅管家
 
-**What is Subscription Tracker?** List every subscription, renewal date and yearly cost.
+**What is Subscription Tracker?** List every subscription, renewal date, yearly cost and what's due in 30 days.
 
-**订阅管家是什么？** 订阅清单、续费提醒、年支出。
+**订阅管家是什么？** 订阅清单、续费日期、年支出与 30 天内续费。
 
 Category / 分类: Money
 

@@ -19,8 +19,8 @@ Q: How many templates are there? A: 34 templates in 6 categories: AI Work (4), P
 - Content Calendar (内容日历, slug: ai-content-calendar, path: templates/ai-content-calendar/): Plan topics, schedule posts and track publish status in one view. / 选题、排期、发布状态一屏管。 Keywords EN: content calendar, creator, publishing schedule, social media. Keywords ZH: 内容日历, 选题, 排期.
 
 ### Productivity
-- Focus Timer (专注时钟, slug: focus-pomodoro, path: templates/focus-pomodoro/): A simple Pomodoro timer with today's focus stats. / 番茄钟加今日专注统计。 Keywords EN: pomodoro, focus timer, deep work, productivity. Keywords ZH: 番茄钟, 专注, 计时.
-- Habit Tracker (习惯打卡, slug: habit-tracker, path: templates/habit-tracker/): Track streaks and see your year as a heatmap. / 习惯连续天数与热力图。 Keywords EN: habit tracker, streak, daily check-in, heatmap. Keywords ZH: 习惯打卡, 连续天数, 热力图.
+- Focus Timer (专注时钟, slug: focus-pomodoro, path: templates/focus-pomodoro/): A Pomodoro timer with a 7-day focus history and long breaks. / 番茄钟加近 7 天专注记录与长休。 Keywords EN: pomodoro, focus timer, deep work, productivity. Keywords ZH: 番茄钟, 专注, 计时.
+- Habit Tracker (习惯打卡, slug: habit-tracker, path: templates/habit-tracker/): Track streaks, 7-day check-ins and completion rates. / 习惯连续天数、近 7 天打卡与完成率。 Keywords EN: habit tracker, streak, daily check-in, completion rate. Keywords ZH: 习惯打卡, 连续天数, 完成率.
 - Task Board (任务看板, slug: task-kanban, path: templates/task-kanban/): A three-column board with drag, priority and due dates. / 三列看板、拖拽、优先级。 Keywords EN: kanban, task board, to do, project board. Keywords ZH: 任务看板, 看板, 待办.
 - Recurring To-Dos (循环待办, slug: recurring-todos, path: templates/recurring-todos/): Recurring to-dos with due dates that reset when done. / 周期待办，到期提醒，做完自动顺延。 Keywords EN: recurring tasks, routine, chores, repeating todo, habit routine. Keywords ZH: 循环待办, 周期任务, 家务, 定期事项, 日常待办.
 - Idea Capture (灵感收集箱, slug: idea-capture, path: templates/idea-capture/): Catch an idea in seconds, sort it later. / 灵感随手记，稍后再归类。 Keywords EN: idea capture, ideas, capture ideas, brainstorm, notes. Keywords ZH: 灵感收集箱, 灵感, 点子, 想法, 记点子.
@@ -30,7 +30,7 @@ Q: How many templates are there? A: 34 templates in 6 categories: AI Work (4), P
 ### Money
 - Budget Planner (预算管家, slug: budget-planner, path: templates/budget-planner/): Set a monthly budget, cap each category, see what is left. / 月预算、分类上限、剩余一目了然。 Keywords EN: budget, budget planner, monthly budget, money. Keywords ZH: 预算, 月预算, 理财.
 - Expense Tracker (记账本, slug: expense-tracker, path: templates/expense-tracker/): Log an expense in seconds and see category totals. / 快速记一笔、分类汇总。 Keywords EN: expense tracker, bookkeeping, spending, money log. Keywords ZH: 记账, 记账本, 支出.
-- Subscription Tracker (订阅管家, slug: subscription-tracker, path: templates/subscription-tracker/): List every subscription, renewal date and yearly cost. / 订阅清单、续费提醒、年支出。 Keywords EN: subscription tracker, renewals, recurring payments. Keywords ZH: 订阅管理, 续费提醒, 订阅.
+- Subscription Tracker (订阅管家, slug: subscription-tracker, path: templates/subscription-tracker/): List every subscription, renewal date, yearly cost and what's due in 30 days. / 订阅清单、续费日期、年支出与 30 天内续费。 Keywords EN: subscription tracker, renewals, recurring payments. Keywords ZH: 订阅管理, 续费提醒, 订阅.
 - Savings Goals (存钱目标, slug: savings-goals, path: templates/savings-goals/): Track progress and milestones for each savings goal. / 目标进度、里程碑。 Keywords EN: savings goals, save money, goal tracker. Keywords ZH: 存钱, 储蓄目标, 攒钱.
 - Bill Tracker (账单管家, slug: bill-tracker, path: templates/bill-tracker/): Every bill, its due date and the best card to pay with. / 账单、到期日与刷哪张卡。 Keywords EN: bill tracker, bills, due dates, best credit card, pay bills. Keywords ZH: 账单管家, 账单, 缴费, 到期, 刷卡.
 
@@ -41,9 +41,9 @@ Q: How many templates are there? A: 34 templates in 6 categories: AI Work (4), P
 
 ### Learn
 - Study Planner (学习计划, slug: study-planner, path: templates/study-planner/): Turn a timetable into review blocks and track progress. / 课表转复习块、进度跟踪。 Keywords EN: study planner, study schedule, exam prep, learning. Keywords ZH: 学习计划, 复习, 课表.
-- Flashcards (闪卡复习, slug: flashcard-review, path: templates/flashcard-review/): Spaced repetition flashcards with mastery levels. / 间隔重复、掌握度。 Keywords EN: flashcards, spaced repetition, memorize, anki alternative. Keywords ZH: 闪卡, 间隔重复, 背单词.
+- Flashcards (闪卡复习, slug: flashcard-review, path: templates/flashcard-review/): Spaced repetition flashcards with mastery levels, weakest-first review and per-level counts. / 间隔重复、掌握度，先练最弱卡片，按等级统计。 Keywords EN: flashcards, spaced repetition, memorize, anki alternative. Keywords ZH: 闪卡, 间隔重复, 背单词.
 - Reading Tracker (阅读追踪, slug: reading-tracker, path: templates/reading-tracker/): Track your book list, progress and highlights. / 书单、进度、摘录。 Keywords EN: reading tracker, book list, reading log, books. Keywords ZH: 阅读, 书单, 读书记录.
-- Trivia Quiz (趣味问答, slug: trivia-quiz, path: templates/trivia-quiz/): A timed quiz game across four categories, with score, streaks and a review. / 四分类限时问答：计分、连胜，答完还能复盘错题。 Keywords EN: trivia quiz, quiz, trivia, general knowledge, quiz game. Keywords ZH: 趣味问答, 问答, 知识问答, 答题.
+- Trivia Quiz (趣味问答, slug: trivia-quiz, path: templates/trivia-quiz/): A timed quiz game across four categories — 40 questions — with score, streaks and a review. / 四分类限时问答共 40 题：计分、连胜，答完还能复盘错题。 Keywords EN: trivia quiz, quiz, trivia, general knowledge, quiz game. Keywords ZH: 趣味问答, 问答, 知识问答, 答题.
 
 ### Life & Home
 - Trip Planner (旅行计划, slug: trip-planner, path: templates/trip-planner/): Plan day-by-day itineraries, checklists and trip budget. / 行程天表、清单、预算。 Keywords EN: trip planner, travel itinerary, packing list, travel. Keywords ZH: 旅行计划, 行程, 旅游.

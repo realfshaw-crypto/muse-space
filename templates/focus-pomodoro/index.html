@@ -272,20 +272,29 @@ textarea{resize:vertical}
 <div class="wrap"><main>
 <header class="top"><div class="brand"><span class="logo" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10z M12 3v4M9 3h6"/></svg></span><div><h1 data-i18n="title"></h1><p class="sub" data-i18n="sub"></p></div></div><button type="button" class="btn-ghost" data-lang-btn>中文</button></header>
 <section class="card stack" aria-label="Timer">
-<div class="row" role="group" aria-label="Mode"><button type="button" class="btn" data-mode="focus">Focus 25</button><button type="button" class="btn-ghost" data-mode="break">Break 5</button></div>
+<div class="row" role="group" aria-label="Mode"><button type="button" class="btn" data-mode="focus">Focus 25</button><button type="button" class="btn-ghost" data-mode="break">Break 5</button><button type="button" class="btn-ghost" data-mode="long" data-i18n="long"></button></div>
 <div class="ring-wrap"><svg class="ring" width="220" height="220" viewBox="0 0 120 120" role="img" aria-label="Timer progress ring"><circle cx="60" cy="60" r="52" fill="none" stroke="var(--color-track)" stroke-width="8"></circle><circle class="ring-fg" data-ring cx="60" cy="60" r="52" fill="none" stroke="var(--color-accent)" stroke-width="8" stroke-linecap="round"></circle></svg></div>
 <p class="timer-num" data-time>25:00</p>
 <div class="row" style="justify-content:center"><button type="button" class="btn" data-start data-i18n="start"></button><button type="button" class="btn-ghost" data-pause data-i18n="pause"></button><button type="button" class="btn-ghost" data-reset data-i18n="reset"></button></div>
 <p class="muted" style="text-align:center;margin:0"><span data-i18n="today"></span>: <strong data-count>0</strong></p>
 </section>
+<section class="card stack" aria-label="History">
+<h2 data-i18n="history"></h2>
+<div class="stack" data-history></div>
+<p class="muted" style="margin:0" data-i18n="historyNote"></p>
+</section>
 </main></div>
 <script>
 
 const KEY='muse-space:focus-pomodoro';
-const STR={en:{title:'Focus Timer',sub:'A simple Pomodoro timer with today focus stats.',start:'Start',pause:'Pause',reset:'Reset',today:'Focus sessions today'},zh:{title:'专注时钟',sub:'番茄钟加今日专注统计。',start:'开始',pause:'暂停',reset:'重置',today:'今日专注次数'}};
+const STR={en:{title:'Focus Timer',sub:'A Pomodoro timer with a 7-day focus history and long breaks.',start:'Start',pause:'Pause',reset:'Reset',today:'Focus sessions today',long:'Long break 15',history:'Last 7 days',sessions:'sessions',minutes:'min',historyNote:'Focus minutes per day, up to 7 days back. Every 4th focus session earns a long break.'},zh:{title:'专注时钟',sub:'番茄钟加近 7 天专注记录与长休。',start:'开始',pause:'暂停',reset:'重置',today:'今日专注次数',long:'长休 15 分钟',history:'近 7 天',sessions:'次',minutes:'分钟',historyNote:'每天专注分钟数，最多回看 7 天。每完成 4 次专注，长休一次。'}};
 const todayStr=new Date().toISOString().slice(0,10);
 let state; try{ state=JSON.parse(localStorage.getItem(KEY)); }catch(e){ state=null; }
-if(!state || state.date!==todayStr){ state={lang:(state&&state.lang)||'en',date:todayStr,count:(state&&state.date===todayStr)?state.count:0}; }
+if(!state || typeof state!=='object'){ state={lang:'en',history:{},cycles:0}; }
+if(!state.history || typeof state.history!=='object'){ state.history={}; }
+if(typeof state.cycles!=='number'){ state.cycles=0; }
+if(typeof state.count==='number' && state.date && !state.history[state.date]){ state.history[state.date]={count:state.count,minutes:state.count*25}; delete state.count; delete state.date; }
+if(!state.history[todayStr]){ state.history[todayStr]={count:0,minutes:0}; }
 
 let lang = (state && state.lang) || 'en';
 function t(k){ return STR[lang][k] || STR.en[k] || k; }
@@ -294,16 +303,18 @@ document.querySelector('[data-lang-btn]').addEventListener('click', function(){ 
 function esc(s){ return String(s==null?'':s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 function uid(){ return Date.now().toString(36) + Math.random().toString(36).slice(2,7); }
 
-function save(){ localStorage.setItem(KEY, JSON.stringify(state)); }
+function save(){ const cutoff=new Date(); cutoff.setDate(cutoff.getDate()-7); Object.keys(state.history).forEach(function(k){ if(k<cutoff.toISOString().slice(0,10)){ delete state.history[k]; } }); localStorage.setItem(KEY, JSON.stringify(state)); }
 let mode='focus', total=25*60, left=total, timer=null;
 const ring=document.querySelector('[data-ring]'); const CIRC=2*Math.PI*52; ring.style.strokeDasharray=CIRC;
-function draw(){ const m=String(Math.floor(left/60)).padStart(2,'0'), s=String(left%60).padStart(2,'0'); document.querySelector('[data-time]').textContent=m+':'+s; ring.style.strokeDashoffset=CIRC*(1-(total-left)/total); document.querySelector('[data-count]').textContent=state.count; }
+function todayEntry(){ if(!state.history[todayStr]){ state.history[todayStr]={count:0,minutes:0}; } return state.history[todayStr]; }
+function draw(){ const m=String(Math.floor(left/60)).padStart(2,'0'), s=String(left%60).padStart(2,'0'); document.querySelector('[data-time]').textContent=m+':'+s; ring.style.strokeDashoffset=CIRC*(1-(total-left)/total); document.querySelector('[data-count]').textContent=todayEntry().count; renderHistory(); }
+function renderHistory(){ const box=document.querySelector('[data-history]'); if(!box){ return; } const days=[]; for(let i=6;i>=0;i--){ const d=new Date(); d.setDate(d.getDate()-i); days.push(d.toISOString().slice(0,10)); } const maxMin=Math.max.apply(null, days.map(function(ds){ return (state.history[ds]||{minutes:0}).minutes; }).concat([25])); box.innerHTML=days.map(function(ds){ const e=state.history[ds]||{count:0,minutes:0}; const pct=Math.round(e.minutes/maxMin*100); return '<div><div class="row"><span>'+esc(ds.slice(5))+'</span><span class="grow"></span><span class="muted">'+e.count+' '+t('sessions')+' · '+e.minutes+' '+t('minutes')+'</span></div><div class="progress" style="margin-top:var(--spacing-1)"><div class="progress-bar" style="width:'+pct+'%"></div></div></div>'; }).join(''); }
 function stop(){ if(timer){ clearInterval(timer); timer=null; } }
-document.querySelectorAll('[data-mode]').forEach(function(b){ b.addEventListener('click', function(){ stop(); mode=b.dataset.mode; total=mode==='focus'?25*60:5*60; left=total; draw(); }); });
-document.querySelector('[data-start]').addEventListener('click', function(){ if(timer){return;} timer=setInterval(function(){ left--; if(left<=0){ stop(); left=0; if(mode==='focus'){ state.count++; save(); } } draw(); },1000); });
+document.querySelectorAll('[data-mode]').forEach(function(b){ b.addEventListener('click', function(){ stop(); mode=b.dataset.mode; total=mode==='focus'?25*60:mode==='long'?15*60:5*60; left=total; draw(); }); });
+document.querySelector('[data-start]').addEventListener('click', function(){ if(timer){return;} timer=setInterval(function(){ left--; if(left<=0){ stop(); left=0; if(mode==='focus'){ const e=todayEntry(); e.count++; e.minutes+=25; state.cycles++; save(); if(state.cycles%4===0){ mode='long'; total=15*60; left=total; } } } draw(); },1000); });
 document.querySelector('[data-pause]').addEventListener('click', stop);
 document.querySelector('[data-reset]').addEventListener('click', function(){ stop(); left=total; draw(); });
-applyI18n(); draw();
+save(); applyI18n(); draw();
 
 </script>
 </body>

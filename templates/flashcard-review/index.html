@@ -283,6 +283,7 @@ footer{color:var(--color-text-disabled);text-align:center;margin-top:var(--spaci
 <div class="stat"><span class="muted small" data-i18n="mastery">Mastery</span><b id="statPct">0%</b></div>
 </div>
 <div class="bar" role="progressbar" aria-label="Mastery progress"><i id="masteryBar"></i></div>
+<p class="small muted" id="levelBreak" style="margin-top:var(--spacing-2)"></p>
 </section>
 <section class="card" aria-label="Review card">
 <p class="small muted center" id="counter">Card 0 of 0</p>
@@ -297,6 +298,7 @@ footer{color:var(--color-text-disabled);text-align:center;margin-top:var(--spaci
 <div class="actions">
 <button class="btn btn-ghost" id="prevBtn" type="button" data-i18n="prev">Prev</button>
 <button class="btn btn-ghost" id="shuffleBtn" type="button" data-i18n="shuffle">Shuffle</button>
+<button class="btn btn-ghost" id="weakBtn" type="button">Weakest first</button>
 <button class="btn btn-danger" id="dontBtn" type="button" data-i18n="dont">Don't know</button>
 <button class="btn btn-ok" id="knowBtn" type="button" data-i18n="know">Know it</button>
 <button class="btn btn-ghost" id="nextBtn" type="button" data-i18n="next">Next</button>
@@ -318,10 +320,10 @@ footer{color:var(--color-text-disabled);text-align:center;margin-top:var(--spaci
 <script>
 const KEY='muse-space:flashcard-review';
 const I18N={
-en:{title:'Flashcards',sub:'Spaced repetition flashcards with mastery levels.',total:'Cards',mastered:'Mastered',mastery:'Mastery',tapFlip:'Tap to flip',prev:'Prev',next:'Next',shuffle:'Shuffle',know:'Know it',dont:"Don't know",del:'Delete card',addTitle:'Add a card',front:'Front',back:'Back',add:'Add card',empty:'No cards yet. Add your first card.',card:'Card',of:'of',level:'Level'},
-zh:{title:'闪卡复习',sub:'间隔重复闪卡，跟踪掌握度。',total:'卡片数',mastered:'已掌握',mastery:'掌握度',tapFlip:'点按翻面',prev:'上一张',next:'下一张',shuffle:'打乱',know:'认识',dont:'不认识',del:'删卡',addTitle:'添加卡片',front:'正面',back:'背面',add:'添加',empty:'还没有卡片，添加第一张。',card:'第',of:'/',level:'等级'}};
+en:{title:'Flashcards',sub:'Spaced repetition flashcards with mastery levels.',total:'Cards',mastered:'Mastered',mastery:'Mastery',tapFlip:'Tap to flip',prev:'Prev',next:'Next',shuffle:'Shuffle',weakFirst:'Weakest first',inOrder:'In order',know:'Know it',dont:"Don't know",del:'Delete card',addTitle:'Add a card',front:'Front',back:'Back',add:'Add card',empty:'No cards yet. Add your first card.',card:'Card',of:'of',level:'Level'},
+zh:{title:'闪卡复习',sub:'间隔重复闪卡，跟踪掌握度。',total:'卡片数',mastered:'已掌握',mastery:'掌握度',tapFlip:'点按翻面',prev:'上一张',next:'下一张',shuffle:'打乱',weakFirst:'先练最弱',inOrder:'按顺序',know:'认识',dont:'不认识',del:'删卡',addTitle:'添加卡片',front:'正面',back:'背面',add:'添加',empty:'还没有卡片，添加第一张。',card:'第',of:'/',level:'等级'}};
 let uid=1;
-function defaults(){return {lang:'en',idx:0,flipped:false,cards:[
+function defaults(){return {lang:'en',idx:0,flipped:false,weakFirst:false,cards:[
 {id:uid++,front:'serendipity',back:'意外发现珍宝的运气；机缘巧合',level:2},
 {id:uid++,front:'resilient',back:'有韧性的；能快速恢复的',level:1},
 {id:uid++,front:'ephemeral',back:'短暂的；瞬息的',level:0},
@@ -330,8 +332,10 @@ function defaults(){return {lang:'en',idx:0,flipped:false,cards:[
 {id:uid++,front:'algorithm',back:'算法；解决问题的一组步骤',level:2}]}}
 let S;try{S=JSON.parse(localStorage.getItem(KEY))||defaults()}catch(e){S=defaults()}
 if(!S||!Array.isArray(S.cards))S=defaults();
+if(typeof S.weakFirst!=='boolean'){S.weakFirst=false}
 uid=S.cards.reduce(function(m,c){return Math.max(m,c.id)},0)+1;
 if(S.idx>=S.cards.length)S.idx=0;
+function order(){ if(!S.weakFirst){ return S.cards.map(function(c,i){return i}); } return S.cards.map(function(c,i){return i}).sort(function(a,b){ return S.cards[a].level-S.cards[b].level; }); }
 function save(){localStorage.setItem(KEY,JSON.stringify(S))}
 function t(k){return (I18N[S.lang]&&I18N[S.lang][k])||I18N.en[k]||k}
 function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
@@ -344,7 +348,13 @@ document.getElementById('statTotal').textContent=total;
 document.getElementById('statMastered').textContent=mastered;
 document.getElementById('statPct').textContent=pct+'%';
 document.getElementById('masteryBar').style.width=pct+'%';
-const cur=S.cards[S.idx];
+const lv=[0,0,0,0]; S.cards.forEach(function(c){ if(c.level>=0&&c.level<=3){ lv[c.level]++; } });
+document.getElementById('levelBreak').textContent='L0 '+lv[0]+' · L1 '+lv[1]+' · L2 '+lv[2]+' · L3 '+lv[3];
+document.getElementById('weakBtn').textContent=S.weakFirst?t('inOrder'):t('weakFirst');
+document.getElementById('shuffleBtn').style.display=S.weakFirst?'none':'';
+const ord=order();
+if(S.idx>=ord.length){S.idx=0}
+const cur=S.cards[ord[S.idx]];
 document.getElementById('counter').textContent=total?(t('card')+' '+(S.idx+1)+' '+t('of')+' '+total):'0 / 0';
 document.getElementById('frontText').textContent=cur?cur.front:'—';
 document.getElementById('backText').textContent=cur?cur.back:'—';
@@ -359,10 +369,11 @@ document.getElementById('flipCard').addEventListener('click',flip);
 document.getElementById('flipCard').addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();flip()}});
 document.getElementById('prevBtn').addEventListener('click',function(){go(-1)});
 document.getElementById('nextBtn').addEventListener('click',function(){go(1)});
-document.getElementById('knowBtn').addEventListener('click',function(){const c=S.cards[S.idx];if(!c)return;c.level=Math.min(3,c.level+1);go(1)});
-document.getElementById('dontBtn').addEventListener('click',function(){const c=S.cards[S.idx];if(!c)return;c.level=0;go(1)});
+document.getElementById('knowBtn').addEventListener('click',function(){const c=S.cards[order()[S.idx]];if(!c)return;c.level=Math.min(3,c.level+1);go(1)});
+document.getElementById('dontBtn').addEventListener('click',function(){const c=S.cards[order()[S.idx]];if(!c)return;c.level=0;go(1)});
+document.getElementById('weakBtn').addEventListener('click',function(){S.weakFirst=!S.weakFirst;S.idx=0;S.flipped=false;save();render()});
 document.getElementById('shuffleBtn').addEventListener('click',function(){for(let i=S.cards.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const tmp=S.cards[i];S.cards[i]=S.cards[j];S.cards[j]=tmp}S.idx=0;S.flipped=false;save();render()});
-document.getElementById('delBtn').addEventListener('click',function(){if(!S.cards.length)return;S.cards.splice(S.idx,1);if(S.idx>=S.cards.length)S.idx=Math.max(0,S.cards.length-1);S.flipped=false;save();render()});
+document.getElementById('delBtn').addEventListener('click',function(){if(!S.cards.length)return;S.cards.splice(order()[S.idx],1);if(S.idx>=S.cards.length)S.idx=Math.max(0,S.cards.length-1);S.flipped=false;save();render()});
 document.getElementById('form').addEventListener('submit',function(e){e.preventDefault();const f=new FormData(e.target);const front=String(f.get('front')).trim(),back=String(f.get('back')).trim();if(!front||!back)return;S.cards.push({id:uid++,front:front,back:back,level:0});S.idx=S.cards.length-1;S.flipped=false;save();e.target.reset();render()});
 document.getElementById('langBtn').addEventListener('click',function(){S.lang=S.lang==='en'?'zh':'en';save();render()});
 save();render();

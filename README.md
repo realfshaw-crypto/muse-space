@@ -15,9 +15,9 @@
 | | |
 |---|---|---|
 | ![Expense Tracker template — log expenses by category, data stored locally](docs/screenshots/template-expense-tracker.png) | ![Focus Timer template — Pomodoro countdown ring with today's focus count](docs/screenshots/template-focus-pomodoro.png) |
-| *Expense Tracker: log an expense and see totals by category.* | *Focus Timer: a 25-minute Pomodoro countdown with today's focus count.* |
+| *Expense Tracker: log an expense and see totals by category.* | *Focus Timer: a 25-minute Pomodoro countdown with a 7-day focus history.* |
 | ![Prompt Studio template — prompt list with categories and one-tap copy](docs/screenshots/template-ai-prompt-studio.png) | ![Habit Tracker template — habit list with streaks and 7-day check-in dots](docs/screenshots/template-habit-tracker.png) |
-| *Prompt Studio: saved prompts by category, one tap to copy.* | *Habit Tracker: today's check-ins, streaks, and the last 7 days.* |
+| *Prompt Studio: saved prompts by category, one tap to copy.* | *Habit Tracker: today's check-ins, streaks, completion rates, and the last 7 days.* |
 | ![Gift Tracker template — gift ideas, sizes and budgets, sorted by person](docs/screenshots/template-gift-tracker.png) | ![Game Score Tracker template — match history, winners and the leaderboard](docs/screenshots/template-game-score-tracker.png) |
 | *Gift Tracker: gift ideas, sizes and budgets, sorted by person.* | *Game Score Tracker: match history, winners and the leaderboard.* |
 | ![Recurring To-Dos template — recurring tasks with due dates that reset when done](docs/screenshots/template-recurring-todos.png) | ![Pet Day Tracker template — walks, meals and naps on one timeline](docs/screenshots/template-pet-day-tracker.png) |
@@ -31,7 +31,7 @@
 | ![Retro Organizer template — Palm-style datebook, to-dos, memos and contacts](docs/screenshots/template-retro-organizer.png) | ![App Hub template — pinned apps and links in one hub](docs/screenshots/template-app-hub.png) |
 | *Retro Organizer: datebook, to-dos, memos and contacts in one device.* | *App Hub: pinned apps and links, search and open in one tap.* |
 | ![Trivia Quiz template — timed quiz across four categories with score and streaks](docs/screenshots/template-trivia-quiz.png) | |
-| *Trivia Quiz: timed questions, score, streaks and a review.* | |
+| *Trivia Quiz: 40 timed questions, score, streaks and a review.* | |
 
 ## What is Muse Space?
 
@@ -75,8 +75,8 @@ Yes. Muse Space is released under the MIT License. You can copy, adapt, and reus
 ### Productivity
 | Template | What it does | Say it |
 |---|---|---|
-| [Focus Timer](templates/focus-pomodoro/) | Pomodoro timer plus today's focus stats. | "Give me a Pomodoro timer" |
-| [Habit Tracker](templates/habit-tracker/) | Streaks and a year heatmap. | "Start a habit tracker" |
+| [Focus Timer](templates/focus-pomodoro/) | Pomodoro timer, 7-day focus history and long breaks. | "Give me a Pomodoro timer" |
+| [Habit Tracker](templates/habit-tracker/) | Streaks, 7-day check-ins and completion rates. | "Start a habit tracker" |
 | [Task Board](templates/task-kanban/) | Three-column board with priority. | "Open my task board" |
 | [Recurring To-Dos](templates/recurring-todos/) | Recurring tasks with due dates that reset when done. | "Open my recurring tasks" |
 | [Idea Capture](templates/idea-capture/) | Catch an idea in seconds, sort it later. | "Open my idea box" |
@@ -88,7 +88,7 @@ Yes. Muse Space is released under the MIT License. You can copy, adapt, and reus
 |---|---|---|
 | [Budget Planner](templates/budget-planner/) | Monthly budget and category caps. | "Open my budget planner" |
 | [Expense Tracker](templates/expense-tracker/) | Log an expense in seconds. | "Open my expense tracker" |
-| [Subscription Tracker](templates/subscription-tracker/) | Renewals and yearly cost, no surprises. | "Show my subscriptions" |
+| [Subscription Tracker](templates/subscription-tracker/) | Renewals, yearly cost and what's due in 30 days. | "Show my subscriptions" |
 | [Savings Goals](templates/savings-goals/) | Goal progress and milestones. | "Open my savings goals" |
 | [Bill Tracker](templates/bill-tracker/) | Every bill, its due date and the best card to pay with. | "Open my bill tracker" |
 
@@ -103,9 +103,9 @@ Yes. Muse Space is released under the MIT License. You can copy, adapt, and reus
 | Template | What it does | Say it |
 |---|---|---|
 | [Study Planner](templates/study-planner/) | Timetable to review blocks. | "Open my study planner" |
-| [Flashcards](templates/flashcard-review/) | Spaced repetition, mastery levels. | "Open my flashcards" |
+| [Flashcards](templates/flashcard-review/) | Spaced repetition, mastery levels, weakest-first review. | "Open my flashcards" |
 | [Reading Tracker](templates/reading-tracker/) | Book list, progress, highlights. | "Open my reading tracker" |
-| [Trivia Quiz](templates/trivia-quiz/) | Timed quiz, score, streaks and a review. | "Start a quiz" |
+| [Trivia Quiz](templates/trivia-quiz/) | Timed quiz, 40 questions, score, streaks and a review. | "Start a quiz" |
 
 ### Life & Home
 | Template | What it does | Say it |

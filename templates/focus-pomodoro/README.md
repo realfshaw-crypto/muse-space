@@ -1,8 +1,8 @@
 # Focus Timer — 专注时钟
 
-**What is Focus Timer?** A simple Pomodoro timer with today's focus stats.
+**What is Focus Timer?** A Pomodoro timer with a 7-day focus history and long breaks.
 
-**专注时钟是什么？** 番茄钟加今日专注统计。
+**专注时钟是什么？** 番茄钟加近 7 天专注记录与长休。
 
 Category / 分类: Productivity
 

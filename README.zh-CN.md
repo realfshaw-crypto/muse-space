@@ -15,9 +15,9 @@
 | | |
 |---|---|---|
 | ![记账本模板 — 按分类记录支出，数据保存在本地](docs/screenshots/template-expense-tracker.png) | ![专注时钟模板 — 番茄钟倒计时圆环与今日专注次数](docs/screenshots/template-focus-pomodoro.png) |
-| *记账本：记一笔支出，按分类看汇总。* | *专注时钟：25 分钟番茄倒计时与今日专注次数。* |
+| *记账本：记一笔支出，按分类看汇总。* | *专注时钟：25 分钟番茄倒计时与近 7 天专注记录。* |
 | ![提示词工坊模板 — 按分类保存的提示词列表，一键复制](docs/screenshots/template-ai-prompt-studio.png) | ![习惯打卡模板 — 习惯列表、连续天数与近 7 天打卡点](docs/screenshots/template-habit-tracker.png) |
-| *提示词工坊：按分类保存提示词，一键复制。* | *习惯打卡：今日打卡、连续天数与近 7 天记录。* |
+| *提示词工坊：按分类保存提示词，一键复制。* | *习惯打卡：今日打卡、连续天数、完成率与近 7 天记录。* |
 | ![礼物清单模板 — 按人记礼物点子、尺码与预算](docs/screenshots/template-gift-tracker.png) | ![桌游记分模板 — 比赛记录、胜者与排行榜](docs/screenshots/template-game-score-tracker.png) |
 | *礼物清单：按人记礼物点子、尺码与预算。* | *桌游记分：比赛记录、胜者与排行榜。* |
 | ![循环待办模板 — 周期待办，到期提醒，做完自动顺延](docs/screenshots/template-recurring-todos.png) | ![宠物日程模板 — 遛弯、吃饭、午睡一条时间线](docs/screenshots/template-pet-day-tracker.png) |
@@ -31,7 +31,7 @@
 | ![复古掌上电脑模板 — 掌上电脑风日程、待办、备忘与通讯录](docs/screenshots/template-retro-organizer.png) | ![应用中心模板 — 常用应用与链接收进一个中心](docs/screenshots/template-app-hub.png) |
 | *复古掌上电脑：日程、待办、备忘与通讯录合一。* | *应用中心：常用应用与链接，搜、钉、点开一步到位。* |
 | ![趣味问答模板 — 四分类限时问答，计分连胜](docs/screenshots/template-trivia-quiz.png) | |
-| *趣味问答：限时问答、计分连胜，答完复盘错题。* | |
+| *趣味问答：40 道限时问答、计分连胜，答完复盘错题。* | |
 
 ## 这是什么？
 
@@ -75,8 +75,8 @@ Muse Space 是一个 Muse 技能加一个模板库，包含 34 个开箱即用�
 ### 效率
 | 模板 | 用途 | 这样说 |
 |---|---|---|
-| [专注时钟](templates/focus-pomodoro/) | 番茄钟加今日专注统计 | 给我一个番茄钟 |
-| [习惯打卡](templates/habit-tracker/) | 连续天数与全年热力图 | 打开习惯打卡 |
+| [专注时钟](templates/focus-pomodoro/) | 番茄钟、近 7 天专注记录与长休 | 给我一个番茄钟 |
+| [习惯打卡](templates/habit-tracker/) | 连续天数、近 7 天打卡与完成率 | 打开习惯打卡 |
 | [任务看板](templates/task-kanban/) | 三列看板、优先级 | 打开任务看板 |
 | [循环待办](templates/recurring-todos/) | 周期待办，到期提醒，做完自动顺延 | 打开循环待办 |
 | [灵感收集箱](templates/idea-capture/) | 灵感随手记，稍后再归类 | 打开灵感收集箱 |
@@ -88,7 +88,7 @@ Muse Space 是一个 Muse 技能加一个模板库，包含 34 个开箱即用�
 |---|---|---|
 | [预算管家](templates/budget-planner/) | 月预算与分类上限 | 打开预算管家 |
 | [记账本](templates/expense-tracker/) | 几秒记一笔 | 打开记账 |
-| [订阅管家](templates/subscription-tracker/) | 续费提醒与年支出，不再被自动扣费吓一跳 | 看看我的订阅 |
+| [订阅管家](templates/subscription-tracker/) | 续费提醒、年支出与 30 天内续费 | 看看我的订阅 |
 | [存钱目标](templates/savings-goals/) | 目标进度与里程碑 | 打开存钱目标 |
 | [账单管家](templates/bill-tracker/) | 账单、到期日与刷哪张卡 | 打开账单管家 |
 
@@ -103,9 +103,9 @@ Muse Space 是一个 Muse 技能加一个模板库，包含 34 个开箱即用�
 | 模板 | 用途 | 这样说 |
 |---|---|---|
 | [学习计划](templates/study-planner/) | 课表转复习块 | 打开学习计划 |
-| [闪卡复习](templates/flashcard-review/) | 间隔重复与掌握度 | 打开闪卡 |
+| [闪卡复习](templates/flashcard-review/) | 间隔重复、掌握度，先练最弱卡片 | 打开闪卡 |
 | [阅读追踪](templates/reading-tracker/) | 书单、进度、摘录 | 打开阅读追踪 |
-| [趣味问答](templates/trivia-quiz/) | 限时问答、计分连胜、答完复盘 | 打开趣味问答 |
+| [趣味问答](templates/trivia-quiz/) | 40 道限时问答、计分连胜、答完复盘 | 打开趣味问答 |
 
 ### 生活与家庭
 | 模板 | 用途 | 这样说 |

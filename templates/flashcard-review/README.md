@@ -1,8 +1,8 @@
 # Flashcards — 闪卡复习
 
-**What is Flashcards?** Spaced repetition flashcards with mastery levels.
+**What is Flashcards?** Spaced repetition flashcards with mastery levels, weakest-first review and per-level counts.
 
-**闪卡复习是什么？** 间隔重复、掌握度。
+**闪卡复习是什么？** 间隔重复、掌握度，先练最弱卡片，按等级统计。
 
 Category / 分类: Learn
 

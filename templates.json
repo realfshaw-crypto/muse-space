@@ -108,8 +108,8 @@
         "专注",
         "计时"
       ],
-      "description_en": "A simple Pomodoro timer with today's focus stats.",
-      "description_zh": "番茄钟加今日专注统计。",
+      "description_en": "A Pomodoro timer with a 7-day focus history and long breaks.",
+      "description_zh": "番茄钟加近 7 天专注记录与长休。",
       "path": "templates/focus-pomodoro/"
     },
     {
@@ -121,15 +121,15 @@
         "habit tracker",
         "streak",
         "daily check-in",
-        "heatmap"
+        "completion rate"
       ],
       "keywords_zh": [
         "习惯打卡",
         "连续天数",
-        "热力图"
+        "完成率"
       ],
-      "description_en": "Track streaks and see your year as a heatmap.",
-      "description_zh": "习惯连续天数与热力图。",
+      "description_en": "Track streaks, 7-day check-ins and completion rates.",
+      "description_zh": "习惯连续天数、近 7 天打卡与完成率。",
       "path": "templates/habit-tracker/"
     },
     {
@@ -230,8 +230,8 @@
         "续费提醒",
         "订阅"
       ],
-      "description_en": "List every subscription, renewal date and yearly cost.",
-      "description_zh": "订阅清单、续费提醒、年支出。",
+      "description_en": "List every subscription, renewal date, yearly cost and what's due in 30 days.",
+      "description_zh": "订阅清单、续费日期、年支出与 30 天内续费。",
       "path": "templates/subscription-tracker/"
     },
     {
@@ -349,8 +349,8 @@
         "间隔重复",
         "背单词"
       ],
-      "description_en": "Spaced repetition flashcards with mastery levels.",
-      "description_zh": "间隔重复、掌握度。",
+      "description_en": "Spaced repetition flashcards with mastery levels, weakest-first review and per-level counts.",
+      "description_zh": "间隔重复、掌握度，先练最弱卡片，按等级统计。",
       "path": "templates/flashcard-review/"
     },
     {
@@ -391,8 +391,8 @@
         "知识问答",
         "答题"
       ],
-      "description_en": "A timed quiz game across four categories, with score, streaks and a review.",
-      "description_zh": "四分类限时问答：计分、连胜，答完还能复盘错题。",
+      "description_en": "A timed quiz game across four categories — 40 questions — with score, streaks and a review.",
+      "description_zh": "四分类限时问答共 40 题：计分、连胜，答完还能复盘错题。",
       "path": "templates/trivia-quiz/"
     },
     {
