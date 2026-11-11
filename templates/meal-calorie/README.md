@@ -1,6 +1,6 @@
 # Meal & Calorie — 饮食热量
 
-**What is Meal & Calorie?** Track calories and protein for every meal.
+**What is Meal & Calorie?** Track calories and protein for every meal, with an editable daily goal and a 7-day history.
 
 **饮食热量是什么？** 每餐热量与蛋白质。
 

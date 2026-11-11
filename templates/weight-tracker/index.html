@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Weight Tracker — Daily Weigh-ins Toward Your Goal | Muse Space</title>
+<meta name="description" content="Weight Tracker template for Muse Space: log your weight daily, set a goal and see the trend over time. Weights are entered by hand. Bilingual EN/中文.">
+<meta property="og:title" content="Weight Tracker — Daily Weigh-ins Toward Your Goal | Muse Space">
+<meta property="og:description" content="Weight Tracker template for Muse Space: log your weight daily, set a goal and see the trend over time. Weights are entered by hand. Bilingual EN/中文.">
+<meta property="og:type" content="website">
+<style>
+:root {
+  color-scheme: light dark;
+
+  /* ===== Color: core semantic ===== */
+  --color-accent: light-dark(#0064E0, #0171E3);
+  --color-accent-muted: light-dark(#0082FB33, #0082FB3F);
+  --color-on-accent: light-dark(#FFFFFF, #FFFFFF);
+  --color-neutral: light-dark(rgba(5, 54, 89, 0.1), rgba(223, 226, 229, 0.2));
+  --color-background-body: light-dark(#F1F4F7, #111112);
+  --color-background-surface: light-dark(#FFFFFF, #1F1F22);
+  --color-background-card: light-dark(#FFFFFF, #1F1F22);
+  --color-background-popover: light-dark(#FFFFFF, #28292C);
+  --color-background-muted: light-dark(#0536590C, #1111127F);
+  --color-background-inverted: light-dark(#0A1317, #FFFFFF);
+  --color-overlay: light-dark(#01122866, #11111299);
+  --color-overlay-hover: light-dark(#0536590C, #FFFFFF0C);
+  --color-overlay-pressed: light-dark(#05365919, #FFFFFF19);
+
+  /* Text */
+  --color-text-primary: light-dark(#0A1317, #DFE2E5);
+  --color-text-secondary: light-dark(#4E606F, #AAAFB5);
+  --color-text-disabled: light-dark(#A4B0BC, #6F747C);
+  --color-text-accent: light-dark(#0064E0, #3E9EFB);
+  --color-on-dark: light-dark(#FFFFFF, #FFFFFF);
+  --color-on-light: light-dark(#000000, #000000);
+
+  /* Icon（与 text 同值域） */
+  --color-icon-accent: light-dark(#0064E0, #2694FE);
+  --color-icon-primary: light-dark(#0A1317, #DFE2E5);
+  --color-icon-secondary: light-dark(#4E606F, #AAAFB5);
+  --color-icon-disabled: light-dark(#A4B0BC, #6F747C);
+
+  /* Status fills + muted + on-* */
+  --color-info: light-dark(#0064E0, #0064E0);
+  --color-info-muted: light-dark(#0082FB33, #0082FB3F);
+  --color-on-info: light-dark(#FFFFFF, #FFFFFF);
+  --color-success: light-dark(#0D8626, #0D8626);
+  --color-success-muted: light-dark(#0B991F33, #0B991F3F);
+  --color-on-success: light-dark(#FFFFFF, #FFFFFF);
+  --color-error: light-dark(#E3193B, #F5394F);
+  --color-error-muted: light-dark(#E3193B33, #F5394F3F);
+  --color-on-error: light-dark(#FFFFFF, #0A1317);
+  --color-background-error-inverted: light-dark(#AA071E, #E3193B);
+  --color-warning: light-dark(#E9AF08, #F2C00B);
+  --color-warning-muted: light-dark(#E2A40033, #E2A4003F);
+  --color-on-warning: light-dark(#0A1317, #0A1317);
+
+  /* Status text / icon / border（落在页面与卡片面上、对比 >= 4.5:1 的一档） */
+  --color-text-blue: light-dark(#042F97, #AFD7FF);
+  --color-text-green: light-dark(#09441F, #A5F690);
+  --color-text-yellow: light-dark(#753F07, #FBCE03);
+  --color-text-red: light-dark(#7B0210, #FFB2B8);
+  --color-text-info: var(--color-text-blue);
+  --color-text-success: var(--color-text-green);
+  --color-text-warning: var(--color-text-yellow);
+  --color-text-error: var(--color-text-red);
+  --color-icon-info: var(--color-text-info);
+  --color-icon-success: var(--color-text-success);
+  --color-icon-warning: var(--color-text-warning);
+  --color-icon-error: var(--color-text-error);
+  --color-border-info: var(--color-text-info);
+  --color-border-success: var(--color-text-success);
+  --color-border-warning: var(--color-text-warning);
+  --color-border-error: var(--color-text-error);
+  --color-on-info-muted: var(--color-text-blue);
+  --color-on-success-muted: var(--color-text-green);
+  --color-on-warning-muted: var(--color-text-yellow);
+  --color-on-error-muted: var(--color-text-red);
+
+  /* Border / effects */
+  --color-border: light-dark(#05365919, #F2F4F619);
+  --color-border-emphasized: light-dark(#CCD3DB, #494D53);
+  --color-skeleton: light-dark(#CCD3DB, #5A5E66);
+  --color-track: light-dark(#CCD3DB, #5A5E66);
+  --color-shadow: light-dark(rgba(5, 54, 89, 0.1), rgba(0, 0, 0, 0.3));
+  --color-tint-hover: light-dark(black, white);
+
+  /* Hue families: background(33 alpha) / border / icon / text */
+  --color-background-blue: light-dark(#0171E333, #0171E333);
+  --color-border-blue: light-dark(#0064E0, #2694FE);
+  --color-icon-blue: light-dark(#0064E0, #2694FE);
+  --color-background-cyan: light-dark(#03A7D733, #03A7D733);
+  --color-border-cyan: light-dark(#089DD0, #0171A4);
+  --color-icon-cyan: light-dark(#00ACC1, #26C6DA);
+  --color-text-cyan: light-dark(#014975, #A1EEF9);
+  --color-background-gray: light-dark(#0A131733, #666A724C);
+  --color-border-gray: light-dark(#647685, #748695);
+  --color-icon-gray: light-dark(#4E606F, #AAAFB5);
+  --color-text-gray: light-dark(#0A1317, #E7EAED);
+  --color-background-green: light-dark(#24BB5E33, #24BB5E33);
+  --color-border-green: light-dark(#0D8626, #0B991F);
+  --color-icon-green: light-dark(#0D8626, #26A756);
+  --color-background-orange: light-dark(#F2790233, #F2790233);
+  --color-border-orange: light-dark(#EB6E00, #B34A01);
+  --color-icon-orange: light-dark(#E9690B, #FB8C00);
+  --color-text-orange: light-dark(#6B2203, #FDB876);
+  --color-background-pink: light-dark(#E638B333, #E638B333);
+  --color-border-pink: light-dark(#F351C0, #C02294);
+  --color-icon-pink: light-dark(#C2185B, #EC407A);
+  --color-text-pink: light-dark(#650053, #FEADE3);
+  --color-background-purple: light-dark(#7952FF33, #7952FF33);
+  --color-border-purple: light-dark(#9081FF, #7340FE);
+  --color-icon-purple: light-dark(#5B08D8, #7952FF);
+  --color-text-purple: light-dark(#3E0697, #B3B0FE);
+  --color-background-red: light-dark(#E3193B33, #E3193B33);
+  --color-border-red: light-dark(#E3193B, #F5394F);
+  --color-icon-red: light-dark(#D31130, #E3193B);
+  --color-background-teal: light-dark(#0DB7AF33, #0DB7AF33);
+  --color-border-teal: light-dark(#08A3A3, #08767D);
+  --color-icon-teal: light-dark(#009688, #26A69A);
+  --color-text-teal: light-dark(#083943, #40DCCD);
+  --color-background-yellow: light-dark(#E2A40033, #E2A40033);
+  --color-border-yellow: light-dark(#C58600, #B47700);
+  --color-icon-yellow: light-dark(#FBC02D, #FFEE58);
+
+  /* ===== Spacing: 4px 基准、rem 制（随根字号缩放），步进 0..12 ===== */
+  --spacing-0: 0rem;
+  --spacing-0-5: 0.125rem;
+  --spacing-1: 0.25rem;
+  --spacing-1-5: 0.375rem;
+  --spacing-2: 0.5rem;
+  --spacing-3: 0.75rem;
+  --spacing-4: 1rem;
+  --spacing-5: 1.25rem;
+  --spacing-6: 1.5rem;
+  --spacing-7: 1.75rem;
+  --spacing-8: 2rem;
+  --spacing-9: 2.25rem;
+  --spacing-10: 2.5rem;
+  --spacing-11: 2.75rem;
+  --spacing-12: 3rem;
+
+  /* ===== Size: 控件高度 ===== */
+  --size-element-sm: 28px;
+  --size-element-md: 32px;
+  --size-element-lg: 36px;
+
+  /* ===== Border / Focus ===== */
+  --border-width: 1px;
+  --focus-outline-width: 2px;
+  --focus-outline-style: solid;
+  --focus-outline-color: var(--color-accent);
+  --focus-outline-offset: 3px;
+
+  /* ===== Radius（core 默认；neutral 主题的 6/10/12/28 变体不采用） ===== */
+  --radius-none: 0px;
+  --radius-inner: 4px;
+  --radius-element: 8px;
+  --radius-container: 12px;
+  --radius-page: 28px;
+  --radius-chat: 28px;
+  --radius-full: 9999px;
+
+  /* ===== Shadow ===== */
+  --shadow-low: 0px 1px 1px light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), 0px 2px 8px light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2));
+  --shadow-med: 0px 1px 2px light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), 0px 2px 12px light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2));
+  --shadow-high: 0px 2px 2px light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), 0px 8px 24px light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.3));
+  --shadow-inset-hover: inset 0px 0px 0px 2px light-dark(rgba(5, 54, 89, 0.15), rgba(223, 226, 229, 0.2));
+  --shadow-inset-selected: inset 0px 0px 0px 2px rgba(1, 113, 227, 0.5);
+  --shadow-inset-success: inset 0px 0px 0px 2px rgba(38, 167, 86, 0.3);
+  --shadow-inset-warning: inset 0px 0px 0px 2px rgba(226, 164, 0, 0.3);
+  --shadow-inset-error: inset 0px 0px 0px 2px rgba(227, 25, 59, 0.3);
+
+  /* ===== Motion ===== */
+  --duration-fast-min: 130ms;
+  --duration-fast: 175ms;
+  --duration-fast-max: 230ms;
+  --duration-medium-min: 310ms;
+  --duration-medium: 410ms;
+  --duration-medium-max: 550ms;
+  --duration-slow-min: 730ms;
+  --duration-slow: 975ms;
+  --duration-slow-max: 1300ms;
+  --duration-exit: var(--duration-fast);
+  --ease-standard: cubic-bezier(0.24, 1, 0.4, 1);
+  --ease-entrance: cubic-bezier(0.24, 1, 0.4, 1);
+  --ease-move: cubic-bezier(0.24, 1, 0.4, 1);
+  --ease-exit: cubic-bezier(0.3, 0, 0.6, 0.6);
+
+  /* ===== Typography ===== */
+  --font-family-body: "Figtree", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-family-heading: "Figtree", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-family-code: "SF Mono", Monaco, Consolas, monospace;
+
+  /* 几何字阶：round(14 x 1.2^step) */
+  --font-size-4xs: 0.375rem;
+  --font-size-3xs: 0.4375rem;
+  --font-size-2xs: 0.5rem;
+  --font-size-xs: 0.625rem;
+  --font-size-sm: 0.75rem;
+  --font-size-base: 0.875rem;
+  --font-size-lg: 1.0625rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.8125rem;
+  --font-size-4xl: 2.1875rem;
+  --font-size-5xl: 2.625rem;
+
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* 语义字型（size / weight / leading 三件套，组件只许用这一层） */
+  --text-heading-1-size: var(--font-size-2xl); --text-heading-1-weight: var(--font-weight-semibold); --text-heading-1-leading: 1.3333;
+  --text-heading-2-size: var(--font-size-xl); --text-heading-2-weight: var(--font-weight-semibold); --text-heading-2-leading: 1.4;
+  --text-heading-3-size: var(--font-size-lg); --text-heading-3-weight: var(--font-weight-semibold); --text-heading-3-leading: 1.4118;
+  --text-heading-4-size: var(--font-size-base); --text-heading-4-weight: var(--font-weight-semibold); --text-heading-4-leading: 1.4286;
+  --text-heading-5-size: var(--font-size-sm); --text-heading-5-weight: var(--font-weight-semibold); --text-heading-5-leading: 1.6667;
+  --text-heading-6-size: var(--font-size-xs); --text-heading-6-weight: var(--font-weight-semibold); --text-heading-6-leading: 1.6;
+  --text-body-size: var(--font-size-base); --text-body-weight: var(--font-weight-normal); --text-body-leading: 1.4286;
+  --text-large-size: var(--font-size-lg); --text-large-weight: var(--font-weight-semibold); --text-large-leading: 1.4118;
+  --text-label-size: var(--font-size-base); --text-label-weight: var(--font-weight-medium); --text-label-leading: 1.4286;
+  --text-code-size: var(--font-size-base); --text-code-weight: var(--font-weight-normal); --text-code-leading: 1.4286;
+  --text-supporting-size: var(--font-size-sm); --text-supporting-weight: var(--font-weight-normal); --text-supporting-leading: 1.6667;
+  --text-display-1-size: var(--font-size-5xl); --text-display-1-weight: var(--font-weight-normal); --text-display-1-leading: 1.2381;
+  --text-display-2-size: var(--font-size-4xl); --text-display-2-weight: var(--font-weight-normal); --text-display-2-leading: 1.2571;
+  --text-display-3-size: var(--font-size-3xl); --text-display-3-weight: var(--font-weight-normal); --text-display-3-leading: 1.2414;
+}
+
+/* ===== 基线元素（只用令牌，不引入新值） ===== */
+body {
+  background: var(--color-background-body);
+  color: var(--color-text-primary);
+  font-family: var(--font-family-body);
+  font-size: var(--text-body-size);
+  font-weight: var(--text-body-weight);
+  line-height: var(--text-body-leading);
+}
+:focus-visible {
+  outline: var(--focus-outline-width) var(--focus-outline-style) var(--focus-outline-color);
+  outline-offset: var(--focus-outline-offset);
+}
+
+/* ===== Weight Tracker 组件层（只用 var(--...) 令牌） */
+* { box-sizing: border-box; }
+body { margin: 0; }
+.app {
+  max-width: 44rem;
+  margin: 0 auto;
+  padding: var(--spacing-4) var(--spacing-4) var(--spacing-12);
+}
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--spacing-4);
+}
+.title {
+  font-size: var(--text-heading-1-size);
+  font-weight: var(--text-heading-1-weight);
+  line-height: var(--text-heading-1-leading);
+  margin: 0;
+}
+.subtitle {
+  color: var(--color-text-secondary);
+  font-size: var(--text-supporting-size);
+  line-height: var(--text-supporting-leading);
+  margin: var(--spacing-1) 0 0;
+}
+.scale-svg {
+  flex: none;
+  width: 3rem;
+  height: 3rem;
+  animation: scale-sway var(--duration-slow) var(--ease-standard) infinite alternate;
+}
+@keyframes scale-sway {
+  from { transform: rotate(-4deg) translateY(0); }
+  to { transform: rotate(4deg) translateY(-0.25rem); }
+}
+.header-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--spacing-2);
+  flex: none;
+}
+.lang-btn {
+  height: var(--size-element-md);
+  padding: 0 var(--spacing-3);
+  border: var(--border-width) solid var(--color-border-emphasized);
+  border-radius: var(--radius-element);
+  background: var(--color-background-surface);
+  color: var(--color-text-primary);
+  font-family: var(--font-family-body);
+  font-size: var(--text-label-size);
+  font-weight: var(--text-label-weight);
+  cursor: pointer;
+}
+.unit-seg {
+  display: flex;
+  border: var(--border-width) solid var(--color-border-emphasized);
+  border-radius: var(--radius-element);
+  overflow: hidden;
+}
+.unit-seg button {
+  height: var(--size-element-md);
+  padding: 0 var(--spacing-3);
+  border: none;
+  background: var(--color-background-surface);
+  color: var(--color-text-primary);
+  font-family: var(--font-family-body);
+  font-size: var(--text-label-size);
+  font-weight: var(--text-label-weight);
+  cursor: pointer;
+}
+.unit-seg button.unit-active {
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+}
+.stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-3);
+  margin-top: var(--spacing-4);
+}
+.stat {
+  padding: var(--spacing-3);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-container);
+  background: var(--color-background-card);
+}
+.stat-num {
+  font-size: var(--text-heading-2-size);
+  font-weight: var(--text-heading-2-weight);
+  line-height: var(--text-heading-2-leading);
+}
+.stat-label {
+  color: var(--color-text-secondary);
+  font-size: var(--text-supporting-size);
+  line-height: var(--text-supporting-leading);
+}
+.note {
+  margin-top: var(--spacing-3);
+  padding: var(--spacing-3);
+  border: var(--border-width) solid var(--color-border-info);
+  border-radius: var(--radius-container);
+  background: var(--color-background-blue);
+  color: var(--color-text-info);
+  font-size: var(--text-supporting-size);
+  line-height: var(--text-supporting-leading);
+}
+.goal-card {
+  margin-top: var(--spacing-4);
+  padding: var(--spacing-4);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-container);
+  background: var(--color-background-card);
+  box-shadow: var(--shadow-low);
+}
+.goal-head {
+  display: flex;
+  align-items: baseline;
+  gap: var(--spacing-3);
+  flex-wrap: wrap;
+}
+.goal-display {
+  font-size: var(--text-heading-2-size);
+  font-weight: var(--text-heading-2-weight);
+  line-height: var(--text-heading-2-leading);
+  color: var(--color-text-accent);
+}
+.badge {
+  flex: none;
+  padding: var(--spacing-1) var(--spacing-2);
+  border-radius: var(--radius-full);
+  background: var(--color-success);
+  color: var(--color-on-success);
+  font-size: var(--text-supporting-size);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--text-supporting-leading);
+  animation: badge-pop var(--duration-medium) var(--ease-entrance);
+}
+@keyframes badge-pop {
+  from { transform: scale(0.85); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+.progress {
+  height: var(--spacing-2);
+  margin-top: var(--spacing-3);
+  border-radius: var(--radius-full);
+  background: var(--color-neutral);
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  border-radius: var(--radius-full);
+  background: var(--color-success);
+  transition: width var(--duration-medium) var(--ease-standard);
+}
+.progress-label {
+  margin-top: var(--spacing-1);
+  color: var(--color-text-secondary);
+  font-size: var(--text-supporting-size);
+  line-height: var(--text-supporting-leading);
+}
+.goal-form {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--spacing-3);
+  margin-top: var(--spacing-3);
+}
+.goal-form .field { flex: 1; }
+.log-card {
+  margin-top: var(--spacing-4);
+  padding: var(--spacing-4);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-container);
+  background: var(--color-background-card);
+  box-shadow: var(--shadow-low);
+}
+.form-title {
+  font-size: var(--text-heading-3-size);
+  font-weight: var(--text-heading-3-weight);
+  line-height: var(--text-heading-3-leading);
+  margin: 0 0 var(--spacing-3);
+}
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-3);
+}
+.field { display: flex; flex-direction: column; gap: var(--spacing-1); }
+.field label {
+  font-size: var(--text-label-size);
+  font-weight: var(--text-label-weight);
+  line-height: var(--text-label-leading);
+}
+.field input {
+  height: var(--size-element-lg);
+  padding: 0 var(--spacing-3);
+  border: var(--border-width) solid var(--color-border-emphasized);
+  border-radius: var(--radius-element);
+  background: var(--color-background-surface);
+  color: var(--color-text-primary);
+  font-size: var(--text-body-size);
+  font-family: var(--font-family-body);
+}
+.btn-primary {
+  height: var(--size-element-lg);
+  padding: 0 var(--spacing-4);
+  border: none;
+  border-radius: var(--radius-element);
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+  font-family: var(--font-family-body);
+  font-size: var(--text-label-size);
+  font-weight: var(--text-label-weight);
+  cursor: pointer;
+}
+.log-card .btn-primary {
+  width: 100%;
+  margin-top: var(--spacing-3);
+}
+.btn-ghost {
+  height: var(--size-element-md);
+  padding: 0 var(--spacing-3);
+  border: var(--border-width) solid var(--color-border-emphasized);
+  border-radius: var(--radius-element);
+  background: var(--color-background-surface);
+  color: var(--color-text-primary);
+  font-family: var(--font-family-body);
+  font-size: var(--text-supporting-size);
+  cursor: pointer;
+}
+.btn-danger {
+  color: var(--color-text-error);
+  border-color: var(--color-border-error);
+}
+.hint {
+  margin: var(--spacing-2) 0 0;
+  color: var(--color-text-secondary);
+  font-size: var(--text-supporting-size);
+  line-height: var(--text-supporting-leading);
+}
+.chart-card {
+  margin-top: var(--spacing-4);
+  padding: var(--spacing-4);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-container);
+  background: var(--color-background-card);
+  box-shadow: var(--shadow-low);
+}
+.chart-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  animation: chart-in var(--duration-medium) var(--ease-entrance);
+}
+@keyframes chart-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.chart-empty {
+  margin: 0;
+  color: var(--color-text-secondary);
+  font-size: var(--text-supporting-size);
+  line-height: var(--text-supporting-leading);
+  text-align: center;
+  padding: var(--spacing-4) 0;
+}
+.history-title { margin-top: var(--spacing-5); }
+.history-list {
+  display: flex;
+  flex-direction: column;
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-container);
+  background: var(--color-background-card);
+  padding: 0 var(--spacing-4);
+}
+.history-row {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  padding: var(--spacing-2) 0;
+  border-top: var(--border-width) solid var(--color-border);
+}
+.history-row:first-child { border-top: none; }
+.history-date {
+  flex: none;
+  color: var(--color-text-secondary);
+  font-size: var(--text-supporting-size);
+  line-height: var(--text-supporting-leading);
+}
+.history-weight {
+  flex: 1;
+  font-size: var(--text-heading-4-size);
+  font-weight: var(--text-heading-4-weight);
+  line-height: var(--text-heading-4-leading);
+}
+.row-actions {
+  display: flex;
+  gap: var(--spacing-2);
+  flex: none;
+}
+.empty {
+  padding: var(--spacing-8) var(--spacing-4);
+  border: var(--border-width) dashed var(--color-border-emphasized);
+  border-radius: var(--radius-container);
+  background: var(--color-background-card);
+  text-align: center;
+}
+.empty-title {
+  font-size: var(--text-heading-3-size);
+  font-weight: var(--text-heading-3-weight);
+  line-height: var(--text-heading-3-leading);
+  margin: 0;
+}
+.empty-text {
+  color: var(--color-text-secondary);
+  font-size: var(--text-supporting-size);
+  line-height: var(--text-supporting-leading);
+  margin: var(--spacing-2) 0 var(--spacing-4);
+}
+@media (prefers-reduced-motion: reduce) {
+  .scale-svg, .chart-svg, .badge, .progress-fill { animation: none; transition: none; }
+}
+</style>
+</head>
+<body>
+<main class="app">
+  <header class="header">
+    <div>
+      <h1 class="title" data-i18n="title">Weight Tracker</h1>
+      <p class="subtitle" data-i18n="subtitle">Log your weigh-in by hand, watch the trend, and close in on your goal.</p>
+    </div>
+    <svg class="scale-svg" viewBox="0 0 48 48" role="img" aria-label="Scale">
+      <circle cx="24" cy="17" r="10" fill="var(--color-background-card)" stroke="var(--color-accent)" stroke-width="3" />
+      <path d="M24 17l4-5" stroke="var(--color-accent)" stroke-width="3" stroke-linecap="round" />
+      <circle cx="24" cy="17" r="2" fill="var(--color-accent)" />
+      <rect x="8" y="28" width="32" height="14" rx="4" fill="var(--color-accent)" />
+    </svg>
+    <div class="header-actions">
+      <button class="lang-btn" type="button" id="lang-btn">中文</button>
+      <div class="unit-seg" role="group" aria-label="Unit">
+        <button type="button" id="unit-kg">kg</button>
+        <button type="button" id="unit-lb">lb</button>
+      </div>
+    </div>
+  </header>
+
+  <section class="stats" aria-label="Summary">
+    <div class="stat"><div class="stat-num" id="stat-current">—</div><div class="stat-label" data-i18n="statCurrent">Current weight</div></div>
+    <div class="stat"><div class="stat-num" id="stat-togo">—</div><div class="stat-label" data-i18n="statToGo">To goal</div></div>
+    <div class="stat"><div class="stat-num" id="stat-change">—</div><div class="stat-label" data-i18n="statChange">Change since start</div></div>
+    <div class="stat"><div class="stat-num" id="stat-streak">0</div><div class="stat-label" data-i18n="statStreak">Day streak</div></div>
+  </section>
+
+  <p class="note" data-i18n="note">Every weight here is entered by you, by hand. This space never pulls data from fitness apps, wearables or any other service — just step on the scale and log it.</p>
+
+  <section class="goal-card" aria-label="Goal">
+    <div class="goal-head">
+      <h2 class="form-title" data-i18n="goalTitle">Your goal</h2>
+      <span class="goal-display" id="goal-display">70.0 kg</span>
+      <span class="badge" id="goal-badge" hidden>Goal reached!</span>
+    </div>
+    <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="goal-progress">
+      <div class="progress-fill" id="goal-progress-fill" style="width:0%"></div>
+    </div>
+    <p class="progress-label"><span id="goal-meta"></span> · <span id="goal-pct">0%</span></p>
+    <form class="goal-form" id="goal-form">
+      <div class="field">
+        <label for="goal-input" id="goal-input-label">Target weight (kg)</label>
+        <input id="goal-input" type="number" min="1" step="0.1" required>
+      </div>
+      <button class="btn-primary" type="submit" data-i18n="goalSet">Set goal</button>
+    </form>
+  </section>
+
+  <form class="log-card" id="log-form">
+    <h2 class="form-title" data-i18n="logTitle">Log a weigh-in</h2>
+    <div class="form-grid">
+      <div class="field">
+        <label for="f-date" data-i18n="fDate">Date</label>
+        <input id="f-date" type="date" required>
+      </div>
+      <div class="field">
+        <label for="f-weight" id="f-weight-label">Weight (kg)</label>
+        <input id="f-weight" type="number" min="0.1" step="0.1" required>
+      </div>
+    </div>
+    <button class="btn-primary" type="submit" data-i18n="logBtn">Log weigh-in</button>
+    <p class="hint" data-i18n="sameDayHint">Logging the same date again replaces that day’s entry.</p>
+  </form>
+
+  <section class="chart-card" aria-label="Trend">
+    <h2 class="form-title" data-i18n="chartTitle">Trend · last 14 records</h2>
+    <div id="chart-box"></div>
+  </section>
+
+  <h2 class="form-title history-title" data-i18n="historyTitle">History</h2>
+  <div class="history-list" id="history-list"></div>
+</main>
+
+<script>
+(function () {
+  var KEY = 'muse-space:weight-tracker';
+  var LB_PER_KG = 2.20462;
+
+  var I18N = {
+    en: {
+      title: 'Weight Tracker',
+      subtitle: 'Log your weigh-in by hand, watch the trend, and close in on your goal.',
+      statCurrent: 'Current weight',
+      statToGo: 'To goal',
+      statChange: 'Change since start',
+      statStreak: 'Day streak',
+      days: 'days',
+      note: 'Every weight here is entered by you, by hand. This space never pulls data from fitness apps, wearables or any other service — just step on the scale and log it.',
+      goalTitle: 'Your goal',
+      goalSet: 'Set goal',
+      goalInputLabel: 'Target weight',
+      reached: 'Goal reached!',
+      startLabel: 'Start',
+      goalLabel: 'Goal',
+      logTitle: 'Log a weigh-in',
+      fDate: 'Date',
+      fWeight: 'Weight',
+      logBtn: 'Log weigh-in',
+      sameDayHint: 'Logging the same date again replaces that day’s entry.',
+      chartTitle: 'Trend · last 14 records',
+      chartEmpty: 'Log at least one weigh-in to see your trend.',
+      chartGoalLabel: 'Goal',
+      historyTitle: 'History',
+      edit: 'Edit',
+      delete: 'Delete',
+      confirmDelete: 'Delete this weigh-in?',
+      emptyTitle: 'No weigh-ins yet',
+      emptyText: 'Log your first weigh-in above, or restore the sample records to see how the trend looks.',
+      emptyBtn: 'Restore sample records'
+    },
+    zh: {
+      title: '体重记录',
+      subtitle: '手动记录每次称重，看清趋势，一步步靠近目标体重。',
+      statCurrent: '当前体重',
+      statToGo: '距目标还差',
+      statChange: '起始以来变化',
+      statStreak: '连续记录天数',
+      days: '天',
+      note: '这里的体重全部由你手动记录。本空间不会从运动 App、手环或任何外部服务拉取数据——称完体重，随手记下来就好。',
+      goalTitle: '目标体重',
+      goalSet: '设定目标',
+      goalInputLabel: '目标体重',
+      reached: '已达成目标！',
+      startLabel: '起始',
+      goalLabel: '目标',
+      logTitle: '记录一次称重',
+      fDate: '日期',
+      fWeight: '体重',
+      logBtn: '记录体重',
+      sameDayHint: '同一天重复记录会覆盖当天的体重。',
+      chartTitle: '趋势 · 最近 14 条记录',
+      chartEmpty: '至少记录一次体重，这里才会显示趋势图。',
+      chartGoalLabel: '目标',
+      historyTitle: '历史记录',
+      edit: '编辑',
+      delete: '删除',
+      confirmDelete: '确定删除这条称重记录吗？',
+      emptyTitle: '还没有称重记录',
+      emptyText: '在上面记录第一次称重，或恢复示例数据，看看趋势图的样子。',
+      emptyBtn: '恢复示例记录'
+    }
+  };
+
+  function dateStrOf(d) {
+    var m = String(d.getMonth() + 1).padStart(2, '0');
+    var day = String(d.getDate()).padStart(2, '0');
+    return d.getFullYear() + '-' + m + '-' + day;
+  }
+  function todayStr() { return dateStrOf(new Date()); }
+
+  function samples() {
+    var weights = [74.5, 74.3, 74.4, 74.1, 73.9, 73.8, 73.6, 73.5, 73.3, 73.1];
+    var out = [];
+    for (var i = 0; i < weights.length; i++) {
+      var d = new Date();
+      d.setDate(d.getDate() - (weights.length - 1 - i));
+      out.push({ date: dateStrOf(d), kg: weights[i] });
+    }
+    return out;
+  }
+
+  function load() {
+    try {
+      var raw = localStorage.getItem(KEY);
+      if (raw) {
+        var parsed = JSON.parse(raw);
+        if (parsed && Array.isArray(parsed.entries)) {
+          var entries = parsed.entries.filter(function (e) {
+            return e && typeof e.date === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(e.date) &&
+              typeof e.kg === 'number' && isFinite(e.kg) && e.kg > 0;
+          });
+          return {
+            lang: parsed.lang === 'zh' ? 'zh' : 'en',
+            unit: parsed.unit === 'lb' ? 'lb' : 'kg',
+            goalKg: (typeof parsed.goalKg === 'number' && isFinite(parsed.goalKg) && parsed.goalKg > 0) ? parsed.goalKg : 70,
+            entries: entries
+          };
+        }
+      }
+    } catch (e) { /* fall through to samples */ }
+    return { lang: 'en', unit: 'kg', goalKg: 70, entries: samples() };
+  }
+
+  var state = load();
+  var t = function (key) { return I18N[state.lang][key] || I18N.en[key] || key; };
+
+  function save() {
+    try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) { /* storage unavailable */ }
+  }
+
+  function esc(s) {
+    return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+  function toDisplay(kg) { return state.unit === 'lb' ? kg * LB_PER_KG : kg; }
+  function fmt(kg) { return toDisplay(kg).toFixed(1) + ' ' + state.unit; }
+  function fmtSigned(diffKg) {
+    var v = toDisplay(diffKg);
+    var sign = v > 0 ? '+' : v < 0 ? '−' : '';
+    return sign + Math.abs(v).toFixed(1) + ' ' + state.unit;
+  }
+  function sortedEntries() {
+    return state.entries.slice().sort(function (a, b) { return a.date.localeCompare(b.date); });
+  }
+  function streakCount() {
+    if (!state.entries.length) return 0;
+    var set = {};
+    state.entries.forEach(function (e) { set[e.date] = true; });
+    var d = new Date();
+    if (!set[dateStrOf(d)]) d.setDate(d.getDate() - 1);
+    var n = 0;
+    while (set[dateStrOf(d)]) {
+      n++;
+      d.setDate(d.getDate() - 1);
+    }
+    return n;
+  }
+
+  function renderStats() {
+    var entries = sortedEntries();
+    var currentEl = document.getElementById('stat-current');
+    var togoEl = document.getElementById('stat-togo');
+    var changeEl = document.getElementById('stat-change');
+    if (!entries.length) {
+      currentEl.textContent = '—';
+      togoEl.textContent = '—';
+      changeEl.textContent = '—';
+    } else {
+      var current = entries[entries.length - 1].kg;
+      var start = entries[0].kg;
+      currentEl.textContent = fmt(current);
+      var diff = state.goalKg - current;
+      var losing = state.goalKg < start;
+      var done = losing ? (current <= state.goalKg) : (current >= state.goalKg);
+      var remaining = losing ? -diff : diff;
+      togoEl.textContent = done ? t('reached') : fmt(remaining);
+      changeEl.textContent = fmtSigned(current - start);
+    }
+    document.getElementById('stat-streak').textContent = String(streakCount()) + ' ' + t('days');
+  }
+
+  function renderGoal() {
+    var entries = sortedEntries();
+    document.getElementById('goal-display').textContent = fmt(state.goalKg);
+    var pct = 0;
+    var reached = false;
+    if (entries.length) {
+      var current = entries[entries.length - 1].kg;
+      var start = entries[0].kg;
+      if (start > state.goalKg) {
+        reached = current <= state.goalKg;
+        pct = reached ? 100 : Math.min(100, Math.max(0, (start - current) / (start - state.goalKg) * 100));
+      } else if (start < state.goalKg) {
+        reached = current >= state.goalKg;
+        pct = reached ? 100 : Math.min(100, Math.max(0, (current - start) / (state.goalKg - start) * 100));
+      } else {
+        reached = true;
+        pct = 100;
+      }
+    }
+    document.getElementById('goal-progress-fill').style.width = pct.toFixed(1) + '%';
+    document.getElementById('goal-progress').setAttribute('aria-valuenow', String(Math.round(pct)));
+    document.getElementById('goal-pct').textContent = Math.round(pct) + '%';
+    document.getElementById('goal-badge').hidden = !reached;
+    var meta = t('goalLabel') + ' ' + fmt(state.goalKg);
+    if (entries.length) {
+      meta = t('startLabel') + ' ' + fmt(entries[0].kg) + ' → ' + meta;
+    }
+    document.getElementById('goal-meta').textContent = meta;
+  }
+
+  function renderChart() {
+    var box = document.getElementById('chart-box');
+    var entries = sortedEntries().slice(-14);
+    if (!entries.length) {
+      box.innerHTML = '<p class="chart-empty">' + esc(t('chartEmpty')) + '</p>';
+      return;
+    }
+    var W = 560, H = 220, L = 12, R = 12, T = 16, B = 28;
+    var vals = entries.map(function (e) { return e.kg; });
+    vals.push(state.goalKg);
+    var dataMin = Math.min.apply(null, vals);
+    var dataMax = Math.max.apply(null, vals);
+    var pad = Math.max((dataMax - dataMin) * 0.15, 0.5);
+    var min = dataMin - pad;
+    var max = dataMax + pad;
+    function x(i) {
+      if (entries.length === 1) return L + (W - L - R) / 2;
+      return L + i * (W - L - R) / (entries.length - 1);
+    }
+    function y(v) { return T + (max - v) / (max - min) * (H - T - B); }
+    var gy = y(state.goalKg);
+    var pts = entries.map(function (e, i) { return x(i).toFixed(1) + ',' + y(e.kg).toFixed(1); }).join(' ');
+    var dots = entries.map(function (e, i) {
+      return '<circle cx="' + x(i).toFixed(1) + '" cy="' + y(e.kg).toFixed(1) + '" r="4" fill="var(--color-accent)" />';
+    }).join('');
+    var last = entries[entries.length - 1];
+    var svg = '<svg class="chart-svg" viewBox="0 0 560 220" role="img" aria-label="' + esc(t('chartTitle')) + '">' +
+      '<line x1="' + L + '" y1="' + gy.toFixed(1) + '" x2="' + (W - R) + '" y2="' + gy.toFixed(1) + '" stroke="var(--color-success)" stroke-width="2" stroke-dasharray="6 4" />' +
+      '<text x="' + (W - R) + '" y="' + Math.max(gy - 6, 12).toFixed(1) + '" text-anchor="end" font-size="11" fill="var(--color-text-success)">' + esc(t('chartGoalLabel')) + ' ' + fmt(state.goalKg) + '</text>' +
+      (entries.length > 1 ? '<polyline points="' + pts + '" fill="none" stroke="var(--color-accent)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" />' : '') +
+      dots +
+      '<text x="' + x(entries.length - 1).toFixed(1) + '" y="' + Math.max(y(last.kg) - 10, 12).toFixed(1) + '" text-anchor="middle" font-size="11" fill="var(--color-text-primary)">' + fmt(last.kg) + '</text>' +
+      '<text x="' + L + '" y="' + (H - 8) + '" font-size="11" fill="var(--color-text-secondary)">' + esc(entries[0].date.slice(5)) + '</text>' +
+      '<text x="' + (W - R) + '" y="' + (H - 8) + '" text-anchor="end" font-size="11" fill="var(--color-text-secondary)">' + esc(last.date.slice(5)) + '</text>' +
+      '</svg>';
+    box.innerHTML = svg;
+  }
+
+  function renderHistory() {
+    var box = document.getElementById('history-list');
+    if (!state.entries.length) {
+      box.innerHTML =
+        '<div class="empty"><h2 class="empty-title">' + esc(t('emptyTitle')) + '</h2>' +
+        '<p class="empty-text">' + esc(t('emptyText')) + '</p>' +
+        '<button class="btn-primary" type="button" data-action="restore">' + esc(t('emptyBtn')) + '</button></div>';
+      return;
+    }
+    var rows = sortedEntries().reverse().map(function (e) {
+      return '<div class="history-row">' +
+        '<span class="history-date">' + esc(e.date) + '</span>' +
+        '<span class="history-weight">' + fmt(e.kg) + '</span>' +
+        '<span class="row-actions">' +
+        '<button class="btn-ghost" type="button" data-action="edit" data-date="' + esc(e.date) + '">' + esc(t('edit')) + '</button>' +
+        '<button class="btn-ghost btn-danger" type="button" data-action="delete" data-date="' + esc(e.date) + '">' + esc(t('delete')) + '</button>' +
+        '</span></div>';
+    }).join('');
+    box.innerHTML = rows;
+  }
+
+  function applyI18n() {
+    document.documentElement.lang = state.lang === 'zh' ? 'zh-CN' : 'en';
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      el.textContent = t(el.getAttribute('data-i18n'));
+    });
+    document.getElementById('lang-btn').textContent = state.lang === 'zh' ? 'EN' : '中文';
+    document.getElementById('unit-kg').classList.toggle('unit-active', state.unit === 'kg');
+    document.getElementById('unit-lb').classList.toggle('unit-active', state.unit === 'lb');
+    document.getElementById('goal-input-label').textContent = t('goalInputLabel') + ' (' + state.unit + ')';
+    document.getElementById('f-weight-label').textContent = t('fWeight') + ' (' + state.unit + ')';
+    document.getElementById('goal-input').setAttribute('placeholder', 'e.g. ' + fmt(state.goalKg));
+    document.getElementById('f-weight').setAttribute('placeholder', 'e.g. ' + fmt(73.5));
+    document.getElementById('goal-badge').textContent = t('reached');
+  }
+
+  function render() {
+    applyI18n();
+    renderStats();
+    renderGoal();
+    renderChart();
+    renderHistory();
+  }
+
+  document.getElementById('lang-btn').addEventListener('click', function () {
+    state.lang = state.lang === 'zh' ? 'en' : 'zh';
+    save();
+    render();
+  });
+
+  document.getElementById('unit-kg').addEventListener('click', function () {
+    state.unit = 'kg';
+    save();
+    render();
+  });
+  document.getElementById('unit-lb').addEventListener('click', function () {
+    state.unit = 'lb';
+    save();
+    render();
+  });
+
+  document.getElementById('goal-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var v = parseFloat(document.getElementById('goal-input').value);
+    if (!(v > 0)) return;
+    state.goalKg = Math.round((state.unit === 'lb' ? v / LB_PER_KG : v) * 100) / 100;
+    save();
+    e.target.reset();
+    render();
+  });
+
+  document.getElementById('log-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var date = document.getElementById('f-date').value;
+    var w = parseFloat(document.getElementById('f-weight').value);
+    if (!date || !(w > 0)) return;
+    var kg = Math.round((state.unit === 'lb' ? w / LB_PER_KG : w) * 100) / 100;
+    var found = false;
+    state.entries.forEach(function (entry) {
+      if (entry.date === date) { entry.kg = kg; found = true; }
+    });
+    if (!found) state.entries.push({ date: date, kg: kg });
+    save();
+    e.target.reset();
+    document.getElementById('f-date').value = todayStr();
+    render();
+  });
+
+  document.getElementById('history-list').addEventListener('click', function (e) {
+    var btn = e.target.closest('[data-action]');
+    if (!btn) return;
+    var action = btn.getAttribute('data-action');
+    if (action === 'restore') {
+      state.entries = samples();
+      save();
+      render();
+      return;
+    }
+    var date = btn.getAttribute('data-date');
+    if (action === 'delete') {
+      if (window.confirm(t('confirmDelete'))) {
+        state.entries = state.entries.filter(function (entry) { return entry.date !== date; });
+        save();
+        render();
+      }
+      return;
+    }
+    if (action === 'edit') {
+      var entry = null;
+      state.entries.forEach(function (item) { if (item.date === date) entry = item; });
+      if (!entry) return;
+      document.getElementById('f-date').value = entry.date;
+      document.getElementById('f-weight').value = toDisplay(entry.kg).toFixed(1);
+      document.getElementById('f-weight').focus();
+    }
+  });
+
+  document.getElementById('f-date').value = todayStr();
+  render();
+})();
+</script>
+</body>
+</html>

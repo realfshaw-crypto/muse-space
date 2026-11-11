@@ -1,22 +1,23 @@
 # Muse Space — muse空间 (full)
 
-Muse Space is a Muse Skill and template library with 37 ready-to-use mini-app templates for Muse Spaces, modeled on WeChat Mini Programs. Repository: https://github.com/realfshaw-crypto/muse-space. License: MIT. All templates are single-file HTML, Astryx design tokens, localStorage persistence, bilingual English/Chinese.
+Muse Space is a Muse Skill and template library with 41 ready-to-use mini-app templates for Muse Spaces, modeled on WeChat Mini Programs. Repository: https://github.com/realfshaw-crypto/muse-space. License: MIT. All templates are single-file HTML, Astryx design tokens, localStorage persistence, bilingual English/Chinese.
 
 ## Questions and answers
 
-Q: What is Muse Space? A: A Muse Skill plus a library of 37 mini-app templates. You ask Muse for a small tool in one sentence, and Muse generates a ready-to-use Muse Space from the matching template.
+Q: What is Muse Space? A: A Muse Skill plus a library of 41 mini-app templates. You ask Muse for a small tool in one sentence, and Muse generates a ready-to-use Muse Space from the matching template.
 Q: How is it like WeChat Mini Programs? A: Like Mini Programs, each template is a small single-purpose app that opens instantly with no install and no coding.
 Q: Where is user data stored? A: Locally, in the browser localStorage of the generated Space. No data is sent to external services.
 Q: What design system do the templates use? A: Meta Astryx design tokens (core defaults), semantic CSS variables with automatic light/dark adaptation.
-Q: How many templates are there? A: 37 templates in 6 categories: AI Work (4), Productivity (8), Money (6), Health (3), Learn (4), Life & Home (12).
+Q: How many templates are there? A: 41 templates in 6 categories: AI Work (5), Productivity (8), Money (6), Health (4), Learn (4), Life & Home (14).
 
-## All 37 templates
+## All 41 templates
 
 ### AI Work
 - Prompt Studio (提示词工坊, slug: ai-prompt-studio, path: templates/ai-prompt-studio/): Save, organize and reuse your best prompts. One tap to copy. / 收藏、分类、复用提示词，一键复制。 Keywords EN: prompt, prompts, ai assistant, prompt library. Keywords ZH: 提示词, 提示词库, AI助手.
 - Meeting Notes (会议纪要, slug: ai-meeting-notes, path: templates/ai-meeting-notes/): Turn rough notes into decisions, actions and owners. / 纪要结构化：决议、待办、负责人。 Keywords EN: meeting notes, minutes, action items, summary. Keywords ZH: 会议纪要, 会议记录, 待办.
 - Resume Coach (简历教练, slug: ai-resume-coach, path: templates/ai-resume-coach/): Polish resume bullets and check fit against a target role. / 简历要点打磨与岗位匹配清单。 Keywords EN: resume, cv, job search, career. Keywords ZH: 简历, 求职, 岗位匹配.
 - Content Calendar (内容日历, slug: ai-content-calendar, path: templates/ai-content-calendar/): Plan topics, schedule posts and track publish status in one view. / 选题、排期、发布状态一屏管。 Keywords EN: content calendar, creator, publishing schedule, social media. Keywords ZH: 内容日历, 选题, 排期.
+- Content Pipeline (内容生产线, slug: content-pipeline, path: templates/content-pipeline/): Move each piece from idea to draft, editing, scheduled and published. / 每条内容从点子到草稿、编辑、排期、发布，一步步往前推。 Keywords EN: content pipeline, content studio, content queue, creator pipeline, publishing pipeline. Keywords ZH: 内容生产线, 内容工作室, 内容排队, 创作流程, 发布流程.
 
 ### Productivity
 - Focus Timer (专注时钟, slug: focus-pomodoro, path: templates/focus-pomodoro/): A Pomodoro timer with a 7-day focus history and long breaks. / 番茄钟加近 7 天专注记录与长休。 Keywords EN: pomodoro, focus timer, deep work, productivity. Keywords ZH: 番茄钟, 专注, 计时.
@@ -38,8 +39,9 @@ Q: How many templates are there? A: 37 templates in 6 categories: AI Work (4), P
 
 ### Health
 - Workout Log (健身记录, slug: workout-log, path: templates/workout-log/): Log exercises, sets, reps and weight — with streaks and a daily coach tip. / 动作、组数、重量记录，附连续打卡与教练提示。 Keywords EN: workout log, gym, fitness tracker, training. Keywords ZH: 健身, 训练记录, 力量训练.
-- Meal & Calorie (饮食热量, slug: meal-calorie, path: templates/meal-calorie/): Track calories and protein for every meal. / 每餐热量与蛋白质。 Keywords EN: calorie tracker, meal log, nutrition, protein. Keywords ZH: 热量, 饮食记录, 卡路里.
+- Meal & Calorie (饮食热量, slug: meal-calorie, path: templates/meal-calorie/): Track calories and protein for every meal, with an editable daily goal and a 7-day history. / 记录每餐的热量与蛋白质，可改每日目标，并看最近 7 天的热量变化。 Keywords EN: calorie tracker, meal log, nutrition, protein. Keywords ZH: 热量, 饮食记录, 卡路里.
 - Sleep & Mood (睡眠心情, slug: sleep-mood-journal, path: templates/sleep-mood-journal/): Log sleep hours and mood, see the curve over time. / 睡眠时长、心情曲线。 Keywords EN: sleep tracker, mood journal, wellbeing, diary. Keywords ZH: 睡眠, 心情, 日记.
+- Weight Tracker (体重记录, slug: weight-tracker, path: templates/weight-tracker/): Log your weight daily, set a goal weight and watch the trend line move. / 每天记录体重，设定目标体重，看趋势线慢慢移动。 Keywords EN: weight tracker, weight, weigh-in, weight goal, health tracker. Keywords ZH: 体重记录, 体重, 称重, 目标体重, 健康追踪.
 
 ### Learn
 - Study Planner (学习计划, slug: study-planner, path: templates/study-planner/): Turn a timetable into review blocks and track progress. / 课表转复习块、进度跟踪。 Keywords EN: study planner, study schedule, exam prep, learning. Keywords ZH: 学习计划, 复习, 课表.
@@ -60,6 +62,8 @@ Q: How many templates are there? A: 37 templates in 6 categories: AI Work (4), P
 - Pantry Tracker (食材库存, slug: pantry-tracker, path: templates/pantry-tracker/): Food stock, quantities and expiry dates — with low-stock and expiring-soon alerts and a restock list. / 食材库存、数量与保质期，快过期与缺货都提醒，另有待采购清单。 Keywords EN: pantry tracker, pantry, food stock, expiry dates. Keywords ZH: 食材库存, 食材, 保质期, 库存.
 - Sudoku (数独, slug: sudoku-puzzle, path: templates/sudoku-puzzle/): A playable Sudoku with three difficulties, a daily challenge, notes, hints, a timer and best times. / 能玩的数独：三档难度、每日一题、笔记、提示、计时与最佳成绩。 Keywords EN: sudoku, puzzle, number puzzle, brain game. Keywords ZH: 数独, 益智, 数字游戏, 解谜.
 - Deal Hunter (折扣猎手, slug: deal-hunter, path: templates/deal-hunter/): A price watchlist: target prices, discounts and a buy-now badge when a logged price hits target. / 价格关注清单：目标价、折扣，记录的价格降到目标价就亮下手标记。 Keywords EN: deal hunter, deals, price watch, discount, price tracker. Keywords ZH: 折扣猎手, 比价, 折扣, 降价, 目标价.
+- Family Schedule Hub (家庭日程中心, slug: family-schedule-hub, path: templates/family-schedule-hub/): The whole family's week in one place: who does what, when, and who handles each pickup. / 全家一周日程放一处：谁、何时、做什么，谁负责接送，一眼看清。 Keywords EN: family schedule, family hub, weekly schedule, pickup, rides. Keywords ZH: 家庭日程, 家庭日程中心, 一周日程, 接送, 全家日程.
+- Sports Score Wall (比赛记分墙, slug: sports-score-wall, path: templates/sports-score-wall/): Every game you follow on one wall, with a scrolling score ticker. / 关注的比赛全在一面墙上，附滚动比分条。 Keywords EN: sports scores, score wall, scoreboard, game scores, sports ticker. Keywords ZH: 比赛记分墙, 比分墙, 比分, 记分板, 体育比分.
 
 ## How to use
 

@@ -268,6 +268,12 @@ label{display:block;font-size:var(--text-supporting-size);color:var(--color-text
 .badge.ok{background:var(--color-success-muted);color:var(--color-on-success-muted)}
 .del{background:none;border:none;color:var(--color-text-error);cursor:pointer;font-family:inherit;font-size:var(--text-body-size);padding:var(--spacing-1)}
 .rowflex{display:flex;gap:var(--spacing-2);align-items:center}
+.hist{display:flex;gap:var(--spacing-2);margin-top:var(--spacing-2)}
+.hist .col{flex:1;display:flex;flex-direction:column;align-items:center;gap:var(--spacing-1);min-width:0}
+.hist .track{width:100%;min-height:4rem;display:flex;align-items:flex-end;justify-content:center}
+.hist .track i{display:block;width:100%;max-width:2rem;background:var(--color-accent);border-radius:var(--radius-inner) var(--radius-inner) 0 0;transition:height var(--duration-medium) var(--ease-standard)}
+.hist .col b{font-size:var(--text-supporting-size);font-weight:var(--font-weight-medium)}
+.hist .col span{font-size:var(--text-supporting-size);color:var(--color-text-secondary)}
 .mini{width:7rem}
 footer{color:var(--color-text-disabled);font-size:var(--text-supporting-size);text-align:center;margin-top:var(--spacing-6)}
 @media (prefers-reduced-motion: reduce){*,*::before,*::after{animation:none !important;transition:none !important}}
@@ -293,6 +299,7 @@ footer{color:var(--color-text-disabled);font-size:var(--text-supporting-size);te
 <h2 data-i="goalTitle"></h2>
 <div class="bar" role="progressbar" aria-label="Calories vs goal"><i id="goalBar" style="width:0%"></i></div>
 <p class="muted" id="goalNote"></p>
+<div class="rowflex" style="margin-top:var(--spacing-3)"><input class="input mini" id="goalInput" type="number" min="500" max="10000" step="50" aria-label="Daily goal"><button class="btn ghost small" id="goalBtn" type="button" data-i="goalBtn"></button></div>
 </section>
 <section class="card" aria-label="Add food">
 <h2 data-i="addTitle"></h2>
@@ -308,6 +315,11 @@ footer{color:var(--color-text-disabled);font-size:var(--text-supporting-size);te
 <h2 data-i="listTitle"></h2>
 <div id="mList"></div>
 <p class="empty" id="mEmpty" hidden data-i="emptyAll"></p>
+</section>
+<section class="card" aria-label="History">
+<h2 data-i="histTitle"></h2>
+<div class="hist" id="mHist"></div>
+<p class="muted" id="histNote"></p>
 </section>
 
 </main>
@@ -325,15 +337,17 @@ document.getElementById('langBtn').addEventListener('click',()=>{lang=lang==='en
 const money=n=>'$'+Number(n||0).toFixed(2).replace(/\.00$/,'');
 const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const today=()=>new Date().toISOString().slice(0,10);
+const dstr=n=>{const d=new Date();d.setDate(d.getDate()-n);return d.toISOString().slice(0,10)};
 const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,7);
 
-const GOAL=2000;
-const T={en:{sub:'Track calories and protein for every meal.',kcalToday:'Calories today (kcal)',proteinToday:'Protein today (g)',ofGoal:'of 2,000 kcal goal',goalTitle:'Daily goal',addTitle:'Add food',meal:'Meal',food:'Food',foodPh:'e.g. Grilled chicken bowl',kcal:'Calories (kcal)',protein:'Protein (g)',addBtn:'Add food',listTitle:'Today\'s meals',emptyAll:'Nothing logged today yet. Add your first food above.',Breakfast:'Breakfast',Lunch:'Lunch',Dinner:'Dinner',Snack:'Snack',left:'kcal left',over:'kcal over goal',del:'Delete'},
-zh:{sub:'记录每餐的热量与蛋白质。',kcalToday:'今日热量 (kcal)',proteinToday:'今日蛋白质 (g)',ofGoal:'目标 2,000 kcal',goalTitle:'每日目标',addTitle:'添加食物',meal:'餐次',food:'食物',foodPh:'如：烤鸡肉饭',kcal:'热量 (kcal)',protein:'蛋白质 (g)',addBtn:'添加食物',listTitle:'今日记录',emptyAll:'今天还没有记录，在上面添加第一项。',Breakfast:'早餐',Lunch:'午餐',Dinner:'晚餐',Snack:'加餐',left:'kcal 剩余',over:'kcal 已超目标',del:'删除'}};
+let GOAL=2000;
+const T={en:{sub:'Track calories and protein for every meal.',kcalToday:'Calories today (kcal)',proteinToday:'Protein today (g)',ofGoal:'of daily goal',goalTitle:'Daily goal',goalBtn:'Set goal',histTitle:'Last 7 days',histNote:'{n} of the last 7 days have entries.',addTitle:'Add food',meal:'Meal',food:'Food',foodPh:'e.g. Grilled chicken bowl',kcal:'Calories (kcal)',protein:'Protein (g)',addBtn:'Add food',listTitle:'Today\'s meals',emptyAll:'Nothing logged today yet. Add your first food above.',Breakfast:'Breakfast',Lunch:'Lunch',Dinner:'Dinner',Snack:'Snack',left:'kcal left',over:'kcal over goal',del:'Delete'},
+zh:{sub:'记录每餐的热量与蛋白质。',kcalToday:'今日热量 (kcal)',proteinToday:'今日蛋白质 (g)',ofGoal:'占每日目标',goalTitle:'每日目标',goalBtn:'设定目标',histTitle:'最近 7 天',histNote:'最近 7 天中有 {n} 天有记录。',addTitle:'添加食物',meal:'餐次',food:'食物',foodPh:'如：烤鸡肉饭',kcal:'热量 (kcal)',protein:'蛋白质 (g)',addBtn:'添加食物',listTitle:'今日记录',emptyAll:'今天还没有记录，在上面添加第一项。',Breakfast:'早餐',Lunch:'午餐',Dinner:'晚餐',Snack:'加餐',left:'kcal 剩余',over:'kcal 已超目标',del:'删除'}};
 let S;try{S=JSON.parse(localStorage.getItem(KEY))}catch(e){S=null}
-if(!S||!Array.isArray(S.items)){S={lang:lang,items:[{id:uid(),date:today(),meal:'Breakfast',food:'Oatmeal & egg',kcal:420,protein:18},{id:uid(),date:today(),meal:'Lunch',food:'Grilled chicken bowl',kcal:650,protein:45},{id:uid(),date:today(),meal:'Snack',food:'Greek yogurt',kcal:150,protein:12}]}}
+if(!S||!Array.isArray(S.items)){S={lang:lang,goal:2000,items:[{id:uid(),date:today(),meal:'Breakfast',food:'Oatmeal & egg',kcal:420,protein:18},{id:uid(),date:today(),meal:'Lunch',food:'Grilled chicken bowl',kcal:650,protein:45},{id:uid(),date:today(),meal:'Snack',food:'Greek yogurt',kcal:150,protein:12},{id:uid(),date:dstr(1),meal:'Breakfast',food:'Avocado toast',kcal:380,protein:12},{id:uid(),date:dstr(1),meal:'Lunch',food:'Salmon rice bowl',kcal:720,protein:40},{id:uid(),date:dstr(1),meal:'Dinner',food:'Stir-fry vegetables & tofu',kcal:480,protein:22},{id:uid(),date:dstr(2),meal:'Breakfast',food:'Yogurt & berries',kcal:320,protein:15},{id:uid(),date:dstr(2),meal:'Lunch',food:'Turkey sandwich',kcal:580,protein:32},{id:uid(),date:dstr(2),meal:'Dinner',food:'Pasta arrabbiata',kcal:690,protein:18}]}}
 lang=S.lang||lang;
-function save(){S.lang=lang;localStorage.setItem(KEY,JSON.stringify(S))}
+GOAL=(S.goal>0)?S.goal:2000;
+function save(){S.lang=lang;S.goal=GOAL;localStorage.setItem(KEY,JSON.stringify(S))}
 function render(){
  const rows=S.items.filter(i=>i.date===today());
  const kcal=rows.reduce((a,i)=>a+ +i.kcal,0),pro=rows.reduce((a,i)=>a+ +i.protein,0);
@@ -342,6 +356,12 @@ function render(){
  document.getElementById('stGoal').textContent=Math.round(kcal/GOAL*100)+'%';
  const bar=document.getElementById('goalBar');bar.style.width=Math.min(100,kcal/GOAL*100)+'%';bar.className=kcal>GOAL?'over':'';
  document.getElementById('goalNote').textContent=kcal.toLocaleString()+' / '+GOAL.toLocaleString()+' kcal · '+(kcal<=GOAL?(GOAL-kcal)+' '+t('left'):(kcal-GOAL)+' '+t('over'));
+ document.getElementById('goalInput').value=GOAL;
+ const hist=document.getElementById('mHist');hist.innerHTML='';
+ let maxK=GOAL;const days=[];
+ for(let n=6;n>=0;n--){const ds=dstr(n);const k=S.items.filter(i=>i.date===ds).reduce((a,i)=>a+ +i.kcal,0);days.push({ds:ds,k:k});if(k>maxK)maxK=k;}
+ days.forEach(d=>{const col=document.createElement('div');col.className='col';const h=maxK>0?Math.max(4,Math.round(d.k/maxK*100)):4;const wd=new Date(d.ds+'T12:00:00').toLocaleDateString(lang==='zh'?'zh-CN':'en-US',{weekday:'short'});col.innerHTML='<b>'+d.k.toLocaleString()+'</b><div class="track"><i style="height:'+h+'%"></i></div><span>'+wd+'</span>';hist.appendChild(col);});
+ document.getElementById('histNote').textContent=t('histNote').replace('{n}',days.filter(d=>d.k>0).length);
  const list=document.getElementById('mList');list.innerHTML='';
  document.getElementById('mEmpty').hidden=rows.length>0;
  const order=['Breakfast','Lunch','Dinner','Snack'];
@@ -352,6 +372,7 @@ function render(){
   d.querySelector('.del').addEventListener('click',()=>{S.items=S.items.filter(x=>x.id!==i.id);save();render();});
   list.appendChild(d);});
 }
+document.getElementById('goalBtn').addEventListener('click',()=>{const v=parseInt(document.getElementById('goalInput').value,10);if(v>=500&&v<=10000){GOAL=v;save();render();}});
 document.getElementById('mBtn').addEventListener('click',()=>{const f=document.getElementById('mFood').value.trim(),k=parseFloat(document.getElementById('mKcal').value),p=parseFloat(document.getElementById('mProtein').value);
  if(!f||!(k>=0)||!(p>=0))return;
  S.items.push({id:uid(),date:today(),meal:document.getElementById('mMeal').value,food:f,kcal:k,protein:p});

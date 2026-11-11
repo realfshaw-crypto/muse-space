@@ -1,798 +1,890 @@
 {
-  "name": "Muse Space — muse空间",
-  "version": "0.2.0",
-  "description_en": "37 ready-to-use mini-app templates for Muse Spaces.",
-  "description_zh": "37 个开箱即用的 Muse Space 小程序模板。",
-  "categories": [
-    "AI Work",
-    "Productivity",
-    "Money",
-    "Health",
-    "Learn",
-    "Life & Home"
-  ],
-  "templates": [
-    {
-      "slug": "ai-prompt-studio",
-      "name_en": "Prompt Studio",
-      "name_zh": "提示词工坊",
-      "category": "AI Work",
-      "keywords_en": [
-        "prompt",
-        "prompts",
-        "ai assistant",
-        "prompt library"
-      ],
-      "keywords_zh": [
-        "提示词",
-        "提示词库",
-        "AI助手"
-      ],
-      "description_en": "Save, organize and reuse your best prompts. One tap to copy.",
-      "description_zh": "收藏、分类、复用提示词，一键复制。",
-      "path": "templates/ai-prompt-studio/"
-    },
-    {
-      "slug": "ai-meeting-notes",
-      "name_en": "Meeting Notes",
-      "name_zh": "会议纪要",
-      "category": "AI Work",
-      "keywords_en": [
-        "meeting notes",
-        "minutes",
-        "action items",
-        "summary"
-      ],
-      "keywords_zh": [
-        "会议纪要",
-        "会议记录",
-        "待办"
-      ],
-      "description_en": "Turn rough notes into decisions, actions and owners.",
-      "description_zh": "纪要结构化：决议、待办、负责人。",
-      "path": "templates/ai-meeting-notes/"
-    },
-    {
-      "slug": "ai-resume-coach",
-      "name_en": "Resume Coach",
-      "name_zh": "简历教练",
-      "category": "AI Work",
-      "keywords_en": [
-        "resume",
-        "cv",
-        "job search",
-        "career"
-      ],
-      "keywords_zh": [
-        "简历",
-        "求职",
-        "岗位匹配"
-      ],
-      "description_en": "Polish resume bullets and check fit against a target role.",
-      "description_zh": "简历要点打磨与岗位匹配清单。",
-      "path": "templates/ai-resume-coach/"
-    },
-    {
-      "slug": "ai-content-calendar",
-      "name_en": "Content Calendar",
-      "name_zh": "内容日历",
-      "category": "AI Work",
-      "keywords_en": [
-        "content calendar",
-        "creator",
-        "publishing schedule",
-        "social media"
-      ],
-      "keywords_zh": [
-        "内容日历",
-        "选题",
-        "排期"
-      ],
-      "description_en": "Plan topics, schedule posts and track publish status in one view.",
-      "description_zh": "选题、排期、发布状态一屏管。",
-      "path": "templates/ai-content-calendar/"
-    },
-    {
-      "slug": "focus-pomodoro",
-      "name_en": "Focus Timer",
-      "name_zh": "专注时钟",
-      "category": "Productivity",
-      "keywords_en": [
-        "pomodoro",
-        "focus timer",
-        "deep work",
-        "productivity"
-      ],
-      "keywords_zh": [
-        "番茄钟",
-        "专注",
-        "计时"
-      ],
-      "description_en": "A Pomodoro timer with a 7-day focus history and long breaks.",
-      "description_zh": "番茄钟加近 7 天专注记录与长休。",
-      "path": "templates/focus-pomodoro/"
-    },
-    {
-      "slug": "habit-tracker",
-      "name_en": "Habit Tracker",
-      "name_zh": "习惯打卡",
-      "category": "Productivity",
-      "keywords_en": [
-        "habit tracker",
-        "streak",
-        "daily check-in",
-        "completion rate"
-      ],
-      "keywords_zh": [
-        "习惯打卡",
-        "连续天数",
-        "完成率"
-      ],
-      "description_en": "Track streaks, 7-day check-ins and completion rates.",
-      "description_zh": "习惯连续天数、近 7 天打卡与完成率。",
-      "path": "templates/habit-tracker/"
-    },
-    {
-      "slug": "task-kanban",
-      "name_en": "Task Board",
-      "name_zh": "任务看板",
-      "category": "Productivity",
-      "keywords_en": [
-        "kanban",
-        "task board",
-        "to do",
-        "project board"
-      ],
-      "keywords_zh": [
-        "任务看板",
-        "看板",
-        "待办"
-      ],
-      "description_en": "A three-column board with drag, priority and due dates.",
-      "description_zh": "三列看板、拖拽、优先级。",
-      "path": "templates/task-kanban/"
-    },
-    {
-      "slug": "recurring-todos",
-      "name_en": "Recurring To-Dos",
-      "name_zh": "循环待办",
-      "category": "Productivity",
-      "keywords_en": [
-        "recurring tasks",
-        "routine",
-        "chores",
-        "repeating todo",
-        "habit routine"
-      ],
-      "keywords_zh": [
-        "循环待办",
-        "周期任务",
-        "家务",
-        "定期事项",
-        "日常待办"
-      ],
-      "description_en": "Recurring to-dos with due dates that reset when done.",
-      "description_zh": "周期待办，到期提醒，做完自动顺延。",
-      "path": "templates/recurring-todos/"
-    },
-    {
-      "slug": "budget-planner",
-      "name_en": "Budget Planner",
-      "name_zh": "预算管家",
-      "category": "Money",
-      "keywords_en": [
-        "budget",
-        "budget planner",
-        "monthly budget",
-        "money"
-      ],
-      "keywords_zh": [
-        "预算",
-        "月预算",
-        "理财"
-      ],
-      "description_en": "Set a monthly budget, cap each category, see what is left.",
-      "description_zh": "月预算、分类上限、剩余一目了然。",
-      "path": "templates/budget-planner/"
-    },
-    {
-      "slug": "expense-tracker",
-      "name_en": "Expense Tracker",
-      "name_zh": "记账本",
-      "category": "Money",
-      "keywords_en": [
-        "expense tracker",
-        "bookkeeping",
-        "spending",
-        "money log"
-      ],
-      "keywords_zh": [
-        "记账",
-        "记账本",
-        "支出"
-      ],
-      "description_en": "Log an expense in seconds and see category totals.",
-      "description_zh": "快速记一笔、分类汇总。",
-      "path": "templates/expense-tracker/"
-    },
-    {
-      "slug": "subscription-tracker",
-      "name_en": "Subscription Tracker",
-      "name_zh": "订阅管家",
-      "category": "Money",
-      "keywords_en": [
-        "subscription tracker",
-        "renewals",
-        "recurring payments"
-      ],
-      "keywords_zh": [
-        "订阅管理",
-        "续费提醒",
-        "订阅"
-      ],
-      "description_en": "List every subscription, renewal date, yearly cost and what's due in 30 days.",
-      "description_zh": "订阅清单、续费日期、年支出与 30 天内续费。",
-      "path": "templates/subscription-tracker/"
-    },
-    {
-      "slug": "savings-goals",
-      "name_en": "Savings Goals",
-      "name_zh": "存钱目标",
-      "category": "Money",
-      "keywords_en": [
-        "savings goals",
-        "save money",
-        "goal tracker"
-      ],
-      "keywords_zh": [
-        "存钱",
-        "储蓄目标",
-        "攒钱"
-      ],
-      "description_en": "Track progress and milestones for each savings goal.",
-      "description_zh": "目标进度、里程碑。",
-      "path": "templates/savings-goals/"
-    },
-    {
-      "slug": "workout-log",
-      "name_en": "Workout Log",
-      "name_zh": "健身记录",
-      "category": "Health",
-      "keywords_en": [
-        "workout log",
-        "gym",
-        "fitness tracker",
-        "training"
-      ],
-      "keywords_zh": [
-        "健身",
-        "训练记录",
-        "力量训练"
-      ],
-      "description_en": "Log exercises, sets, reps and weight — with streaks and a daily coach tip.",
-      "description_zh": "动作、组数、重量记录，附连续打卡与教练提示。",
-      "path": "templates/workout-log/"
-    },
-    {
-      "slug": "meal-calorie",
-      "name_en": "Meal & Calorie",
-      "name_zh": "饮食热量",
-      "category": "Health",
-      "keywords_en": [
-        "calorie tracker",
-        "meal log",
-        "nutrition",
-        "protein"
-      ],
-      "keywords_zh": [
-        "热量",
-        "饮食记录",
-        "卡路里"
-      ],
-      "description_en": "Track calories and protein for every meal.",
-      "description_zh": "每餐热量与蛋白质。",
-      "path": "templates/meal-calorie/"
-    },
-    {
-      "slug": "sleep-mood-journal",
-      "name_en": "Sleep & Mood",
-      "name_zh": "睡眠心情",
-      "category": "Health",
-      "keywords_en": [
-        "sleep tracker",
-        "mood journal",
-        "wellbeing",
-        "diary"
-      ],
-      "keywords_zh": [
-        "睡眠",
-        "心情",
-        "日记"
-      ],
-      "description_en": "Log sleep hours and mood, see the curve over time.",
-      "description_zh": "睡眠时长、心情曲线。",
-      "path": "templates/sleep-mood-journal/"
-    },
-    {
-      "slug": "study-planner",
-      "name_en": "Study Planner",
-      "name_zh": "学习计划",
-      "category": "Learn",
-      "keywords_en": [
-        "study planner",
-        "study schedule",
-        "exam prep",
-        "learning"
-      ],
-      "keywords_zh": [
-        "学习计划",
-        "复习",
-        "课表"
-      ],
-      "description_en": "Turn a timetable into review blocks and track progress.",
-      "description_zh": "课表转复习块、进度跟踪。",
-      "path": "templates/study-planner/"
-    },
-    {
-      "slug": "flashcard-review",
-      "name_en": "Flashcards",
-      "name_zh": "闪卡复习",
-      "category": "Learn",
-      "keywords_en": [
-        "flashcards",
-        "spaced repetition",
-        "memorize",
-        "anki alternative"
-      ],
-      "keywords_zh": [
-        "闪卡",
-        "间隔重复",
-        "背单词"
-      ],
-      "description_en": "Spaced repetition flashcards with mastery levels, weakest-first review and per-level counts.",
-      "description_zh": "间隔重复、掌握度，先练最弱卡片，按等级统计。",
-      "path": "templates/flashcard-review/"
-    },
-    {
-      "slug": "reading-tracker",
-      "name_en": "Reading Tracker",
-      "name_zh": "阅读追踪",
-      "category": "Learn",
-      "keywords_en": [
-        "reading tracker",
-        "book list",
-        "reading log",
-        "books"
-      ],
-      "keywords_zh": [
-        "阅读",
-        "书单",
-        "读书记录"
-      ],
-      "description_en": "Track your book list, progress and highlights.",
-      "description_zh": "书单、进度、摘录。",
-      "path": "templates/reading-tracker/"
-    },
-    {
-      "slug": "trivia-quiz",
-      "name_en": "Trivia Quiz",
-      "name_zh": "趣味问答",
-      "category": "Learn",
-      "keywords_en": [
-        "trivia quiz",
-        "quiz",
-        "trivia",
-        "general knowledge",
-        "quiz game"
-      ],
-      "keywords_zh": [
-        "趣味问答",
-        "问答",
-        "知识问答",
-        "答题"
-      ],
-      "description_en": "A timed quiz game across four categories — 40 questions — with score, streaks and a review.",
-      "description_zh": "四分类限时问答共 40 题：计分、连胜，答完还能复盘错题。",
-      "path": "templates/trivia-quiz/"
-    },
-    {
-      "slug": "trip-planner",
-      "name_en": "Trip Planner",
-      "name_zh": "旅行计划",
-      "category": "Life & Home",
-      "keywords_en": [
-        "trip planner",
-        "travel itinerary",
-        "packing list",
-        "travel"
-      ],
-      "keywords_zh": [
-        "旅行计划",
-        "行程",
-        "旅游"
-      ],
-      "description_en": "Plan day-by-day itineraries, checklists and trip budget.",
-      "description_zh": "行程天表、清单、预算。",
-      "path": "templates/trip-planner/"
-    },
-    {
-      "slug": "grocery-meal-planner",
-      "name_en": "Grocery & Meals",
-      "name_zh": "买菜食谱",
-      "category": "Life & Home",
-      "keywords_en": [
-        "meal planner",
-        "grocery list",
-        "weekly menu",
-        "recipes"
-      ],
-      "keywords_zh": [
-        "食谱",
-        "买菜清单",
-        "一周菜单"
-      ],
-      "description_en": "Plan a week of meals and get the grocery list automatically.",
-      "description_zh": "一周食谱自动带出买菜清单。",
-      "path": "templates/grocery-meal-planner/"
-    },
-    {
-      "slug": "home-inventory",
-      "name_en": "Home Inventory",
-      "name_zh": "家庭库存",
-      "category": "Life & Home",
-      "keywords_en": [
-        "home inventory",
-        "pantry",
-        "expiry tracker",
-        "household"
-      ],
-      "keywords_zh": [
-        "家庭库存",
-        "保质期",
-        "家务"
-      ],
-      "description_en": "Track stock, expiry dates and who does which chore.",
-      "description_zh": "库存、保质期、家务分工。",
-      "path": "templates/home-inventory/"
-    },
-    {
-      "slug": "gift-tracker",
-      "name_en": "Gift Tracker",
-      "name_zh": "礼物清单",
-      "category": "Life & Home",
-      "keywords_en": [
-        "gift tracker",
-        "gift list",
-        "holiday shopping",
-        "gift ideas",
-        "christmas gifts"
-      ],
-      "keywords_zh": [
-        "礼物清单",
-        "送礼",
-        "礼物",
-        "节日购物",
-        "买礼物"
-      ],
-      "description_en": "Gift ideas, sizes and budgets, sorted by person.",
-      "description_zh": "按人记礼物点子、尺码与预算。",
-      "path": "templates/gift-tracker/"
-    },
-    {
-      "slug": "game-score-tracker",
-      "name_en": "Game Score Tracker",
-      "name_zh": "桌游记分",
-      "category": "Life & Home",
-      "keywords_en": [
-        "game score tracker",
-        "board game",
-        "scoreboard",
-        "game night",
-        "wins"
-      ],
-      "keywords_zh": [
-        "桌游记分",
-        "记分",
-        "桌游",
-        "游戏之夜",
-        "胜负"
-      ],
-      "description_en": "Track every win, loss and rivalry across game nights.",
-      "description_zh": "每局胜负与对手战绩都记下来。",
-      "path": "templates/game-score-tracker/"
-    },
-    {
-      "slug": "pet-day-tracker",
-      "name_en": "Pet Day Tracker",
-      "name_zh": "宠物日程",
-      "category": "Life & Home",
-      "keywords_en": [
-        "pet tracker",
-        "dog day",
-        "pet care",
-        "pet schedule",
-        "walks"
-      ],
-      "keywords_zh": [
-        "宠物日程",
-        "宠物",
-        "遛狗",
-        "宠物记录",
-        "喂食"
-      ],
-      "description_en": "Walks, meals and naps — your pet's whole day in one place.",
-      "description_zh": "遛弯、吃饭、午睡，宠物的一天都在这。",
-      "path": "templates/pet-day-tracker/"
-    },
-    {
-      "slug": "restaurant-wishlist",
-      "name_en": "Restaurant Wishlist",
-      "name_zh": "餐厅心愿单",
-      "category": "Life & Home",
-      "keywords_en": [
-        "restaurant wishlist",
-        "saved restaurants",
-        "want to try",
-        "food list",
-        "dining"
-      ],
-      "keywords_zh": [
-        "餐厅心愿单",
-        "想吃的店",
-        "餐厅收藏",
-        "美食清单",
-        "探店"
-      ],
-      "description_en": "Every restaurant you saved and never went to, with prices and ratings.",
-      "description_zh": "收藏了却没去过的店，价格评分都记着。",
-      "path": "templates/restaurant-wishlist/"
-    },
-    {
-      "slug": "bill-tracker",
-      "name_en": "Bill Tracker",
-      "name_zh": "账单管家",
-      "category": "Money",
-      "keywords_en": [
-        "bill tracker",
-        "bills",
-        "due dates",
-        "best credit card",
-        "pay bills"
-      ],
-      "keywords_zh": [
-        "账单管家",
-        "账单",
-        "缴费",
-        "到期",
-        "刷卡"
-      ],
-      "description_en": "Every bill, its due date and the best card to pay with.",
-      "description_zh": "账单、到期日与刷哪张卡。",
-      "path": "templates/bill-tracker/"
-    },
-    {
-      "slug": "portfolio-tracker",
-      "name_en": "Portfolio Tracker",
-      "name_zh": "投资组合",
-      "category": "Money",
-      "keywords_en": [
-        "portfolio tracker",
-        "portfolio",
-        "investments",
-        "holdings",
-        "stocks"
-      ],
-      "keywords_zh": [
-        "投资组合",
-        "持仓",
-        "股票",
-        "基金",
-        "资产"
-      ],
-      "description_en": "Holdings, total value, gain/loss and allocation against your targets — prices entered by hand.",
-      "description_zh": "持仓、总资产、盈亏与目标配置对比，价格手动填写。",
-      "path": "templates/portfolio-tracker/"
-    },
-    {
-      "slug": "idea-capture",
-      "name_en": "Idea Capture",
-      "name_zh": "灵感收集箱",
-      "category": "Productivity",
-      "keywords_en": [
-        "idea capture",
-        "ideas",
-        "capture ideas",
-        "brainstorm",
-        "notes"
-      ],
-      "keywords_zh": [
-        "灵感收集箱",
-        "灵感",
-        "点子",
-        "想法",
-        "记点子"
-      ],
-      "description_en": "Catch an idea in seconds, sort it later.",
-      "description_zh": "灵感随手记，稍后再归类。",
-      "path": "templates/idea-capture/"
-    },
-    {
-      "slug": "retro-organizer",
-      "name_en": "Retro Organizer",
-      "name_zh": "复古掌上电脑",
-      "category": "Productivity",
-      "keywords_en": [
-        "retro organizer",
-        "palm pilot",
-        "pda",
-        "datebook",
-        "organizer"
-      ],
-      "keywords_zh": [
-        "复古掌上电脑",
-        "掌上电脑",
-        "日程本",
-        "记事"
-      ],
-      "description_en": "A Palm-style organizer: datebook, to-dos, memos and contacts in one device.",
-      "description_zh": "掌上电脑风整理器：日程、待办、备忘与通讯录合一。",
-      "path": "templates/retro-organizer/"
-    },
-    {
-      "slug": "app-hub",
-      "name_en": "App Hub",
-      "name_zh": "应用中心",
-      "category": "Productivity",
-      "keywords_en": [
-        "app hub",
-        "launcher",
-        "apps",
-        "shortcuts",
-        "dashboard"
-      ],
-      "keywords_zh": [
-        "应用中心",
-        "启动器",
-        "应用",
-        "快捷方式"
-      ],
-      "description_en": "Your pinned apps and links in one hub — search, pin and open in one tap.",
-      "description_zh": "常用应用与链接收进一个中心，搜、钉、点开一步到位。",
-      "path": "templates/app-hub/"
-    },
-    {
-      "slug": "time-block-planner",
-      "name_en": "Time Block Planner",
-      "name_zh": "周时间块",
-      "category": "Productivity",
-      "keywords_en": [
-        "time block",
-        "time blocking",
-        "weekly planner",
-        "schedule",
-        "time management"
-      ],
-      "keywords_zh": [
-        "周时间块",
-        "时间块",
-        "周计划",
-        "时间管理",
-        "排时间"
-      ],
-      "description_en": "Plan the week as time blocks: work, study, health and rest, with hours per category.",
-      "description_zh": "按周排时间块：工作、学习、健康与休息，各类时长一目了然。",
-      "path": "templates/time-block-planner/"
-    },
-    {
-      "slug": "travel-memory-map",
-      "name_en": "Travel Memory Map",
-      "name_zh": "旅行足迹",
-      "category": "Life & Home",
-      "keywords_en": [
-        "travel map",
-        "travel memories",
-        "trip journal",
-        "places visited",
-        "travel diary"
-      ],
-      "keywords_zh": [
-        "旅行足迹",
-        "旅行地图",
-        "旅行回忆",
-        "去过的地方",
-        "旅行日记"
-      ],
-      "description_en": "Every trip pinned with its story.",
-      "description_zh": "每次旅行钉上地点与故事。",
-      "path": "templates/travel-memory-map/"
-    },
-    {
-      "slug": "event-countdown",
-      "name_en": "Event Countdown",
-      "name_zh": "活动倒计时",
-      "category": "Life & Home",
-      "keywords_en": [
-        "event countdown",
-        "countdown",
-        "days left",
-        "upcoming events",
-        "birthday countdown"
-      ],
-      "keywords_zh": [
-        "活动倒计时",
-        "倒计时",
-        "还剩几天",
-        "活动",
-        "生日倒计时"
-      ],
-      "description_en": "Days left to every event that matters.",
-      "description_zh": "重要日子还剩几天，一眼看到。",
-      "path": "templates/event-countdown/"
-    },
-    {
-      "slug": "pantry-tracker",
-      "name_en": "Pantry Tracker",
-      "name_zh": "食材库存",
-      "category": "Life & Home",
-      "keywords_en": [
-        "pantry tracker",
-        "pantry",
-        "food stock",
-        "expiry dates"
-      ],
-      "keywords_zh": [
-        "食材库存",
-        "食材",
-        "保质期",
-        "库存"
-      ],
-      "description_en": "Food stock, quantities and expiry dates — with low-stock and expiring-soon alerts and a restock list.",
-      "description_zh": "食材库存、数量与保质期，快过期与缺货都提醒，另有待采购清单。",
-      "path": "templates/pantry-tracker/"
-    },
-    {
-      "slug": "sudoku-puzzle",
-      "name_en": "Sudoku",
-      "name_zh": "数独",
-      "category": "Life & Home",
-      "keywords_en": [
-        "sudoku",
-        "puzzle",
-        "number puzzle",
-        "brain game"
-      ],
-      "keywords_zh": [
-        "数独",
-        "益智",
-        "数字游戏",
-        "解谜"
-      ],
-      "description_en": "A playable Sudoku with three difficulties, a daily challenge, notes, hints, a timer and best times.",
-      "description_zh": "能玩的数独：三档难度、每日一题、笔记、提示、计时与最佳成绩。",
-      "path": "templates/sudoku-puzzle/"
-    },
-    {
-      "slug": "deal-hunter",
-      "name_en": "Deal Hunter",
-      "name_zh": "折扣猎手",
-      "category": "Life & Home",
-      "keywords_en": [
-        "deal hunter",
-        "deals",
-        "price watch",
-        "discount",
-        "price tracker"
-      ],
-      "keywords_zh": [
-        "折扣猎手",
-        "比价",
-        "折扣",
-        "降价",
-        "目标价"
-      ],
-      "description_en": "A price watchlist: target prices, discounts and a buy-now badge when a logged price hits target.",
-      "description_zh": "价格关注清单：目标价、折扣，记录的价格降到目标价就亮下手标记。",
-      "path": "templates/deal-hunter/"
-    }
-  ]
+ "name": "Muse Space — muse空间",
+ "version": "0.2.0",
+ "description_en": "41 ready-to-use mini-app templates for Muse Spaces.",
+ "description_zh": "41 个开箱即用的 Muse Space 小程序模板。",
+ "categories": [
+  "AI Work",
+  "Productivity",
+  "Money",
+  "Health",
+  "Learn",
+  "Life & Home"
+ ],
+ "templates": [
+  {
+   "slug": "ai-prompt-studio",
+   "name_en": "Prompt Studio",
+   "name_zh": "提示词工坊",
+   "category": "AI Work",
+   "keywords_en": [
+    "prompt",
+    "prompts",
+    "ai assistant",
+    "prompt library"
+   ],
+   "keywords_zh": [
+    "提示词",
+    "提示词库",
+    "AI助手"
+   ],
+   "description_en": "Save, organize and reuse your best prompts. One tap to copy.",
+   "description_zh": "收藏、分类、复用提示词，一键复制。",
+   "path": "templates/ai-prompt-studio/"
+  },
+  {
+   "slug": "ai-meeting-notes",
+   "name_en": "Meeting Notes",
+   "name_zh": "会议纪要",
+   "category": "AI Work",
+   "keywords_en": [
+    "meeting notes",
+    "minutes",
+    "action items",
+    "summary"
+   ],
+   "keywords_zh": [
+    "会议纪要",
+    "会议记录",
+    "待办"
+   ],
+   "description_en": "Turn rough notes into decisions, actions and owners.",
+   "description_zh": "纪要结构化：决议、待办、负责人。",
+   "path": "templates/ai-meeting-notes/"
+  },
+  {
+   "slug": "ai-resume-coach",
+   "name_en": "Resume Coach",
+   "name_zh": "简历教练",
+   "category": "AI Work",
+   "keywords_en": [
+    "resume",
+    "cv",
+    "job search",
+    "career"
+   ],
+   "keywords_zh": [
+    "简历",
+    "求职",
+    "岗位匹配"
+   ],
+   "description_en": "Polish resume bullets and check fit against a target role.",
+   "description_zh": "简历要点打磨与岗位匹配清单。",
+   "path": "templates/ai-resume-coach/"
+  },
+  {
+   "slug": "ai-content-calendar",
+   "name_en": "Content Calendar",
+   "name_zh": "内容日历",
+   "category": "AI Work",
+   "keywords_en": [
+    "content calendar",
+    "creator",
+    "publishing schedule",
+    "social media"
+   ],
+   "keywords_zh": [
+    "内容日历",
+    "选题",
+    "排期"
+   ],
+   "description_en": "Plan topics, schedule posts and track publish status in one view.",
+   "description_zh": "选题、排期、发布状态一屏管。",
+   "path": "templates/ai-content-calendar/"
+  },
+  {
+   "slug": "focus-pomodoro",
+   "name_en": "Focus Timer",
+   "name_zh": "专注时钟",
+   "category": "Productivity",
+   "keywords_en": [
+    "pomodoro",
+    "focus timer",
+    "deep work",
+    "productivity"
+   ],
+   "keywords_zh": [
+    "番茄钟",
+    "专注",
+    "计时"
+   ],
+   "description_en": "A Pomodoro timer with a 7-day focus history and long breaks.",
+   "description_zh": "番茄钟加近 7 天专注记录与长休。",
+   "path": "templates/focus-pomodoro/"
+  },
+  {
+   "slug": "habit-tracker",
+   "name_en": "Habit Tracker",
+   "name_zh": "习惯打卡",
+   "category": "Productivity",
+   "keywords_en": [
+    "habit tracker",
+    "streak",
+    "daily check-in",
+    "completion rate"
+   ],
+   "keywords_zh": [
+    "习惯打卡",
+    "连续天数",
+    "完成率"
+   ],
+   "description_en": "Track streaks, 7-day check-ins and completion rates.",
+   "description_zh": "习惯连续天数、近 7 天打卡与完成率。",
+   "path": "templates/habit-tracker/"
+  },
+  {
+   "slug": "task-kanban",
+   "name_en": "Task Board",
+   "name_zh": "任务看板",
+   "category": "Productivity",
+   "keywords_en": [
+    "kanban",
+    "task board",
+    "to do",
+    "project board"
+   ],
+   "keywords_zh": [
+    "任务看板",
+    "看板",
+    "待办"
+   ],
+   "description_en": "A three-column board with drag, priority and due dates.",
+   "description_zh": "三列看板、拖拽、优先级。",
+   "path": "templates/task-kanban/"
+  },
+  {
+   "slug": "recurring-todos",
+   "name_en": "Recurring To-Dos",
+   "name_zh": "循环待办",
+   "category": "Productivity",
+   "keywords_en": [
+    "recurring tasks",
+    "routine",
+    "chores",
+    "repeating todo",
+    "habit routine"
+   ],
+   "keywords_zh": [
+    "循环待办",
+    "周期任务",
+    "家务",
+    "定期事项",
+    "日常待办"
+   ],
+   "description_en": "Recurring to-dos with due dates that reset when done.",
+   "description_zh": "周期待办，到期提醒，做完自动顺延。",
+   "path": "templates/recurring-todos/"
+  },
+  {
+   "slug": "budget-planner",
+   "name_en": "Budget Planner",
+   "name_zh": "预算管家",
+   "category": "Money",
+   "keywords_en": [
+    "budget",
+    "budget planner",
+    "monthly budget",
+    "money"
+   ],
+   "keywords_zh": [
+    "预算",
+    "月预算",
+    "理财"
+   ],
+   "description_en": "Set a monthly budget, cap each category, see what is left.",
+   "description_zh": "月预算、分类上限、剩余一目了然。",
+   "path": "templates/budget-planner/"
+  },
+  {
+   "slug": "expense-tracker",
+   "name_en": "Expense Tracker",
+   "name_zh": "记账本",
+   "category": "Money",
+   "keywords_en": [
+    "expense tracker",
+    "bookkeeping",
+    "spending",
+    "money log"
+   ],
+   "keywords_zh": [
+    "记账",
+    "记账本",
+    "支出"
+   ],
+   "description_en": "Log an expense in seconds and see category totals.",
+   "description_zh": "快速记一笔、分类汇总。",
+   "path": "templates/expense-tracker/"
+  },
+  {
+   "slug": "subscription-tracker",
+   "name_en": "Subscription Tracker",
+   "name_zh": "订阅管家",
+   "category": "Money",
+   "keywords_en": [
+    "subscription tracker",
+    "renewals",
+    "recurring payments"
+   ],
+   "keywords_zh": [
+    "订阅管理",
+    "续费提醒",
+    "订阅"
+   ],
+   "description_en": "List every subscription, renewal date, yearly cost and what's due in 30 days.",
+   "description_zh": "订阅清单、续费日期、年支出与 30 天内续费。",
+   "path": "templates/subscription-tracker/"
+  },
+  {
+   "slug": "savings-goals",
+   "name_en": "Savings Goals",
+   "name_zh": "存钱目标",
+   "category": "Money",
+   "keywords_en": [
+    "savings goals",
+    "save money",
+    "goal tracker"
+   ],
+   "keywords_zh": [
+    "存钱",
+    "储蓄目标",
+    "攒钱"
+   ],
+   "description_en": "Track progress and milestones for each savings goal.",
+   "description_zh": "目标进度、里程碑。",
+   "path": "templates/savings-goals/"
+  },
+  {
+   "slug": "workout-log",
+   "name_en": "Workout Log",
+   "name_zh": "健身记录",
+   "category": "Health",
+   "keywords_en": [
+    "workout log",
+    "gym",
+    "fitness tracker",
+    "training"
+   ],
+   "keywords_zh": [
+    "健身",
+    "训练记录",
+    "力量训练"
+   ],
+   "description_en": "Log exercises, sets, reps and weight — with streaks and a daily coach tip.",
+   "description_zh": "动作、组数、重量记录，附连续打卡与教练提示。",
+   "path": "templates/workout-log/"
+  },
+  {
+   "slug": "meal-calorie",
+   "name_en": "Meal & Calorie",
+   "name_zh": "饮食热量",
+   "category": "Health",
+   "keywords_en": [
+    "calorie tracker",
+    "meal log",
+    "nutrition",
+    "protein"
+   ],
+   "keywords_zh": [
+    "热量",
+    "饮食记录",
+    "卡路里"
+   ],
+   "description_en": "Track calories and protein for every meal, with an editable daily goal and a 7-day history.",
+   "description_zh": "记录每餐的热量与蛋白质，可改每日目标，并看最近 7 天的热量变化。",
+   "path": "templates/meal-calorie/"
+  },
+  {
+   "slug": "sleep-mood-journal",
+   "name_en": "Sleep & Mood",
+   "name_zh": "睡眠心情",
+   "category": "Health",
+   "keywords_en": [
+    "sleep tracker",
+    "mood journal",
+    "wellbeing",
+    "diary"
+   ],
+   "keywords_zh": [
+    "睡眠",
+    "心情",
+    "日记"
+   ],
+   "description_en": "Log sleep hours and mood, see the curve over time.",
+   "description_zh": "睡眠时长、心情曲线。",
+   "path": "templates/sleep-mood-journal/"
+  },
+  {
+   "slug": "study-planner",
+   "name_en": "Study Planner",
+   "name_zh": "学习计划",
+   "category": "Learn",
+   "keywords_en": [
+    "study planner",
+    "study schedule",
+    "exam prep",
+    "learning"
+   ],
+   "keywords_zh": [
+    "学习计划",
+    "复习",
+    "课表"
+   ],
+   "description_en": "Turn a timetable into review blocks and track progress.",
+   "description_zh": "课表转复习块、进度跟踪。",
+   "path": "templates/study-planner/"
+  },
+  {
+   "slug": "flashcard-review",
+   "name_en": "Flashcards",
+   "name_zh": "闪卡复习",
+   "category": "Learn",
+   "keywords_en": [
+    "flashcards",
+    "spaced repetition",
+    "memorize",
+    "anki alternative"
+   ],
+   "keywords_zh": [
+    "闪卡",
+    "间隔重复",
+    "背单词"
+   ],
+   "description_en": "Spaced repetition flashcards with mastery levels, weakest-first review and per-level counts.",
+   "description_zh": "间隔重复、掌握度，先练最弱卡片，按等级统计。",
+   "path": "templates/flashcard-review/"
+  },
+  {
+   "slug": "reading-tracker",
+   "name_en": "Reading Tracker",
+   "name_zh": "阅读追踪",
+   "category": "Learn",
+   "keywords_en": [
+    "reading tracker",
+    "book list",
+    "reading log",
+    "books"
+   ],
+   "keywords_zh": [
+    "阅读",
+    "书单",
+    "读书记录"
+   ],
+   "description_en": "Track your book list, progress and highlights.",
+   "description_zh": "书单、进度、摘录。",
+   "path": "templates/reading-tracker/"
+  },
+  {
+   "slug": "trivia-quiz",
+   "name_en": "Trivia Quiz",
+   "name_zh": "趣味问答",
+   "category": "Learn",
+   "keywords_en": [
+    "trivia quiz",
+    "quiz",
+    "trivia",
+    "general knowledge",
+    "quiz game"
+   ],
+   "keywords_zh": [
+    "趣味问答",
+    "问答",
+    "知识问答",
+    "答题"
+   ],
+   "description_en": "A timed quiz game across four categories — 40 questions — with score, streaks and a review.",
+   "description_zh": "四分类限时问答共 40 题：计分、连胜，答完还能复盘错题。",
+   "path": "templates/trivia-quiz/"
+  },
+  {
+   "slug": "trip-planner",
+   "name_en": "Trip Planner",
+   "name_zh": "旅行计划",
+   "category": "Life & Home",
+   "keywords_en": [
+    "trip planner",
+    "travel itinerary",
+    "packing list",
+    "travel"
+   ],
+   "keywords_zh": [
+    "旅行计划",
+    "行程",
+    "旅游"
+   ],
+   "description_en": "Plan day-by-day itineraries, checklists and trip budget.",
+   "description_zh": "行程天表、清单、预算。",
+   "path": "templates/trip-planner/"
+  },
+  {
+   "slug": "grocery-meal-planner",
+   "name_en": "Grocery & Meals",
+   "name_zh": "买菜食谱",
+   "category": "Life & Home",
+   "keywords_en": [
+    "meal planner",
+    "grocery list",
+    "weekly menu",
+    "recipes"
+   ],
+   "keywords_zh": [
+    "食谱",
+    "买菜清单",
+    "一周菜单"
+   ],
+   "description_en": "Plan a week of meals and get the grocery list automatically.",
+   "description_zh": "一周食谱自动带出买菜清单。",
+   "path": "templates/grocery-meal-planner/"
+  },
+  {
+   "slug": "home-inventory",
+   "name_en": "Home Inventory",
+   "name_zh": "家庭库存",
+   "category": "Life & Home",
+   "keywords_en": [
+    "home inventory",
+    "pantry",
+    "expiry tracker",
+    "household"
+   ],
+   "keywords_zh": [
+    "家庭库存",
+    "保质期",
+    "家务"
+   ],
+   "description_en": "Track stock, expiry dates and who does which chore.",
+   "description_zh": "库存、保质期、家务分工。",
+   "path": "templates/home-inventory/"
+  },
+  {
+   "slug": "gift-tracker",
+   "name_en": "Gift Tracker",
+   "name_zh": "礼物清单",
+   "category": "Life & Home",
+   "keywords_en": [
+    "gift tracker",
+    "gift list",
+    "holiday shopping",
+    "gift ideas",
+    "christmas gifts"
+   ],
+   "keywords_zh": [
+    "礼物清单",
+    "送礼",
+    "礼物",
+    "节日购物",
+    "买礼物"
+   ],
+   "description_en": "Gift ideas, sizes and budgets, sorted by person.",
+   "description_zh": "按人记礼物点子、尺码与预算。",
+   "path": "templates/gift-tracker/"
+  },
+  {
+   "slug": "game-score-tracker",
+   "name_en": "Game Score Tracker",
+   "name_zh": "桌游记分",
+   "category": "Life & Home",
+   "keywords_en": [
+    "game score tracker",
+    "board game",
+    "scoreboard",
+    "game night",
+    "wins"
+   ],
+   "keywords_zh": [
+    "桌游记分",
+    "记分",
+    "桌游",
+    "游戏之夜",
+    "胜负"
+   ],
+   "description_en": "Track every win, loss and rivalry across game nights.",
+   "description_zh": "每局胜负与对手战绩都记下来。",
+   "path": "templates/game-score-tracker/"
+  },
+  {
+   "slug": "pet-day-tracker",
+   "name_en": "Pet Day Tracker",
+   "name_zh": "宠物日程",
+   "category": "Life & Home",
+   "keywords_en": [
+    "pet tracker",
+    "dog day",
+    "pet care",
+    "pet schedule",
+    "walks"
+   ],
+   "keywords_zh": [
+    "宠物日程",
+    "宠物",
+    "遛狗",
+    "宠物记录",
+    "喂食"
+   ],
+   "description_en": "Walks, meals and naps — your pet's whole day in one place.",
+   "description_zh": "遛弯、吃饭、午睡，宠物的一天都在这。",
+   "path": "templates/pet-day-tracker/"
+  },
+  {
+   "slug": "restaurant-wishlist",
+   "name_en": "Restaurant Wishlist",
+   "name_zh": "餐厅心愿单",
+   "category": "Life & Home",
+   "keywords_en": [
+    "restaurant wishlist",
+    "saved restaurants",
+    "want to try",
+    "food list",
+    "dining"
+   ],
+   "keywords_zh": [
+    "餐厅心愿单",
+    "想吃的店",
+    "餐厅收藏",
+    "美食清单",
+    "探店"
+   ],
+   "description_en": "Every restaurant you saved and never went to, with prices and ratings.",
+   "description_zh": "收藏了却没去过的店，价格评分都记着。",
+   "path": "templates/restaurant-wishlist/"
+  },
+  {
+   "slug": "bill-tracker",
+   "name_en": "Bill Tracker",
+   "name_zh": "账单管家",
+   "category": "Money",
+   "keywords_en": [
+    "bill tracker",
+    "bills",
+    "due dates",
+    "best credit card",
+    "pay bills"
+   ],
+   "keywords_zh": [
+    "账单管家",
+    "账单",
+    "缴费",
+    "到期",
+    "刷卡"
+   ],
+   "description_en": "Every bill, its due date and the best card to pay with.",
+   "description_zh": "账单、到期日与刷哪张卡。",
+   "path": "templates/bill-tracker/"
+  },
+  {
+   "slug": "portfolio-tracker",
+   "name_en": "Portfolio Tracker",
+   "name_zh": "投资组合",
+   "category": "Money",
+   "keywords_en": [
+    "portfolio tracker",
+    "portfolio",
+    "investments",
+    "holdings",
+    "stocks"
+   ],
+   "keywords_zh": [
+    "投资组合",
+    "持仓",
+    "股票",
+    "基金",
+    "资产"
+   ],
+   "description_en": "Holdings, total value, gain/loss and allocation against your targets — prices entered by hand.",
+   "description_zh": "持仓、总资产、盈亏与目标配置对比，价格手动填写。",
+   "path": "templates/portfolio-tracker/"
+  },
+  {
+   "slug": "idea-capture",
+   "name_en": "Idea Capture",
+   "name_zh": "灵感收集箱",
+   "category": "Productivity",
+   "keywords_en": [
+    "idea capture",
+    "ideas",
+    "capture ideas",
+    "brainstorm",
+    "notes"
+   ],
+   "keywords_zh": [
+    "灵感收集箱",
+    "灵感",
+    "点子",
+    "想法",
+    "记点子"
+   ],
+   "description_en": "Catch an idea in seconds, sort it later.",
+   "description_zh": "灵感随手记，稍后再归类。",
+   "path": "templates/idea-capture/"
+  },
+  {
+   "slug": "retro-organizer",
+   "name_en": "Retro Organizer",
+   "name_zh": "复古掌上电脑",
+   "category": "Productivity",
+   "keywords_en": [
+    "retro organizer",
+    "palm pilot",
+    "pda",
+    "datebook",
+    "organizer"
+   ],
+   "keywords_zh": [
+    "复古掌上电脑",
+    "掌上电脑",
+    "日程本",
+    "记事"
+   ],
+   "description_en": "A Palm-style organizer: datebook, to-dos, memos and contacts in one device.",
+   "description_zh": "掌上电脑风整理器：日程、待办、备忘与通讯录合一。",
+   "path": "templates/retro-organizer/"
+  },
+  {
+   "slug": "app-hub",
+   "name_en": "App Hub",
+   "name_zh": "应用中心",
+   "category": "Productivity",
+   "keywords_en": [
+    "app hub",
+    "launcher",
+    "apps",
+    "shortcuts",
+    "dashboard"
+   ],
+   "keywords_zh": [
+    "应用中心",
+    "启动器",
+    "应用",
+    "快捷方式"
+   ],
+   "description_en": "Your pinned apps and links in one hub — search, pin and open in one tap.",
+   "description_zh": "常用应用与链接收进一个中心，搜、钉、点开一步到位。",
+   "path": "templates/app-hub/"
+  },
+  {
+   "slug": "time-block-planner",
+   "name_en": "Time Block Planner",
+   "name_zh": "周时间块",
+   "category": "Productivity",
+   "keywords_en": [
+    "time block",
+    "time blocking",
+    "weekly planner",
+    "schedule",
+    "time management"
+   ],
+   "keywords_zh": [
+    "周时间块",
+    "时间块",
+    "周计划",
+    "时间管理",
+    "排时间"
+   ],
+   "description_en": "Plan the week as time blocks: work, study, health and rest, with hours per category.",
+   "description_zh": "按周排时间块：工作、学习、健康与休息，各类时长一目了然。",
+   "path": "templates/time-block-planner/"
+  },
+  {
+   "slug": "travel-memory-map",
+   "name_en": "Travel Memory Map",
+   "name_zh": "旅行足迹",
+   "category": "Life & Home",
+   "keywords_en": [
+    "travel map",
+    "travel memories",
+    "trip journal",
+    "places visited",
+    "travel diary"
+   ],
+   "keywords_zh": [
+    "旅行足迹",
+    "旅行地图",
+    "旅行回忆",
+    "去过的地方",
+    "旅行日记"
+   ],
+   "description_en": "Every trip pinned with its story.",
+   "description_zh": "每次旅行钉上地点与故事。",
+   "path": "templates/travel-memory-map/"
+  },
+  {
+   "slug": "event-countdown",
+   "name_en": "Event Countdown",
+   "name_zh": "活动倒计时",
+   "category": "Life & Home",
+   "keywords_en": [
+    "event countdown",
+    "countdown",
+    "days left",
+    "upcoming events",
+    "birthday countdown"
+   ],
+   "keywords_zh": [
+    "活动倒计时",
+    "倒计时",
+    "还剩几天",
+    "活动",
+    "生日倒计时"
+   ],
+   "description_en": "Days left to every event that matters.",
+   "description_zh": "重要日子还剩几天，一眼看到。",
+   "path": "templates/event-countdown/"
+  },
+  {
+   "slug": "pantry-tracker",
+   "name_en": "Pantry Tracker",
+   "name_zh": "食材库存",
+   "category": "Life & Home",
+   "keywords_en": [
+    "pantry tracker",
+    "pantry",
+    "food stock",
+    "expiry dates"
+   ],
+   "keywords_zh": [
+    "食材库存",
+    "食材",
+    "保质期",
+    "库存"
+   ],
+   "description_en": "Food stock, quantities and expiry dates — with low-stock and expiring-soon alerts and a restock list.",
+   "description_zh": "食材库存、数量与保质期，快过期与缺货都提醒，另有待采购清单。",
+   "path": "templates/pantry-tracker/"
+  },
+  {
+   "slug": "sudoku-puzzle",
+   "name_en": "Sudoku",
+   "name_zh": "数独",
+   "category": "Life & Home",
+   "keywords_en": [
+    "sudoku",
+    "puzzle",
+    "number puzzle",
+    "brain game"
+   ],
+   "keywords_zh": [
+    "数独",
+    "益智",
+    "数字游戏",
+    "解谜"
+   ],
+   "description_en": "A playable Sudoku with three difficulties, a daily challenge, notes, hints, a timer and best times.",
+   "description_zh": "能玩的数独：三档难度、每日一题、笔记、提示、计时与最佳成绩。",
+   "path": "templates/sudoku-puzzle/"
+  },
+  {
+   "slug": "deal-hunter",
+   "name_en": "Deal Hunter",
+   "name_zh": "折扣猎手",
+   "category": "Life & Home",
+   "keywords_en": [
+    "deal hunter",
+    "deals",
+    "price watch",
+    "discount",
+    "price tracker"
+   ],
+   "keywords_zh": [
+    "折扣猎手",
+    "比价",
+    "折扣",
+    "降价",
+    "目标价"
+   ],
+   "description_en": "A price watchlist: target prices, discounts and a buy-now badge when a logged price hits target.",
+   "description_zh": "价格关注清单：目标价、折扣，记录的价格降到目标价就亮下手标记。",
+   "path": "templates/deal-hunter/"
+  },
+  {
+   "slug": "family-schedule-hub",
+   "name_en": "Family Schedule Hub",
+   "name_zh": "家庭日程中心",
+   "category": "Life & Home",
+   "keywords_en": [
+    "family schedule",
+    "family hub",
+    "weekly schedule",
+    "pickup",
+    "rides"
+   ],
+   "keywords_zh": [
+    "家庭日程",
+    "家庭日程中心",
+    "一周日程",
+    "接送",
+    "全家日程"
+   ],
+   "description_en": "The whole family's week in one place: who does what, when, and who handles each pickup.",
+   "description_zh": "全家一周日程放一处：谁、何时、做什么，谁负责接送，一眼看清。",
+   "path": "templates/family-schedule-hub/"
+  },
+  {
+   "slug": "weight-tracker",
+   "name_en": "Weight Tracker",
+   "name_zh": "体重记录",
+   "category": "Health",
+   "keywords_en": [
+    "weight tracker",
+    "weight",
+    "weigh-in",
+    "weight goal",
+    "health tracker"
+   ],
+   "keywords_zh": [
+    "体重记录",
+    "体重",
+    "称重",
+    "目标体重",
+    "健康追踪"
+   ],
+   "description_en": "Log your weight daily, set a goal weight and watch the trend line move.",
+   "description_zh": "每天记录体重，设定目标体重，看趋势线慢慢移动。",
+   "path": "templates/weight-tracker/"
+  },
+  {
+   "slug": "sports-score-wall",
+   "name_en": "Sports Score Wall",
+   "name_zh": "比赛记分墙",
+   "category": "Life & Home",
+   "keywords_en": [
+    "sports scores",
+    "score wall",
+    "scoreboard",
+    "game scores",
+    "sports ticker"
+   ],
+   "keywords_zh": [
+    "比赛记分墙",
+    "比分墙",
+    "比分",
+    "记分板",
+    "体育比分"
+   ],
+   "description_en": "Every game you follow on one wall, with a scrolling score ticker.",
+   "description_zh": "关注的比赛全在一面墙上，附滚动比分条。",
+   "path": "templates/sports-score-wall/"
+  },
+  {
+   "slug": "content-pipeline",
+   "name_en": "Content Pipeline",
+   "name_zh": "内容生产线",
+   "category": "AI Work",
+   "keywords_en": [
+    "content pipeline",
+    "content studio",
+    "content queue",
+    "creator pipeline",
+    "publishing pipeline"
+   ],
+   "keywords_zh": [
+    "内容生产线",
+    "内容工作室",
+    "内容排队",
+    "创作流程",
+    "发布流程"
+   ],
+   "description_en": "Move each piece from idea to draft, editing, scheduled and published.",
+   "description_zh": "每条内容从点子到草稿、编辑、排期、发布，一步步往前推。",
+   "path": "templates/content-pipeline/"
+  }
+ ]
 }

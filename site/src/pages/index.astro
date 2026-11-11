@@ -14,30 +14,30 @@ const catDesc = {
   'Life & Home': 'Trips, groceries and home stock, planned without fuss.',
 };
 const faqs = [
-  { q: 'What is Muse Space?', a: 'Muse Space is a Muse Skill and a library of 37 ready-to-use mini-app templates for Muse Spaces. You say one sentence to Muse, and Muse generates a working Space from the matching template — no install, no coding.' },
+  { q: 'What is Muse Space?', a: 'Muse Space is a Muse Skill and a library of 41 ready-to-use mini-app templates for Muse Spaces. You say one sentence to Muse, and Muse generates a working Space from the matching template — no install, no coding.' },
   { q: 'How is Muse Space like WeChat Mini Programs?', a: 'Like WeChat Mini Programs inside WeChat, each Muse Space template is a small, single-purpose app that opens instantly inside Muse. Open it, use it, and your data stays in the Space itself.' },
   { q: 'How do I use a template?', a: 'Say the tool name to Muse in English or Chinese, for example "Open my expense tracker" or the Chinese phrase for opening the expense tracker. Muse reads templates.json, loads the template, fills in your data, and creates your Space. You can also open templates/<slug>/index.html directly in a browser.' },
   { q: 'Where is my data stored?', a: 'Locally. Every template stores data in browser localStorage only. Nothing is sent to external services.' },
-  { q: 'What design system do the templates use?', a: 'All 37 templates use Meta Astryx design tokens from assets/tokens.css: semantic colors, surface layers, automatic light and dark, and motion timed by token durations.' },
+  { q: 'What design system do the templates use?', a: 'All 41 templates use Meta Astryx design tokens from assets/tokens.css: semantic colors, surface layers, automatic light and dark, and motion timed by token durations.' },
   { q: 'Is Muse Space free and open source?', a: 'Yes. Muse Space is released under the MIT License at github.com/realfshaw-crypto/muse-space. You can copy, adapt and reuse any template.' },
 ];
-const websiteLd = { '@context': 'https://schema.org', '@type': 'WebSite', name: 'Muse Space — muse空间', url: siteUrl, description: '37 ready-to-use mini-app templates for Muse Spaces. Like WeChat Mini Programs, for your daily AI life.', inLanguage: ['en', 'zh-CN'], potentialAction: { '@type': 'SearchAction', target: siteUrl + '?q={search_term_string}', 'query-input': 'required name=search_term_string' } };
+const websiteLd = { '@context': 'https://schema.org', '@type': 'WebSite', name: 'Muse Space — muse空间', url: siteUrl, description: '41 ready-to-use mini-app templates for Muse Spaces. Like WeChat Mini Programs, for your daily AI life.', inLanguage: ['en', 'zh-CN'], potentialAction: { '@type': 'SearchAction', target: siteUrl + '?q={search_term_string}', 'query-input': 'required name=search_term_string' } };
 const itemListLd = { '@context': 'https://schema.org', '@type': 'ItemList', name: 'Muse Space templates', numberOfItems: data.templates.length, itemListElement: data.templates.map((t, i) => ({ '@type': 'ListItem', position: i + 1, name: t.name_en + ' / ' + t.name_zh, url: siteUrl + 'templates/' + t.slug + '/' })) };
 const faqLd = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) };
 ---
-<BaseLayout title="Muse Space — 37 Mini-App Templates for Muse Spaces" description="Muse Space: 37 ready-to-use mini-app templates for Muse Spaces. Like WeChat Mini Programs, for your daily AI life. Bilingual, Astryx design, free and open source." canonical={siteUrl} jsonLd={[websiteLd, itemListLd, faqLd]}>
+<BaseLayout title="Muse Space — 41 Mini-App Templates for Muse Spaces" description="Muse Space: 41 ready-to-use mini-app templates for Muse Spaces. Like WeChat Mini Programs, for your daily AI life. Bilingual, Astryx design, free and open source." canonical={siteUrl} jsonLd={[websiteLd, itemListLd, faqLd]}>
   <div class="wrap">
     <section class="hero">
       <svg class="float" width="72" height="72" viewBox="0 0 64 64" role="img" aria-label="Muse Space logo"><rect width="64" height="64" rx="14" fill="var(--color-accent)"/><path d="M14 44c6-14 12-22 18-24-1 8-4 16-9 24h-9zm20 0c5-8 8-16 9-24 6 2 9 10 7 24H34z" fill="var(--color-on-accent)"/><circle class="pulse" cx="52" cy="12" r="4" fill="var(--color-warning)"/></svg>
       <h1>Muse Space: mini programs for Muse, like WeChat Mini Programs for WeChat.</h1>
-      <p class="lead">Say one sentence — Muse builds you a small, ready-to-use Space. 37 templates for AI work, money, health, learning and daily life. No install. No coding.</p>
-      <p class="zh">Muse Space — muse空间：就像微信小程序之于微信，对 Muse 说一句话，就生成一个能直接用的小空间。37 个模板，覆盖 AI 工作、财务、健康、学习与日常生活。</p>
-      <a class="btn" href="#templates">Browse 37 templates</a>
+      <p class="lead">Say one sentence — Muse builds you a small, ready-to-use Space. 41 templates for AI work, money, health, learning and daily life. No install. No coding.</p>
+      <p class="zh">Muse Space — muse空间：就像微信小程序之于微信，对 Muse 说一句话，就生成一个能直接用的小空间。41 个模板，覆盖 AI 工作、财务、健康、学习与日常生活。</p>
+      <a class="btn" href="#templates">Browse 41 templates</a>
       <a class="btn secondary" href="https://github.com/realfshaw-crypto/muse-space">View on GitHub</a>
       <div class="search-box" id="templates">
         <label for="q">Search templates / 搜索模板</label>
         <input id="q" type="search" placeholder="Try: budget, pomodoro, flashcards, 记账, 番茄钟…" autocomplete="off" />
-        <p class="muted" id="count" aria-live="polite">37 templates</p>
+        <p class="muted" id="count" aria-live="polite">41 templates</p>
       </div>
       <nav class="cat-nav" id="categories" aria-label="Categories">
         {categories.map((c) => (<a href={'#cat-' + c.replaceAll(' ', '-').replaceAll('&', 'and').toLowerCase()}>{c} · {catZh[c]}</a>))}

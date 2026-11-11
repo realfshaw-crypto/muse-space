@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sports Score Wall — Every Game, One Wall | Muse Space</title>
+<meta name="description" content="Sports Score Wall template for Muse Space: every game you follow on one wall, with a scrolling score ticker. Scores are entered by hand. Bilingual EN/中文.">
+<meta property="og:title" content="Sports Score Wall — Every Game, One Wall | Muse Space">
+<meta property="og:description" content="Sports Score Wall template for Muse Space: every game you follow on one wall, with a scrolling score ticker. Scores are entered by hand. Bilingual EN/中文.">
+<meta property="og:type" content="website">
+<style>
+:root {
+  color-scheme: light dark;
+
+  /* ===== Color: core semantic ===== */
+  --color-accent: light-dark(#0064E0, #0171E3);
+  --color-accent-muted: light-dark(#0082FB33, #0082FB3F);
+  --color-on-accent: light-dark(#FFFFFF, #FFFFFF);
+  --color-neutral: light-dark(rgba(5, 54, 89, 0.1), rgba(223, 226, 229, 0.2));
+  --color-background-body: light-dark(#F1F4F7, #111112);
+  --color-background-surface: light-dark(#FFFFFF, #1F1F22);
+  --color-background-card: light-dark(#FFFFFF, #1F1F22);
+  --color-background-popover: light-dark(#FFFFFF, #28292C);
+  --color-background-muted: light-dark(#0536590C, #1111127F);
+  --color-background-inverted: light-dark(#0A1317, #FFFFFF);
+  --color-overlay: light-dark(#01122866, #11111299);
+  --color-overlay-hover: light-dark(#0536590C, #FFFFFF0C);
+  --color-overlay-pressed: light-dark(#05365919, #FFFFFF19);
+
+  /* Text */
+  --color-text-primary: light-dark(#0A1317, #DFE2E5);
+  --color-text-secondary: light-dark(#4E606F, #AAAFB5);
+  --color-text-disabled: light-dark(#A4B0BC, #6F747C);
+  --color-text-accent: light-dark(#0064E0, #3E9EFB);
+  --color-on-dark: light-dark(#FFFFFF, #FFFFFF);
+  --color-on-light: light-dark(#000000, #000000);
+
+  /* Icon（与 text 同值域） */
+  --color-icon-accent: light-dark(#0064E0, #2694FE);
+  --color-icon-primary: light-dark(#0A1317, #DFE2E5);
+  --color-icon-secondary: light-dark(#4E606F, #AAAFB5);
+  --color-icon-disabled: light-dark(#A4B0BC, #6F747C);
+
+  /* Status fills + muted + on-* */
+  --color-info: light-dark(#0064E0, #0064E0);
+  --color-info-muted: light-dark(#0082FB33, #0082FB3F);
+  --color-on-info: light-dark(#FFFFFF, #FFFFFF);
+  --color-success: light-dark(#0D8626, #0D8626);
+  --color-success-muted: light-dark(#0B991F33, #0B991F3F);
+  --color-on-success: light-dark(#FFFFFF, #FFFFFF);
+  --color-error: light-dark(#E3193B, #F5394F);
+  --color-error-muted: light-dark(#E3193B33, #F5394F3F);
+  --color-on-error: light-dark(#FFFFFF, #0A1317);
+  --color-background-error-inverted: light-dark(#AA071E, #E3193B);
+  --color-warning: light-dark(#E9AF08, #F2C00B);
+  --color-warning-muted: light-dark(#E2A40033, #E2A4003F);
+  --color-on-warning: light-dark(#0A1317, #0A1317);
+
+  /* Status text / icon / border（落在页面与卡片面上、对比 >= 4.5:1 的一档） */
+  --color-text-blue: light-dark(#042F97, #AFD7FF);
+  --color-text-green: light-dark(#09441F, #A5F690);
+  --color-text-yellow: light-dark(#753F07, #FBCE03);
+  --color-text-red: light-dark(#7B0210, #FFB2B8);
+  --color-text-info: var(--color-text-blue);
+  --color-text-success: var(--color-text-green);
+  --color-text-warning: var(--color-text-yellow);
+  --color-text-error: var(--color-text-red);
+  --color-icon-info: var(--color-text-info);
+  --color-icon-success: var(--color-text-success);
+  --color-icon-warning: var(--color-text-warning);
+  --color-icon-error: var(--color-text-error);
+  --color-border-info: var(--color-text-info);
+  --color-border-success: var(--color-text-success);
+  --color-border-warning: var(--color-text-warning);
+  --color-border-error: var(--color-text-error);
+  --color-on-info-muted: var(--color-text-blue);
+  --color-on-success-muted: var(--color-text-green);
+  --color-on-warning-muted: var(--color-text-yellow);
+  --color-on-error-muted: var(--color-text-red);
+
+  /* Border / effects */
+  --color-border: light-dark(#05365919, #F2F4F619);
+  --color-border-emphasized: light-dark(#CCD3DB, #494D53);
+  --color-skeleton: light-dark(#CCD3DB, #5A5E66);
+  --color-track: light-dark(#CCD3DB, #5A5E66);
+  --color-shadow: light-dark(rgba(5, 54, 89, 0.1), rgba(0, 0, 0, 0.3));
+  --color-tint-hover: light-dark(black, white);
+
+  /* Hue families: background(33 alpha) / border / icon / text */
+  --color-background-blue: light-dark(#0171E333, #0171E333);
+  --color-border-blue: light-dark(#0064E0, #2694FE);
+  --color-icon-blue: light-dark(#0064E0, #2694FE);
+  --color-background-cyan: light-dark(#03A7D733, #03A7D733);
+  --color-border-cyan: light-dark(#089DD0, #0171A4);
+  --color-icon-cyan: light-dark(#00ACC1, #26C6DA);
+  --color-text-cyan: light-dark(#014975, #A1EEF9);
+  --color-background-gray: light-dark(#0A131733, #666A724C);
+  --color-border-gray: light-dark(#647685, #748695);
+  --color-icon-gray: light-dark(#4E606F, #AAAFB5);
+  --color-text-gray: light-dark(#0A1317, #E7EAED);
+  --color-background-green: light-dark(#24BB5E33, #24BB5E33);
+  --color-border-green: light-dark(#0D8626, #0B991F);
+  --color-icon-green: light-dark(#0D8626, #26A756);
+  --color-background-orange: light-dark(#F2790233, #F2790233);
+  --color-border-orange: light-dark(#EB6E00, #B34A01);
+  --color-icon-orange: light-dark(#E9690B, #FB8C00);
+  --color-text-orange: light-dark(#6B2203, #FDB876);
+  --color-background-pink: light-dark(#E638B333, #E638B333);
+  --color-border-pink: light-dark(#F351C0, #C02294);
+  --color-icon-pink: light-dark(#C2185B, #EC407A);
+  --color-text-pink: light-dark(#650053, #FEADE3);
+  --color-background-purple: light-dark(#7952FF33, #7952FF33);
+  --color-border-purple: light-dark(#9081FF, #7340FE);
+  --color-icon-purple: light-dark(#5B08D8, #7952FF);
+  --color-text-purple: light-dark(#3E0697, #B3B0FE);
+  --color-background-red: light-dark(#E3193B33, #E3193B33);
+  --color-border-red: light-dark(#E3193B, #F5394F);
+  --color-icon-red: light-dark(#D31130, #E3193B);
+  --color-background-teal: light-dark(#0DB7AF33, #0DB7AF33);
+  --color-border-teal: light-dark(#08A3A3, #08767D);
+  --color-icon-teal: light-dark(#009688, #26A69A);
+  --color-text-teal: light-dark(#083943, #40DCCD);
+  --color-background-yellow: light-dark(#E2A40033, #E2A40033);
+  --color-border-yellow: light-dark(#C58600, #B47700);
+  --color-icon-yellow: light-dark(#FBC02D, #FFEE58);
+
+  /* ===== Spacing: 4px 基准、rem 制（随根字号缩放），步进 0..12 ===== */
+  --spacing-0: 0rem;
+  --spacing-0-5: 0.125rem;
+  --spacing-1: 0.25rem;
+  --spacing-1-5: 0.375rem;
+  --spacing-2: 0.5rem;
+  --spacing-3: 0.75rem;
+  --spacing-4: 1rem;
+  --spacing-5: 1.25rem;
+  --spacing-6: 1.5rem;
+  --spacing-7: 1.75rem;
+  --spacing-8: 2rem;
+  --spacing-9: 2.25rem;
+  --spacing-10: 2.5rem;
+  --spacing-11: 2.75rem;
+  --spacing-12: 3rem;
+
+  /* ===== Size: 控件高度 ===== */
+  --size-element-sm: 28px;
+  --size-element-md: 32px;
+  --size-element-lg: 36px;
+
+  /* ===== Border / Focus ===== */
+  --border-width: 1px;
+  --focus-outline-width: 2px;
+  --focus-outline-style: solid;
+  --focus-outline-color: var(--color-accent);
+  --focus-outline-offset: 3px;
+
+  /* ===== Radius（core 默认；neutral 主题的 6/10/12/28 变体不采用） ===== */
+  --radius-none: 0px;
+  --radius-inner: 4px;
+  --radius-element: 8px;
+  --radius-container: 12px;
+  --radius-page: 28px;
+  --radius-chat: 28px;
+  --radius-full: 9999px;
+
+  /* ===== Shadow ===== */
+  --shadow-low: 0px 1px 1px light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), 0px 2px 8px light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2));
+  --shadow-med: 0px 1px 2px light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), 0px 2px 12px light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2));
+  --shadow-high: 0px 2px 2px light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), 0px 8px 24px light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.3));
+  --shadow-inset-hover: inset 0px 0px 0px 2px light-dark(rgba(5, 54, 89, 0.15), rgba(223, 226, 229, 0.2));
+  --shadow-inset-selected: inset 0px 0px 0px 2px rgba(1, 113, 227, 0.5);
+  --shadow-inset-success: inset 0px 0px 0px 2px rgba(38, 167, 86, 0.3);
+  --shadow-inset-warning: inset 0px 0px 0px 2px rgba(226, 164, 0, 0.3);
+  --shadow-inset-error: inset 0px 0px 0px 2px rgba(227, 25, 59, 0.3);
+
+  /* ===== Motion ===== */
+  --duration-fast-min: 130ms;
+  --duration-fast: 175ms;
+  --duration-fast-max: 230ms;
+  --duration-medium-min: 310ms;
+  --duration-medium: 410ms;
+  --duration-medium-max: 550ms;
+  --duration-slow-min: 730ms;
+  --duration-slow: 975ms;
+  --duration-slow-max: 1300ms;
+  --duration-exit: var(--duration-fast);
+  --ease-standard: cubic-bezier(0.24, 1, 0.4, 1);
+  --ease-entrance: cubic-bezier(0.24, 1, 0.4, 1);
+  --ease-move: cubic-bezier(0.24, 1, 0.4, 1);
+  --ease-exit: cubic-bezier(0.3, 0, 0.6, 0.6);
+
+  /* ===== Typography ===== */
+  --font-family-body: "Figtree", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-family-heading: "Figtree", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-family-code: "SF Mono", Monaco, Consolas, monospace;
+
+  /* 几何字阶：round(14 x 1.2^step) */
+  --font-size-4xs: 0.375rem;
+  --font-size-3xs: 0.4375rem;
+  --font-size-2xs: 0.5rem;
+  --font-size-xs: 0.625rem;
+  --font-size-sm: 0.75rem;
+  --font-size-base: 0.875rem;
+  --font-size-lg: 1.0625rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.8125rem;
+  --font-size-4xl: 2.1875rem;
+  --font-size-5xl: 2.625rem;
+
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* 语义字型（size / weight / leading 三件套，组件只许用这一层） */
+  --text-heading-1-size: var(--font-size-2xl); --text-heading-1-weight: var(--font-weight-semibold); --text-heading-1-leading: 1.3333;
+  --text-heading-2-size: var(--font-size-xl); --text-heading-2-weight: var(--font-weight-semibold); --text-heading-2-leading: 1.4;
+  --text-heading-3-size: var(--font-size-lg); --text-heading-3-weight: var(--font-weight-semibold); --text-heading-3-leading: 1.4118;
+  --text-heading-4-size: var(--font-size-base); --text-heading-4-weight: var(--font-weight-semibold); --text-heading-4-leading: 1.4286;
+  --text-heading-5-size: var(--font-size-sm); --text-heading-5-weight: var(--font-weight-semibold); --text-heading-5-leading: 1.6667;
+  --text-heading-6-size: var(--font-size-xs); --text-heading-6-weight: var(--font-weight-semibold); --text-heading-6-leading: 1.6;
+  --text-body-size: var(--font-size-base); --text-body-weight: var(--font-weight-normal); --text-body-leading: 1.4286;
+  --text-large-size: var(--font-size-lg); --text-large-weight: var(--font-weight-semibold); --text-large-leading: 1.4118;
+  --text-label-size: var(--font-size-base); --text-label-weight: var(--font-weight-medium); --text-label-leading: 1.4286;
+  --text-code-size: var(--font-size-base); --text-code-weight: var(--font-weight-normal); --text-code-leading: 1.4286;
+  --text-supporting-size: var(--font-size-sm); --text-supporting-weight: var(--font-weight-normal); --text-supporting-leading: 1.6667;
+  --text-display-1-size: var(--font-size-5xl); --text-display-1-weight: var(--font-weight-normal); --text-display-1-leading: 1.2381;
+  --text-display-2-size: var(--font-size-4xl); --text-display-2-weight: var(--font-weight-normal); --text-display-2-leading: 1.2571;
+  --text-display-3-size: var(--font-size-3xl); --text-display-3-weight: var(--font-weight-normal); --text-display-3-leading: 1.2414;
+}
+
+/* ===== 基线元素（只用令牌，不引入新值） ===== */
+body {
+  background: var(--color-background-body);
+  color: var(--color-text-primary);
+  font-family: var(--font-family-body);
+  font-size: var(--text-body-size);
+  font-weight: var(--text-body-weight);
+  line-height: var(--text-body-leading);
+}
+:focus-visible {
+  outline: var(--focus-outline-width) var(--focus-outline-style) var(--focus-outline-color);
+  outline-offset: var(--focus-outline-offset);
+}
+
+/* ===== Sports Score Wall 组件层（只用 var(--...) 令牌） ===== */
+* { box-sizing: border-box; }
+body { margin: 0; }
+.app {
+  max-width: 44rem;
+  margin: 0 auto;
+  padding: var(--spacing-4) var(--spacing-4) var(--spacing-12);
+}
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--spacing-4);
+}
+.title {
+  font-size: var(--text-heading-1-size);
+  font-weight: var(--text-heading-1-weight);
+  line-height: var(--text-heading-1-leading);
+  margin: 0;
+}
+.subtitle {
+  color: var(--color-text-secondary);
+  font-size: var(--text-supporting-size);
+  line-height: var(--text-supporting-leading);
+  margin: var(--spacing-1) 0 0;
+}
+.score-svg {
+  flex: none;
+  width: 3rem;
+  height: 3rem;
+  animation: score-sway var(--duration-slow) var(--ease-standard) infinite alternate;
+}
+@keyframes score-sway {
+  from { transform: rotate(-4deg) translateY(0); }
+  to { transform: rotate(4deg) translateY(-0.25rem); }
+}
+.lang-btn {
+  flex: none;
+  height: var(--size-element-md);
+  padding: 0 var(--spacing-3);
+  border: var(--border-width) solid var(--color-border-emphasized);
+  border-radius: var(--radius-element);
+  background: var(--color-background-surface);
+  color: var(--color-text-primary);
+  font-size: var(--text-label-size);
+  font-weight: var(--text-label-weight);
+  cursor: pointer;
+}
+.stats {
+  display: flex;
+  gap: var(--spacing-3);
+  margin-top: var(--spacing-4);
+}
+.stat {
+  flex: 1;
+  padding: var(--spacing-3);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-container);
+  background: var(--color-background-card);
+}
+.stat-num {
+  font-size: var(--text-heading-2-size);
+  font-weight: var(--text-heading-2-weight);
+  line-height: var(--text-heading-2-leading);
+}
+.stat-label {
+  color: var(--color-text-secondary);
+  font-size: var(--text-supporting-size);
+  line-height: var(--text-supporting-leading);
+}
+.note {
+  margin-top: var(--spacing-3);
+  padding: var(--spacing-3);
+  border: var(--border-width) solid var(--color-border-info);
+  border-radius: var(--radius-container);
+  background: var(--color-background-blue);
+  color: var(--color-text-info);
+  font-size: var(--text-supporting-size);
+  line-height: var(--text-supporting-leading);
+}
+.ticker {
+  margin-top: var(--spacing-4);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-container);
+  background: var(--color-background-inverted);
+  color: var(--color-on-dark);
+  overflow: hidden;
+}
+.ticker-track {
+  display: flex;
+  width: max-content;
+  padding: var(--spacing-2) 0;
+  animation: ticker-scroll calc(var(--duration-slow-max) * 30) linear infinite;
+}
+@keyframes ticker-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.ticker-half {
+  display: flex;
+  flex: none;
+}
+.ticker-item {
+  padding-right: var(--spacing-6);
+  font-size: var(--text-supporting-size);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--text-supporting-leading);
+  white-space: nowrap;
+}
+.add-form {
+  margin-top: var(--spacing-4);
+  padding: var(--spacing-4);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-container);
+  background: var(--color-background-card);
+  box-shadow: var(--shadow-low);
+}
+.form-title {
+  font-size: var(--text-heading-3-size);
+  font-weight: var(--text-heading-3-weight);
+  line-height: var(--text-heading-3-leading);
+  margin: 0 0 var(--spacing-3);
+}
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-3);
+}
+.field { display: flex; flex-direction: column; gap: var(--spacing-1); }
+.field-wide { grid-column: 1 / -1; }
+.field label {
+  font-size: var(--text-label-size);
+  font-weight: var(--text-label-weight);
+  line-height: var(--text-label-leading);
+}
+.field input,
+.field select {
+  height: var(--size-element-lg);
+  padding: 0 var(--spacing-3);
+  border: var(--border-width) solid var(--color-border-emphasized);
+  border-radius: var(--radius-element);
+  background: var(--color-background-surface);
+  color: var(--color-text-primary);
+  font-size: var(--text-body-size);
+  font-family: var(--font-family-body);
+}
+.btn-primary {
+  height: var(--size-element-lg);
+  padding: 0 var(--spacing-4);
+  border: none;
+  border-radius: var(--radius-element);
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+  font-size: var(--text-label-size);
+  font-weight: var(--text-label-weight);
+  cursor: pointer;
+}
+.btn-ghost {
+  height: var(--size-element-md);
+  padding: 0 var(--spacing-3);
+  border: var(--border-width) solid var(--color-border-emphasized);
+  border-radius: var(--radius-element);
+  background: var(--color-background-surface);
+  color: var(--color-text-primary);
+  font-size: var(--text-supporting-size);
+  cursor: pointer;
+}
+.btn-danger {
+  color: var(--color-text-error);
+  border-color: var(--color-border-error);
+}
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  margin-top: var(--spacing-5);
+  flex-wrap: wrap;
+}
+.toolbar select {
+  height: var(--size-element-md);
+  padding: 0 var(--spacing-2);
+  border: var(--border-width) solid var(--color-border-emphasized);
+  border-radius: var(--radius-element);
+  background: var(--color-background-surface);
+  color: var(--color-text-primary);
+  font-size: var(--text-body-size);
+  font-family: var(--font-family-body);
+}
+.toolbar-label {
+  font-size: var(--text-body-size);
+}
+.list { display: flex; flex-direction: column; gap: var(--spacing-3); margin-top: var(--spacing-3); }
+.card {
+  padding: var(--spacing-4);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-container);
+  background: var(--color-background-card);
+  box-shadow: var(--shadow-low);
+}
+.card-live {
+  border-color: var(--color-border-error);
+  box-shadow: var(--shadow-inset-error);
+}
+.card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-3);
+}
+.league {
+  color: var(--color-text-secondary);
+  font-size: var(--text-supporting-size);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--text-supporting-leading);
+  text-transform: uppercase;
+}
+.game-time {
+  color: var(--color-text-secondary);
+  font-size: var(--text-supporting-size);
+  line-height: var(--text-supporting-leading);
+}
+.badge {
+  flex: none;
+  padding: var(--spacing-1) var(--spacing-2);
+  border-radius: var(--radius-full);
+  font-size: var(--text-supporting-size);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--text-supporting-leading);
+}
+.badge-live {
+  background: var(--color-error-muted);
+  color: var(--color-text-error);
+  animation: live-pulse var(--duration-slow) var(--ease-standard) infinite alternate;
+}
+@keyframes live-pulse {
+  from { opacity: 1; }
+  to { opacity: 0.55; }
+}
+.badge-scheduled {
+  background: var(--color-background-blue);
+  color: var(--color-text-info);
+}
+.badge-final {
+  background: var(--color-background-gray);
+  color: var(--color-text-gray);
+}
+.score-row {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  margin-top: var(--spacing-3);
+}
+.team {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1);
+}
+.team-away {
+  align-items: flex-end;
+  text-align: right;
+}
+.team-name {
+  font-size: var(--text-heading-3-size);
+  font-weight: var(--text-heading-3-weight);
+  line-height: var(--text-heading-3-leading);
+}
+.team-score {
+  font-size: var(--text-display-2-size);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--text-display-2-leading);
+}
+.score-sep {
+  color: var(--color-text-secondary);
+  font-size: var(--text-heading-2-size);
+  font-weight: var(--text-heading-2-weight);
+  line-height: var(--text-heading-2-leading);
+}
+.update-form {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  margin-top: var(--spacing-3);
+  flex-wrap: wrap;
+}
+.update-form input,
+.update-form select {
+  height: var(--size-element-md);
+  padding: 0 var(--spacing-2);
+  border: var(--border-width) solid var(--color-border-emphasized);
+  border-radius: var(--radius-element);
+  background: var(--color-background-surface);
+  color: var(--color-text-primary);
+  font-size: var(--text-body-size);
+  font-family: var(--font-family-body);
+}
+.update-form input { width: 4.5rem; }
+.update-form select { flex: 1; min-width: 7rem; }
+.card-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: var(--spacing-3);
+}
+.empty {
+  padding: var(--spacing-8) var(--spacing-4);
+  border: var(--border-width) dashed var(--color-border-emphasized);
+  border-radius: var(--radius-container);
+  background: var(--color-background-card);
+  text-align: center;
+}
+.empty-title {
+  font-size: var(--text-heading-3-size);
+  font-weight: var(--text-heading-3-weight);
+  line-height: var(--text-heading-3-leading);
+  margin: 0;
+}
+.empty-text {
+  color: var(--color-text-secondary);
+  font-size: var(--text-supporting-size);
+  line-height: var(--text-supporting-leading);
+  margin: var(--spacing-2) 0 var(--spacing-4);
+}
+@media (prefers-reduced-motion: reduce) {
+  .score-svg, .ticker-track, .badge-live { animation: none; }
+}
+</style>
+</head>
+<body>
+<main class="app">
+  <header class="header">
+    <div>
+      <h1 class="title" data-i18n="title">Sports Score Wall</h1>
+      <p class="subtitle" data-i18n="subtitle">Your own mini sports-betting wall: every score typed in by hand, with a scrolling ticker on top.</p>
+    </div>
+    <svg class="score-svg" viewBox="0 0 48 48" role="img" aria-label="Scoreboard">
+      <rect x="4" y="8" width="40" height="28" rx="4" fill="var(--color-background-inverted)" />
+      <rect x="8" y="12" width="32" height="12" fill="var(--color-background-blue)" />
+      <text x="24" y="21" text-anchor="middle" font-size="10" font-weight="700" fill="var(--color-text-primary)">98 – 94</text>
+      <rect x="8" y="27" width="14" height="5" fill="var(--color-success)" />
+      <rect x="26" y="27" width="14" height="5" fill="var(--color-error)" />
+      <rect x="20" y="36" width="8" height="4" fill="var(--color-background-inverted)" />
+    </svg>
+    <button class="lang-btn" type="button" id="lang-btn">中文</button>
+  </header>
+
+  <section class="stats" aria-label="Summary">
+    <div class="stat"><div class="stat-num" id="stat-live">0</div><div class="stat-label" data-i18n="statLive">Live now</div></div>
+    <div class="stat"><div class="stat-num" id="stat-today">0</div><div class="stat-label" data-i18n="statToday">Games today</div></div>
+    <div class="stat"><div class="stat-num" id="stat-leagues">0</div><div class="stat-label" data-i18n="statLeagues">Leagues followed</div></div>
+  </section>
+
+  <p class="note" data-i18n="note">Every score on this wall is entered by hand. It never fetches live scores and never crawls the web — type in the score whenever you check one, and the ticker updates with it.</p>
+
+  <div class="ticker" aria-label="Scores ticker">
+    <div class="ticker-track" id="ticker-track"></div>
+  </div>
+
+  <form class="add-form" id="add-form">
+    <h2 class="form-title" data-i18n="addTitle">Add a game</h2>
+    <div class="form-grid">
+      <div class="field">
+        <label for="f-home" data-i18n="fHome">Home team</label>
+        <input id="f-home" type="text" required maxlength="60" data-i18n-ph="phHome" placeholder="e.g. Lakers">
+      </div>
+      <div class="field">
+        <label for="f-away" data-i18n="fAway">Away team</label>
+        <input id="f-away" type="text" required maxlength="60" data-i18n-ph="phAway" placeholder="e.g. Celtics">
+      </div>
+      <div class="field">
+        <label for="f-league" data-i18n="fLeague">League</label>
+        <select id="f-league">
+          <option value="NBA">NBA</option>
+          <option value="NFL">NFL</option>
+          <option value="Premier League">Premier League</option>
+          <option value="La Liga">La Liga</option>
+          <option value="MLB">MLB</option>
+          <option value="NHL">NHL</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="f-status" data-i18n="fStatus">Status</label>
+        <select id="f-status">
+          <option value="scheduled" data-i18n="stScheduled">Scheduled</option>
+          <option value="live" data-i18n="stLive">Live</option>
+          <option value="final" data-i18n="stFinal">Final</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="f-time" data-i18n="fTime">Start time</label>
+        <input id="f-time" type="datetime-local" required>
+      </div>
+      <div class="field">
+        <label aria-hidden="true">&nbsp;</label>
+        <div style="display:flex;gap:var(--spacing-2)">
+          <input id="f-home-score" type="number" min="0" step="1" value="0" aria-label="Home score" style="flex:1;min-width:0;height:var(--size-element-lg);padding:0 var(--spacing-2);border:var(--border-width) solid var(--color-border-emphasized);border-radius:var(--radius-element);background:var(--color-background-surface);color:var(--color-text-primary);font-size:var(--text-body-size);font-family:var(--font-family-body)">
+          <input id="f-away-score" type="number" min="0" step="1" value="0" aria-label="Away score" style="flex:1;min-width:0;height:var(--size-element-lg);padding:0 var(--spacing-2);border:var(--border-width) solid var(--color-border-emphasized);border-radius:var(--radius-element);background:var(--color-background-surface);color:var(--color-text-primary);font-size:var(--text-body-size);font-family:var(--font-family-body)">
+        </div>
+      </div>
+      <div class="field field-wide">
+        <button class="btn-primary" type="submit" data-i18n="addBtn">Add game to the wall</button>
+      </div>
+    </div>
+  </form>
+
+  <div class="toolbar">
+    <label class="toolbar-label" for="league-filter"><span data-i18n="filterLeague">League</span></label>
+    <select id="league-filter"></select>
+    <label class="toolbar-label" for="status-filter"><span data-i18n="filterStatus">Status</span></label>
+    <select id="status-filter">
+      <option value="all" data-i18n="allStatuses">All statuses</option>
+      <option value="scheduled" data-i18n="stScheduled">Scheduled</option>
+      <option value="live" data-i18n="stLive">Live</option>
+      <option value="final" data-i18n="stFinal">Final</option>
+    </select>
+  </div>
+
+  <div class="list" id="list"></div>
+</main>
+
+<script>
+(function () {
+  var KEY = 'muse-space:sports-score-wall';
+
+  var LEAGUES = ['NBA', 'NFL', 'Premier League', 'La Liga', 'MLB', 'NHL'];
+
+  var I18N = {
+    en: {
+      title: 'Sports Score Wall',
+      subtitle: 'Your own mini sports-betting wall: every score typed in by hand, with a scrolling ticker on top.',
+      statLive: 'Live now',
+      statToday: 'Games today',
+      statLeagues: 'Leagues followed',
+      note: 'Every score on this wall is entered by hand. It never fetches live scores and never crawls the web — type in the score whenever you check one, and the ticker updates with it.',
+      addTitle: 'Add a game',
+      fHome: 'Home team',
+      phHome: 'e.g. Lakers',
+      fAway: 'Away team',
+      phAway: 'e.g. Celtics',
+      fLeague: 'League',
+      fStatus: 'Status',
+      fTime: 'Start time',
+      addBtn: 'Add game to the wall',
+      filterLeague: 'League',
+      filterStatus: 'Status',
+      allLeagues: 'All leagues',
+      allStatuses: 'All statuses',
+      stScheduled: 'Scheduled',
+      stLive: 'Live',
+      stFinal: 'Final',
+      updateBtn: 'Update score',
+      remove: 'Remove',
+      homeScore: 'Home score',
+      awayScore: 'Away score',
+      vs: 'vs',
+      emptyTitle: 'The wall is empty',
+      emptyText: 'Add a game above and type in its score by hand. Live games get a pulsing badge and join the ticker at the top.',
+      emptyBtn: 'Restore sample games',
+      noMatchTitle: 'No games match these filters',
+      noMatchText: 'Try a different league or status, or add a new game.',
+      tickerEmpty: 'No games yet — add one above.',
+      confirmRemove: 'Remove this game from the wall?'
+    },
+    zh: {
+      title: '比赛记分墙',
+      subtitle: '属于你自己的迷你体育比分墙：比分全部手动填写，顶部还有一条滚动比分条。',
+      statLive: '进行中',
+      statToday: '今日比赛',
+      statLeagues: '关注联赛',
+      note: '这面墙上的比分全部由你手动填写，不会拉取任何实时比分，也不会爬取网站——查到比分就随手填进来，顶部的滚动条会跟着更新。',
+      addTitle: '添加一场比赛',
+      fHome: '主队',
+      phHome: '例如：湖人',
+      fAway: '客队',
+      phAway: '例如：凯尔特人',
+      fLeague: '联赛',
+      fStatus: '状态',
+      fTime: '开赛时间',
+      addBtn: '把比赛贴上墙',
+      filterLeague: '联赛',
+      filterStatus: '状态',
+      allLeagues: '全部联赛',
+      allStatuses: '全部状态',
+      stScheduled: '待赛',
+      stLive: '进行中',
+      stFinal: '已结束',
+      updateBtn: '更新比分',
+      remove: '删除',
+      homeScore: '主队比分',
+      awayScore: '客队比分',
+      vs: '对阵',
+      emptyTitle: '记分墙还是空的',
+      emptyText: '在上面添加一场比赛并手动填入比分。进行中的比赛会带上闪烁标记，并出现在顶部的滚动比分条里。',
+      emptyBtn: '恢复示例比赛',
+      noMatchTitle: '当前筛选下没有比赛',
+      noMatchText: '换个联赛或状态试试，或者添加一场新比赛。',
+      tickerEmpty: '还没有比赛——在上面添加一场。',
+      confirmRemove: '确定从记分墙删除这场比赛吗？'
+    }
+  };
+
+  function samples() {
+    return [
+      { id: 'sample-lakers-celtics', home: 'Lakers', away: 'Celtics', league: 'NBA', status: 'live', time: '2026-11-11T19:30', homeScore: 98, awayScore: 94 },
+      { id: 'sample-arsenal-chelsea', home: 'Arsenal', away: 'Chelsea', league: 'Premier League', status: 'live', time: '2026-11-11T20:00', homeScore: 2, awayScore: 1 },
+      { id: 'sample-chiefs-bills', home: 'Kansas City Chiefs', away: 'Buffalo Bills', league: 'NFL', status: 'final', time: '2026-11-11T13:00', homeScore: 27, awayScore: 24 },
+      { id: 'sample-warriors-suns', home: 'Golden State Warriors', away: 'Phoenix Suns', league: 'NBA', status: 'scheduled', time: '2026-11-11T22:00', homeScore: 0, awayScore: 0 },
+      { id: 'sample-city-liverpool', home: 'Manchester City', away: 'Liverpool', league: 'Premier League', status: 'final', time: '2026-11-10T17:30', homeScore: 3, awayScore: 2 },
+      { id: 'sample-dodgers-yankees', home: 'Los Angeles Dodgers', away: 'New York Yankees', league: 'MLB', status: 'scheduled', time: '2026-11-12T19:00', homeScore: 0, awayScore: 0 },
+      { id: 'sample-49ers-cowboys', home: 'San Francisco 49ers', away: 'Dallas Cowboys', league: 'NFL', status: 'live', time: '2026-11-11T20:20', homeScore: 17, awayScore: 14 }
+    ];
+  }
+
+  function load() {
+    try {
+      var raw = localStorage.getItem(KEY);
+      if (raw) {
+        var parsed = JSON.parse(raw);
+        if (parsed && Array.isArray(parsed.items)) {
+          parsed.lang = parsed.lang === 'zh' ? 'zh' : 'en';
+          parsed.leagueFilter = parsed.leagueFilter || 'all';
+          parsed.statusFilter = parsed.statusFilter || 'all';
+          return parsed;
+        }
+      }
+    } catch (e) { /* fall through to samples */ }
+    return { lang: 'en', leagueFilter: 'all', statusFilter: 'all', items: samples() };
+  }
+
+  var state = load();
+  var t = function (key) { return I18N[state.lang][key] || I18N.en[key] || key; };
+
+  function save() {
+    try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) { /* storage unavailable */ }
+  }
+
+  function esc(s) {
+    return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+  function todayStr() {
+    var d = new Date();
+    var m = String(d.getMonth() + 1).padStart(2, '0');
+    var day = String(d.getDate()).padStart(2, '0');
+    return d.getFullYear() + '-' + m + '-' + day;
+  }
+  function fmtTime(iso) {
+    var d = new Date(iso);
+    if (isNaN(d.getTime())) return iso;
+    var hh = String(d.getHours()).padStart(2, '0');
+    var mm = String(d.getMinutes()).padStart(2, '0');
+    if (state.lang === 'zh') return (d.getMonth() + 1) + '月' + d.getDate() + '日 ' + hh + ':' + mm;
+    var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    return months[d.getMonth()] + ' ' + d.getDate() + ' · ' + hh + ':' + mm;
+  }
+  function statusKey(status) {
+    if (status === 'live') return 'stLive';
+    if (status === 'final') return 'stFinal';
+    return 'stScheduled';
+  }
+  function statusClass(status) {
+    if (status === 'live') return 'badge-live';
+    if (status === 'final') return 'badge-final';
+    return 'badge-scheduled';
+  }
+
+  function filteredItems() {
+    return state.items.filter(function (it) {
+      var leagueOk = state.leagueFilter === 'all' || it.league === state.leagueFilter;
+      var statusOk = state.statusFilter === 'all' || it.status === state.statusFilter;
+      return leagueOk && statusOk;
+    });
+  }
+
+  function renderStats() {
+    var live = state.items.filter(function (it) { return it.status === 'live'; }).length;
+    var today = state.items.filter(function (it) { return String(it.time).slice(0, 10) === todayStr(); }).length;
+    var leagues = {};
+    state.items.forEach(function (it) { leagues[it.league] = true; });
+    document.getElementById('stat-live').textContent = String(live);
+    document.getElementById('stat-today').textContent = String(today);
+    document.getElementById('stat-leagues').textContent = String(Object.keys(leagues).length);
+  }
+
+  function tickerText(item) {
+    if (item.status === 'scheduled') {
+      return esc(item.home) + ' ' + esc(t('vs')) + ' ' + esc(item.away) + ' · ' + esc(fmtTime(item.time));
+    }
+    return esc(item.home) + ' ' + item.homeScore + '–' + item.awayScore + ' ' + esc(item.away) + ' · ' + esc(t(statusKey(item.status)));
+  }
+
+  function renderTicker() {
+    var track = document.getElementById('ticker-track');
+    if (state.items.length === 0) {
+      track.innerHTML = '<span class="ticker-half"><span class="ticker-item">' + esc(t('tickerEmpty')) + '</span></span>';
+      return;
+    }
+    var half = '<span class="ticker-half">' + state.items.map(function (it) {
+      return '<span class="ticker-item">' + tickerText(it) + '</span>';
+    }).join('') + '</span>';
+    track.innerHTML = half + half;
+  }
+
+  function statusOptions(selected) {
+    return ['scheduled', 'live', 'final'].map(function (s) {
+      return '<option value="' + s + '"' + (s === selected ? ' selected' : '') + '>' + esc(t(statusKey(s))) + '</option>';
+    }).join('');
+  }
+
+  function renderList() {
+    var box = document.getElementById('list');
+    var items = filteredItems();
+    if (state.items.length === 0) {
+      box.innerHTML =
+        '<div class="empty"><h2 class="empty-title">' + esc(t('emptyTitle')) + '</h2>' +
+        '<p class="empty-text">' + esc(t('emptyText')) + '</p>' +
+        '<button class="btn-primary" type="button" data-action="restore">' + esc(t('emptyBtn')) + '</button></div>';
+      return;
+    }
+    if (items.length === 0) {
+      box.innerHTML =
+        '<div class="empty"><h2 class="empty-title">' + esc(t('noMatchTitle')) + '</h2>' +
+        '<p class="empty-text">' + esc(t('noMatchText')) + '</p></div>';
+      return;
+    }
+    box.innerHTML = items.map(function (item) {
+      var scoreHtml = item.status === 'scheduled'
+        ? '<span class="team-score">–</span>'
+        : '<span class="team-score">' + item.homeScore + '</span>';
+      var awayScoreHtml = item.status === 'scheduled'
+        ? '<span class="team-score">–</span>'
+        : '<span class="team-score">' + item.awayScore + '</span>';
+      return '<article class="card' + (item.status === 'live' ? ' card-live' : '') + '">' +
+        '<div class="card-head"><div>' +
+        '<span class="league">' + esc(item.league) + '</span> · ' +
+        '<span class="game-time">' + esc(fmtTime(item.time)) + '</span></div>' +
+        '<span class="badge ' + statusClass(item.status) + '">' + esc(t(statusKey(item.status))) + '</span>' +
+        '</div>' +
+        '<div class="score-row">' +
+        '<div class="team"><span class="team-name">' + esc(item.home) + '</span>' + scoreHtml + '</div>' +
+        '<span class="score-sep">–</span>' +
+        '<div class="team team-away"><span class="team-name">' + esc(item.away) + '</span>' + awayScoreHtml + '</div>' +
+        '</div>' +
+        '<form class="update-form" data-update="' + esc(item.id) + '">' +
+        '<input type="number" min="0" step="1" required value="' + item.homeScore + '" aria-label="' + esc(t('homeScore')) + '">' +
+        '<span aria-hidden="true">–</span>' +
+        '<input type="number" min="0" step="1" required value="' + item.awayScore + '" aria-label="' + esc(t('awayScore')) + '">' +
+        '<select aria-label="' + esc(t('fStatus')) + '">' + statusOptions(item.status) + '</select>' +
+        '<button class="btn-ghost" type="submit">' + esc(t('updateBtn')) + '</button>' +
+        '</form>' +
+        '<div class="card-actions"><button class="btn-ghost btn-danger" type="button" data-action="remove" data-id="' + esc(item.id) + '">' + esc(t('remove')) + '</button></div>' +
+        '</article>';
+    }).join('');
+  }
+
+  function renderLeagueFilter() {
+    var sel = document.getElementById('league-filter');
+    var leagues = [];
+    state.items.forEach(function (it) {
+      if (leagues.indexOf(it.league) === -1) leagues.push(it.league);
+    });
+    LEAGUES.forEach(function (lg) {
+      if (leagues.indexOf(lg) === -1) leagues.push(lg);
+    });
+    var html = '<option value="all">' + esc(t('allLeagues')) + '</option>';
+    leagues.forEach(function (lg) {
+      html += '<option value="' + esc(lg) + '"' + (lg === state.leagueFilter ? ' selected' : '') + '>' + esc(lg) + '</option>';
+    });
+    sel.innerHTML = html;
+    sel.value = state.leagueFilter;
+  }
+
+  function applyI18n() {
+    document.documentElement.lang = state.lang === 'zh' ? 'zh-CN' : 'en';
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      el.textContent = t(el.getAttribute('data-i18n'));
+    });
+    document.querySelectorAll('[data-i18n-ph]').forEach(function (el) {
+      el.setAttribute('placeholder', t(el.getAttribute('data-i18n-ph')));
+    });
+    document.getElementById('lang-btn').textContent = state.lang === 'zh' ? 'EN' : '中文';
+    document.getElementById('status-filter').value = state.statusFilter;
+    renderLeagueFilter();
+  }
+
+  function render() {
+    applyI18n();
+    renderStats();
+    renderTicker();
+    renderList();
+  }
+
+  document.getElementById('lang-btn').addEventListener('click', function () {
+    state.lang = state.lang === 'zh' ? 'en' : 'zh';
+    save();
+    render();
+  });
+
+  document.getElementById('league-filter').addEventListener('change', function (e) {
+    state.leagueFilter = e.target.value;
+    save();
+    render();
+  });
+
+  document.getElementById('status-filter').addEventListener('change', function (e) {
+    state.statusFilter = e.target.value;
+    save();
+    render();
+  });
+
+  document.getElementById('add-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var home = document.getElementById('f-home').value.trim();
+    var away = document.getElementById('f-away').value.trim();
+    var league = document.getElementById('f-league').value;
+    var status = document.getElementById('f-status').value;
+    var time = document.getElementById('f-time').value;
+    var homeScore = parseInt(document.getElementById('f-home-score').value, 10);
+    var awayScore = parseInt(document.getElementById('f-away-score').value, 10);
+    if (!home || !away || !time) return;
+    if (isNaN(homeScore)) homeScore = 0;
+    if (isNaN(awayScore)) awayScore = 0;
+    state.items.push({
+      id: 'game-' + Date.now().toString(36),
+      home: home,
+      away: away,
+      league: league,
+      status: status,
+      time: time,
+      homeScore: homeScore,
+      awayScore: awayScore
+    });
+    save();
+    e.target.reset();
+    document.getElementById('f-home-score').value = '0';
+    document.getElementById('f-away-score').value = '0';
+    render();
+  });
+
+  document.getElementById('list').addEventListener('click', function (e) {
+    var btn = e.target.closest('[data-action]');
+    if (!btn) return;
+    var action = btn.getAttribute('data-action');
+    if (action === 'restore') {
+      state.items = samples();
+      save();
+      render();
+      return;
+    }
+    if (action === 'remove') {
+      var id = btn.getAttribute('data-id');
+      if (window.confirm(t('confirmRemove'))) {
+        state.items = state.items.filter(function (it) { return it.id !== id; });
+        save();
+        render();
+      }
+    }
+  });
+
+  document.getElementById('list').addEventListener('submit', function (e) {
+    var form = e.target.closest('[data-update]');
+    if (!form) return;
+    e.preventDefault();
+    var id = form.getAttribute('data-update');
+    var inputs = form.querySelectorAll('input');
+    var homeScore = parseInt(inputs[0].value, 10);
+    var awayScore = parseInt(inputs[1].value, 10);
+    var status = form.querySelector('select').value;
+    if (isNaN(homeScore) || isNaN(awayScore)) return;
+    var item = null;
+    state.items.forEach(function (it) { if (it.id === id) item = it; });
+    if (!item) return;
+    item.homeScore = homeScore;
+    item.awayScore = awayScore;
+    item.status = status;
+    save();
+    render();
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>

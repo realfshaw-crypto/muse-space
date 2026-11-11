@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Content Pipeline — Ideas to Published, One Flow | Muse Space</title>
+<meta name="description" content="Content Pipeline template for Muse Space: move each piece from idea to draft, editing, scheduled and published. Bilingual EN/中文.">
+<meta property="og:title" content="Content Pipeline — Ideas to Published, One Flow | Muse Space">
+<meta property="og:description" content="Content Pipeline template for Muse Space: move each piece from idea to draft, editing, scheduled and published. Bilingual EN/中文.">
+<meta property="og:type" content="website">
+<style>
+:root {
+  color-scheme: light dark;
+
+  /* ===== Color: core semantic ===== */
+  --color-accent: light-dark(#0064E0, #0171E3);
+  --color-accent-muted: light-dark(#0082FB33, #0082FB3F);
+  --color-on-accent: light-dark(#FFFFFF, #FFFFFF);
+  --color-neutral: light-dark(rgba(5, 54, 89, 0.1), rgba(223, 226, 229, 0.2));
+  --color-background-body: light-dark(#F1F4F7, #111112);
+  --color-background-surface: light-dark(#FFFFFF, #1F1F22);
+  --color-background-card: light-dark(#FFFFFF, #1F1F22);
+  --color-background-popover: light-dark(#FFFFFF, #28292C);
+  --color-background-muted: light-dark(#0536590C, #1111127F);
+  --color-background-inverted: light-dark(#0A1317, #FFFFFF);
+  --color-overlay: light-dark(#01122866, #11111299);
+  --color-overlay-hover: light-dark(#0536590C, #FFFFFF0C);
+  --color-overlay-pressed: light-dark(#05365919, #FFFFFF19);
+
+  /* Text */
+  --color-text-primary: light-dark(#0A1317, #DFE2E5);
+  --color-text-secondary: light-dark(#4E606F, #AAAFB5);
+  --color-text-disabled: light-dark(#A4B0BC, #6F747C);
+  --color-text-accent: light-dark(#0064E0, #3E9EFB);
+  --color-on-dark: light-dark(#FFFFFF, #FFFFFF);
+  --color-on-light: light-dark(#000000, #000000);
+
+  /* Icon（与 text 同值域） */
+  --color-icon-accent: light-dark(#0064E0, #2694FE);
+  --color-icon-primary: light-dark(#0A1317, #DFE2E5);
+  --color-icon-secondary: light-dark(#4E606F, #AAAFB5);
+  --color-icon-disabled: light-dark(#A4B0BC, #6F747C);
+
+  /* Status fills + muted + on-* */
+  --color-info: light-dark(#0064E0, #0064E0);
+  --color-info-muted: light-dark(#0082FB33, #0082FB3F);
+  --color-on-info: light-dark(#FFFFFF, #FFFFFF);
+  --color-success: light-dark(#0D8626, #0D8626);
+  --color-success-muted: light-dark(#0B991F33, #0B991F3F);
+  --color-on-success: light-dark(#FFFFFF, #FFFFFF);
+  --color-error: light-dark(#E3193B, #F5394F);
+  --color-error-muted: light-dark(#E3193B33, #F5394F3F);
+  --color-on-error: light-dark(#FFFFFF, #0A1317);
+  --color-background-error-inverted: light-dark(#AA071E, #E3193B);
+  --color-warning: light-dark(#E9AF08, #F2C00B);
+  --color-warning-muted: light-dark(#E2A40033, #E2A4003F);
+  --color-on-warning: light-dark(#0A1317, #0A1317);
+
+  /* Status text / icon / border（落在页面与卡片面上、对比 >= 4.5:1 的一档） */
+  --color-text-blue: light-dark(#042F97, #AFD7FF);
+  --color-text-green: light-dark(#09441F, #A5F690);
+  --color-text-yellow: light-dark(#753F07, #FBCE03);
+  --color-text-red: light-dark(#7B0210, #FFB2B8);
+  --color-text-info: var(--color-text-blue);
+  --color-text-success: var(--color-text-green);
+  --color-text-warning: var(--color-text-yellow);
+  --color-text-error: var(--color-text-red);
+  --color-icon-info: var(--color-text-info);
+  --color-icon-success: var(--color-text-success);
+  --color-icon-warning: var(--color-text-warning);
+  --color-icon-error: var(--color-text-error);
+  --color-border-info: var(--color-text-info);
+  --color-border-success: var(--color-text-success);
+  --color-border-warning: var(--color-text-warning);
+  --color-border-error: var(--color-text-error);
+  --color-on-info-muted: var(--color-text-blue);
+  --color-on-success-muted: var(--color-text-green);
+  --color-on-warning-muted: var(--color-text-yellow);
+  --color-on-error-muted: var(--color-text-red);
+
+  /* Border / effects */
+  --color-border: light-dark(#05365919, #F2F4F619);
+  --color-border-emphasized: light-dark(#CCD3DB, #494D53);
+  --color-skeleton: light-dark(#CCD3DB, #5A5E66);
+  --color-track: light-dark(#CCD3DB, #5A5E66);
+  --color-shadow: light-dark(rgba(5, 54, 89, 0.1), rgba(0, 0, 0, 0.3));
+  --color-tint-hover: light-dark(black, white);
+
+  /* Hue families: background(33 alpha) / border / icon / text */
+  --color-background-blue: light-dark(#0171E333, #0171E333);
+  --color-border-blue: light-dark(#0064E0, #2694FE);
+  --color-icon-blue: light-dark(#0064E0, #2694FE);
+  --color-background-cyan: light-dark(#03A7D733, #03A7D733);
+  --color-border-cyan: light-dark(#089DD0, #0171A4);
+  --color-icon-cyan: light-dark(#00ACC1, #26C6DA);
+  --color-text-cyan: light-dark(#014975, #A1EEF9);
+  --color-background-gray: light-dark(#0A131733, #666A724C);
+  --color-border-gray: light-dark(#647685, #748695);
+  --color-icon-gray: light-dark(#4E606F, #AAAFB5);
+  --color-text-gray: light-dark(#0A1317, #E7EAED);
+  --color-background-green: light-dark(#24BB5E33, #24BB5E33);
+  --color-border-green: light-dark(#0D8626, #0B991F);
+  --color-icon-green: light-dark(#0D8626, #26A756);
+  --color-background-orange: light-dark(#F2790233, #F2790233);
+  --color-border-orange: light-dark(#EB6E00, #B34A01);
+  --color-icon-orange: light-dark(#E9690B, #FB8C00);
+  --color-text-orange: light-dark(#6B2203, #FDB876);
+  --color-background-pink: light-dark(#E638B333, #E638B333);
+  --color-border-pink: light-dark(#F351C0, #C02294);
+  --color-icon-pink: light-dark(#C2185B, #EC407A);
+  --color-text-pink: light-dark(#650053, #FEADE3);
+  --color-background-purple: light-dark(#7952FF33, #7952FF33);
+  --color-border-purple: light-dark(#9081FF, #7340FE);
+  --color-icon-purple: light-dark(#5B08D8, #7952FF);
+  --color-text-purple: light-dark(#3E0697, #B3B0FE);
+  --color-background-red: light-dark(#E3193B33, #E3193B33);
+  --color-border-red: light-dark(#E3193B, #F5394F);
+  --color-icon-red: light-dark(#D31130, #E3193B);
+  --color-background-teal: light-dark(#0DB7AF33, #0DB7AF33);
+  --color-border-teal: light-dark(#08A3A3, #08767D);
+  --color-icon-teal: light-dark(#009688, #26A69A);
+  --color-text-teal: light-dark(#083943, #40DCCD);
+  --color-background-yellow: light-dark(#E2A40033, #E2A40033);
+  --color-border-yellow: light-dark(#C58600, #B47700);
+  --color-icon-yellow: light-dark(#FBC02D, #FFEE58);
+
+  /* ===== Spacing: 4px 基准、rem 制（随根字号缩放），步进 0..12 ===== */
+  --spacing-0: 0rem;
+  --spacing-0-5: 0.125rem;
+  --spacing-1: 0.25rem;
+  --spacing-1-5: 0.375rem;
+  --spacing-2: 0.5rem;
+  --spacing-3: 0.75rem;
+  --spacing-4: 1rem;
+  --spacing-5: 1.25rem;
+  --spacing-6: 1.5rem;
+  --spacing-7: 1.75rem;
+  --spacing-8: 2rem;
+  --spacing-9: 2.25rem;
+  --spacing-10: 2.5rem;
+  --spacing-11: 2.75rem;
+  --spacing-12: 3rem;
+
+  /* ===== Size: 控件高度 ===== */
+  --size-element-sm: 28px;
+  --size-element-md: 32px;
+  --size-element-lg: 36px;
+
+  /* ===== Border / Focus ===== */
+  --border-width: 1px;
+  --focus-outline-width: 2px;
+  --focus-outline-style: solid;
+  --focus-outline-color: var(--color-accent);
+  --focus-outline-offset: 3px;
+
+  /* ===== Radius（core 默认；neutral 主题的 6/10/12/28 变体不采用） ===== */
+  --radius-none: 0px;
+  --radius-inner: 4px;
+  --radius-element: 8px;
+  --radius-container: 12px;
+  --radius-page: 28px;
+  --radius-chat: 28px;
+  --radius-full: 9999px;
+
+  /* ===== Shadow ===== */
+  --shadow-low: 0px 1px 1px light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), 0px 2px 8px light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2));
+  --shadow-med: 0px 1px 2px light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), 0px 2px 12px light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2));
+  --shadow-high: 0px 2px 2px light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), 0px 8px 24px light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.3));
+  --shadow-inset-hover: inset 0px 0px 0px 2px light-dark(rgba(5, 54, 89, 0.15), rgba(223, 226, 229, 0.2));
+  --shadow-inset-selected: inset 0px 0px 0px 2px rgba(1, 113, 227, 0.5);
+  --shadow-inset-success: inset 0px 0px 0px 2px rgba(38, 167, 86, 0.3);
+  --shadow-inset-warning: inset 0px 0px 0px 2px rgba(226, 164, 0, 0.3);
+  --shadow-inset-error: inset 0px 0px 0px 2px rgba(227, 25, 59, 0.3);
+
+  /* ===== Motion ===== */
+  --duration-fast-min: 130ms;
+  --duration-fast: 175ms;
+  --duration-fast-max: 230ms;
+  --duration-medium-min: 310ms;
+  --duration-medium: 410ms;
+  --duration-medium-max: 550ms;
+  --duration-slow-min: 730ms;
+  --duration-slow: 975ms;
+  --duration-slow-max: 1300ms;
+  --duration-exit: var(--duration-fast);
+  --ease-standard: cubic-bezier(0.24, 1, 0.4, 1);
+  --ease-entrance: cubic-bezier(0.24, 1, 0.4, 1);
+  --ease-move: cubic-bezier(0.24, 1, 0.4, 1);
+  --ease-exit: cubic-bezier(0.3, 0, 0.6, 0.6);
+
+  /* ===== Typography ===== */
+  --font-family-body: "Figtree", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-family-heading: "Figtree", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-family-code: "SF Mono", Monaco, Consolas, monospace;
+
+  /* 几何字阶：round(14 x 1.2^step) */
+  --font-size-4xs: 0.375rem;
+  --font-size-3xs: 0.4375rem;
+  --font-size-2xs: 0.5rem;
+  --font-size-xs: 0.625rem;
+  --font-size-sm: 0.75rem;
+  --font-size-base: 0.875rem;
+  --font-size-lg: 1.0625rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.8125rem;
+  --font-size-4xl: 2.1875rem;
+  --font-size-5xl: 2.625rem;
+
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* 语义字型（size / weight / leading 三件套，组件只许用这一层） */
+  --text-heading-1-size: var(--font-size-2xl); --text-heading-1-weight: var(--font-weight-semibold); --text-heading-1-leading: 1.3333;
+  --text-heading-2-size: var(--font-size-xl); --text-heading-2-weight: var(--font-weight-semibold); --text-heading-2-leading: 1.4;
+  --text-heading-3-size: var(--font-size-lg); --text-heading-3-weight: var(--font-weight-semibold); --text-heading-3-leading: 1.4118;
+  --text-heading-4-size: var(--font-size-base); --text-heading-4-weight: var(--font-weight-semibold); --text-heading-4-leading: 1.4286;
+  --text-heading-5-size: var(--font-size-sm); --text-heading-5-weight: var(--font-weight-semibold); --text-heading-5-leading: 1.6667;
+  --text-heading-6-size: var(--font-size-xs); --text-heading-6-weight: var(--font-weight-semibold); --text-heading-6-leading: 1.6;
+  --text-body-size: var(--font-size-base); --text-body-weight: var(--font-weight-normal); --text-body-leading: 1.4286;
+  --text-large-size: var(--font-size-lg); --text-large-weight: var(--font-weight-semibold); --text-large-leading: 1.4118;
+  --text-label-size: var(--font-size-base); --text-label-weight: var(--font-weight-medium); --text-label-leading: 1.4286;
+  --text-code-size: var(--font-size-base); --text-code-weight: var(--font-weight-normal); --text-code-leading: 1.4286;
+  --text-supporting-size: var(--font-size-sm); --text-supporting-weight: var(--font-weight-normal); --text-supporting-leading: 1.6667;
+  --text-display-1-size: var(--font-size-5xl); --text-display-1-weight: var(--font-weight-normal); --text-display-1-leading: 1.2381;
+  --text-display-2-size: var(--font-size-4xl); --text-display-2-weight: var(--font-weight-normal); --text-display-2-leading: 1.2571;
+  --text-display-3-size: var(--font-size-3xl); --text-display-3-weight: var(--font-weight-normal); --text-display-3-leading: 1.2414;
+}
+
+/* ===== 基线元素（只用令牌，不引入新值） ===== */
+body {
+  background: var(--color-background-body);
+  color: var(--color-text-primary);
+  font-family: var(--font-family-body);
+  font-size: var(--text-body-size);
+  font-weight: var(--text-body-weight);
+  line-height: var(--text-body-leading);
+}
+:focus-visible {
+  outline: var(--focus-outline-width) var(--focus-outline-style) var(--focus-outline-color);
+  outline-offset: var(--focus-outline-offset);
+}
+
+/* ===== Content Pipeline 组件层（只用 var(--...) 令牌） ===== */
+* { box-sizing: border-box; }
+body { margin: 0; }
+.app {
+  max-width: 44rem;
+  margin: 0 auto;
+  padding: var(--spacing-4) var(--spacing-4) var(--spacing-12);
+}
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--spacing-4);
+}
+.title {
+  font-size: var(--text-heading-1-size);
+  font-weight: var(--text-heading-1-weight);
+  line-height: var(--text-heading-1-leading);
+  margin: 0;
+}
+.subtitle {
+  color: var(--color-text-secondary);
+  font-size: var(--text-supporting-size);
+  line-height: var(--text-supporting-leading);
+  margin: var(--spacing-1) 0 0;
+}
+.pipe-svg {
+  flex: none;
+  width: 3rem;
+  height: 3rem;
+  animation: pipe-slide var(--duration-slow) var(--ease-standard) infinite alternate;
+}
+@keyframes pipe-slide {
+  from { transform: translateX(0); }
+  to { transform: translateX(0.375rem); }
+}
+.lang-btn {
+  flex: none;
+  height: var(--size-element-md);
+  padding: 0 var(--spacing-3);
+  border: var(--border-width) solid var(--color-border-emphasized);
+  border-radius: var(--radius-element);
+  background: var(--color-background-surface);
+  color: var(--color-text-primary);
+  font-size: var(--text-label-size);
+  font-weight: var(--text-label-weight);
+  cursor: pointer;
+}
+.stats {
+  display: flex;
+  gap: var(--spacing-3);
+  margin-top: var(--spacing-4);
+  flex-wrap: wrap;
+}
+.stat {
+  flex: 1;
+  min-width: 6rem;
+  padding: var(--spacing-3);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-container);
+  background: var(--color-background-card);
+}
+.stat-num {
+  font-size: var(--text-heading-2-size);
+  font-weight: var(--text-heading-2-weight);
+  line-height: var(--text-heading-2-leading);
+}
+.stat-label {
+  color: var(--color-text-secondary);
+  font-size: var(--text-supporting-size);
+  line-height: var(--text-supporting-leading);
+}
+.pending-line {
+  margin-top: var(--spacing-3);
+  color: var(--color-text-secondary);
+  font-size: var(--text-supporting-size);
+  line-height: var(--text-supporting-leading);
+}
+.pending-line strong {
+  color: var(--color-text-accent);
+  font-weight: var(--font-weight-semibold);
+}
+.note {
+  margin-top: var(--spacing-3);
+  padding: var(--spacing-3);
+  border: var(--border-width) solid var(--color-border-info);
+  border-radius: var(--radius-container);
+  background: var(--color-background-blue);
+  color: var(--color-text-info);
+  font-size: var(--text-supporting-size);
+  line-height: var(--text-supporting-leading);
+}
+.add-form {
+  margin-top: var(--spacing-4);
+  padding: var(--spacing-4);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-container);
+  background: var(--color-background-card);
+  box-shadow: var(--shadow-low);
+}
+.form-title {
+  font-size: var(--text-heading-3-size);
+  font-weight: var(--text-heading-3-weight);
+  line-height: var(--text-heading-3-leading);
+  margin: 0 0 var(--spacing-3);
+}
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-3);
+}
+.field { display: flex; flex-direction: column; gap: var(--spacing-1); }
+.field-wide { grid-column: 1 / -1; }
+.field label {
+  font-size: var(--text-label-size);
+  font-weight: var(--text-label-weight);
+  line-height: var(--text-label-leading);
+}
+.field input,
+.field select {
+  height: var(--size-element-lg);
+  padding: 0 var(--spacing-3);
+  border: var(--border-width) solid var(--color-border-emphasized);
+  border-radius: var(--radius-element);
+  background: var(--color-background-surface);
+  color: var(--color-text-primary);
+  font-size: var(--text-body-size);
+  font-family: var(--font-family-body);
+}
+.btn-primary {
+  height: var(--size-element-lg);
+  padding: 0 var(--spacing-4);
+  border: none;
+  border-radius: var(--radius-element);
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+  font-size: var(--text-label-size);
+  font-weight: var(--text-label-weight);
+  cursor: pointer;
+}
+.btn-ghost {
+  height: var(--size-element-md);
+  padding: 0 var(--spacing-3);
+  border: var(--border-width) solid var(--color-border-emphasized);
+  border-radius: var(--radius-element);
+  background: var(--color-background-surface);
+  color: var(--color-text-primary);
+  font-size: var(--text-supporting-size);
+  cursor: pointer;
+}
+.btn-ghost:disabled {
+  color: var(--color-text-disabled);
+  cursor: not-allowed;
+}
+.btn-danger {
+  color: var(--color-text-error);
+  border-color: var(--color-border-error);
+}
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  margin-top: var(--spacing-5);
+  flex-wrap: wrap;
+}
+.toolbar select {
+  height: var(--size-element-md);
+  padding: 0 var(--spacing-2);
+  border: var(--border-width) solid var(--color-border-emphasized);
+  border-radius: var(--radius-element);
+  background: var(--color-background-surface);
+  color: var(--color-text-primary);
+  font-size: var(--text-body-size);
+  font-family: var(--font-family-body);
+}
+.toolbar-label {
+  font-size: var(--text-body-size);
+}
+.list { display: flex; flex-direction: column; gap: var(--spacing-3); margin-top: var(--spacing-3); }
+.card {
+  padding: var(--spacing-4);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-container);
+  background: var(--color-background-card);
+  box-shadow: var(--shadow-low);
+}
+.card-published {
+  border-color: var(--color-border-success);
+  box-shadow: var(--shadow-inset-success);
+}
+.card-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--spacing-3);
+}
+.card-title {
+  font-size: var(--text-heading-3-size);
+  font-weight: var(--text-heading-3-weight);
+  line-height: var(--text-heading-3-leading);
+  margin: 0;
+}
+.card-badges {
+  display: flex;
+  gap: var(--spacing-2);
+  margin-top: var(--spacing-2);
+  flex-wrap: wrap;
+}
+.badge {
+  flex: none;
+  padding: var(--spacing-1) var(--spacing-2);
+  border-radius: var(--radius-full);
+  font-size: var(--text-supporting-size);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--text-supporting-leading);
+}
+.badge-platform-video {
+  background: var(--color-background-blue);
+  color: var(--color-text-blue);
+}
+.badge-platform-article {
+  background: var(--color-background-purple);
+  color: var(--color-text-purple);
+}
+.badge-platform-post {
+  background: var(--color-background-teal);
+  color: var(--color-text-teal);
+}
+.badge-platform-shorts {
+  background: var(--color-background-orange);
+  color: var(--color-text-orange);
+}
+.badge-stage {
+  background: var(--color-background-gray);
+  color: var(--color-text-gray);
+}
+.badge-stage-published {
+  background: var(--color-success);
+  color: var(--color-on-success);
+  animation: badge-pop var(--duration-medium) var(--ease-entrance);
+}
+@keyframes badge-pop {
+  from { transform: scale(0.85); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+.perf {
+  margin-top: var(--spacing-3);
+  padding: var(--spacing-3);
+  border: var(--border-width) solid var(--color-border-success);
+  border-radius: var(--radius-element);
+  background: var(--color-background-green);
+}
+.perf-title {
+  font-size: var(--text-label-size);
+  font-weight: var(--text-label-weight);
+  line-height: var(--text-label-leading);
+  margin: 0 0 var(--spacing-2);
+}
+.perf-text {
+  color: var(--color-text-secondary);
+  font-size: var(--text-supporting-size);
+  line-height: var(--text-supporting-leading);
+  margin: var(--spacing-1) 0 0;
+}
+.perf-text strong {
+  color: var(--color-text-success);
+}
+.perf-form {
+  display: flex;
+  gap: var(--spacing-2);
+  margin-top: var(--spacing-2);
+  flex-wrap: wrap;
+}
+.perf-form input {
+  flex: 1;
+  min-width: 8rem;
+  height: var(--size-element-md);
+  padding: 0 var(--spacing-2);
+  border: var(--border-width) solid var(--color-border-emphasized);
+  border-radius: var(--radius-element);
+  background: var(--color-background-surface);
+  color: var(--color-text-primary);
+  font-size: var(--text-body-size);
+  font-family: var(--font-family-body);
+}
+.card-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--spacing-2);
+  margin-top: var(--spacing-3);
+  flex-wrap: wrap;
+}
+.empty {
+  padding: var(--spacing-8) var(--spacing-4);
+  border: var(--border-width) dashed var(--color-border-emphasized);
+  border-radius: var(--radius-container);
+  background: var(--color-background-card);
+  text-align: center;
+}
+.empty-title {
+  font-size: var(--text-heading-3-size);
+  font-weight: var(--text-heading-3-weight);
+  line-height: var(--text-heading-3-leading);
+  margin: 0;
+}
+.empty-text {
+  color: var(--color-text-secondary);
+  font-size: var(--text-supporting-size);
+  line-height: var(--text-supporting-leading);
+  margin: var(--spacing-2) 0 var(--spacing-4);
+}
+@media (prefers-reduced-motion: reduce) {
+  .pipe-svg, .badge-stage-published { animation: none; }
+}
+</style>
+</head>
+<body>
+<main class="app">
+  <header class="header">
+    <div>
+      <h1 class="title" data-i18n="title">Content Pipeline</h1>
+      <p class="subtitle" data-i18n="subtitle">One line for every idea: from a spark to a published piece, and what it did after.</p>
+    </div>
+    <svg class="pipe-svg" viewBox="0 0 48 48" role="img" aria-label="Content pipeline">
+      <rect x="4" y="18" width="40" height="12" rx="6" fill="var(--color-background-blue)" />
+      <circle cx="12" cy="24" r="4" fill="var(--color-accent)" />
+      <circle cx="24" cy="24" r="4" fill="var(--color-icon-teal)" />
+      <circle cx="36" cy="24" r="4" fill="var(--color-success)" />
+    </svg>
+    <button class="lang-btn" type="button" id="lang-btn">中文</button>
+  </header>
+
+  <section class="stats" aria-label="Summary">
+    <div class="stat"><div class="stat-num" id="stat-idea">0</div><div class="stat-label" data-i18n="statIdea">Ideas</div></div>
+    <div class="stat"><div class="stat-num" id="stat-draft">0</div><div class="stat-label" data-i18n="statDraft">Drafts</div></div>
+    <div class="stat"><div class="stat-num" id="stat-editing">0</div><div class="stat-label" data-i18n="statEditing">Editing</div></div>
+    <div class="stat"><div class="stat-num" id="stat-scheduled">0</div><div class="stat-label" data-i18n="statScheduled">Scheduled</div></div>
+    <div class="stat"><div class="stat-num" id="stat-published">0</div><div class="stat-label" data-i18n="statPublished">Published</div></div>
+  </section>
+  <p class="pending-line"><span data-i18n="pendingLabel">Still in the pipeline</span>: <strong id="stat-pending">0</strong></p>
+
+  <p class="note" data-i18n="note">Ideas go in at the left and come out published at the right. Move a piece forward when it is ready, or send it back a step when it needs more work. Everything is saved in your browser only.</p>
+
+  <form class="add-form" id="add-form">
+    <h2 class="form-title" data-i18n="addTitle">Add a piece of content</h2>
+    <div class="form-grid">
+      <div class="field field-wide">
+        <label for="f-title" data-i18n="fTitle">Title</label>
+        <input id="f-title" type="text" required maxlength="100" data-i18n-ph="phTitle" placeholder="e.g. Why I switched to a dumbphone">
+      </div>
+      <div class="field">
+        <label for="f-platform" data-i18n="fPlatform">Platform</label>
+        <select id="f-platform">
+          <option value="video" data-i18n="platformVideo">Video</option>
+          <option value="article" data-i18n="platformArticle">Article</option>
+          <option value="post" data-i18n="platformPost">Post</option>
+          <option value="shorts" data-i18n="platformShorts">Shorts</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="f-stage" data-i18n="fStage">Stage</label>
+        <select id="f-stage">
+          <option value="idea" data-i18n="stageIdea">Idea</option>
+          <option value="draft" data-i18n="stageDraft">Draft</option>
+          <option value="editing" data-i18n="stageEditing">Editing</option>
+          <option value="scheduled" data-i18n="stageScheduled">Scheduled</option>
+          <option value="published" data-i18n="stagePublished">Published</option>
+        </select>
+      </div>
+      <div class="field field-wide">
+        <label aria-hidden="true">&nbsp;</label>
+        <button class="btn-primary" type="submit" data-i18n="addBtn">Add to pipeline</button>
+      </div>
+    </div>
+  </form>
+
+  <div class="toolbar">
+    <label class="toolbar-label" for="filter-platform"><span data-i18n="filterPlatform">Platform</span></label>
+    <select id="filter-platform">
+      <option value="all" data-i18n="filterAll">All</option>
+      <option value="video" data-i18n="platformVideo">Video</option>
+      <option value="article" data-i18n="platformArticle">Article</option>
+      <option value="post" data-i18n="platformPost">Post</option>
+      <option value="shorts" data-i18n="platformShorts">Shorts</option>
+    </select>
+    <label class="toolbar-label" for="filter-stage"><span data-i18n="filterStage">Stage</span></label>
+    <select id="filter-stage">
+      <option value="all" data-i18n="filterAll">All</option>
+      <option value="idea" data-i18n="stageIdea">Idea</option>
+      <option value="draft" data-i18n="stageDraft">Draft</option>
+      <option value="editing" data-i18n="stageEditing">Editing</option>
+      <option value="scheduled" data-i18n="stageScheduled">Scheduled</option>
+      <option value="published" data-i18n="stagePublished">Published</option>
+    </select>
+  </div>
+
+  <div class="list" id="list"></div>
+</main>
+
+<script>
+(function () {
+  var KEY = 'muse-space:content-pipeline';
+  var STAGES = ['idea', 'draft', 'editing', 'scheduled', 'published'];
+
+  var I18N = {
+    en: {
+      title: 'Content Pipeline',
+      subtitle: 'One line for every idea: from a spark to a published piece, and what it did after.',
+      statIdea: 'Ideas',
+      statDraft: 'Drafts',
+      statEditing: 'Editing',
+      statScheduled: 'Scheduled',
+      statPublished: 'Published',
+      pendingLabel: 'Still in the pipeline',
+      note: 'Ideas go in at the left and come out published at the right. Move a piece forward when it is ready, or send it back a step when it needs more work. Everything is saved in your browser only.',
+      addTitle: 'Add a piece of content',
+      fTitle: 'Title',
+      phTitle: 'e.g. Why I switched to a dumbphone',
+      fPlatform: 'Platform',
+      fStage: 'Stage',
+      addBtn: 'Add to pipeline',
+      filterPlatform: 'Platform',
+      filterStage: 'Stage',
+      filterAll: 'All',
+      platformVideo: 'Video',
+      platformArticle: 'Article',
+      platformPost: 'Post',
+      platformShorts: 'Shorts',
+      stageIdea: 'Idea',
+      stageDraft: 'Draft',
+      stageEditing: 'Editing',
+      stageScheduled: 'Scheduled',
+      stagePublished: 'Published',
+      moveBack: 'Back a step',
+      moveForward: 'Move forward',
+      remove: 'Delete',
+      confirmRemove: 'Delete this piece from your pipeline?',
+      perfTitle: 'How it performed',
+      perfMetric: 'Views / reads',
+      phMetric: 'e.g. 128K views',
+      perfNote: 'One-line takeaway',
+      phNote: 'e.g. The 30-day challenge format hooked people',
+      perfSave: 'Save note',
+      emptyTitle: 'Your pipeline is empty',
+      emptyText: 'Add a first idea above. It starts as an Idea and you move it forward, one step at a time, until it is published.',
+      emptyBtn: 'Restore sample content',
+      noMatchTitle: 'No content matches these filters',
+      noMatchText: 'Try a different platform or stage, or add a new piece.'
+    },
+    zh: {
+      title: '内容生产线',
+      subtitle: '每个点子一条线：从灵光一闪到正式发布，再到发布后的表现。',
+      statIdea: '点子',
+      statDraft: '草稿',
+      statEditing: '剪辑 / 编辑中',
+      statScheduled: '已排期',
+      statPublished: '已发布',
+      pendingLabel: '仍在生产线上',
+      note: '点子从左边进，发布从右边出。准备好了就往前推一格，还需要打磨就往后退一格。所有内容只保存在你的浏览器里。',
+      addTitle: '添加一条内容',
+      fTitle: '标题',
+      phTitle: '例如：为什么我换回了功能机',
+      fPlatform: '平台',
+      fStage: '阶段',
+      addBtn: '加入生产线',
+      filterPlatform: '平台',
+      filterStage: '阶段',
+      filterAll: '全部',
+      platformVideo: '视频',
+      platformArticle: '文章',
+      platformPost: '帖子',
+      platformShorts: '短视频',
+      stageIdea: '点子',
+      stageDraft: '草稿',
+      stageEditing: '剪辑 / 编辑中',
+      stageScheduled: '已排期',
+      stagePublished: '已发布',
+      moveBack: '退回一步',
+      moveForward: '向前推进',
+      remove: '删除',
+      confirmRemove: '确定从生产线删除这条内容吗？',
+      perfTitle: '发布表现',
+      perfMetric: '观看 / 阅读量',
+      phMetric: '例如：12.8 万次观看',
+      perfNote: '一句话小结',
+      phNote: '例如：30 天挑战的形式很抓人',
+      perfSave: '保存备注',
+      emptyTitle: '生产线还是空的',
+      emptyText: '在上面先加一个点子。它从「点子」出发，一步一步往前推，直到发布。',
+      emptyBtn: '恢复示例内容',
+      noMatchTitle: '当前筛选下没有内容',
+      noMatchText: '换个平台或阶段试试，或者添加一条新内容。'
+    }
+  };
+
+  function samples() {
+    return [
+      {
+        id: 'sample-dumbphone',
+        title: 'Why I switched to a dumbphone',
+        platform: 'video',
+        stage: 'published',
+        perf: { metric: '128K views', note: 'The 30-day challenge format hooked people right away' }
+      },
+      {
+        id: 'sample-vps',
+        title: 'I built my entire business on a $5 VPS',
+        platform: 'article',
+        stage: 'published',
+        perf: { metric: '42K reads', note: 'The cost breakdown section got shared the most' }
+      },
+      {
+        id: 'sample-reading',
+        title: 'A tiny habit that doubled my reading',
+        platform: 'post',
+        stage: 'published',
+        perf: { metric: '8.4K likes', note: 'Short posts still punch above their weight' }
+      },
+      {
+        id: 'sample-morning-tools',
+        title: '5 tools I use every morning',
+        platform: 'shorts',
+        stage: 'editing',
+        perf: null
+      },
+      {
+        id: 'sample-quitting-social',
+        title: 'What nobody tells you about quitting social media',
+        platform: 'article',
+        stage: 'editing',
+        perf: null
+      },
+      {
+        id: 'sample-free-ai',
+        title: 'The quiet cost of free AI tools',
+        platform: 'article',
+        stage: 'draft',
+        perf: null
+      },
+      {
+        id: 'sample-ten-minute',
+        title: 'The 10-minute video that took 10 hours',
+        platform: 'video',
+        stage: 'draft',
+        perf: null
+      },
+      {
+        id: 'sample-plan-week',
+        title: 'How I plan a week of content in 20 minutes',
+        platform: 'video',
+        stage: 'scheduled',
+        perf: null
+      },
+      {
+        id: 'sample-no-phone',
+        title: 'I tried living without a smartphone for a week',
+        platform: 'shorts',
+        stage: 'scheduled',
+        perf: null
+      },
+      {
+        id: 'sample-desk',
+        title: 'My desk setup, 2026 edition',
+        platform: 'video',
+        stage: 'idea',
+        perf: null
+      },
+      {
+        id: 'sample-morning-routine',
+        title: 'Stop optimizing your morning routine',
+        platform: 'post',
+        stage: 'idea',
+        perf: null
+      }
+    ];
+  }
+
+  function load() {
+    try {
+      var raw = localStorage.getItem(KEY);
+      if (raw) {
+        var parsed = JSON.parse(raw);
+        if (parsed && Array.isArray(parsed.items)) {
+          parsed.lang = parsed.lang === 'zh' ? 'zh' : 'en';
+          parsed.filterPlatform = parsed.filterPlatform || 'all';
+          parsed.filterStage = parsed.filterStage || 'all';
+          parsed.items.forEach(function (it) {
+            if (STAGES.indexOf(it.stage) === -1) it.stage = 'idea';
+            if (it.perf && (typeof it.perf.metric !== 'string' || typeof it.perf.note !== 'string')) it.perf = null;
+          });
+          return parsed;
+        }
+      }
+    } catch (e) { /* fall through to samples */ }
+    return { lang: 'en', filterPlatform: 'all', filterStage: 'all', items: samples() };
+  }
+
+  var state = load();
+  var t = function (key) { return I18N[state.lang][key] || I18N.en[key] || key; };
+
+  function save() {
+    try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) { /* storage unavailable */ }
+  }
+
+  function esc(s) {
+    return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+
+  function stageIndex(stage) { return STAGES.indexOf(stage); }
+
+  function filteredItems() {
+    return state.items.filter(function (it) {
+      if (state.filterPlatform !== 'all' && it.platform !== state.filterPlatform) return false;
+      if (state.filterStage !== 'all' && it.stage !== state.filterStage) return false;
+      return true;
+    });
+  }
+
+  function renderStats() {
+    STAGES.forEach(function (stage) {
+      var n = state.items.filter(function (it) { return it.stage === stage; }).length;
+      document.getElementById('stat-' + stage).textContent = String(n);
+    });
+    var pending = state.items.filter(function (it) { return it.stage !== 'published'; }).length;
+    document.getElementById('stat-pending').textContent = String(pending);
+  }
+
+  function perfHtml(item) {
+    var inner = '<h3 class="perf-title">' + esc(t('perfTitle')) + '</h3>';
+    if (item.perf && (item.perf.metric || item.perf.note)) {
+      inner += '<p class="perf-text">' +
+        (item.perf.metric ? '<strong>' + esc(item.perf.metric) + '</strong>' : '') +
+        (item.perf.metric && item.perf.note ? ' · ' : '') +
+        (item.perf.note ? esc(item.perf.note) : '') + '</p>';
+    }
+    inner += '<form class="perf-form" data-perf="' + esc(item.id) + '">' +
+      '<input type="text" maxlength="40" aria-label="' + esc(t('perfMetric')) + '" placeholder="' + esc(t('phMetric')) + '" value="' + esc(item.perf ? item.perf.metric : '') + '">' +
+      '<input type="text" maxlength="120" aria-label="' + esc(t('perfNote')) + '" placeholder="' + esc(t('phNote')) + '" value="' + esc(item.perf ? item.perf.note : '') + '">' +
+      '<button class="btn-ghost" type="submit">' + esc(t('perfSave')) + '</button>' +
+      '</form>';
+    return '<div class="perf">' + inner + '</div>';
+  }
+
+  function renderList() {
+    var box = document.getElementById('list');
+    var items = filteredItems();
+    if (state.items.length === 0) {
+      box.innerHTML =
+        '<div class="empty"><h2 class="empty-title">' + esc(t('emptyTitle')) + '</h2>' +
+        '<p class="empty-text">' + esc(t('emptyText')) + '</p>' +
+        '<button class="btn-primary" type="button" data-action="restore">' + esc(t('emptyBtn')) + '</button></div>';
+      return;
+    }
+    if (items.length === 0) {
+      box.innerHTML =
+        '<div class="empty"><h2 class="empty-title">' + esc(t('noMatchTitle')) + '</h2>' +
+        '<p class="empty-text">' + esc(t('noMatchText')) + '</p></div>';
+      return;
+    }
+    box.innerHTML = items.map(function (item) {
+      var idx = stageIndex(item.stage);
+      var stageClass = item.stage === 'published' ? ' badge-stage badge-stage-published' : ' badge-stage';
+      return '<article class="card' + (item.stage === 'published' ? ' card-published' : '') + '">' +
+        '<div class="card-head"><div>' +
+        '<h2 class="card-title">' + esc(item.title) + '</h2>' +
+        '<div class="card-badges">' +
+        '<span class="badge badge-platform-' + esc(item.platform) + '">' + esc(t('platform' + item.platform.charAt(0).toUpperCase() + item.platform.slice(1))) + '</span>' +
+        '<span class="badge' + stageClass + '">' + esc(t('stage' + item.stage.charAt(0).toUpperCase() + item.stage.slice(1))) + '</span>' +
+        '</div></div></div>' +
+        (item.stage === 'published' ? perfHtml(item) : '') +
+        '<div class="card-actions">' +
+        '<button class="btn-ghost" type="button" data-action="move" data-id="' + esc(item.id) + '" data-dir="-1"' + (idx <= 0 ? ' disabled' : '') + '>' + esc(t('moveBack')) + '</button>' +
+        '<button class="btn-ghost" type="button" data-action="move" data-id="' + esc(item.id) + '" data-dir="1"' + (idx >= STAGES.length - 1 ? ' disabled' : '') + '>' + esc(t('moveForward')) + '</button>' +
+        '<button class="btn-ghost btn-danger" type="button" data-action="remove" data-id="' + esc(item.id) + '">' + esc(t('remove')) + '</button>' +
+        '</div>' +
+        '</article>';
+    }).join('');
+  }
+
+  function applyI18n() {
+    document.documentElement.lang = state.lang === 'zh' ? 'zh-CN' : 'en';
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      el.textContent = t(el.getAttribute('data-i18n'));
+    });
+    document.querySelectorAll('[data-i18n-ph]').forEach(function (el) {
+      el.setAttribute('placeholder', t(el.getAttribute('data-i18n-ph')));
+    });
+    document.getElementById('lang-btn').textContent = state.lang === 'zh' ? 'EN' : '中文';
+    document.getElementById('filter-platform').value = state.filterPlatform;
+    document.getElementById('filter-stage').value = state.filterStage;
+  }
+
+  function render() {
+    applyI18n();
+    renderStats();
+    renderList();
+  }
+
+  document.getElementById('lang-btn').addEventListener('click', function () {
+    state.lang = state.lang === 'zh' ? 'en' : 'zh';
+    save();
+    render();
+  });
+
+  document.getElementById('filter-platform').addEventListener('change', function (e) {
+    state.filterPlatform = e.target.value;
+    save();
+    render();
+  });
+
+  document.getElementById('filter-stage').addEventListener('change', function (e) {
+    state.filterStage = e.target.value;
+    save();
+    render();
+  });
+
+  document.getElementById('add-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var title = document.getElementById('f-title').value.trim();
+    var platform = document.getElementById('f-platform').value;
+    var stage = document.getElementById('f-stage').value;
+    if (!title) return;
+    state.items.push({
+      id: 'item-' + Date.now().toString(36),
+      title: title,
+      platform: platform,
+      stage: stage,
+      perf: null
+    });
+    save();
+    e.target.reset();
+    render();
+  });
+
+  document.getElementById('list').addEventListener('click', function (e) {
+    var btn = e.target.closest('[data-action]');
+    if (!btn || btn.disabled) return;
+    var action = btn.getAttribute('data-action');
+    if (action === 'restore') {
+      state.items = samples();
+      save();
+      render();
+      return;
+    }
+    if (action === 'remove') {
+      var id = btn.getAttribute('data-id');
+      if (window.confirm(t('confirmRemove'))) {
+        state.items = state.items.filter(function (it) { return it.id !== id; });
+        save();
+        render();
+      }
+      return;
+    }
+    if (action === 'move') {
+      var moveId = btn.getAttribute('data-id');
+      var dir = parseInt(btn.getAttribute('data-dir'), 10);
+      state.items.forEach(function (it) {
+        if (it.id === moveId) {
+          var next = stageIndex(it.stage) + dir;
+          if (next >= 0 && next < STAGES.length) {
+            it.stage = STAGES[next];
+            if (it.stage !== 'published') it.perf = null;
+          }
+        }
+      });
+      save();
+      render();
+    }
+  });
+
+  document.getElementById('list').addEventListener('submit', function (e) {
+    var form = e.target.closest('[data-perf]');
+    if (!form) return;
+    e.preventDefault();
+    var id = form.getAttribute('data-perf');
+    var inputs = form.querySelectorAll('input');
+    var metric = inputs[0].value.trim();
+    var note = inputs[1].value.trim();
+    if (!metric && !note) return;
+    state.items.forEach(function (it) {
+      if (it.id === id) it.perf = { metric: metric, note: note };
+    });
+    save();
+    render();
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>

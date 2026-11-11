@@ -1,16 +1,16 @@
 # Muse Space — muse空间
 
-**37 个开箱即用的 Muse Space 小程序模板，像微信小程序一样，为你的日常 AI 生活而备。**
+**41 个开箱即用的 Muse Space 小程序模板，像微信小程序一样，为你的日常 AI 生活而备。**
 
 [English → README.md](README.md) · [模板索引 → templates.json](templates.json) · [llms.txt](llms.txt)
 
-![License: MIT](https://img.shields.io/badge/License-MIT-green.svg) ![Templates: 37](https://img.shields.io/badge/Templates-37-blue.svg) ![Design: Astryx](https://img.shields.io/badge/Design-Astryx-black.svg)
+![License: MIT](https://img.shields.io/badge/License-MIT-green.svg) ![Templates: 41](https://img.shields.io/badge/Templates-41-blue.svg) ![Design: Astryx](https://img.shields.io/badge/Design-Astryx-black.svg)
 
 ## 截图
 
-![Muse Space 预览站首页 — 6 大分类共 37 个小程序模板，带搜索框](docs/screenshots/preview-home.png)
+![Muse Space 预览站首页 — 6 大分类共 41 个小程序模板，带搜索框](docs/screenshots/preview-home.png)
 
-*预览站首页：6 大分类、37 个模板，顶部带搜索框。*
+*预览站首页：6 大分类、41 个模板，顶部带搜索框。*
 
 | | |
 |---|---|---|
@@ -36,6 +36,12 @@
 | *投资组合：持仓、总资产、盈亏与目标配置对比。* | *折扣猎手：目标价、折扣，降到目标价就亮下手标记。* |
 | ![周时间块模板 — 一周排成时间块，各类时长一目了然](docs/screenshots/template-time-block-planner.png) | |
 | *周时间块：一周排成时间块，各类时长一目了然。* | |
+| ![家庭日程中心模板 — 全家一周日程，谁负责接送一眼看清](docs/screenshots/template-family-schedule-hub.png) | ![体重记录模板 — 每天称重，目标体重与趋势线](docs/screenshots/template-weight-tracker.png) |
+| *家庭日程中心：全家一周日程，谁负责接送一眼看清。* | *体重记录：每天称重、目标体重与趋势线。* |
+| ![比赛记分墙模板 — 关注的比赛全在一面墙上，附滚动比分条](docs/screenshots/template-sports-score-wall.png) | ![内容生产线模板 — 内容从点子到发布，一条生产线按阶段推进](docs/screenshots/template-content-pipeline.png) |
+| *比赛记分墙：关注的比赛全在一面墙上，附滚动比分条。* | *内容生产线：点子到发布，一条生产线按阶段推进。* |
+| ![饮食热量模板 — 每餐热量与蛋白质，可改每日目标与最近 7 天记录](docs/screenshots/template-meal-calorie.png) | |
+| *饮食热量：每餐热量与蛋白质，可改每日目标与最近 7 天记录。* | |
 
 ## 这是什么？
 
@@ -43,18 +49,18 @@
 
 你对 Muse 说一句话——「打开记账」「给我一个番茄钟」——Muse 就从这个仓库取对应模板，填入你的数据，生成一个能直接用的空间。不用写代码，不用构建，打开就用。
 
-这个仓库同时是三样东西：一个 **Muse 技能**（`SKILL.md`）、一个 **模板库**（37 个单文件 HTML 模板）、一个 **预览站**（Astro，在 `site/` 目录）。
+这个仓库同时是三样东西：一个 **Muse 技能**（`SKILL.md`）、一个 **模板库**（41 个单文件 HTML 模板）、一个 **预览站**（Astro，在 `site/` 目录）。
 
 ### 常见问题
 
 **Muse Space 是什么？**
-Muse Space 是一个 Muse 技能加一个模板库，包含 37 个开箱即用的 Muse Space 小程序模板。它仿照微信小程序：单个用途的小应用，不用安装、不用写代码，打开就用。
+Muse Space 是一个 Muse 技能加一个模板库，包含 41 个开箱即用的 Muse Space 小程序模板。它仿照微信小程序：单个用途的小应用，不用安装、不用写代码，打开就用。
 
 **Muse Space 怎么工作？**
 你用中文或英文说一句话，说出你需要的工具。Muse 读取 `templates.json`，从 `templates/<slug>/index.html` 加载对应模板，填入你的数据，生成一个能直接用的空间。
 
 **Muse Space 包含哪些模板？**
-共 37 个模板、6 大分类：AI 工作（4 个）、效率（8 个）、财务（6 个）、健康（3 个）、学习（4 个）、生活与家庭（12 个）。每个模板都是一个独立的 HTML 文件，数据保存在浏览器本地（localStorage）。
+共 41 个模板、6 大分类：AI 工作（5 个）、效率（8 个）、财务（6 个）、健康（4 个）、学习（4 个）、生活与家庭（14 个）。每个模板都是一个独立的 HTML 文件，数据保存在浏览器本地（localStorage）。
 
 **Muse Space 免费且开源吗？**
 是。本项目以 MIT 许可证发布，可以复制、修改和复用任何模板。
@@ -66,7 +72,7 @@ Muse Space 是一个 Muse 技能加一个模板库，包含 37 个开箱即用�
 - **一套设计语言。** 全部模板用 Meta Astryx 设计令牌，语义颜色、深浅色自动适配、间距与动效统一。
 - **双语默认。** 英文为主、中文并行；界面文字简洁，按钮用动词：保存、记一笔、完成。
 
-## 模板清单 — 6 类 37 个
+## 模板清单 — 6 类 41 个
 
 ### AI 工作
 | 模板 | 用途 | 这样说 |
@@ -75,6 +81,7 @@ Muse Space 是一个 Muse 技能加一个模板库，包含 37 个开箱即用�
 | [会议纪要](templates/ai-meeting-notes/) | 决议、待办、负责人，结构化呈现 | 记会议纪要 |
 | [简历教练](templates/ai-resume-coach/) | 打磨简历要点，核对岗位匹配 | 帮我改简历 |
 | [内容日历](templates/ai-content-calendar/) | 选题、排期、发布状态一屏管 | 打开内容日历 |
+| [内容生产线](templates/content-pipeline/) | 点子到发布，一条生产线按阶段推进 | 打开内容生产线 |
 
 ### 效率
 | 模板 | 用途 | 这样说 |
@@ -102,8 +109,9 @@ Muse Space 是一个 Muse 技能加一个模板库，包含 37 个开箱即用�
 | 模板 | 用途 | 这样说 |
 |---|---|---|
 | [健身记录](templates/workout-log/) | 组数、次数、重量、连续打卡与教练提示 | 打开健身记录 |
-| [饮食热量](templates/meal-calorie/) | 每餐热量与蛋白质 | 打开饮食热量 |
+| [饮食热量](templates/meal-calorie/) | 每餐热量与蛋白质，可改每日目标与最近 7 天记录 | 打开饮食热量 |
 | [睡眠心情](templates/sleep-mood-journal/) | 睡眠时长与心情曲线 | 打开睡眠记录 |
+| [体重记录](templates/weight-tracker/) | 每天称重、目标体重与趋势线 | 打开体重记录 |
 
 ### 学习
 | 模板 | 用途 | 这样说 |
@@ -128,8 +136,10 @@ Muse Space 是一个 Muse 技能加一个模板库，包含 37 个开箱即用�
 | [食材库存](templates/pantry-tracker/) | 食材库存、数量、保质期提醒与待采购清单 | 打开食材库存 |
 | [数独](templates/sudoku-puzzle/) | 能玩的数独，三档难度、每日一题与最佳成绩 | 打开数独 |
 | [折扣猎手](templates/deal-hunter/) | 价格关注清单，目标价与下手标记 | 打开折扣猎手 |
+| [家庭日程中心](templates/family-schedule-hub/) | 全家一周日程，谁负责接送一眼看清 | 打开家庭日程 |
+| [比赛记分墙](templates/sports-score-wall/) | 关注的比赛全在一面墙上，附滚动比分条 | 打开比分墙 |
 
-> 37 个模板本体已全部包含，可直接打开使用。
+> 41 个模板本体已全部包含，可直接打开使用。
 
 ## 快速开始
 

@@ -1,11 +1,11 @@
 ---
 name: muse-space
-description: Muse Space (muse空间) — generate a ready-to-use Muse Space from 37 mini-app templates, like WeChat Mini Programs. Use when the user asks to open, create or use a small daily tool: expense tracker, Pomodoro / focus timer, habit tracker, budget planner, subscription tracker, flashcards, workout log, trip planner, prompt library, meeting notes, and more. Triggers include muse空间, Muse Space, mini program, 小程序, and each template name in English or Chinese.
+description: Muse Space (muse空间) — generate a ready-to-use Muse Space from 41 mini-app templates, like WeChat Mini Programs. Use when the user asks to open, create or use a small daily tool: expense tracker, Pomodoro / focus timer, habit tracker, budget planner, subscription tracker, flashcards, workout log, trip planner, prompt library, meeting notes, and more. Triggers include muse空间, Muse Space, mini program, 小程序, and each template name in English or Chinese.
 ---
 
 # Muse Space — muse空间
 
-A Muse Skill that turns one sentence into a working Muse Space, using the 37 templates in this repository. The WeChat Mini Program idea, for Muse: no install, no coding, open and use.
+A Muse Skill that turns one sentence into a working Muse Space, using the 41 templates in this repository. The WeChat Mini Program idea, for Muse: no install, no coding, open and use.
 
 ## When to trigger
 
@@ -49,6 +49,10 @@ Trigger when the user wants a small, ready-to-use daily tool as a Space, includi
 - Pantry Tracker / 食材库存: "pantry tracker", "食材库存", "打开食材库存"
 - Sudoku / 数独: "sudoku", "数独", "打开数独"
 - Deal Hunter / 折扣猎手: "deal hunter", "price watch", "折扣猎手", "打开折扣猎手"
+- Family Schedule Hub / 家庭日程中心: "family schedule", "family hub", "家庭日程", "打开家庭日程"
+- Weight Tracker / 体重记录: "weight tracker", "weigh-in", "体重记录", "打开体重记录"
+- Sports Score Wall / 比赛记分墙: "sports scores", "score wall", "比分墙", "打开比分墙"
+- Content Pipeline / 内容生产线: "content pipeline", "content studio", "内容生产线", "打开内容生产线"
 
 If the request is ambiguous, match by keywords in `templates.json` (`keywords_en` / `keywords_zh`). If nothing matches, say so plainly and list the closest two templates. Do not invent a template that is not in `templates.json`.
 
