@@ -311,6 +311,12 @@ footer{color:var(--color-text-disabled);font-size:var(--text-supporting-size);te
 <div id="pList"></div>
 <p class="empty" id="pEmpty" hidden data-i="emptyAll"></p>
 </section>
+<section class="card" aria-label="Restock list">
+<h2 data-i="restockTitle"></h2>
+<div id="rList"></div>
+<p class="empty" id="rEmpty" hidden data-i="restockEmpty"></p>
+<div class="rowflex"><input class="input" id="rName" data-ph="restockPh"><button class="btn" id="rAdd" type="button" data-i="restockAdd"></button></div>
+</section>
 </main>
 <footer>Muse Space · Pantry Tracker</footer>
 </div>
@@ -332,12 +338,13 @@ const isExp=it=>dl(it.expiry)<=3;
 const stepFor=u=>({kg:0.1,l:0.1,g:10,ml:50,pcs:1,pack:1}[u]||1);
 const fmtQty=it=>{const q=Number.isInteger(it.qty)?it.qty:Math.round(it.qty*10)/10;return q+' '+t('u_'+it.unit);};
 
-const T={en:{sub:'What is in the pantry, how much is left and when it expires.',totalItems:'Items in pantry',expiringSoon:'Expiring in 3 days',lowStock:'Low stock',addTitle:'Add an item',name:'Item',namePh:'e.g. Milk',category:'Category',produce:'Produce',dairy:'Dairy',meat:'Meat & fish',pantry:'Pantry',frozen:'Frozen',drinks:'Drinks',quantity:'Quantity',unit:'Unit',u_pcs:'pcs',u_kg:'kg',u_g:'g',u_l:'L',u_ml:'ml',u_pack:'pack',expiry:'Expiry date',threshold:'Low-stock threshold',addBtn:'Add item',listTitle:'Pantry',show:'Show:',filterAll:'All items',filterExpiring:'Expiring soon',filterLow:'Low stock',filterCatAll:'All categories',emptyAll:'Your pantry is empty. Add your first item above.',expired:'Expired',expiring:'Expiring soon',low:'Low stock',del:'Delete',dec:'Decrease',inc:'Increase',daysLeft:'days left',expiredAgo:'Expired',days:'days ago',todayExp:'expires today'},
-zh:{sub:'食材还剩多少、哪天过期，都记在这。',totalItems:'食材种类',expiringSoon:'3 天内过期',lowStock:'库存不足',addTitle:'添加食材',name:'食材',namePh:'如：牛奶',category:'分类',produce:'果蔬',dairy:'乳制品',meat:'肉类水产',pantry:'干货粮油',frozen:'冷冻',drinks:'饮品',quantity:'数量',unit:'单位',u_pcs:'个',u_kg:'kg',u_g:'g',u_l:'L',u_ml:'ml',u_pack:'包',expiry:'过期日期',threshold:'缺货提醒线',addBtn:'添加食材',listTitle:'库存列表',show:'只看：',filterAll:'全部食材',filterExpiring:'快过期',filterLow:'库存不足',filterCatAll:'全部分类',emptyAll:'库存还是空的，在上面添加第一样食材。',expired:'已过期',expiring:'快过期',low:'库存不足',del:'删除',dec:'减少',inc:'增加',daysLeft:'天后过期',expiredAgo:'已过期',days:'天',todayExp:'今天过期'}};
+const T={en:{sub:'What is in the pantry, how much is left and when it expires.',totalItems:'Items in pantry',expiringSoon:'Expiring in 3 days',lowStock:'Low stock',addTitle:'Add an item',name:'Item',namePh:'e.g. Milk',category:'Category',produce:'Produce',dairy:'Dairy',meat:'Meat & fish',pantry:'Pantry',frozen:'Frozen',drinks:'Drinks',quantity:'Quantity',unit:'Unit',u_pcs:'pcs',u_kg:'kg',u_g:'g',u_l:'L',u_ml:'ml',u_pack:'pack',expiry:'Expiry date',threshold:'Low-stock threshold',addBtn:'Add item',listTitle:'Pantry',show:'Show:',filterAll:'All items',filterExpiring:'Expiring soon',filterLow:'Low stock',filterCatAll:'All categories',emptyAll:'Your pantry is empty. Add your first item above.',expired:'Expired',expiring:'Expiring soon',low:'Low stock',del:'Delete',dec:'Decrease',inc:'Increase',daysLeft:'days left',expiredAgo:'Expired',days:'days ago',todayExp:'expires today',restockTitle:'Restock list',restockEmpty:'Nothing to buy. Low-stock items appear here automatically.',restockAdd:'Add to list',restockPh:'e.g. Olive oil',bought:'Bought',restockNeed:'have {have}, low line {low}'},
+zh:{sub:'食材还剩多少、哪天过期，都记在这。',totalItems:'食材种类',expiringSoon:'3 天内过期',lowStock:'库存不足',addTitle:'添加食材',name:'食材',namePh:'如：牛奶',category:'分类',produce:'果蔬',dairy:'乳制品',meat:'肉类水产',pantry:'干货粮油',frozen:'冷冻',drinks:'饮品',quantity:'数量',unit:'单位',u_pcs:'个',u_kg:'kg',u_g:'g',u_l:'L',u_ml:'ml',u_pack:'包',expiry:'过期日期',threshold:'缺货提醒线',addBtn:'添加食材',listTitle:'库存列表',show:'只看：',filterAll:'全部食材',filterExpiring:'快过期',filterLow:'库存不足',filterCatAll:'全部分类',emptyAll:'库存还是空的，在上面添加第一样食材。',expired:'已过期',expiring:'快过期',low:'库存不足',del:'删除',dec:'减少',inc:'增加',daysLeft:'天后过期',expiredAgo:'已过期',days:'天',todayExp:'今天过期',restockTitle:'待采购清单',restockEmpty:'暂时没有要买的，库存不足的食材会自动出现在这里。',restockAdd:'加入清单',restockPh:'如：橄榄油',bought:'已买',restockNeed:'现有 {have}，缺货线 {low}'}};
 let S;try{S=JSON.parse(localStorage.getItem(KEY))}catch(e){S=null}
 if(!S||!Array.isArray(S.items)){const d=n=>{const x=new Date();x.setDate(x.getDate()+n);return x.toISOString().slice(0,10)};
  S={lang:lang,items:[{id:uid(),name:'Milk',cat:'dairy',qty:1,unit:'l',expiry:d(1),low:1},{id:uid(),name:'Eggs',cat:'dairy',qty:12,unit:'pcs',expiry:d(2),low:6},{id:uid(),name:'Chicken breast',cat:'meat',qty:0.5,unit:'kg',expiry:d(3),low:0.2},{id:uid(),name:'Tomatoes',cat:'produce',qty:4,unit:'pcs',expiry:d(5),low:2},{id:uid(),name:'Rice',cat:'pantry',qty:2,unit:'kg',expiry:d(90),low:1},{id:uid(),name:'Coffee beans',cat:'drinks',qty:0.2,unit:'kg',expiry:d(30),low:0.5}]}}
 lang=S.lang||lang;
+if(!Array.isArray(S.restockExtra))S.restockExtra=[];
 function save(){S.lang=lang;localStorage.setItem(KEY,JSON.stringify(S))}
 function badges(it){let h='';const n=dl(it.expiry);
  if(n<0)h+='<span class="badge err">'+t('expired')+'</span>';
@@ -364,6 +371,21 @@ function render(){
   qb[1].addEventListener('click',()=>{it.qty=Math.round((it.qty+stepFor(it.unit))*10)/10;save();render();});
   d.querySelector('.del').addEventListener('click',()=>{S.items=S.items.filter(x=>x.id!==it.id);save();render();});
   list.appendChild(d);});
+ renderRestock();
+}
+function renderRestock(){
+ const list=document.getElementById('rList');list.innerHTML='';
+ const low=S.items.filter(isLow);
+ document.getElementById('rEmpty').hidden=(low.length+S.restockExtra.length)>0;
+ low.forEach(it=>{const need=Math.max(0,Math.round((it.low-it.qty+stepFor(it.unit))*10)/10);
+  const d=document.createElement('div');d.className='item';
+  d.innerHTML='<div><span class="strong">'+esc(it.name)+'</span><span class="badge">'+t('low')+'</span><br><span class="muted">'+t('restockNeed').replace('{have}',fmtQty(it)).replace('{low}',it.low+' '+t('u_'+it.unit))+' · ≈'+need+' '+t('u_'+it.unit)+'</span></div><button class="btn ghost" type="button">'+t('bought')+'</button>';
+  d.querySelector('button').addEventListener('click',()=>{it.qty=Math.round((it.low+stepFor(it.unit))*10)/10;save();render();});
+  list.appendChild(d);});
+ S.restockExtra.forEach(ex=>{const d=document.createElement('div');d.className='item';
+  d.innerHTML='<div><span class="strong">'+esc(ex.name)+'</span></div><button class="btn ghost" type="button">'+t('bought')+'</button>';
+  d.querySelector('button').addEventListener('click',()=>{S.restockExtra=S.restockExtra.filter(x=>x.id!==ex.id);save();render();});
+  list.appendChild(d);});
 }
 document.getElementById('pFilter').addEventListener('change',render);
 document.getElementById('pCatFilter').addEventListener('change',render);
@@ -372,6 +394,10 @@ document.getElementById('pBtn').addEventListener('click',()=>{const nm=document.
  const lw=parseFloat(document.getElementById('pLow').value);
  S.items.push({id:uid(),name:nm,cat:document.getElementById('pCat').value,qty:qy,unit:document.getElementById('pUnit').value,expiry:dt,low:isNaN(lw)?0:lw});
  document.getElementById('pName').value='';document.getElementById('pQty').value='';document.getElementById('pExp').value='';document.getElementById('pLow').value='';save();render();});
+document.getElementById('rAdd').addEventListener('click',()=>{const nm=document.getElementById('rName').value.trim();
+ if(!nm)return;
+ S.restockExtra.push({id:uid(),name:nm});
+ document.getElementById('rName').value='';save();render();});
 document.getElementById('pExp').value=today();
 save();applyLang();
 

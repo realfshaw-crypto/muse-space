@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Deal Hunter — Track Prices You Log, Buy at Your Target | Muse Space</title>
+<meta name="description" content="Deal Hunter template for Muse Space: a watchlist for items you want, with prices you enter yourself, target prices, discount math and a buy-now badge when a price hits your target. Bilingual EN/中文.">
+<meta property="og:title" content="Deal Hunter — Track Prices You Log, Buy at Your Target | Muse Space">
+<meta property="og:description" content="Deal Hunter template for Muse Space: a watchlist for items you want, with prices you enter yourself, target prices, discount math and a buy-now badge when a price hits your target. Bilingual EN/中文.">
+<meta property="og:type" content="website">
+<style>
+:root {
+  color-scheme: light dark;
+
+  /* ===== Color: core semantic ===== */
+  --color-accent: light-dark(#0064E0, #0171E3);
+  --color-accent-muted: light-dark(#0082FB33, #0082FB3F);
+  --color-on-accent: light-dark(#FFFFFF, #FFFFFF);
+  --color-neutral: light-dark(rgba(5, 54, 89, 0.1), rgba(223, 226, 229, 0.2));
+  --color-background-body: light-dark(#F1F4F7, #111112);
+  --color-background-surface: light-dark(#FFFFFF, #1F1F22);
+  --color-background-card: light-dark(#FFFFFF, #1F1F22);
+  --color-background-popover: light-dark(#FFFFFF, #28292C);
+  --color-background-muted: light-dark(#0536590C, #1111127F);
+  --color-background-inverted: light-dark(#0A1317, #FFFFFF);
+  --color-overlay: light-dark(#01122866, #11111299);
+  --color-overlay-hover: light-dark(#0536590C, #FFFFFF0C);
+  --color-overlay-pressed: light-dark(#05365919, #FFFFFF19);
+
+  /* Text */
+  --color-text-primary: light-dark(#0A1317, #DFE2E5);
+  --color-text-secondary: light-dark(#4E606F, #AAAFB5);
+  --color-text-disabled: light-dark(#A4B0BC, #6F747C);
+  --color-text-accent: light-dark(#0064E0, #3E9EFB);
+  --color-on-dark: light-dark(#FFFFFF, #FFFFFF);
+  --color-on-light: light-dark(#000000, #000000);
+
+  /* Icon（与 text 同值域） */
+  --color-icon-accent: light-dark(#0064E0, #2694FE);
+  --color-icon-primary: light-dark(#0A1317, #DFE2E5);
+  --color-icon-secondary: light-dark(#4E606F, #AAAFB5);
+  --color-icon-disabled: light-dark(#A4B0BC, #6F747C);
+
+  /* Status fills + muted + on-* */
+  --color-info: light-dark(#0064E0, #0064E0);
+  --color-info-muted: light-dark(#0082FB33, #0082FB3F);
+  --color-on-info: light-dark(#FFFFFF, #FFFFFF);
+  --color-success: light-dark(#0D8626, #0D8626);
+  --color-success-muted: light-dark(#0B991F33, #0B991F3F);
+  --color-on-success: light-dark(#FFFFFF, #FFFFFF);
+  --color-error: light-dark(#E3193B, #F5394F);
+  --color-error-muted: light-dark(#E3193B33, #F5394F3F);
+  --color-on-error: light-dark(#FFFFFF, #0A1317);
+  --color-background-error-inverted: light-dark(#AA071E, #E3193B);
+  --color-warning: light-dark(#E9AF08, #F2C00B);
+  --color-warning-muted: light-dark(#E2A40033, #E2A4003F);
+  --color-on-warning: light-dark(#0A1317, #0A1317);
+
+  /* Status text / icon / border（落在页面与卡片面上、对比 >= 4.5:1 的一档） */
+  --color-text-blue: light-dark(#042F97, #AFD7FF);
+  --color-text-green: light-dark(#09441F, #A5F690);
+  --color-text-yellow: light-dark(#753F07, #FBCE03);
+  --color-text-red: light-dark(#7B0210, #FFB2B8);
+  --color-text-info: var(--color-text-blue);
+  --color-text-success: var(--color-text-green);
+  --color-text-warning: var(--color-text-yellow);
+  --color-text-error: var(--color-text-red);
+  --color-icon-info: var(--color-text-info);
+  --color-icon-success: var(--color-text-success);
+  --color-icon-warning: var(--color-text-warning);
+  --color-icon-error: var(--color-text-error);
+  --color-border-info: var(--color-text-info);
+  --color-border-success: var(--color-text-success);
+  --color-border-warning: var(--color-text-warning);
+  --color-border-error: var(--color-text-error);
+  --color-on-info-muted: var(--color-text-blue);
+  --color-on-success-muted: var(--color-text-green);
+  --color-on-warning-muted: var(--color-text-yellow);
+  --color-on-error-muted: var(--color-text-red);
+
+  /* Border / effects */
+  --color-border: light-dark(#05365919, #F2F4F619);
+  --color-border-emphasized: light-dark(#CCD3DB, #494D53);
+  --color-skeleton: light-dark(#CCD3DB, #5A5E66);
+  --color-track: light-dark(#CCD3DB, #5A5E66);
+  --color-shadow: light-dark(rgba(5, 54, 89, 0.1), rgba(0, 0, 0, 0.3));
+  --color-tint-hover: light-dark(black, white);
+
+  /* Hue families: background(33 alpha) / border / icon / text */
+  --color-background-blue: light-dark(#0171E333, #0171E333);
+  --color-border-blue: light-dark(#0064E0, #2694FE);
+  --color-icon-blue: light-dark(#0064E0, #2694FE);
+  --color-background-cyan: light-dark(#03A7D733, #03A7D733);
+  --color-border-cyan: light-dark(#089DD0, #0171A4);
+  --color-icon-cyan: light-dark(#00ACC1, #26C6DA);
+  --color-text-cyan: light-dark(#014975, #A1EEF9);
+  --color-background-gray: light-dark(#0A131733, #666A724C);
+  --color-border-gray: light-dark(#647685, #748695);
+  --color-icon-gray: light-dark(#4E606F, #AAAFB5);
+  --color-text-gray: light-dark(#0A1317, #E7EAED);
+  --color-background-green: light-dark(#24BB5E33, #24BB5E33);
+  --color-border-green: light-dark(#0D8626, #0B991F);
+  --color-icon-green: light-dark(#0D8626, #26A756);
+  --color-background-orange: light-dark(#F2790233, #F2790233);
+  --color-border-orange: light-dark(#EB6E00, #B34A01);
+  --color-icon-orange: light-dark(#E9690B, #FB8C00);
+  --color-text-orange: light-dark(#6B2203, #FDB876);
+  --color-background-pink: light-dark(#E638B333, #E638B333);
+  --color-border-pink: light-dark(#F351C0, #C02294);
+  --color-icon-pink: light-dark(#C2185B, #EC407A);
+  --color-text-pink: light-dark(#650053, #FEADE3);
+  --color-background-purple: light-dark(#7952FF33, #7952FF33);
+  --color-border-purple: light-dark(#9081FF, #7340FE);
+  --color-icon-purple: light-dark(#5B08D8, #7952FF);
+  --color-text-purple: light-dark(#3E0697, #B3B0FE);
+  --color-background-red: light-dark(#E3193B33, #E3193B33);
+  --color-border-red: light-dark(#E3193B, #F5394F);
+  --color-icon-red: light-dark(#D31130, #E3193B);
+  --color-background-teal: light-dark(#0DB7AF33, #0DB7AF33);
+  --color-border-teal: light-dark(#08A3A3, #08767D);
+  --color-icon-teal: light-dark(#009688, #26A69A);
+  --color-text-teal: light-dark(#083943, #40DCCD);
+  --color-background-yellow: light-dark(#E2A40033, #E2A40033);
+  --color-border-yellow: light-dark(#C58600, #B47700);
+  --color-icon-yellow: light-dark(#FBC02D, #FFEE58);
+
+  /* ===== Spacing: 4px 基准、rem 制（随根字号缩放），步进 0..12 ===== */
+  --spacing-0: 0rem;
+  --spacing-0-5: 0.125rem;
+  --spacing-1: 0.25rem;
+  --spacing-1-5: 0.375rem;
+  --spacing-2: 0.5rem;
+  --spacing-3: 0.75rem;
+  --spacing-4: 1rem;
+  --spacing-5: 1.25rem;
+  --spacing-6: 1.5rem;
+  --spacing-7: 1.75rem;
+  --spacing-8: 2rem;
+  --spacing-9: 2.25rem;
+  --spacing-10: 2.5rem;
+  --spacing-11: 2.75rem;
+  --spacing-12: 3rem;
+
+  /* ===== Size: 控件高度 ===== */
+  --size-element-sm: 28px;
+  --size-element-md: 32px;
+  --size-element-lg: 36px;
+
+  /* ===== Border / Focus ===== */
+  --border-width: 1px;
+  --focus-outline-width: 2px;
+  --focus-outline-style: solid;
+  --focus-outline-color: var(--color-accent);
+  --focus-outline-offset: 3px;
+
+  /* ===== Radius（core 默认；neutral 主题的 6/10/12/28 变体不采用） ===== */
+  --radius-none: 0px;
+  --radius-inner: 4px;
+  --radius-element: 8px;
+  --radius-container: 12px;
+  --radius-page: 28px;
+  --radius-chat: 28px;
+  --radius-full: 9999px;
+
+  /* ===== Shadow ===== */
+  --shadow-low: 0px 1px 1px light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), 0px 2px 8px light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2));
+  --shadow-med: 0px 1px 2px light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), 0px 2px 12px light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2));
+  --shadow-high: 0px 2px 2px light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), 0px 8px 24px light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.3));
+  --shadow-inset-hover: inset 0px 0px 0px 2px light-dark(rgba(5, 54, 89, 0.15), rgba(223, 226, 229, 0.2));
+  --shadow-inset-selected: inset 0px 0px 0px 2px rgba(1, 113, 227, 0.5);
+  --shadow-inset-success: inset 0px 0px 0px 2px rgba(38, 167, 86, 0.3);
+  --shadow-inset-warning: inset 0px 0px 0px 2px rgba(226, 164, 0, 0.3);
+  --shadow-inset-error: inset 0px 0px 0px 2px rgba(227, 25, 59, 0.3);
+
+  /* ===== Motion ===== */
+  --duration-fast-min: 130ms;
+  --duration-fast: 175ms;
+  --duration-fast-max: 230ms;
+  --duration-medium-min: 310ms;
+  --duration-medium: 410ms;
+  --duration-medium-max: 550ms;
+  --duration-slow-min: 730ms;
+  --duration-slow: 975ms;
+  --duration-slow-max: 1300ms;
+  --duration-exit: var(--duration-fast);
+  --ease-standard: cubic-bezier(0.24, 1, 0.4, 1);
+  --ease-entrance: cubic-bezier(0.24, 1, 0.4, 1);
+  --ease-move: cubic-bezier(0.24, 1, 0.4, 1);
+  --ease-exit: cubic-bezier(0.3, 0, 0.6, 0.6);
+
+  /* ===== Typography ===== */
+  --font-family-body: "Figtree", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-family-heading: "Figtree", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-family-code: "SF Mono", Monaco, Consolas, monospace;
+
+  /* 几何字阶：round(14 x 1.2^step) */
+  --font-size-4xs: 0.375rem;
+  --font-size-3xs: 0.4375rem;
+  --font-size-2xs: 0.5rem;
+  --font-size-xs: 0.625rem;
+  --font-size-sm: 0.75rem;
+  --font-size-base: 0.875rem;
+  --font-size-lg: 1.0625rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.8125rem;
+  --font-size-4xl: 2.1875rem;
+  --font-size-5xl: 2.625rem;
+
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* 语义字型（size / weight / leading 三件套，组件只许用这一层） */
+  --text-heading-1-size: var(--font-size-2xl); --text-heading-1-weight: var(--font-weight-semibold); --text-heading-1-leading: 1.3333;
+  --text-heading-2-size: var(--font-size-xl); --text-heading-2-weight: var(--font-weight-semibold); --text-heading-2-leading: 1.4;
+  --text-heading-3-size: var(--font-size-lg); --text-heading-3-weight: var(--font-weight-semibold); --text-heading-3-leading: 1.4118;
+  --text-heading-4-size: var(--font-size-base); --text-heading-4-weight: var(--font-weight-semibold); --text-heading-4-leading: 1.4286;
+  --text-heading-5-size: var(--font-size-sm); --text-heading-5-weight: var(--font-weight-semibold); --text-heading-5-leading: 1.6667;
+  --text-heading-6-size: var(--font-size-xs); --text-heading-6-weight: var(--font-weight-semibold); --text-heading-6-leading: 1.6;
+  --text-body-size: var(--font-size-base); --text-body-weight: var(--font-weight-normal); --text-body-leading: 1.4286;
+  --text-large-size: var(--font-size-lg); --text-large-weight: var(--font-weight-semibold); --text-large-leading: 1.4118;
+  --text-label-size: var(--font-size-base); --text-label-weight: var(--font-weight-medium); --text-label-leading: 1.4286;
+  --text-code-size: var(--font-size-base); --text-code-weight: var(--font-weight-normal); --text-code-leading: 1.4286;
+  --text-supporting-size: var(--font-size-sm); --text-supporting-weight: var(--font-weight-normal); --text-supporting-leading: 1.6667;
+  --text-display-1-size: var(--font-size-5xl); --text-display-1-weight: var(--font-weight-normal); --text-display-1-leading: 1.2381;
+  --text-display-2-size: var(--font-size-4xl); --text-display-2-weight: var(--font-weight-normal); --text-display-2-leading: 1.2571;
+  --text-display-3-size: var(--font-size-3xl); --text-display-3-weight: var(--font-weight-normal); --text-display-3-leading: 1.2414;
+}
+
+/* ===== 基线元素（只用令牌，不引入新值） ===== */
+body {
+  background: var(--color-background-body);
+  color: var(--color-text-primary);
+  font-family: var(--font-family-body);
+  font-size: var(--text-body-size);
+  font-weight: var(--text-body-weight);
+  line-height: var(--text-body-leading);
+}
+:focus-visible {
+  outline: var(--focus-outline-width) var(--focus-outline-style) var(--focus-outline-color);
+  outline-offset: var(--focus-outline-offset);
+}
+
+/* ===== Deal Hunter 组件层（只用 var(--...) 令牌） ===== */
+* { box-sizing: border-box; }
+body { margin: 0; }
+.app {
+  max-width: 44rem;
+  margin: 0 auto;
+  padding: var(--spacing-4) var(--spacing-4) var(--spacing-12);
+}
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--spacing-4);
+}
+.title {
+  font-size: var(--text-heading-1-size);
+  font-weight: var(--text-heading-1-weight);
+  line-height: var(--text-heading-1-leading);
+  margin: 0;
+}
+.subtitle {
+  color: var(--color-text-secondary);
+  font-size: var(--text-supporting-size);
+  line-height: var(--text-supporting-leading);
+  margin: var(--spacing-1) 0 0;
+}
+.tag-svg {
+  flex: none;
+  width: 3rem;
+  height: 3rem;
+  animation: tag-sway var(--duration-slow) var(--ease-standard) infinite alternate;
+}
+@keyframes tag-sway {
+  from { transform: rotate(-6deg) translateY(0); }
+  to { transform: rotate(6deg) translateY(-0.25rem); }
+}
+.lang-btn {
+  flex: none;
+  height: var(--size-element-md);
+  padding: 0 var(--spacing-3);
+  border: var(--border-width) solid var(--color-border-emphasized);
+  border-radius: var(--radius-element);
+  background: var(--color-background-surface);
+  color: var(--color-text-primary);
+  font-size: var(--text-label-size);
+  font-weight: var(--text-label-weight);
+  cursor: pointer;
+}
+.stats {
+  display: flex;
+  gap: var(--spacing-3);
+  margin-top: var(--spacing-4);
+}
+.stat {
+  flex: 1;
+  padding: var(--spacing-3);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-container);
+  background: var(--color-background-card);
+}
+.stat-num {
+  font-size: var(--text-heading-2-size);
+  font-weight: var(--text-heading-2-weight);
+  line-height: var(--text-heading-2-leading);
+}
+.stat-label {
+  color: var(--color-text-secondary);
+  font-size: var(--text-supporting-size);
+  line-height: var(--text-supporting-leading);
+}
+.note {
+  margin-top: var(--spacing-3);
+  padding: var(--spacing-3);
+  border: var(--border-width) solid var(--color-border-info);
+  border-radius: var(--radius-container);
+  background: var(--color-background-blue);
+  color: var(--color-text-info);
+  font-size: var(--text-supporting-size);
+  line-height: var(--text-supporting-leading);
+}
+.add-form {
+  margin-top: var(--spacing-4);
+  padding: var(--spacing-4);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-container);
+  background: var(--color-background-card);
+  box-shadow: var(--shadow-low);
+}
+.form-title {
+  font-size: var(--text-heading-3-size);
+  font-weight: var(--text-heading-3-weight);
+  line-height: var(--text-heading-3-leading);
+  margin: 0 0 var(--spacing-3);
+}
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-3);
+}
+.field { display: flex; flex-direction: column; gap: var(--spacing-1); }
+.field-wide { grid-column: 1 / -1; }
+.field label {
+  font-size: var(--text-label-size);
+  font-weight: var(--text-label-weight);
+  line-height: var(--text-label-leading);
+}
+.field input {
+  height: var(--size-element-lg);
+  padding: 0 var(--spacing-3);
+  border: var(--border-width) solid var(--color-border-emphasized);
+  border-radius: var(--radius-element);
+  background: var(--color-background-surface);
+  color: var(--color-text-primary);
+  font-size: var(--text-body-size);
+  font-family: var(--font-family-body);
+}
+.btn-primary {
+  height: var(--size-element-lg);
+  padding: 0 var(--spacing-4);
+  border: none;
+  border-radius: var(--radius-element);
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+  font-size: var(--text-label-size);
+  font-weight: var(--text-label-weight);
+  cursor: pointer;
+}
+.btn-ghost {
+  height: var(--size-element-md);
+  padding: 0 var(--spacing-3);
+  border: var(--border-width) solid var(--color-border-emphasized);
+  border-radius: var(--radius-element);
+  background: var(--color-background-surface);
+  color: var(--color-text-primary);
+  font-size: var(--text-supporting-size);
+  cursor: pointer;
+}
+.btn-danger {
+  color: var(--color-text-error);
+  border-color: var(--color-border-error);
+}
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  margin-top: var(--spacing-5);
+  flex-wrap: wrap;
+}
+.toolbar select {
+  height: var(--size-element-md);
+  padding: 0 var(--spacing-2);
+  border: var(--border-width) solid var(--color-border-emphasized);
+  border-radius: var(--radius-element);
+  background: var(--color-background-surface);
+  color: var(--color-text-primary);
+  font-size: var(--text-body-size);
+  font-family: var(--font-family-body);
+}
+.check-label {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  font-size: var(--text-body-size);
+  cursor: pointer;
+}
+.list { display: flex; flex-direction: column; gap: var(--spacing-3); margin-top: var(--spacing-3); }
+.card {
+  padding: var(--spacing-4);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-container);
+  background: var(--color-background-card);
+  box-shadow: var(--shadow-low);
+}
+.card-ready {
+  border-color: var(--color-border-success);
+  box-shadow: var(--shadow-inset-success);
+}
+.card-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--spacing-3);
+}
+.card-name {
+  font-size: var(--text-heading-3-size);
+  font-weight: var(--text-heading-3-weight);
+  line-height: var(--text-heading-3-leading);
+  margin: 0;
+}
+.card-store {
+  color: var(--color-text-secondary);
+  font-size: var(--text-supporting-size);
+  line-height: var(--text-supporting-leading);
+  margin: var(--spacing-1) 0 0;
+}
+.badge {
+  flex: none;
+  padding: var(--spacing-1) var(--spacing-2);
+  border-radius: var(--radius-full);
+  background: var(--color-success);
+  color: var(--color-on-success);
+  font-size: var(--text-supporting-size);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--text-supporting-leading);
+  animation: badge-pop var(--duration-medium) var(--ease-entrance);
+}
+@keyframes badge-pop {
+  from { transform: scale(0.85); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+.price-row {
+  display: flex;
+  align-items: baseline;
+  gap: var(--spacing-3);
+  margin-top: var(--spacing-3);
+  flex-wrap: wrap;
+}
+.price-now {
+  font-size: var(--text-heading-2-size);
+  font-weight: var(--text-heading-2-weight);
+  line-height: var(--text-heading-2-leading);
+}
+.price-list {
+  color: var(--color-text-secondary);
+  font-size: var(--text-supporting-size);
+  text-decoration: line-through;
+}
+.price-target {
+  color: var(--color-text-secondary);
+  font-size: var(--text-supporting-size);
+}
+.discount {
+  color: var(--color-text-success);
+  font-size: var(--text-label-size);
+  font-weight: var(--text-label-weight);
+}
+.progress {
+  height: var(--spacing-2);
+  margin-top: var(--spacing-3);
+  border-radius: var(--radius-full);
+  background: var(--color-neutral);
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  border-radius: var(--radius-full);
+  background: var(--color-success);
+  transition: width var(--duration-medium) var(--ease-standard);
+}
+.progress-label {
+  margin-top: var(--spacing-1);
+  color: var(--color-text-secondary);
+  font-size: var(--text-supporting-size);
+  line-height: var(--text-supporting-leading);
+}
+.log-form {
+  display: flex;
+  gap: var(--spacing-2);
+  margin-top: var(--spacing-3);
+  flex-wrap: wrap;
+}
+.log-form input {
+  height: var(--size-element-md);
+  padding: 0 var(--spacing-2);
+  border: var(--border-width) solid var(--color-border-emphasized);
+  border-radius: var(--radius-element);
+  background: var(--color-background-surface);
+  color: var(--color-text-primary);
+  font-size: var(--text-body-size);
+  font-family: var(--font-family-body);
+}
+.history {
+  margin: var(--spacing-3) 0 0;
+  padding: 0;
+  list-style: none;
+}
+.history li {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--spacing-1) 0;
+  border-top: var(--border-width) solid var(--color-border);
+  color: var(--color-text-secondary);
+  font-size: var(--text-supporting-size);
+  line-height: var(--text-supporting-leading);
+}
+.history li:first-child { border-top: none; }
+.card-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: var(--spacing-3);
+}
+.empty {
+  padding: var(--spacing-8) var(--spacing-4);
+  border: var(--border-width) dashed var(--color-border-emphasized);
+  border-radius: var(--radius-container);
+  background: var(--color-background-card);
+  text-align: center;
+}
+.empty-title {
+  font-size: var(--text-heading-3-size);
+  font-weight: var(--text-heading-3-weight);
+  line-height: var(--text-heading-3-leading);
+  margin: 0;
+}
+.empty-text {
+  color: var(--color-text-secondary);
+  font-size: var(--text-supporting-size);
+  line-height: var(--text-supporting-leading);
+  margin: var(--spacing-2) 0 var(--spacing-4);
+}
+@media (prefers-reduced-motion: reduce) {
+  .tag-svg, .badge, .progress-fill { animation: none; transition: none; }
+}
+</style>
+</head>
+<body>
+<main class="app">
+  <header class="header">
+    <div>
+      <h1 class="title" data-i18n="title">Deal Hunter</h1>
+      <p class="subtitle" data-i18n="subtitle">Watch the prices you care about. Buy when they hit your target.</p>
+    </div>
+    <svg class="tag-svg" viewBox="0 0 48 48" role="img" aria-label="Price tag">
+      <path d="M6 6h20l16 16-20 20L6 26V6z" fill="var(--color-accent)" />
+      <circle cx="16" cy="16" r="4" fill="var(--color-background-card)" />
+      <path d="M24 24l12 12" stroke="var(--color-background-card)" stroke-width="3" stroke-linecap="round" />
+    </svg>
+    <button class="lang-btn" type="button" id="lang-btn">中文</button>
+  </header>
+
+  <section class="stats" aria-label="Summary">
+    <div class="stat"><div class="stat-num" id="stat-items">0</div><div class="stat-label" data-i18n="statItems">Watched items</div></div>
+    <div class="stat"><div class="stat-num" id="stat-ready">0</div><div class="stat-label" data-i18n="statReady">Ready to buy</div></div>
+    <div class="stat"><div class="stat-num" id="stat-savings">$0</div><div class="stat-label" data-i18n="statSavings">Saved vs list price</div></div>
+  </section>
+
+  <p class="note" data-i18n="note">Prices here are entered by you, by hand. This space never fetches live prices from stores and never crawls the web — update a price whenever you spot a better one.</p>
+
+  <form class="add-form" id="add-form">
+    <h2 class="form-title" data-i18n="addTitle">Add an item to watch</h2>
+    <div class="form-grid">
+      <div class="field field-wide">
+        <label for="f-name" data-i18n="fName">Item name</label>
+        <input id="f-name" type="text" required maxlength="80" data-i18n-ph="phName" placeholder="e.g. Sony WH-1000XM5 headphones">
+      </div>
+      <div class="field field-wide">
+        <label for="f-store" data-i18n="fStore">Store</label>
+        <input id="f-store" type="text" required maxlength="60" data-i18n-ph="phStore" placeholder="e.g. Amazon">
+      </div>
+      <div class="field">
+        <label for="f-list" data-i18n="fList">List / original price ($)</label>
+        <input id="f-list" type="number" min="0.01" step="0.01" required placeholder="399.99">
+      </div>
+      <div class="field">
+        <label for="f-current" data-i18n="fCurrent">Current price ($)</label>
+        <input id="f-current" type="number" min="0.01" step="0.01" required placeholder="328.00">
+      </div>
+      <div class="field">
+        <label for="f-target" data-i18n="fTarget">Target price ($)</label>
+        <input id="f-target" type="number" min="0.01" step="0.01" required placeholder="300.00">
+      </div>
+      <div class="field">
+        <label aria-hidden="true">&nbsp;</label>
+        <button class="btn-primary" type="submit" data-i18n="addBtn">Add to watchlist</button>
+      </div>
+    </div>
+  </form>
+
+  <div class="toolbar">
+    <label class="check-label" for="sort-select"><span data-i18n="sortLabel">Sort by</span></label>
+    <select id="sort-select">
+      <option value="discount" data-i18n="sortDiscount">Biggest discount</option>
+      <option value="savings" data-i18n="sortSavings">Biggest savings</option>
+      <option value="name" data-i18n="sortName">Name A–Z</option>
+    </select>
+    <label class="check-label">
+      <input type="checkbox" id="ready-only">
+      <span data-i18n="readyOnly">Ready to buy only</span>
+    </label>
+  </div>
+
+  <div class="list" id="list"></div>
+</main>
+
+<script>
+(function () {
+  var KEY = 'muse-space:deal-hunter';
+
+  var I18N = {
+    en: {
+      title: 'Deal Hunter',
+      subtitle: 'Watch the prices you care about. Buy when they hit your target.',
+      statItems: 'Watched items',
+      statReady: 'Ready to buy',
+      statSavings: 'Saved vs list price',
+      note: 'Prices here are entered by you, by hand. This space never fetches live prices from stores and never crawls the web — update a price whenever you spot a better one.',
+      addTitle: 'Add an item to watch',
+      fName: 'Item name',
+      phName: 'e.g. Sony WH-1000XM5 headphones',
+      fStore: 'Store',
+      phStore: 'e.g. Amazon',
+      fList: 'List / original price ($)',
+      fCurrent: 'Current price ($)',
+      fTarget: 'Target price ($)',
+      addBtn: 'Add to watchlist',
+      sortLabel: 'Sort by',
+      sortDiscount: 'Biggest discount',
+      sortSavings: 'Biggest savings',
+      sortName: 'Name A–Z',
+      readyOnly: 'Ready to buy only',
+      buyNow: 'Buy now',
+      off: 'off',
+      saved: 'saved',
+      target: 'Target',
+      list: 'List',
+      away: 'away from target',
+      reached: 'Target reached!',
+      logPrice: 'New price ($)',
+      logDate: 'Date',
+      logBtn: 'Log price',
+      history: 'Price history',
+      remove: 'Remove',
+      emptyTitle: 'Nothing on your watchlist yet',
+      emptyText: 'Add an item above and set the price you are willing to pay. When the price you log drops to your target, it gets a Buy now badge.',
+      emptyBtn: 'Restore sample items',
+      noMatchTitle: 'No items match this view',
+      noMatchText: 'Try clearing the “Ready to buy only” filter, or add a new item.',
+      confirmRemove: 'Remove this item from your watchlist?'
+    },
+    zh: {
+      title: '折扣猎手',
+      subtitle: '盯住你在意的商品价格，到达目标价就下手。',
+      statItems: '关注商品',
+      statReady: '可以下手',
+      statSavings: '相对原价已省',
+      note: '这里的价格都由你手动填写。本空间不会从商店拉取实时价格，也不会爬取任何网站——看到更低价时，随时回来更新。',
+      addTitle: '添加关注商品',
+      fName: '商品名称',
+      phName: '例如：索尼 WH-1000XM5 耳机',
+      fStore: '商店',
+      phStore: '例如：亚马逊',
+      fList: '原价 / 标价（$）',
+      fCurrent: '当前价格（$）',
+      fTarget: '目标价（$）',
+      addBtn: '加入关注清单',
+      sortLabel: '排序',
+      sortDiscount: '折扣最大',
+      sortSavings: '省钱最多',
+      sortName: '名称 A–Z',
+      readyOnly: '只看可以下手的',
+      buyNow: '可以下手',
+      off: '折扣',
+      saved: '已省',
+      target: '目标价',
+      list: '原价',
+      away: '距目标价还差',
+      reached: '已到达目标价！',
+      logPrice: '新价格（$）',
+      logDate: '日期',
+      logBtn: '记录价格',
+      history: '价格记录',
+      remove: '删除',
+      emptyTitle: '关注清单还是空的',
+      emptyText: '在上面添加一件商品，并写下你愿意付的价格。你记录的价格降到目标价时，它会获得「可以下手」标记。',
+      emptyBtn: '恢复示例商品',
+      noMatchTitle: '当前筛选下没有商品',
+      noMatchText: '试试取消「只看可以下手的」，或者添加一件新商品。',
+      confirmRemove: '确定从关注清单删除这件商品吗？'
+    }
+  };
+
+  function samples() {
+    return [
+      {
+        id: 'sample-headphones',
+        name: 'Sony WH-1000XM5 headphones',
+        store: 'Amazon',
+        list: 399.99,
+        current: 328.00,
+        target: 300.00,
+        history: [
+          { date: '2026-11-02', price: 399.99 },
+          { date: '2026-11-07', price: 348.00 },
+          { date: '2026-11-11', price: 328.00 }
+        ]
+      },
+      {
+        id: 'sample-sneakers',
+        name: 'Nike Pegasus 41 running shoes',
+        store: 'Nike.com',
+        list: 140.00,
+        current: 112.00,
+        target: 99.00,
+        history: [
+          { date: '2026-11-03', price: 140.00 },
+          { date: '2026-11-09', price: 126.00 },
+          { date: '2026-11-11', price: 112.00 }
+        ]
+      },
+      {
+        id: 'sample-monitor',
+        name: 'LG 27-inch 4K monitor',
+        store: 'Best Buy',
+        list: 449.99,
+        current: 349.99,
+        target: 329.00,
+        history: [
+          { date: '2026-11-01', price: 449.99 },
+          { date: '2026-11-08', price: 379.99 },
+          { date: '2026-11-11', price: 349.99 }
+        ]
+      }
+    ];
+  }
+
+  function load() {
+    try {
+      var raw = localStorage.getItem(KEY);
+      if (raw) {
+        var parsed = JSON.parse(raw);
+        if (parsed && Array.isArray(parsed.items)) {
+          parsed.lang = parsed.lang === 'zh' ? 'zh' : 'en';
+          parsed.sort = parsed.sort || 'discount';
+          parsed.readyOnly = !!parsed.readyOnly;
+          return parsed;
+        }
+      }
+    } catch (e) { /* fall through to samples */ }
+    return { lang: 'en', sort: 'discount', readyOnly: false, items: samples() };
+  }
+
+  var state = load();
+  var t = function (key) { return I18N[state.lang][key] || I18N.en[key] || key; };
+
+  function save() {
+    try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) { /* storage unavailable */ }
+  }
+
+  function money(n) { return '$' + Number(n).toFixed(2); }
+  function discountPct(item) {
+    if (!item.list || item.list <= 0) return 0;
+    return Math.max(0, Math.round((1 - item.current / item.list) * 100));
+  }
+  function savings(item) { return Math.max(0, item.list - item.current); }
+  function isReady(item) { return item.current <= item.target; }
+  function esc(s) {
+    return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+  function todayStr() {
+    var d = new Date();
+    var m = String(d.getMonth() + 1).padStart(2, '0');
+    var day = String(d.getDate()).padStart(2, '0');
+    return d.getFullYear() + '-' + m + '-' + day;
+  }
+
+  function sortedItems() {
+    var list = state.items.slice();
+    if (state.readyOnly) list = list.filter(isReady);
+    if (state.sort === 'savings') {
+      list.sort(function (a, b) { return savings(b) - savings(a); });
+    } else if (state.sort === 'name') {
+      list.sort(function (a, b) { return a.name.localeCompare(b.name); });
+    } else {
+      list.sort(function (a, b) { return discountPct(b) - discountPct(a); });
+    }
+    return list;
+  }
+
+  function renderStats() {
+    var ready = state.items.filter(isReady).length;
+    var total = state.items.reduce(function (sum, it) { return sum + savings(it); }, 0);
+    document.getElementById('stat-items').textContent = String(state.items.length);
+    document.getElementById('stat-ready').textContent = String(ready);
+    document.getElementById('stat-savings').textContent = money(total);
+  }
+
+  function renderList() {
+    var box = document.getElementById('list');
+    var items = sortedItems();
+    if (state.items.length === 0) {
+      box.innerHTML =
+        '<div class="empty"><h2 class="empty-title">' + esc(t('emptyTitle')) + '</h2>' +
+        '<p class="empty-text">' + esc(t('emptyText')) + '</p>' +
+        '<button class="btn-primary" type="button" data-action="restore">' + esc(t('emptyBtn')) + '</button></div>';
+      return;
+    }
+    if (items.length === 0) {
+      box.innerHTML =
+        '<div class="empty"><h2 class="empty-title">' + esc(t('noMatchTitle')) + '</h2>' +
+        '<p class="empty-text">' + esc(t('noMatchText')) + '</p></div>';
+      return;
+    }
+    box.innerHTML = items.map(function (item) {
+      var ready = isReady(item);
+      var pct = discountPct(item);
+      var progress = 0;
+      if (item.list > item.target) {
+        progress = Math.min(100, Math.max(0, (item.list - item.current) / (item.list - item.target) * 100));
+      } else if (ready) { progress = 100; }
+      var history = item.history.slice().sort(function (a, b) { return b.date.localeCompare(a.date); }).slice(0, 5);
+      var histHtml = history.map(function (h) {
+        return '<li><span>' + esc(h.date) + '</span><span>' + money(h.price) + '</span></li>';
+      }).join('');
+      return '<article class="card' + (ready ? ' card-ready' : '') + '">' +
+        '<div class="card-head"><div>' +
+        '<h2 class="card-name">' + esc(item.name) + '</h2>' +
+        '<p class="card-store">' + esc(item.store) + '</p></div>' +
+        (ready ? '<span class="badge">' + esc(t('buyNow')) + '</span>' : '') +
+        '</div>' +
+        '<div class="price-row">' +
+        '<span class="price-now">' + money(item.current) + '</span>' +
+        '<span class="price-list">' + esc(t('list')) + ' ' + money(item.list) + '</span>' +
+        '<span class="price-target">' + esc(t('target')) + ' ' + money(item.target) + '</span>' +
+        '<span class="discount">' + pct + '% ' + esc(t('off')) + ' · ' + money(savings(item)) + ' ' + esc(t('saved')) + '</span>' +
+        '</div>' +
+        '<div class="progress" role="progressbar" aria-valuenow="' + Math.round(progress) + '" aria-valuemin="0" aria-valuemax="100">' +
+        '<div class="progress-fill" style="width:' + progress.toFixed(1) + '%"></div></div>' +
+        '<p class="progress-label">' + (ready ? esc(t('reached')) : esc(t('away')) + ' ' + money(item.current - item.target)) + '</p>' +
+        '<form class="log-form" data-log="' + esc(item.id) + '">' +
+        '<input type="number" min="0.01" step="0.01" required aria-label="' + esc(t('logPrice')) + '" placeholder="' + esc(t('logPrice')) + '">' +
+        '<input type="date" required aria-label="' + esc(t('logDate')) + '" value="' + todayStr() + '">' +
+        '<button class="btn-ghost" type="submit">' + esc(t('logBtn')) + '</button>' +
+        '</form>' +
+        (histHtml ? '<h3 class="card-store" style="margin-top:var(--spacing-3)">' + esc(t('history')) + '</h3><ul class="history">' + histHtml + '</ul>' : '') +
+        '<div class="card-actions"><button class="btn-ghost btn-danger" type="button" data-action="remove" data-id="' + esc(item.id) + '">' + esc(t('remove')) + '</button></div>' +
+        '</article>';
+    }).join('');
+  }
+
+  function applyI18n() {
+    document.documentElement.lang = state.lang === 'zh' ? 'zh-CN' : 'en';
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      el.textContent = t(el.getAttribute('data-i18n'));
+    });
+    document.querySelectorAll('[data-i18n-ph]').forEach(function (el) {
+      el.setAttribute('placeholder', t(el.getAttribute('data-i18n-ph')));
+    });
+    document.getElementById('lang-btn').textContent = state.lang === 'zh' ? 'EN' : '中文';
+    document.getElementById('sort-select').value = state.sort;
+    document.getElementById('ready-only').checked = state.readyOnly;
+  }
+
+  function render() {
+    applyI18n();
+    renderStats();
+    renderList();
+  }
+
+  document.getElementById('lang-btn').addEventListener('click', function () {
+    state.lang = state.lang === 'zh' ? 'en' : 'zh';
+    save();
+    render();
+  });
+
+  document.getElementById('sort-select').addEventListener('change', function (e) {
+    state.sort = e.target.value;
+    save();
+    render();
+  });
+
+  document.getElementById('ready-only').addEventListener('change', function (e) {
+    state.readyOnly = e.target.checked;
+    save();
+    render();
+  });
+
+  document.getElementById('add-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var name = document.getElementById('f-name').value.trim();
+    var store = document.getElementById('f-store').value.trim();
+    var list = parseFloat(document.getElementById('f-list').value);
+    var current = parseFloat(document.getElementById('f-current').value);
+    var target = parseFloat(document.getElementById('f-target').value);
+    if (!name || !store || !(list > 0) || !(current > 0) || !(target > 0)) return;
+    state.items.push({
+      id: 'item-' + Date.now().toString(36),
+      name: name,
+      store: store,
+      list: list,
+      current: current,
+      target: target,
+      history: [{ date: todayStr(), price: current }]
+    });
+    save();
+    e.target.reset();
+    render();
+  });
+
+  document.getElementById('list').addEventListener('click', function (e) {
+    var btn = e.target.closest('[data-action]');
+    if (!btn) return;
+    var action = btn.getAttribute('data-action');
+    if (action === 'restore') {
+      state.items = samples();
+      save();
+      render();
+      return;
+    }
+    if (action === 'remove') {
+      var id = btn.getAttribute('data-id');
+      if (window.confirm(t('confirmRemove'))) {
+        state.items = state.items.filter(function (it) { return it.id !== id; });
+        save();
+        render();
+      }
+    }
+  });
+
+  document.getElementById('list').addEventListener('submit', function (e) {
+    var form = e.target.closest('[data-log]');
+    if (!form) return;
+    e.preventDefault();
+    var id = form.getAttribute('data-log');
+    var inputs = form.querySelectorAll('input');
+    var price = parseFloat(inputs[0].value);
+    var date = inputs[1].value;
+    if (!(price > 0) || !date) return;
+    var item = null;
+    state.items.forEach(function (it) { if (it.id === id) item = it; });
+    if (!item) return;
+    item.current = price;
+    item.history.push({ date: date, price: price });
+    save();
+    render();
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>

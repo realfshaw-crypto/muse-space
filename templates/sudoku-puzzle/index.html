@@ -303,6 +303,7 @@ footer{color:var(--color-text-disabled);font-size:var(--text-supporting-size);te
 <button class="btn ghost" type="button" data-diff="easy" data-i="easy"></button>
 <button class="btn ghost" type="button" data-diff="medium" data-i="medium"></button>
 <button class="btn ghost" type="button" data-diff="hard" data-i="hard"></button>
+<button class="btn ghost" type="button" id="dailyBtn" data-i="daily"></button>
 </div>
 </section>
 
@@ -329,6 +330,7 @@ footer{color:var(--color-text-disabled);font-size:var(--text-supporting-size);te
 <button class="btn" id="newBtn" type="button" data-i="newGame"></button>
 </div>
 <p class="best" id="bestLine"></p>
+<p class="best" id="dailyLine"></p>
 </section>
 </main>
 <footer>Muse Space · Sudoku</footer>
@@ -340,14 +342,16 @@ const PUZZLES={"easy":[{"puzzle":[0,5,0,9,7,3,0,0,0,0,8,0,0,0,4,6,3,0,0,9,0,0,0,
 
 let lang='en';
 const t=k=>(T[lang]&&T[lang][k])||T.en[k]||k;
-const T={en:{sub:'Fill every row, column and 3×3 box with 1–9. No repeats.',easy:'Easy',medium:'Medium',hard:'Hard',time:'Time',mistakes:'Mistakes',hints:'Hints left',pause:'Pause',resume:'Resume',notes:'Notes: Off',notesOn:'Notes: On',erase:'Erase',hint:'Hint',newGame:'New Game',youWin:'Puzzle solved!',winText:'You finished in {time}.',bestTime:'Best time ({diff}): {time}',noBest:'No best time yet for {diff}.',gameOver:'Game over',overText:'Three mistakes. Take a breath and try again.',retry:'Try again',paused:'Paused',pausedText:'Take your time. The timer is stopped.',resumeBtn:'Resume',selectCell:'Select a cell first.',noHints:'No hints left.',diffName_easy:'Easy',diffName_medium:'Medium',diffName_hard:'Hard'},
-zh:{sub:'每行、每列、每个 3×3 宫都填满 1–9，不重复。',easy:'简单',medium:'中等',hard:'困难',time:'用时',mistakes:'错误',hints:'剩余提示',pause:'暂停',resume:'继续',notes:'笔记：关',notesOn:'笔记：开',erase:'擦除',hint:'提示',newGame:'新一局',youWin:'恭喜完成！',winText:'你用了 {time} 完成本局。',bestTime:'{diff} 最佳成绩：{time}',noBest:'{diff} 还没有最佳成绩。',gameOver:'游戏结束',overText:'已经错了 3 次。缓一缓，再试一次。',retry:'再试一次',paused:'已暂停',pausedText:'慢慢来，计时已停止。',resumeBtn:'继续',selectCell:'请先选一个格子。',noHints:'提示已用完。',diffName_easy:'简单',diffName_medium:'中等',diffName_hard:'困难'}};
+const T={en:{sub:'Fill every row, column and 3×3 box with 1–9. No repeats.',easy:'Easy',medium:'Medium',hard:'Hard',time:'Time',mistakes:'Mistakes',hints:'Hints left',pause:'Pause',resume:'Resume',notes:'Notes: Off',notesOn:'Notes: On',erase:'Erase',hint:'Hint',newGame:'New Game',youWin:'Puzzle solved!',winText:'You finished in {time}.',gameOver:'Game over',overText:'Three mistakes. Take a breath and try again.',retry:'Try again',paused:'Paused',pausedText:'Take your time. The timer is stopped.',resumeBtn:'Resume',selectCell:'Select a cell first.',noHints:'No hints left.',daily:'Daily',dailyDone:'Daily done in {time} ✓',dailyToday:'Daily challenge · {date}',diffName_easy:'Easy',diffName_medium:'Medium',diffName_hard:'Hard'},
+zh:{sub:'每行、每列、每个 3×3 宫都填满 1–9，不重复。',easy:'简单',medium:'中等',hard:'困难',time:'用时',mistakes:'错误',hints:'剩余提示',pause:'暂停',resume:'继续',notes:'笔记：关',notesOn:'笔记：开',erase:'擦除',hint:'提示',newGame:'新一局',youWin:'恭喜完成！',winText:'你用了 {time} 完成本局。',gameOver:'游戏结束',overText:'已经错了 3 次。缓一缓，再试一次。',retry:'再试一次',paused:'已暂停',pausedText:'慢慢来，计时已停止。',resumeBtn:'继续',selectCell:'请先选一个格子。',noHints:'提示已用完。',daily:'每日一题',dailyDone:'今日已完成，用时 {time} ✓',dailyToday:'每日一题 · {date}',diffName_easy:'简单',diffName_medium:'中等',diffName_hard:'困难'}};
 
-const emptyState=()=>({lang:'en',diff:'easy',idx:0,values:null,notes:null,mistakes:0,hintsUsed:0,elapsed:0,status:'playing',best:{easy:null,medium:null,hard:null}});
+const emptyState=()=>({lang:'en',diff:'easy',idx:0,values:null,notes:null,mistakes:0,hintsUsed:0,elapsed:0,status:'playing',best:{easy:null,medium:null,hard:null},mode:'free',dailyDate:null,dailyDone:{}});
 let S;
 try{S=JSON.parse(localStorage.getItem(KEY))}catch(e){S=null}
 if(!S||!PUZZLES[S.diff]||!Array.isArray(PUZZLES[S.diff])||!PUZZLES[S.diff][S.idx]||!Array.isArray(S.values)||S.values.length!==81){S=emptyState()}
 if(!S.best)S.best={easy:null,medium:null,hard:null};
+if(!S.mode)S.mode='free';
+if(!S.dailyDone)S.dailyDone={};
 if(!Array.isArray(S.notes)||S.notes.length!==81)S.notes=Array.from({length:81},()=>[]);
 if(!S.values)S.values=PUZZLES[S.diff][S.idx].puzzle.slice();
 lang=S.lang||'en';
@@ -355,6 +359,8 @@ let sel=-1,notesMode=false,timerId=null;
 
 function save(){S.lang=lang;try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
 function fmt(s){s=Math.max(0,Math.floor(s||0));return String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0')}
+function todayStr(){return new Date().toISOString().slice(0,10)}
+function dailyPick(){const day=Math.floor(Date.now()/86400000);const diffs=['easy','medium','hard'];const diff=diffs[day%3];return{diff:diff,idx:day%PUZZLES[diff].length,date:todayStr()}}
 function puzzle(){return PUZZLES[S.diff][S.idx]}
 function solution(){return puzzle().solution}
 function isGiven(i){return puzzle().puzzle[i]!==0}
@@ -393,7 +399,8 @@ function render(){
  document.getElementById('notesBtn').classList.toggle('on',notesMode);
  document.getElementById('hintBtn').disabled=S.status!=='playing'||S.hintsUsed>=3;
  document.getElementById('eraseBtn').disabled=S.status!=='playing';
- document.querySelectorAll('[data-diff]').forEach(b=>b.classList.toggle('on',b.dataset.diff===S.diff));
+ document.querySelectorAll('[data-diff]').forEach(b=>b.classList.toggle('on',S.mode==='free'&&b.dataset.diff===S.diff));
+ document.getElementById('dailyBtn').classList.toggle('on',S.mode==='daily');
  const counts=remainingCounts();
  const selVal=sel>=0?S.values[sel]:0;
  const peerSet=sel>=0?peers(sel):new Set();
@@ -414,13 +421,15 @@ function render(){
   b.disabled=S.status!=='playing'||counts[n]<=0;
   b.classList.toggle('selnum',n===selVal&&selVal>0);
  });
- const best=S.best[S.diff];
- document.getElementById('bestLine').textContent=best!=null?t('bestTime').replace('{diff}',t('diffName_'+S.diff)).replace('{time}',fmt(best)):t('noBest').replace('{diff}',t('diffName_'+S.diff));
+ document.getElementById('bestLine').textContent=['easy','medium','hard'].map(d=>t('diffName_'+d)+' '+(S.best[d]!=null?fmt(S.best[d]):'—')).join(' · ');
+ const dlEl=document.getElementById('dailyLine');
+ if(S.mode==='daily'){const done=S.dailyDone[S.dailyDate];dlEl.textContent=done!=null?t('dailyDone').replace('{time}',fmt(done)):t('dailyToday').replace('{date}',S.dailyDate)}else{dlEl.textContent=''}
 }
 function showOverlay(title,text,btn){document.getElementById('ovTitle').textContent=title;document.getElementById('ovText').textContent=text;document.getElementById('ovBtn').textContent=btn;document.getElementById('overlay').hidden=false}
 function hideOverlay(){document.getElementById('overlay').hidden=true}
 function checkWin(){if(S.values.every((v,i)=>v===solution()[i])){S.status='won';stopTimer();save();
  if(S.best[S.diff]==null||S.elapsed<S.best[S.diff]){S.best[S.diff]=S.elapsed;save()}
+ if(S.mode==='daily'&&S.dailyDate){if(S.dailyDone[S.dailyDate]==null||S.elapsed<S.dailyDone[S.dailyDate])S.dailyDone[S.dailyDate]=S.elapsed;save()}
  showOverlay(t('youWin'),t('winText').replace('{time}',fmt(S.elapsed)),t('newGame'));render();return true}return false}
 function gameOver(){S.status='over';stopTimer();save();showOverlay(t('gameOver'),t('overText'),t('retry'));render()}
 function enterDigit(n){
@@ -456,6 +465,7 @@ function hint(){
  sel=target;save();render();checkWin();
 }
 function newGame(diff,idx){
+ if(S.mode==='daily'&&!diff){startDaily();return}
  if(diff)S.diff=diff;
  S.idx=idx!=null?idx:(S.idx+1)%PUZZLES[S.diff].length;
  S.values=PUZZLES[S.diff][S.idx].puzzle.slice();
@@ -463,6 +473,11 @@ function newGame(diff,idx){
  S.mistakes=0;S.hintsUsed=0;S.elapsed=0;S.status='playing';
  sel=-1;hideOverlay();save();render();startTimer();
 }
+function startDaily(){const d=dailyPick();S.mode='daily';S.dailyDate=d.date;S.diff=d.diff;S.idx=d.idx;
+ S.values=PUZZLES[d.diff][d.idx].puzzle.slice();
+ S.notes=Array.from({length:81},()=>[]);
+ S.mistakes=0;S.hintsUsed=0;S.elapsed=0;S.status='playing';
+ sel=-1;hideOverlay();save();render();startTimer();}
 function togglePause(){
  if(S.status==='playing'){S.status='paused';stopTimer();save();showOverlay(t('paused'),t('pausedText'),t('resumeBtn'));render()}
  else if(S.status==='paused'){S.status='playing';hideOverlay();save();render();startTimer()}
@@ -473,7 +488,8 @@ function applyLang(){
  render();
 }
 document.getElementById('langBtn').addEventListener('click',()=>{lang=lang==='en'?'zh':'en';save();applyLang()});
-document.querySelectorAll('[data-diff]').forEach(b=>b.addEventListener('click',()=>{if(b.dataset.diff!==S.diff)newGame(b.dataset.diff,0)}));
+document.querySelectorAll('[data-diff]').forEach(b=>b.addEventListener('click',()=>{if(b.dataset.diff!==S.diff||S.mode==='daily'){S.mode='free';newGame(b.dataset.diff,0)}}));
+document.getElementById('dailyBtn').addEventListener('click',()=>{if(S.mode!=='daily'||S.dailyDate!==todayStr())startDaily()});
 document.getElementById('notesBtn').addEventListener('click',()=>{notesMode=!notesMode;render()});
 document.getElementById('eraseBtn').addEventListener('click',erase);
 document.getElementById('hintBtn').addEventListener('click',hint);
@@ -497,6 +513,7 @@ document.addEventListener('keydown',e=>{
  e.preventDefault();render();
 });
 buildBoard();buildPad();
+if(S.mode==='daily'&&S.dailyDate!==todayStr()){startDaily()}
 if(S.status==='paused'){S.status='playing'}
 if(S.status==='won'||S.status==='over'){/* keep final board visible; overlay re-shown below */}
 if(S.status==='won'){showOverlay(t('youWin'),t('winText').replace('{time}',fmt(S.elapsed)),t('newGame'))}

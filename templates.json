@@ -1,8 +1,8 @@
 {
   "name": "Muse Space — muse空间",
   "version": "0.2.0",
-  "description_en": "34 ready-to-use mini-app templates for Muse Spaces.",
-  "description_zh": "34 个开箱即用的 Muse Space 小程序模板。",
+  "description_en": "37 ready-to-use mini-app templates for Muse Spaces.",
+  "description_zh": "37 个开箱即用的 Muse Space 小程序模板。",
   "categories": [
     "AI Work",
     "Productivity",
@@ -571,6 +571,29 @@
       "path": "templates/bill-tracker/"
     },
     {
+      "slug": "portfolio-tracker",
+      "name_en": "Portfolio Tracker",
+      "name_zh": "投资组合",
+      "category": "Money",
+      "keywords_en": [
+        "portfolio tracker",
+        "portfolio",
+        "investments",
+        "holdings",
+        "stocks"
+      ],
+      "keywords_zh": [
+        "投资组合",
+        "持仓",
+        "股票",
+        "基金",
+        "资产"
+      ],
+      "description_en": "Holdings, total value, gain/loss and allocation against your targets — prices entered by hand.",
+      "description_zh": "持仓、总资产、盈亏与目标配置对比，价格手动填写。",
+      "path": "templates/portfolio-tracker/"
+    },
+    {
       "slug": "idea-capture",
       "name_en": "Idea Capture",
       "name_zh": "灵感收集箱",
@@ -638,6 +661,29 @@
       "path": "templates/app-hub/"
     },
     {
+      "slug": "time-block-planner",
+      "name_en": "Time Block Planner",
+      "name_zh": "周时间块",
+      "category": "Productivity",
+      "keywords_en": [
+        "time block",
+        "time blocking",
+        "weekly planner",
+        "schedule",
+        "time management"
+      ],
+      "keywords_zh": [
+        "周时间块",
+        "时间块",
+        "周计划",
+        "时间管理",
+        "排时间"
+      ],
+      "description_en": "Plan the week as time blocks: work, study, health and rest, with hours per category.",
+      "description_zh": "按周排时间块：工作、学习、健康与休息，各类时长一目了然。",
+      "path": "templates/time-block-planner/"
+    },
+    {
       "slug": "travel-memory-map",
       "name_en": "Travel Memory Map",
       "name_zh": "旅行足迹",
@@ -700,8 +746,8 @@
         "保质期",
         "库存"
       ],
-      "description_en": "Food stock, quantities and expiry dates — with low-stock and expiring-soon alerts.",
-      "description_zh": "食材库存、数量与保质期，快过期与缺货都提醒。",
+      "description_en": "Food stock, quantities and expiry dates — with low-stock and expiring-soon alerts and a restock list.",
+      "description_zh": "食材库存、数量与保质期，快过期与缺货都提醒，另有待采购清单。",
       "path": "templates/pantry-tracker/"
     },
     {
@@ -721,9 +767,32 @@
         "数字游戏",
         "解谜"
       ],
-      "description_en": "A playable Sudoku with three difficulties, notes, hints and a timer.",
-      "description_zh": "能玩的数独：三档难度、笔记、提示与计时。",
+      "description_en": "A playable Sudoku with three difficulties, a daily challenge, notes, hints, a timer and best times.",
+      "description_zh": "能玩的数独：三档难度、每日一题、笔记、提示、计时与最佳成绩。",
       "path": "templates/sudoku-puzzle/"
+    },
+    {
+      "slug": "deal-hunter",
+      "name_en": "Deal Hunter",
+      "name_zh": "折扣猎手",
+      "category": "Life & Home",
+      "keywords_en": [
+        "deal hunter",
+        "deals",
+        "price watch",
+        "discount",
+        "price tracker"
+      ],
+      "keywords_zh": [
+        "折扣猎手",
+        "比价",
+        "折扣",
+        "降价",
+        "目标价"
+      ],
+      "description_en": "A price watchlist: target prices, discounts and a buy-now badge when a logged price hits target.",
+      "description_zh": "价格关注清单：目标价、折扣，记录的价格降到目标价就亮下手标记。",
+      "path": "templates/deal-hunter/"
     }
   ]
 }

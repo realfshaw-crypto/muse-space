@@ -1,11 +1,11 @@
 ---
 name: muse-space
-description: Muse Space (muse空间) — generate a ready-to-use Muse Space from 34 mini-app templates, like WeChat Mini Programs. Use when the user asks to open, create or use a small daily tool: expense tracker, Pomodoro / focus timer, habit tracker, budget planner, subscription tracker, flashcards, workout log, trip planner, prompt library, meeting notes, and more. Triggers include muse空间, Muse Space, mini program, 小程序, and each template name in English or Chinese.
+description: Muse Space (muse空间) — generate a ready-to-use Muse Space from 37 mini-app templates, like WeChat Mini Programs. Use when the user asks to open, create or use a small daily tool: expense tracker, Pomodoro / focus timer, habit tracker, budget planner, subscription tracker, flashcards, workout log, trip planner, prompt library, meeting notes, and more. Triggers include muse空间, Muse Space, mini program, 小程序, and each template name in English or Chinese.
 ---
 
 # Muse Space — muse空间
 
-A Muse Skill that turns one sentence into a working Muse Space, using the 34 templates in this repository. The WeChat Mini Program idea, for Muse: no install, no coding, open and use.
+A Muse Skill that turns one sentence into a working Muse Space, using the 37 templates in this repository. The WeChat Mini Program idea, for Muse: no install, no coding, open and use.
 
 ## When to trigger
 
@@ -24,6 +24,7 @@ Trigger when the user wants a small, ready-to-use daily tool as a Space, includi
 - Subscription Tracker / 订阅管家: "subscription tracker", "订阅管家", "我的订阅"
 - Savings Goals / 存钱目标: "savings goals", "存钱目标"
 - Bill Tracker / 账单管家: "bill tracker", "bills due", "账单管家", "打开账单管家"
+- Portfolio Tracker / 投资组合: "portfolio tracker", "portfolio", "投资组合", "打开投资组合"
 - Workout Log / 健身记录: "workout log", "健身记录"
 - Meal & Calorie / 饮食热量: "calorie tracker", "饮食热量", "记热量"
 - Sleep & Mood / 睡眠心情: "sleep tracker", "睡眠记录", "心情日记"
@@ -43,9 +44,11 @@ Trigger when the user wants a small, ready-to-use daily tool as a Space, includi
 - Restaurant Wishlist / 餐厅心愿单: "restaurant wishlist", "餐厅心愿单", "打开餐厅心愿单"
 - Retro Organizer / 复古掌上电脑: "retro organizer", "Palm Pilot", "复古掌上电脑", "打开复古掌上电脑"
 - App Hub / 应用中心: "app hub", "应用中心", "打开应用中心"
+- Time Block Planner / 周时间块: "time block", "time blocking", "周时间块", "打开周时间块"
 - Trivia Quiz / 趣味问答: "trivia quiz", "quiz", "趣味问答", "打开趣味问答"
 - Pantry Tracker / 食材库存: "pantry tracker", "食材库存", "打开食材库存"
 - Sudoku / 数独: "sudoku", "数独", "打开数独"
+- Deal Hunter / 折扣猎手: "deal hunter", "price watch", "折扣猎手", "打开折扣猎手"
 
 If the request is ambiguous, match by keywords in `templates.json` (`keywords_en` / `keywords_zh`). If nothing matches, say so plainly and list the closest two templates. Do not invent a template that is not in `templates.json`.
 

@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portfolio Tracker — See Your Whole Portfolio at a Glance | Muse Space</title>
+<meta name="description" content="Portfolio Tracker template for Muse Space: track stocks, funds, crypto and cash by hand, with total value, gain and loss, and allocation against your targets. Prices are entered manually. Bilingual EN/中文.">
+<meta property="og:title" content="Portfolio Tracker — See Your Whole Portfolio at a Glance | Muse Space">
+<meta property="og:description" content="Portfolio Tracker template for Muse Space: track stocks, funds, crypto and cash by hand, with total value, gain and loss, and allocation against your targets. Prices are entered manually. Bilingual EN/中文.">
+<meta property="og:type" content="website">
+<style>
+:root {
+  color-scheme: light dark;
+
+  /* ===== Color: core semantic ===== */
+  --color-accent: light-dark(#0064E0, #0171E3);
+  --color-accent-muted: light-dark(#0082FB33, #0082FB3F);
+  --color-on-accent: light-dark(#FFFFFF, #FFFFFF);
+  --color-neutral: light-dark(rgba(5, 54, 89, 0.1), rgba(223, 226, 229, 0.2));
+  --color-background-body: light-dark(#F1F4F7, #111112);
+  --color-background-surface: light-dark(#FFFFFF, #1F1F22);
+  --color-background-card: light-dark(#FFFFFF, #1F1F22);
+  --color-background-popover: light-dark(#FFFFFF, #28292C);
+  --color-background-muted: light-dark(#0536590C, #1111127F);
+  --color-background-inverted: light-dark(#0A1317, #FFFFFF);
+  --color-overlay: light-dark(#01122866, #11111299);
+  --color-overlay-hover: light-dark(#0536590C, #FFFFFF0C);
+  --color-overlay-pressed: light-dark(#05365919, #FFFFFF19);
+
+  /* Text */
+  --color-text-primary: light-dark(#0A1317, #DFE2E5);
+  --color-text-secondary: light-dark(#4E606F, #AAAFB5);
+  --color-text-disabled: light-dark(#A4B0BC, #6F747C);
+  --color-text-accent: light-dark(#0064E0, #3E9EFB);
+  --color-on-dark: light-dark(#FFFFFF, #FFFFFF);
+  --color-on-light: light-dark(#000000, #000000);
+
+  /* Icon（与 text 同值域） */
+  --color-icon-accent: light-dark(#0064E0, #2694FE);
+  --color-icon-primary: light-dark(#0A1317, #DFE2E5);
+  --color-icon-secondary: light-dark(#4E606F, #AAAFB5);
+  --color-icon-disabled: light-dark(#A4B0BC, #6F747C);
+
+  /* Status fills + muted + on-* */
+  --color-info: light-dark(#0064E0, #0064E0);
+  --color-info-muted: light-dark(#0082FB33, #0082FB3F);
+  --color-on-info: light-dark(#FFFFFF, #FFFFFF);
+  --color-success: light-dark(#0D8626, #0D8626);
+  --color-success-muted: light-dark(#0B991F33, #0B991F3F);
+  --color-on-success: light-dark(#FFFFFF, #FFFFFF);
+  --color-error: light-dark(#E3193B, #F5394F);
+  --color-error-muted: light-dark(#E3193B33, #F5394F3F);
+  --color-on-error: light-dark(#FFFFFF, #0A1317);
+  --color-background-error-inverted: light-dark(#AA071E, #E3193B);
+  --color-warning: light-dark(#E9AF08, #F2C00B);
+  --color-warning-muted: light-dark(#E2A40033, #E2A4003F);
+  --color-on-warning: light-dark(#0A1317, #0A1317);
+
+  /* Status text / icon / border（落在页面与卡片面上、对比 >= 4.5:1 的一档） */
+  --color-text-blue: light-dark(#042F97, #AFD7FF);
+  --color-text-green: light-dark(#09441F, #A5F690);
+  --color-text-yellow: light-dark(#753F07, #FBCE03);
+  --color-text-red: light-dark(#7B0210, #FFB2B8);
+  --color-text-info: var(--color-text-blue);
+  --color-text-success: var(--color-text-green);
+  --color-text-warning: var(--color-text-yellow);
+  --color-text-error: var(--color-text-red);
+  --color-icon-info: var(--color-text-info);
+  --color-icon-success: var(--color-text-success);
+  --color-icon-warning: var(--color-text-warning);
+  --color-icon-error: var(--color-text-error);
+  --color-border-info: var(--color-text-info);
+  --color-border-success: var(--color-text-success);
+  --color-border-warning: var(--color-text-warning);
+  --color-border-error: var(--color-text-error);
+  --color-on-info-muted: var(--color-text-blue);
+  --color-on-success-muted: var(--color-text-green);
+  --color-on-warning-muted: var(--color-text-yellow);
+  --color-on-error-muted: var(--color-text-red);
+
+  /* Border / effects */
+  --color-border: light-dark(#05365919, #F2F4F619);
+  --color-border-emphasized: light-dark(#CCD3DB, #494D53);
+  --color-skeleton: light-dark(#CCD3DB, #5A5E66);
+  --color-track: light-dark(#CCD3DB, #5A5E66);
+  --color-shadow: light-dark(rgba(5, 54, 89, 0.1), rgba(0, 0, 0, 0.3));
+  --color-tint-hover: light-dark(black, white);
+
+  /* Hue families: background(33 alpha) / border / icon / text */
+  --color-background-blue: light-dark(#0171E333, #0171E333);
+  --color-border-blue: light-dark(#0064E0, #2694FE);
+  --color-icon-blue: light-dark(#0064E0, #2694FE);
+  --color-background-cyan: light-dark(#03A7D733, #03A7D733);
+  --color-border-cyan: light-dark(#089DD0, #0171A4);
+  --color-icon-cyan: light-dark(#00ACC1, #26C6DA);
+  --color-text-cyan: light-dark(#014975, #A1EEF9);
+  --color-background-gray: light-dark(#0A131733, #666A724C);
+  --color-border-gray: light-dark(#647685, #748695);
+  --color-icon-gray: light-dark(#4E606F, #AAAFB5);
+  --color-text-gray: light-dark(#0A1317, #E7EAED);
+  --color-background-green: light-dark(#24BB5E33, #24BB5E33);
+  --color-border-green: light-dark(#0D8626, #0B991F);
+  --color-icon-green: light-dark(#0D8626, #26A756);
+  --color-background-orange: light-dark(#F2790233, #F2790233);
+  --color-border-orange: light-dark(#EB6E00, #B34A01);
+  --color-icon-orange: light-dark(#E9690B, #FB8C00);
+  --color-text-orange: light-dark(#6B2203, #FDB876);
+  --color-background-pink: light-dark(#E638B333, #E638B333);
+  --color-border-pink: light-dark(#F351C0, #C02294);
+  --color-icon-pink: light-dark(#C2185B, #EC407A);
+  --color-text-pink: light-dark(#650053, #FEADE3);
+  --color-background-purple: light-dark(#7952FF33, #7952FF33);
+  --color-border-purple: light-dark(#9081FF, #7340FE);
+  --color-icon-purple: light-dark(#5B08D8, #7952FF);
+  --color-text-purple: light-dark(#3E0697, #B3B0FE);
+  --color-background-red: light-dark(#E3193B33, #E3193B33);
+  --color-border-red: light-dark(#E3193B, #F5394F);
+  --color-icon-red: light-dark(#D31130, #E3193B);
+  --color-background-teal: light-dark(#0DB7AF33, #0DB7AF33);
+  --color-border-teal: light-dark(#08A3A3, #08767D);
+  --color-icon-teal: light-dark(#009688, #26A69A);
+  --color-text-teal: light-dark(#083943, #40DCCD);
+  --color-background-yellow: light-dark(#E2A40033, #E2A40033);
+  --color-border-yellow: light-dark(#C58600, #B47700);
+  --color-icon-yellow: light-dark(#FBC02D, #FFEE58);
+
+  /* ===== Spacing: 4px 基准、rem 制（随根字号缩放），步进 0..12 ===== */
+  --spacing-0: 0rem;
+  --spacing-0-5: 0.125rem;
+  --spacing-1: 0.25rem;
+  --spacing-1-5: 0.375rem;
+  --spacing-2: 0.5rem;
+  --spacing-3: 0.75rem;
+  --spacing-4: 1rem;
+  --spacing-5: 1.25rem;
+  --spacing-6: 1.5rem;
+  --spacing-7: 1.75rem;
+  --spacing-8: 2rem;
+  --spacing-9: 2.25rem;
+  --spacing-10: 2.5rem;
+  --spacing-11: 2.75rem;
+  --spacing-12: 3rem;
+
+  /* ===== Size: 控件高度 ===== */
+  --size-element-sm: 28px;
+  --size-element-md: 32px;
+  --size-element-lg: 36px;
+
+  /* ===== Border / Focus ===== */
+  --border-width: 1px;
+  --focus-outline-width: 2px;
+  --focus-outline-style: solid;
+  --focus-outline-color: var(--color-accent);
+  --focus-outline-offset: 3px;
+
+  /* ===== Radius（core 默认；neutral 主题的 6/10/12/28 变体不采用） ===== */
+  --radius-none: 0px;
+  --radius-inner: 4px;
+  --radius-element: 8px;
+  --radius-container: 12px;
+  --radius-page: 28px;
+  --radius-chat: 28px;
+  --radius-full: 9999px;
+
+  /* ===== Shadow ===== */
+  --shadow-low: 0px 1px 1px light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), 0px 2px 8px light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2));
+  --shadow-med: 0px 1px 2px light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), 0px 2px 12px light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2));
+  --shadow-high: 0px 2px 2px light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), 0px 8px 24px light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.3));
+  --shadow-inset-hover: inset 0px 0px 0px 2px light-dark(rgba(5, 54, 89, 0.15), rgba(223, 226, 229, 0.2));
+  --shadow-inset-selected: inset 0px 0px 0px 2px rgba(1, 113, 227, 0.5);
+  --shadow-inset-success: inset 0px 0px 0px 2px rgba(38, 167, 86, 0.3);
+  --shadow-inset-warning: inset 0px 0px 0px 2px rgba(226, 164, 0, 0.3);
+  --shadow-inset-error: inset 0px 0px 0px 2px rgba(227, 25, 59, 0.3);
+
+  /* ===== Motion ===== */
+  --duration-fast-min: 130ms;
+  --duration-fast: 175ms;
+  --duration-fast-max: 230ms;
+  --duration-medium-min: 310ms;
+  --duration-medium: 410ms;
+  --duration-medium-max: 550ms;
+  --duration-slow-min: 730ms;
+  --duration-slow: 975ms;
+  --duration-slow-max: 1300ms;
+  --duration-exit: var(--duration-fast);
+  --ease-standard: cubic-bezier(0.24, 1, 0.4, 1);
+  --ease-entrance: cubic-bezier(0.24, 1, 0.4, 1);
+  --ease-move: cubic-bezier(0.24, 1, 0.4, 1);
+  --ease-exit: cubic-bezier(0.3, 0, 0.6, 0.6);
+
+  /* ===== Typography ===== */
+  --font-family-body: "Figtree", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-family-heading: "Figtree", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-family-code: "SF Mono", Monaco, Consolas, monospace;
+
+  /* 几何字阶：round(14 x 1.2^step) */
+  --font-size-4xs: 0.375rem;
+  --font-size-3xs: 0.4375rem;
+  --font-size-2xs: 0.5rem;
+  --font-size-xs: 0.625rem;
+  --font-size-sm: 0.75rem;
+  --font-size-base: 0.875rem;
+  --font-size-lg: 1.0625rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.8125rem;
+  --font-size-4xl: 2.1875rem;
+  --font-size-5xl: 2.625rem;
+
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* 语义字型（size / weight / leading 三件套，组件只许用这一层） */
+  --text-heading-1-size: var(--font-size-2xl); --text-heading-1-weight: var(--font-weight-semibold); --text-heading-1-leading: 1.3333;
+  --text-heading-2-size: var(--font-size-xl); --text-heading-2-weight: var(--font-weight-semibold); --text-heading-2-leading: 1.4;
+  --text-heading-3-size: var(--font-size-lg); --text-heading-3-weight: var(--font-weight-semibold); --text-heading-3-leading: 1.4118;
+  --text-heading-4-size: var(--font-size-base); --text-heading-4-weight: var(--font-weight-semibold); --text-heading-4-leading: 1.4286;
+  --text-heading-5-size: var(--font-size-sm); --text-heading-5-weight: var(--font-weight-semibold); --text-heading-5-leading: 1.6667;
+  --text-heading-6-size: var(--font-size-xs); --text-heading-6-weight: var(--font-weight-semibold); --text-heading-6-leading: 1.6;
+  --text-body-size: var(--font-size-base); --text-body-weight: var(--font-weight-normal); --text-body-leading: 1.4286;
+  --text-large-size: var(--font-size-lg); --text-large-weight: var(--font-weight-semibold); --text-large-leading: 1.4118;
+  --text-label-size: var(--font-size-base); --text-label-weight: var(--font-weight-medium); --text-label-leading: 1.4286;
+  --text-code-size: var(--font-size-base); --text-code-weight: var(--font-weight-normal); --text-code-leading: 1.4286;
+  --text-supporting-size: var(--font-size-sm); --text-supporting-weight: var(--font-weight-normal); --text-supporting-leading: 1.6667;
+  --text-display-1-size: var(--font-size-5xl); --text-display-1-weight: var(--font-weight-normal); --text-display-1-leading: 1.2381;
+  --text-display-2-size: var(--font-size-4xl); --text-display-2-weight: var(--font-weight-normal); --text-display-2-leading: 1.2571;
+  --text-display-3-size: var(--font-size-3xl); --text-display-3-weight: var(--font-weight-normal); --text-display-3-leading: 1.2414;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--color-background-body);color:var(--color-text-primary);font-family:var(--font-family-body);font-size:var(--text-body-size);font-weight:var(--text-body-weight);line-height:var(--text-body-leading)}
+.wrap{max-width:46rem;margin:0 auto;padding:var(--spacing-6) var(--spacing-4) var(--spacing-12)}
+header.top{display:flex;align-items:flex-start;gap:var(--spacing-3);margin-bottom:var(--spacing-5)}
+.logo{color:var(--color-icon-accent);flex:none;margin-top:var(--spacing-1);animation:floaty var(--duration-slow) var(--ease-standard) infinite alternate}
+@keyframes floaty{from{transform:translateY(0)}to{transform:translateY(calc(var(--spacing-1) * -1))}}
+h1{font-size:var(--text-heading-1-size);font-weight:var(--text-heading-1-weight);line-height:var(--text-heading-1-leading);margin:0}
+h2{font-size:var(--text-heading-3-size);font-weight:var(--text-heading-3-weight);line-height:var(--text-heading-3-leading);margin:0 0 var(--spacing-3)}
+.sub{color:var(--color-text-secondary);margin:var(--spacing-1) 0 0}
+.spacer{flex:1}
+.card{background:var(--color-background-card);border:var(--border-width) solid var(--color-border);border-radius:var(--radius-container);padding:var(--spacing-4);box-shadow:var(--shadow-low);margin-bottom:var(--spacing-4)}
+.btn{background:var(--color-accent);color:var(--color-on-accent);border:none;border-radius:var(--radius-element);min-height:var(--size-element-md);padding:0 var(--spacing-4);font-family:inherit;font-size:var(--text-label-size);font-weight:var(--text-label-weight);cursor:pointer;transition:opacity var(--duration-fast) var(--ease-standard)}
+.btn:hover{opacity:.88}
+.btn.ghost{background:var(--color-background-muted);color:var(--color-text-primary)}
+.btn.small{min-height:var(--size-element-sm);padding:0 var(--spacing-3);font-size:var(--text-supporting-size)}
+.btn.block{width:100%;min-height:var(--size-element-lg)}
+.btn.danger{background:var(--color-background-error-inverted);color:var(--color-on-error)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(9rem,1fr));gap:var(--spacing-3);margin-bottom:var(--spacing-4)}
+.stat{background:var(--color-background-card);border:var(--border-width) solid var(--color-border);border-radius:var(--radius-container);padding:var(--spacing-3) var(--spacing-4);box-shadow:var(--shadow-low);animation:fadein var(--duration-fast) var(--ease-entrance)}
+.stat b{display:block;font-size:var(--text-heading-2-size);font-weight:var(--text-heading-2-weight);line-height:var(--text-heading-2-leading)}
+.stat span{color:var(--color-text-secondary);font-size:var(--text-supporting-size)}
+.stat .up{color:var(--color-text-success)}
+.stat .down{color:var(--color-text-error)}
+.muted{color:var(--color-text-secondary);font-size:var(--text-supporting-size)}
+.strong{font-weight:var(--font-weight-semibold)}
+.badge{display:inline-block;padding:var(--spacing-0-5) var(--spacing-2);border-radius:var(--radius-full);font-size:var(--text-supporting-size);background:var(--color-accent-muted);color:var(--color-text-accent)}
+footer{color:var(--color-text-disabled);font-size:var(--text-supporting-size);text-align:center;margin-top:var(--spacing-6)}
+form.grid{display:grid;gap:var(--spacing-3)}
+@media(min-width:40rem){form.grid{grid-template-columns:1fr 1fr}}
+.field{display:flex;flex-direction:column;gap:var(--spacing-1)}
+.field.full{grid-column:1 / -1}
+label{font-size:var(--text-label-size);font-weight:var(--text-label-weight)}
+input,select{background:var(--color-background-surface);color:var(--color-text-primary);border:var(--border-width) solid var(--color-border-emphasized);border-radius:var(--radius-element);min-height:var(--size-element-lg);padding:0 var(--spacing-3);font-family:inherit;font-size:var(--text-body-size);width:100%}
+input:focus,select:focus{outline:var(--focus-outline-width) var(--focus-outline-style) var(--focus-outline-color);outline-offset:var(--focus-outline-offset)}
+.hrow{display:flex;flex-direction:column;gap:var(--spacing-2);padding:var(--spacing-3) 0;border-bottom:var(--border-width) solid var(--color-border);animation:fadein var(--duration-fast) var(--ease-entrance)}
+.hrow:last-child{border-bottom:none}
+.hhead{display:flex;align-items:center;gap:var(--spacing-2);flex-wrap:wrap}
+.hname{font-size:var(--text-heading-4-size);font-weight:var(--text-heading-4-weight);line-height:var(--text-heading-4-leading)}
+.hmeta{color:var(--color-text-secondary);font-size:var(--text-supporting-size)}
+.hvals{display:flex;justify-content:space-between;gap:var(--spacing-3);flex-wrap:wrap}
+.hval b{display:block;font-size:var(--text-heading-4-size);font-weight:var(--text-heading-4-weight)}
+.hval span{color:var(--color-text-secondary);font-size:var(--text-supporting-size)}
+.up{color:var(--color-text-success)}
+.down{color:var(--color-text-error)}
+.hactions{display:flex;gap:var(--spacing-2)}
+.tag{flex:none;padding:var(--spacing-0-5) var(--spacing-2);border-radius:var(--radius-full);font-size:var(--text-supporting-size);font-weight:var(--font-weight-semibold)}
+.tag.stock{background:var(--color-background-blue);color:var(--color-text-blue)}
+.tag.fund{background:var(--color-background-green);color:var(--color-text-green)}
+.tag.crypto{background:var(--color-background-purple);color:var(--color-text-purple)}
+.tag.cash{background:var(--color-background-gray);color:var(--color-text-gray)}
+.alloc{margin-bottom:var(--spacing-4)}
+.alloc:last-child{margin-bottom:0}
+.alloc .arow{display:flex;justify-content:space-between;gap:var(--spacing-3);margin-bottom:var(--spacing-1)}
+.alloc .abar{position:relative;height:var(--spacing-2);background:var(--color-track);border-radius:var(--radius-full);overflow:visible}
+.alloc .afill{height:100%;border-radius:var(--radius-full);transition:width var(--duration-medium) var(--ease-standard)}
+.alloc .afill.stock{background:var(--color-border-blue)}
+.alloc .afill.fund{background:var(--color-border-green)}
+.alloc .afill.crypto{background:var(--color-border-purple)}
+.alloc .afill.cash{background:var(--color-border-gray)}
+.alloc .amark{position:absolute;top:calc(var(--spacing-1) * -1);bottom:calc(var(--spacing-1) * -1);width:var(--spacing-0-5);background:var(--color-text-primary);border-radius:var(--radius-full)}
+.trow{display:flex;align-items:center;gap:var(--spacing-2);margin-bottom:var(--spacing-2)}
+.trow label{flex:1}
+.trow input{width:5.5rem;min-height:var(--size-element-sm);text-align:right}
+.empty{border:var(--border-width) dashed var(--color-border-emphasized);border-radius:var(--radius-container);padding:var(--spacing-5);text-align:center;color:var(--color-text-secondary)}
+@keyframes fadein{from{opacity:0;transform:translateY(var(--spacing-1))}to{opacity:1;transform:none}}
+@keyframes pop{from{opacity:0;transform:scale(.97)}to{opacity:1;transform:scale(1)}}
+.pop{animation:pop var(--duration-fast) var(--ease-entrance)}
+@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation:none !important;transition:none !important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+<span class="logo" aria-hidden="true"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17l5-6 4 3 6-8"/><path d="M15 6h4v4"/><path d="M3 21h18"/></svg></span>
+<div><h1>Portfolio Tracker</h1><p class="sub" data-i="sub"></p></div>
+<div class="spacer"></div>
+<button class="btn ghost small" id="langBtn" type="button">中文</button>
+</header>
+<main>
+
+<section class="stats" aria-label="Summary">
+<div class="stat"><b id="stValue">$0.00</b><span data-i="totalValue"></span></div>
+<div class="stat"><b id="stGain" class="up">+$0.00</b><span data-i="totalGain"></span></div>
+<div class="stat"><b id="stGainPct">0.0%</b><span data-i="totalGainPct"></span></div>
+<div class="stat"><b id="stCount">0</b><span data-i="holdingsCount"></span></div>
+</section>
+
+<section class="card" aria-label="Allocation">
+<h2 data-i="allocTitle"></h2>
+<div id="alloc"></div>
+<p class="muted" style="margin:var(--spacing-3) 0 0" data-i="allocNote"></p>
+</section>
+
+<section class="card" aria-label="Targets">
+<h2 data-i="targetTitle"></h2>
+<p class="muted" style="margin-top:0" data-i="targetHint"></p>
+<div id="targets"></div>
+</section>
+
+<section class="card" aria-label="Holdings">
+<h2 data-i="holdingsTitle"></h2>
+<div id="list"></div>
+<div class="empty" id="empty" hidden>
+<p data-i="emptyText"></p>
+<button class="btn" id="restoreBtn" type="button" data-i="restoreSamples"></button>
+</div>
+</section>
+
+<section class="card" aria-label="Add or edit">
+<h2 id="formTitle" data-i="addTitle"></h2>
+<form class="grid" id="hForm">
+<div class="field full"><label for="fName" data-i="fName"></label><input id="fName" type="text" required maxlength="60" autocomplete="off"></div>
+<div class="field"><label for="fType" data-i="fType"></label><select id="fType"><option value="stock" data-i="typeStock"></option><option value="fund" data-i="typeFund"></option><option value="crypto" data-i="typeCrypto"></option><option value="cash" data-i="typeCash"></option></select></div>
+<div class="field"><label for="fShares" data-i="fShares"></label><input id="fShares" type="number" min="0" step="any" required inputmode="decimal"></div>
+<div class="field"><label for="fBuy" data-i="fBuy"></label><input id="fBuy" type="number" min="0" step="any" required inputmode="decimal"></div>
+<div class="field"><label for="fCurrent" data-i="fCurrent"></label><input id="fCurrent" type="number" min="0" step="any" required inputmode="decimal"></div>
+<p class="muted field full" style="margin:0" data-i="cashHint"></p>
+<p class="muted field full" style="margin:0" data-i="manualNote"></p>
+<div class="field full" style="display:flex;flex-direction:row;gap:var(--spacing-2)">
+<button class="btn" id="saveBtn" type="submit" data-i="saveBtn"></button>
+<button class="btn ghost" id="cancelBtn" type="button" data-i="cancelBtn" hidden></button>
+</div>
+</form>
+</section>
+
+</main>
+<footer>Muse Space · Portfolio Tracker</footer>
+</div>
+<script>
+const KEY='muse-space:portfolio-tracker';
+const TYPES=['stock','fund','crypto','cash'];
+const SAMPLE=[
+ {id:'s1',name:'Acme Corp',type:'stock',shares:20,buy:120,current:145},
+ {id:'s2',name:'Global Index Fund',type:'fund',shares:100,buy:25,current:28.5},
+ {id:'s3',name:'Bitcoin',type:'crypto',shares:0.05,buy:60000,current:92000},
+ {id:'s4',name:'Cash',type:'cash',shares:5000,buy:1,current:1}
+];
+const DEFAULT_TARGETS={stock:50,fund:30,crypto:10,cash:10};
+let S;try{S=JSON.parse(localStorage.getItem(KEY))}catch(e){S=null}
+if(!S||typeof S!=='object'||!Array.isArray(S.holdings)){S={lang:'en',holdings:SAMPLE.map(h=>({...h})),targets:{...DEFAULT_TARGETS}}}
+if(!S.targets||typeof S.targets!=='object'){S.targets={...DEFAULT_TARGETS}}
+let lang=S.lang==='zh'?'zh':'en';
+let editingId=null;
+const T={
+en:{sub:'Your whole portfolio in one place. Prices are entered by hand — update them whenever you like.',totalValue:'Total value',totalGain:'Total gain / loss',totalGainPct:'Gain / loss %',holdingsCount:'Holdings',allocTitle:'Allocation',allocNote:'Bars show what you actually hold; the dark tick marks your target.',targetTitle:'Target allocation',targetHint:'Set the mix you are aiming for, in percent. Targets should add up to 100.',holdingsTitle:'Holdings',emptyText:'No holdings yet. Add your first one below, or bring back the samples.',restoreSamples:'Restore sample holdings',addTitle:'Add a holding',editTitle:'Edit holding',fName:'Name',fType:'Type',typeStock:'Stock',typeFund:'Fund',typeCrypto:'Crypto',typeCash:'Cash',fShares:'Shares / units',fBuy:'Buy price',fCurrent:'Current price',cashHint:'For cash: enter the amount as shares, with buy and current price both 1.',manualNote:'This template does not fetch market data. All prices are entered by you, by hand.',saveBtn:'Save holding',cancelBtn:'Cancel',editBtn:'Edit',delBtn:'Delete',valueLabel:'Value',costLabel:'Cost',gainLabel:'Gain / loss',perShare:'per share',targetLabel:'Target',actualLabel:'Actual',ofPortfolio:'of portfolio',currencyNote:'Amounts in USD.'},
+zh:{sub:'全部持仓一目了然。价格全部手动填写，想什么时候更新就什么时候更新。',totalValue:'组合总价值',totalGain:'总盈亏',totalGainPct:'盈亏比例',holdingsCount:'持仓数',allocTitle:'资产配置',allocNote:'色条是实际占比，深色竖线是你的目标占比。',targetTitle:'目标配置',targetHint:'按百分比设定你想要的配置比例，合计应为 100。',holdingsTitle:'持仓',emptyText:'还没有持仓。在下面添加第一条，或恢复示例持仓。',restoreSamples:'恢复示例持仓',addTitle:'添加持仓',editTitle:'编辑持仓',fName:'名称',fType:'类型',typeStock:'股票',typeFund:'基金',typeCrypto:'加密货币',typeCash:'现金',fShares:'持有数量',fBuy:'买入价',fCurrent:'当前价',cashHint:'现金这样填：数量填金额，买入价和当前价都填 1。',manualNote:'本模板不拉取任何行情数据，所有价格均由你手动填写。',saveBtn:'保存持仓',cancelBtn:'取消',editBtn:'编辑',delBtn:'删除',valueLabel:'市值',costLabel:'成本',gainLabel:'盈亏',perShare:'每股',targetLabel:'目标',actualLabel:'实际',ofPortfolio:'占组合',currencyNote:'金额单位为美元。'}
+};
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const t=k=>(T[lang]&&T[lang][k])||T.en[k]||k;
+const money=n=>'$'+Number(n||0).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+const pct=n=>(n>=0?'+':'')+(Number(n||0)*100).toFixed(1)+'%';
+const uid=()=>'h'+Date.now().toString(36)+Math.floor(Math.random()*1e6).toString(36);
+function save(){S.lang=lang;try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+function totals(){
+ let value=0,cost=0;
+ S.holdings.forEach(h=>{value+=h.shares*h.current;cost+=h.shares*h.buy});
+ return {value: value, cost: cost, gain: value-cost, gainPct: cost>0?(value-cost)/cost:0};
+}
+function typeTotals(total){
+ const out={};
+ TYPES.forEach(tp=>{out[tp]=0});
+ S.holdings.forEach(h=>{out[h.type]+=h.shares*h.current});
+ TYPES.forEach(tp=>{out[tp+'Pct']=total>0?out[tp]/total:0});
+ return out;
+}
+function renderSummary(){
+ const tt=totals();
+ $('stValue').textContent=money(tt.value);
+ const g=$('stGain');g.textContent=(tt.gain>=0?'+$':'−$')+money(Math.abs(tt.gain)).slice(1);g.className=tt.gain>=0?'up':'down';
+ const gp=$('stGainPct');gp.textContent=pct(tt.gainPct);gp.className=tt.gainPct>=0?'up':'down';
+ $('stCount').textContent=String(S.holdings.length);
+}
+function renderAlloc(){
+ const tt=totals(),by=typeTotals(tt.value),box=$('alloc');box.innerHTML='';
+ TYPES.forEach(tp=>{
+  const d=document.createElement('div');d.className='alloc';
+  const actual=by[tp+'Pct'],target=Math.max(0,Math.min(100,S.targets[tp]||0));
+  d.innerHTML='<div class="arow"><span class="strong">'+esc(t('type'+tp.charAt(0).toUpperCase()+tp.slice(1)))+'</span><span class="muted">'+money(by[tp])+' · '+(actual*100).toFixed(1)+'% '+esc(t('ofPortfolio'))+' · '+esc(t('targetLabel'))+' '+target+'%</span></div><div class="abar"><div class="afill '+tp+'" style="width:'+Math.min(100,actual*100).toFixed(1)+'%"></div><span class="amark" style="left:'+target+'%"></span></div>';
+  box.appendChild(d);
+ });
+}
+function renderTargets(){
+ const box=$('targets');box.innerHTML='';
+ TYPES.forEach(tp=>{
+  const d=document.createElement('div');d.className='trow';
+  const lab=document.createElement('label');lab.textContent=t('type'+tp.charAt(0).toUpperCase()+tp.slice(1));lab.htmlFor='tg-'+tp;
+  const inp=document.createElement('input');inp.id='tg-'+tp;inp.type='number';inp.min='0';inp.max='100';inp.step='1';inp.value=S.targets[tp]||0;inp.setAttribute('aria-label',t('targetLabel')+' '+t('type'+tp.charAt(0).toUpperCase()+tp.slice(1)));
+  inp.addEventListener('change',()=>{const v=Math.max(0,Math.min(100,Number(inp.value)||0));S.targets[tp]=v;inp.value=v;save();renderAlloc()});
+  d.appendChild(lab);d.appendChild(inp);
+  const pctEl=document.createElement('span');pctEl.className='muted';pctEl.textContent='%';d.appendChild(pctEl);
+  box.appendChild(d);
+ });
+}
+function renderList(){
+ const box=$('list');box.innerHTML='';
+ $('empty').hidden=S.holdings.length>0;
+ S.holdings.forEach(h=>{
+  const value=h.shares*h.current,cost=h.shares*h.buy,gain=value-cost,gp=cost>0?gain/cost:0;
+  const d=document.createElement('div');d.className='hrow';
+  d.innerHTML='<div class="hhead"><span class="tag '+h.type+'">'+esc(t('type'+h.type.charAt(0).toUpperCase()+h.type.slice(1)))+'</span><span class="hname">'+esc(h.name)+'</span><span class="hmeta">'+h.shares+' × '+money(h.current)+' '+esc(t('perShare'))+'</span></div><div class="hvals"><div class="hval"><span>'+esc(t('valueLabel'))+'</span><b>'+money(value)+'</b></div><div class="hval"><span>'+esc(t('costLabel'))+'</span><b>'+money(cost)+'</b></div><div class="hval"><span>'+esc(t('gainLabel'))+'</span><b class="'+(gain>=0?'up':'down')+'">'+(gain>=0?'+$':'−$')+money(Math.abs(gain)).slice(1)+' ('+pct(gp)+')</b></div></div><div class="hactions"><button class="btn ghost small" type="button" data-edit="'+h.id+'">'+esc(t('editBtn'))+'</button><button class="btn danger small" type="button" data-del="'+h.id+'">'+esc(t('delBtn'))+'</button></div>';
+  box.appendChild(d);
+ });
+ box.querySelectorAll('[data-edit]').forEach(b=>b.addEventListener('click',()=>startEdit(b.dataset.edit)));
+ box.querySelectorAll('[data-del]').forEach(b=>b.addEventListener('click',()=>{S.holdings=S.holdings.filter(x=>x.id!==b.dataset.del);if(editingId===b.dataset.del)resetForm();save();renderAll()}));
+}
+function renderAll(){renderSummary();renderAlloc();renderTargets();renderList()}
+function resetForm(){
+ editingId=null;$('hForm').reset();$('formTitle').textContent=t('addTitle');$('cancelBtn').hidden=true;
+}
+function startEdit(id){
+ const h=S.holdings.find(x=>x.id===id);if(!h)return;
+ editingId=id;$('fName').value=h.name;$('fType').value=h.type;$('fShares').value=h.shares;$('fBuy').value=h.buy;$('fCurrent').value=h.current;
+ $('formTitle').textContent=t('editTitle');$('cancelBtn').hidden=false;
+ $('fName').focus();
+}
+function applyLang(){
+ document.querySelectorAll('[data-i]').forEach(el=>{el.textContent=t(el.dataset.i)});
+ $('langBtn').textContent=lang==='en'?'中文':'EN';
+ $('formTitle').textContent=editingId?t('editTitle'):t('addTitle');
+ renderAll();
+}
+$('hForm').addEventListener('submit',e=>{
+ e.preventDefault();
+ const name=$('fName').value.trim();if(!name)return;
+ const rec={name: name,type: $('fType').value,shares: Math.max(0,Number($('fShares').value)||0),buy: Math.max(0,Number($('fBuy').value)||0),current: Math.max(0,Number($('fCurrent').value)||0)};
+ if(editingId){const h=S.holdings.find(x=>x.id===editingId);if(h)Object.assign(h,rec)}
+ else{S.holdings.push({id:uid(),...rec})}
+ save();resetForm();renderAll();
+});
+$('cancelBtn').addEventListener('click',resetForm);
+$('restoreBtn').addEventListener('click',()=>{S.holdings=SAMPLE.map(h=>({...h,id:uid()}));save();renderAll()});
+$('langBtn').addEventListener('click',()=>{lang=lang==='en'?'zh':'en';save();applyLang()});
+save();applyLang();
+</script>
+</body>
+</html>

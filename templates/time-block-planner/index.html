@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Time Block Planner — Plan Your Week in Time Blocks | Muse Space</title>
+<meta name="description" content="Time Block Planner template for Muse Space: plan your week as blocks of time across a Mon–Sun grid, 07:00–23:00, with per-category totals. Bilingual EN/中文.">
+<meta property="og:title" content="Time Block Planner — Plan Your Week in Time Blocks | Muse Space">
+<meta property="og:description" content="Time Block Planner template for Muse Space: plan your week as blocks of time across a Mon–Sun grid, 07:00–23:00, with per-category totals. Bilingual EN/中文.">
+<meta property="og:type" content="website">
+<style>
+:root {
+  color-scheme: light dark;
+
+  /* ===== Color: core semantic ===== */
+  --color-accent: light-dark(#0064E0, #0171E3);
+  --color-accent-muted: light-dark(#0082FB33, #0082FB3F);
+  --color-on-accent: light-dark(#FFFFFF, #FFFFFF);
+  --color-neutral: light-dark(rgba(5, 54, 89, 0.1), rgba(223, 226, 229, 0.2));
+  --color-background-body: light-dark(#F1F4F7, #111112);
+  --color-background-surface: light-dark(#FFFFFF, #1F1F22);
+  --color-background-card: light-dark(#FFFFFF, #1F1F22);
+  --color-background-popover: light-dark(#FFFFFF, #28292C);
+  --color-background-muted: light-dark(#0536590C, #1111127F);
+  --color-background-inverted: light-dark(#0A1317, #FFFFFF);
+  --color-overlay: light-dark(#01122866, #11111299);
+  --color-overlay-hover: light-dark(#0536590C, #FFFFFF0C);
+  --color-overlay-pressed: light-dark(#05365919, #FFFFFF19);
+
+  /* Text */
+  --color-text-primary: light-dark(#0A1317, #DFE2E5);
+  --color-text-secondary: light-dark(#4E606F, #AAAFB5);
+  --color-text-disabled: light-dark(#A4B0BC, #6F747C);
+  --color-text-accent: light-dark(#0064E0, #3E9EFB);
+  --color-on-dark: light-dark(#FFFFFF, #FFFFFF);
+  --color-on-light: light-dark(#000000, #000000);
+
+  /* Icon（与 text 同值域） */
+  --color-icon-accent: light-dark(#0064E0, #2694FE);
+  --color-icon-primary: light-dark(#0A1317, #DFE2E5);
+  --color-icon-secondary: light-dark(#4E606F, #AAAFB5);
+  --color-icon-disabled: light-dark(#A4B0BC, #6F747C);
+
+  /* Status fills + muted + on-* */
+  --color-info: light-dark(#0064E0, #0064E0);
+  --color-info-muted: light-dark(#0082FB33, #0082FB3F);
+  --color-on-info: light-dark(#FFFFFF, #FFFFFF);
+  --color-success: light-dark(#0D8626, #0D8626);
+  --color-success-muted: light-dark(#0B991F33, #0B991F3F);
+  --color-on-success: light-dark(#FFFFFF, #FFFFFF);
+  --color-error: light-dark(#E3193B, #F5394F);
+  --color-error-muted: light-dark(#E3193B33, #F5394F3F);
+  --color-on-error: light-dark(#FFFFFF, #0A1317);
+  --color-background-error-inverted: light-dark(#AA071E, #E3193B);
+  --color-warning: light-dark(#E9AF08, #F2C00B);
+  --color-warning-muted: light-dark(#E2A40033, #E2A4003F);
+  --color-on-warning: light-dark(#0A1317, #0A1317);
+
+  /* Status text / icon / border（落在页面与卡片面上、对比 >= 4.5:1 的一档） */
+  --color-text-blue: light-dark(#042F97, #AFD7FF);
+  --color-text-green: light-dark(#09441F, #A5F690);
+  --color-text-yellow: light-dark(#753F07, #FBCE03);
+  --color-text-red: light-dark(#7B0210, #FFB2B8);
+  --color-text-info: var(--color-text-blue);
+  --color-text-success: var(--color-text-green);
+  --color-text-warning: var(--color-text-yellow);
+  --color-text-error: var(--color-text-red);
+  --color-icon-info: var(--color-text-info);
+  --color-icon-success: var(--color-text-success);
+  --color-icon-warning: var(--color-text-warning);
+  --color-icon-error: var(--color-text-error);
+  --color-border-info: var(--color-text-info);
+  --color-border-success: var(--color-text-success);
+  --color-border-warning: var(--color-text-warning);
+  --color-border-error: var(--color-text-error);
+  --color-on-info-muted: var(--color-text-blue);
+  --color-on-success-muted: var(--color-text-green);
+  --color-on-warning-muted: var(--color-text-yellow);
+  --color-on-error-muted: var(--color-text-red);
+
+  /* Border / effects */
+  --color-border: light-dark(#05365919, #F2F4F619);
+  --color-border-emphasized: light-dark(#CCD3DB, #494D53);
+  --color-skeleton: light-dark(#CCD3DB, #5A5E66);
+  --color-track: light-dark(#CCD3DB, #5A5E66);
+  --color-shadow: light-dark(rgba(5, 54, 89, 0.1), rgba(0, 0, 0, 0.3));
+  --color-tint-hover: light-dark(black, white);
+
+  /* Hue families: background(33 alpha) / border / icon / text */
+  --color-background-blue: light-dark(#0171E333, #0171E333);
+  --color-border-blue: light-dark(#0064E0, #2694FE);
+  --color-icon-blue: light-dark(#0064E0, #2694FE);
+  --color-background-cyan: light-dark(#03A7D733, #03A7D733);
+  --color-border-cyan: light-dark(#089DD0, #0171A4);
+  --color-icon-cyan: light-dark(#00ACC1, #26C6DA);
+  --color-text-cyan: light-dark(#014975, #A1EEF9);
+  --color-background-gray: light-dark(#0A131733, #666A724C);
+  --color-border-gray: light-dark(#647685, #748695);
+  --color-icon-gray: light-dark(#4E606F, #AAAFB5);
+  --color-text-gray: light-dark(#0A1317, #E7EAED);
+  --color-background-green: light-dark(#24BB5E33, #24BB5E33);
+  --color-border-green: light-dark(#0D8626, #0B991F);
+  --color-icon-green: light-dark(#0D8626, #26A756);
+  --color-background-orange: light-dark(#F2790233, #F2790233);
+  --color-border-orange: light-dark(#EB6E00, #B34A01);
+  --color-icon-orange: light-dark(#E9690B, #FB8C00);
+  --color-text-orange: light-dark(#6B2203, #FDB876);
+  --color-background-pink: light-dark(#E638B333, #E638B333);
+  --color-border-pink: light-dark(#F351C0, #C02294);
+  --color-icon-pink: light-dark(#C2185B, #EC407A);
+  --color-text-pink: light-dark(#650053, #FEADE3);
+  --color-background-purple: light-dark(#7952FF33, #7952FF33);
+  --color-border-purple: light-dark(#9081FF, #7340FE);
+  --color-icon-purple: light-dark(#5B08D8, #7952FF);
+  --color-text-purple: light-dark(#3E0697, #B3B0FE);
+  --color-background-red: light-dark(#E3193B33, #E3193B33);
+  --color-border-red: light-dark(#E3193B, #F5394F);
+  --color-icon-red: light-dark(#D31130, #E3193B);
+  --color-background-teal: light-dark(#0DB7AF33, #0DB7AF33);
+  --color-border-teal: light-dark(#08A3A3, #08767D);
+  --color-icon-teal: light-dark(#009688, #26A69A);
+  --color-text-teal: light-dark(#083943, #40DCCD);
+  --color-background-yellow: light-dark(#E2A40033, #E2A40033);
+  --color-border-yellow: light-dark(#C58600, #B47700);
+  --color-icon-yellow: light-dark(#FBC02D, #FFEE58);
+
+  /* ===== Spacing: 4px 基准、rem 制（随根字号缩放），步进 0..12 ===== */
+  --spacing-0: 0rem;
+  --spacing-0-5: 0.125rem;
+  --spacing-1: 0.25rem;
+  --spacing-1-5: 0.375rem;
+  --spacing-2: 0.5rem;
+  --spacing-3: 0.75rem;
+  --spacing-4: 1rem;
+  --spacing-5: 1.25rem;
+  --spacing-6: 1.5rem;
+  --spacing-7: 1.75rem;
+  --spacing-8: 2rem;
+  --spacing-9: 2.25rem;
+  --spacing-10: 2.5rem;
+  --spacing-11: 2.75rem;
+  --spacing-12: 3rem;
+
+  /* ===== Size: 控件高度 ===== */
+  --size-element-sm: 28px;
+  --size-element-md: 32px;
+  --size-element-lg: 36px;
+
+  /* ===== Border / Focus ===== */
+  --border-width: 1px;
+  --focus-outline-width: 2px;
+  --focus-outline-style: solid;
+  --focus-outline-color: var(--color-accent);
+  --focus-outline-offset: 3px;
+
+  /* ===== Radius（core 默认；neutral 主题的 6/10/12/28 变体不采用） ===== */
+  --radius-none: 0px;
+  --radius-inner: 4px;
+  --radius-element: 8px;
+  --radius-container: 12px;
+  --radius-page: 28px;
+  --radius-chat: 28px;
+  --radius-full: 9999px;
+
+  /* ===== Shadow ===== */
+  --shadow-low: 0px 1px 1px light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), 0px 2px 8px light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2));
+  --shadow-med: 0px 1px 2px light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), 0px 2px 12px light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2));
+  --shadow-high: 0px 2px 2px light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), 0px 8px 24px light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.3));
+  --shadow-inset-hover: inset 0px 0px 0px 2px light-dark(rgba(5, 54, 89, 0.15), rgba(223, 226, 229, 0.2));
+  --shadow-inset-selected: inset 0px 0px 0px 2px rgba(1, 113, 227, 0.5);
+  --shadow-inset-success: inset 0px 0px 0px 2px rgba(38, 167, 86, 0.3);
+  --shadow-inset-warning: inset 0px 0px 0px 2px rgba(226, 164, 0, 0.3);
+  --shadow-inset-error: inset 0px 0px 0px 2px rgba(227, 25, 59, 0.3);
+
+  /* ===== Motion ===== */
+  --duration-fast-min: 130ms;
+  --duration-fast: 175ms;
+  --duration-fast-max: 230ms;
+  --duration-medium-min: 310ms;
+  --duration-medium: 410ms;
+  --duration-medium-max: 550ms;
+  --duration-slow-min: 730ms;
+  --duration-slow: 975ms;
+  --duration-slow-max: 1300ms;
+  --duration-exit: var(--duration-fast);
+  --ease-standard: cubic-bezier(0.24, 1, 0.4, 1);
+  --ease-entrance: cubic-bezier(0.24, 1, 0.4, 1);
+  --ease-move: cubic-bezier(0.24, 1, 0.4, 1);
+  --ease-exit: cubic-bezier(0.3, 0, 0.6, 0.6);
+
+  /* ===== Typography ===== */
+  --font-family-body: "Figtree", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-family-heading: "Figtree", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-family-code: "SF Mono", Monaco, Consolas, monospace;
+
+  /* 几何字阶：round(14 x 1.2^step) */
+  --font-size-4xs: 0.375rem;
+  --font-size-3xs: 0.4375rem;
+  --font-size-2xs: 0.5rem;
+  --font-size-xs: 0.625rem;
+  --font-size-sm: 0.75rem;
+  --font-size-base: 0.875rem;
+  --font-size-lg: 1.0625rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.8125rem;
+  --font-size-4xl: 2.1875rem;
+  --font-size-5xl: 2.625rem;
+
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* 语义字型（size / weight / leading 三件套，组件只许用这一层） */
+  --text-heading-1-size: var(--font-size-2xl); --text-heading-1-weight: var(--font-weight-semibold); --text-heading-1-leading: 1.3333;
+  --text-heading-2-size: var(--font-size-xl); --text-heading-2-weight: var(--font-weight-semibold); --text-heading-2-leading: 1.4;
+  --text-heading-3-size: var(--font-size-lg); --text-heading-3-weight: var(--font-weight-semibold); --text-heading-3-leading: 1.4118;
+  --text-heading-4-size: var(--font-size-base); --text-heading-4-weight: var(--font-weight-semibold); --text-heading-4-leading: 1.4286;
+  --text-heading-5-size: var(--font-size-sm); --text-heading-5-weight: var(--font-weight-semibold); --text-heading-5-leading: 1.6667;
+  --text-heading-6-size: var(--font-size-xs); --text-heading-6-weight: var(--font-weight-semibold); --text-heading-6-leading: 1.6;
+  --text-body-size: var(--font-size-base); --text-body-weight: var(--font-weight-normal); --text-body-leading: 1.4286;
+  --text-large-size: var(--font-size-lg); --text-large-weight: var(--font-weight-semibold); --text-large-leading: 1.4118;
+  --text-label-size: var(--font-size-base); --text-label-weight: var(--font-weight-medium); --text-label-leading: 1.4286;
+  --text-code-size: var(--font-size-base); --text-code-weight: var(--font-weight-normal); --text-code-leading: 1.4286;
+  --text-supporting-size: var(--font-size-sm); --text-supporting-weight: var(--font-weight-normal); --text-supporting-leading: 1.6667;
+  --text-display-1-size: var(--font-size-5xl); --text-display-1-weight: var(--font-weight-normal); --text-display-1-leading: 1.2381;
+  --text-display-2-size: var(--font-size-4xl); --text-display-2-weight: var(--font-weight-normal); --text-display-2-leading: 1.2571;
+  --text-display-3-size: var(--font-size-3xl); --text-display-3-weight: var(--font-weight-normal); --text-display-3-leading: 1.2414;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--color-background-body);
+  color: var(--color-text-primary);
+  font-family: var(--font-family-body);
+  font-size: var(--text-body-size);
+  font-weight: var(--text-body-weight);
+  line-height: var(--text-body-leading);
+  margin: 0;
+}
+:focus-visible {
+  outline: var(--focus-outline-width) var(--focus-outline-style) var(--focus-outline-color);
+  outline-offset: var(--focus-outline-offset);
+}
+.app { max-width: 76rem; margin: 0 auto; padding: var(--spacing-6) var(--spacing-4) var(--spacing-12); }
+.app-head { display: flex; flex-wrap: wrap; align-items: center; gap: var(--spacing-4); margin-bottom: var(--spacing-5); }
+.clock { flex: none; width: var(--spacing-12); height: var(--spacing-12); }
+.clock-hand { transform-box: view-box; transform-origin: 32px 32px; animation: spin var(--duration-slow) linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .clock-hand { animation: none; } }
+.app-title { flex: 1 1 16rem; min-width: 0; }
+.app-title h1 { font-size: var(--text-heading-1-size); font-weight: var(--text-heading-1-weight); line-height: var(--text-heading-1-leading); margin: 0 0 var(--spacing-1); }
+.app-title p { font-size: var(--text-supporting-size); color: var(--color-text-secondary); margin: 0; }
+.head-actions { display: flex; gap: var(--spacing-2); flex-wrap: wrap; }
+.btn {
+  height: var(--size-element-md);
+  padding: 0 var(--spacing-4);
+  border-radius: var(--radius-element);
+  border: var(--border-width) solid var(--color-border-emphasized);
+  background: var(--color-background-surface);
+  color: var(--color-text-primary);
+  font-family: inherit;
+  font-size: var(--text-body-size);
+  font-weight: var(--text-label-weight);
+  cursor: pointer;
+}
+.btn:hover { background: var(--color-overlay-hover); }
+.btn-primary { background: var(--color-accent); border-color: var(--color-accent); color: var(--color-on-accent); }
+.btn-primary:hover { background: var(--color-accent); opacity: 0.9; }
+.btn-danger { color: var(--color-text-error); border-color: var(--color-border-error); }
+.card {
+  background: var(--color-background-card);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-container);
+  box-shadow: var(--shadow-low);
+  padding: var(--spacing-4);
+  margin-bottom: var(--spacing-5);
+}
+.card h2 { font-size: var(--text-heading-3-size); font-weight: var(--text-heading-3-weight); line-height: var(--text-heading-3-leading); margin: 0 0 var(--spacing-3); }
+.form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr)); gap: var(--spacing-3); }
+.field label { display: block; font-size: var(--text-label-size); font-weight: var(--text-label-weight); line-height: var(--text-label-leading); margin-bottom: var(--spacing-1); }
+.field input, .field select {
+  width: 100%;
+  height: var(--size-element-md);
+  border: var(--border-width) solid var(--color-border-emphasized);
+  border-radius: var(--radius-element);
+  background: var(--color-background-surface);
+  color: var(--color-text-primary);
+  font-family: inherit;
+  font-size: var(--text-body-size);
+  padding: 0 var(--spacing-2);
+}
+.form-actions { display: flex; gap: var(--spacing-2); flex-wrap: wrap; margin-top: var(--spacing-4); }
+.form-note { font-size: var(--text-supporting-size); color: var(--color-text-secondary); margin: var(--spacing-3) 0 0; }
+.duplicate-row { display: flex; gap: var(--spacing-2); flex-wrap: wrap; align-items: end; margin-top: var(--spacing-3); padding-top: var(--spacing-3); border-top: var(--border-width) solid var(--color-border); }
+.duplicate-row .field { flex: 1 1 10rem; }
+.empty {
+  display: none;
+  text-align: center;
+  padding: var(--spacing-6) var(--spacing-4);
+  border: var(--border-width) dashed var(--color-border-emphasized);
+  border-radius: var(--radius-container);
+  margin-bottom: var(--spacing-5);
+}
+.empty.show { display: block; }
+.empty h2 { font-size: var(--text-heading-3-size); font-weight: var(--text-heading-3-weight); margin: 0 0 var(--spacing-2); }
+.empty p { color: var(--color-text-secondary); font-size: var(--text-supporting-size); margin: 0 0 var(--spacing-3); }
+.week-wrap { overflow-x: auto; background: var(--color-background-surface); border: var(--border-width) solid var(--color-border); border-radius: var(--radius-container); box-shadow: var(--shadow-low); margin-bottom: var(--spacing-5); }
+.week-grid { display: grid; grid-template-columns: var(--spacing-12) repeat(7, minmax(7rem, 1fr)); min-width: 58rem; }
+.corner { border-bottom: var(--border-width) solid var(--color-border); }
+.day-head { text-align: center; padding: var(--spacing-2) var(--spacing-1); border-bottom: var(--border-width) solid var(--color-border); border-left: var(--border-width) solid var(--color-border); font-size: var(--text-label-size); font-weight: var(--text-label-weight); line-height: var(--text-label-leading); }
+.day-head .day-date { display: block; font-size: var(--text-supporting-size); font-weight: var(--text-body-weight); color: var(--color-text-secondary); }
+.day-head.today { background: var(--color-accent-muted); color: var(--color-text-accent); }
+.day-head.today .day-date { color: var(--color-text-accent); }
+.time-gutter { border-right: var(--border-width) solid var(--color-border); }
+.time-label { height: var(--spacing-12); font-size: var(--text-supporting-size); color: var(--color-text-secondary); text-align: right; padding-right: var(--spacing-2); line-height: 1; transform: translateY(-0.5rem); }
+.day-col { position: relative; height: calc(var(--spacing-12) * 16); border-left: var(--border-width) solid var(--color-border); background-image: repeating-linear-gradient(to bottom, transparent 0, transparent calc(var(--spacing-12) - var(--border-width)), var(--color-border) calc(var(--spacing-12) - var(--border-width)), var(--color-border) var(--spacing-12)); }
+.day-col.today { background-color: var(--color-accent-muted); }
+.block {
+  position: absolute;
+  left: var(--spacing-1);
+  right: var(--spacing-1);
+  border: var(--border-width) solid;
+  border-radius: var(--radius-element);
+  padding: var(--spacing-1) var(--spacing-2);
+  font-size: var(--text-supporting-size);
+  line-height: 1.4;
+  overflow: hidden;
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  width: auto;
+}
+.block:hover { filter: brightness(0.97); }
+.block .block-title { display: block; font-weight: var(--font-weight-semibold); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.block .block-time { display: block; opacity: 0.85; }
+.cat-work { background: var(--color-background-blue); border-color: var(--color-border-blue); color: var(--color-text-blue); }
+.cat-study { background: var(--color-background-purple); border-color: var(--color-border-purple); color: var(--color-text-purple); }
+.cat-health { background: var(--color-background-green); border-color: var(--color-border-green); color: var(--color-text-green); }
+.cat-life { background: var(--color-background-orange); border-color: var(--color-border-orange); color: var(--color-text-orange); }
+.cat-rest { background: var(--color-background-pink); border-color: var(--color-border-pink); color: var(--color-text-pink); }
+.totals-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr)); gap: var(--spacing-3); }
+.total-card { background: var(--color-background-card); border: var(--border-width) solid var(--color-border); border-radius: var(--radius-container); padding: var(--spacing-4); }
+.total-card h3 { font-size: var(--text-heading-5-size); font-weight: var(--text-heading-5-weight); line-height: var(--text-heading-5-leading); margin: 0 0 var(--spacing-1); }
+.total-card .total-hours { font-size: var(--text-heading-2-size); font-weight: var(--text-heading-2-weight); line-height: var(--text-heading-2-leading); margin: 0 0 var(--spacing-2); }
+.total-card .total-share { font-size: var(--text-supporting-size); color: var(--color-text-secondary); margin: 0 0 var(--spacing-2); }
+.bar { height: var(--spacing-2); border-radius: var(--radius-full); background: var(--color-neutral); overflow: hidden; }
+.bar > i { display: block; height: 100%; border-radius: var(--radius-full); }
+.bar-work > i { background: var(--color-border-blue); }
+.bar-study > i { background: var(--color-border-purple); }
+.bar-health > i { background: var(--color-border-green); }
+.bar-life > i { background: var(--color-border-orange); }
+.bar-rest > i { background: var(--color-border-pink); }
+.week-summary { font-size: var(--text-supporting-size); color: var(--color-text-secondary); margin: var(--spacing-3) 0 0; }
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="app-head">
+    <svg class="clock" viewBox="0 0 64 64" role="img" aria-label="Clock">
+      <circle cx="32" cy="32" r="28" fill="none" stroke="var(--color-border-emphasized)" stroke-width="3"></circle>
+      <line x1="32" y1="32" x2="32" y2="16" stroke="var(--color-icon-accent)" stroke-width="3" stroke-linecap="round"></line>
+      <g class="clock-hand"><line x1="32" y1="32" x2="46" y2="32" stroke="var(--color-icon-secondary)" stroke-width="3" stroke-linecap="round"></line></g>
+      <circle cx="32" cy="32" r="3" fill="var(--color-icon-accent)"></circle>
+    </svg>
+    <div class="app-title">
+      <h1 data-i18n="appTitle">Time Block Planner</h1>
+      <p data-i18n="appSub">Plan your week as blocks of time, 07:00–23:00, Monday to Sunday.</p>
+    </div>
+    <div class="head-actions">
+      <button class="btn" id="langBtn" type="button">中文</button>
+      <button class="btn" id="clearBtn" type="button" data-i18n="clearWeek">Clear week</button>
+    </div>
+  </header>
+
+  <section class="card" aria-labelledby="formHeading">
+    <h2 id="formHeading" data-i18n="formHeading">Add a time block</h2>
+    <form id="blockForm">
+      <div class="form-grid">
+        <div class="field">
+          <label for="fTitle" data-i18n="fTitle">Title</label>
+          <input id="fTitle" type="text" maxlength="60" required data-i18n-ph="titlePh" placeholder="e.g. Deep work">
+        </div>
+        <div class="field">
+          <label for="fCat" data-i18n="fCat">Category</label>
+          <select id="fCat"></select>
+        </div>
+        <div class="field">
+          <label for="fDay" data-i18n="fDay">Day</label>
+          <select id="fDay"></select>
+        </div>
+        <div class="field">
+          <label for="fStart" data-i18n="fStart">Start</label>
+          <input id="fStart" type="time" min="07:00" max="23:00" step="900" value="09:00" required>
+        </div>
+        <div class="field">
+          <label for="fEnd" data-i18n="fEnd">End</label>
+          <input id="fEnd" type="time" min="07:00" max="23:00" step="900" value="10:00" required>
+        </div>
+      </div>
+      <div class="duplicate-row" id="editRow" hidden>
+        <div class="field">
+          <label for="dupDay" data-i18n="dupTo">Duplicate to</label>
+          <select id="dupDay"></select>
+        </div>
+        <button class="btn" id="dupBtn" type="button" data-i18n="dupBtn">Duplicate block</button>
+        <button class="btn btn-danger" id="delBtn" type="button" data-i18n="delBtn">Delete block</button>
+      </div>
+      <div class="form-actions">
+        <button class="btn btn-primary" type="submit" data-i18n="saveBtn">Save block</button>
+        <button class="btn" id="cancelBtn" type="button" data-i18n="cancelBtn">Cancel</button>
+      </div>
+      <p class="form-note" id="formNote" role="status"></p>
+    </form>
+  </section>
+
+  <div class="empty" id="emptyState">
+    <h2 data-i18n="emptyTitle">Your week is wide open</h2>
+    <p data-i18n="emptyText">No time blocks yet. Add your first block above to start shaping the week.</p>
+    <button class="btn btn-primary" id="emptyAddBtn" type="button" data-i18n="emptyAdd">Add your first block</button>
+  </div>
+
+  <div class="week-wrap">
+    <div class="week-grid" id="weekGrid"></div>
+  </div>
+
+  <section class="card" aria-labelledby="totalsHeading">
+    <h2 id="totalsHeading" data-i18n="totalsHeading">This week by category</h2>
+    <div class="totals-grid" id="totalsGrid"></div>
+    <p class="week-summary" id="weekSummary"></p>
+  </section>
+</div>
+<script>
+(function () {
+  var KEY = 'muse-space:time-block-planner';
+  var DAY_START = 7 * 60;
+  var DAY_END = 23 * 60;
+  var HOUR_REM = 3;
+  var CATS = ['work', 'study', 'health', 'life', 'rest'];
+  var DAYS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+
+  var I18N = {
+    en: {
+      appTitle: 'Time Block Planner',
+      appSub: 'Plan your week as blocks of time, 07:00–23:00, Monday to Sunday.',
+      clearWeek: 'Clear week',
+      formHeading: 'Add a time block',
+      editHeading: 'Edit time block',
+      fTitle: 'Title', titlePh: 'e.g. Deep work',
+      fCat: 'Category', fDay: 'Day', fStart: 'Start', fEnd: 'End',
+      dupTo: 'Duplicate to', dupBtn: 'Duplicate block', delBtn: 'Delete block',
+      saveBtn: 'Save block', cancelBtn: 'Cancel',
+      emptyTitle: 'Your week is wide open',
+      emptyText: 'No time blocks yet. Add your first block above to start shaping the week.',
+      emptyAdd: 'Add your first block',
+      totalsHeading: 'This week by category',
+      today: 'Today',
+      hoursUnit: 'h',
+      ofWeek: 'of planned time',
+      weekTotal: 'planned in total',
+      blocksCount: 'blocks',
+      noteAdded: 'Block saved.',
+      noteUpdated: 'Block updated.',
+      noteDeleted: 'Block deleted.',
+      noteDuplicated: 'Block duplicated.',
+      noteCleared: 'Week cleared.',
+      noteInvalid: 'End time must be after start time, within 07:00–23:00.',
+      noteTitle: 'Please give the block a title.',
+      catWork: 'Work', catStudy: 'Study', catHealth: 'Health', catLife: 'Life', catRest: 'Rest',
+      dayMon: 'Monday', dayTue: 'Tuesday', dayWed: 'Wednesday', dayThu: 'Thursday',
+      dayFri: 'Friday', daySat: 'Saturday', daySun: 'Sunday',
+      confirmClear: 'Clear all blocks this week?'
+    },
+    zh: {
+      appTitle: '周时间块',
+      appSub: '把一周排成时间块：周一到周日，每天 07:00–23:00。',
+      clearWeek: '清空本周',
+      formHeading: '添加时间块',
+      editHeading: '编辑时间块',
+      fTitle: '标题', titlePh: '例如：深度工作',
+      fCat: '分类', fDay: '星期', fStart: '开始', fEnd: '结束',
+      dupTo: '复制到', dupBtn: '复制该块', delBtn: '删除该块',
+      saveBtn: '保存', cancelBtn: '取消',
+      emptyTitle: '这一周还空着',
+      emptyText: '还没有时间块。在上方添加第一个时间块，开始规划这一周。',
+      emptyAdd: '添加第一个时间块',
+      totalsHeading: '本周按分类统计',
+      today: '今天',
+      hoursUnit: '小时',
+      ofWeek: '占已规划时间',
+      weekTotal: '已规划总计',
+      blocksCount: '个时间块',
+      noteAdded: '已保存。',
+      noteUpdated: '已更新。',
+      noteDeleted: '已删除。',
+      noteDuplicated: '已复制。',
+      noteCleared: '本周已清空。',
+      noteInvalid: '结束时间须晚于开始时间，且在 07:00–23:00 之间。',
+      noteTitle: '请给时间块起个标题。',
+      catWork: '工作', catStudy: '学习', catHealth: '健康', catLife: '生活', catRest: '休息',
+      dayMon: '周一', dayTue: '周二', dayWed: '周三', dayThu: '周四',
+      dayFri: '周五', daySat: '周六', daySun: '周日',
+      confirmClear: '清空本周全部时间块？'
+    }
+  };
+
+  function seed() {
+    return [
+      { id: 's1', title: 'Deep work', cat: 'work', day: 0, start: '09:00', end: '11:00' },
+      { id: 's2', title: 'Language study', cat: 'study', day: 0, start: '13:00', end: '14:00' },
+      { id: 's3', title: 'Gym', cat: 'health', day: 0, start: '18:30', end: '19:30' },
+      { id: 's4', title: 'Focus: writing', cat: 'work', day: 1, start: '09:00', end: '10:30' },
+      { id: 's5', title: 'Reading', cat: 'study', day: 1, start: '20:00', end: '21:00' },
+      { id: 's6', title: 'Morning run', cat: 'health', day: 2, start: '07:30', end: '08:30' },
+      { id: 's7', title: 'Project sprint', cat: 'work', day: 2, start: '14:00', end: '16:00' },
+      { id: 's8', title: 'Course lesson', cat: 'study', day: 3, start: '10:00', end: '11:00' },
+      { id: 's9', title: 'Family dinner', cat: 'life', day: 3, start: '19:00', end: '20:00' },
+      { id: 's10', title: 'Ship-it Friday', cat: 'work', day: 4, start: '09:00', end: '12:00' },
+      { id: 's11', title: 'Hike', cat: 'health', day: 5, start: '10:00', end: '11:30' },
+      { id: 's12', title: 'Friends and errands', cat: 'life', day: 5, start: '15:00', end: '17:00' },
+      { id: 's13', title: 'Weekly review', cat: 'study', day: 6, start: '10:00', end: '11:00' },
+      { id: 's14', title: 'Rest and recharge', cat: 'rest', day: 6, start: '20:00', end: '22:00' }
+    ];
+  }
+
+  function load() {
+    try {
+      var raw = localStorage.getItem(KEY);
+      if (!raw) return { blocks: seed(), lang: 'en' };
+      var data = JSON.parse(raw);
+      if (!data || !Array.isArray(data.blocks)) return { blocks: seed(), lang: 'en' };
+      return { blocks: data.blocks, lang: data.lang === 'zh' ? 'zh' : 'en' };
+    } catch (e) {
+      return { blocks: seed(), lang: 'en' };
+    }
+  }
+
+  var state = load();
+  var editingId = null;
+  var todayIdx = (new Date().getDay() + 6) % 7;
+
+  function t(key) { return I18N[state.lang][key] || I18N.en[key] || key; }
+  function catName(cat) {
+    return t('cat' + cat.charAt(0).toUpperCase() + cat.slice(1));
+  }
+  function dayName(i) { return t('day' + DAYS[i]); }
+  function save() {
+    try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) { /* storage unavailable */ }
+  }
+  function toMin(hhmm) {
+    var p = hhmm.split(':');
+    return parseInt(p[0], 10) * 60 + parseInt(p[1], 10);
+  }
+  function fmt(min) {
+    var h = Math.floor(min / 60);
+    var m = min % 60;
+    return (h < 10 ? '0' + h : '' + h) + ':' + (m < 10 ? '0' + m : '' + m);
+  }
+  function newId() {
+    return 'b' + Date.now().toString(36) + Math.floor(Math.random() * 1000000).toString(36);
+  }
+  function el(tag, cls, text) {
+    var n = document.createElement(tag);
+    if (cls) n.className = cls;
+    if (text != null) n.textContent = text;
+    return n;
+  }
+
+  var grid = document.getElementById('weekGrid');
+  var totalsGrid = document.getElementById('totalsGrid');
+  var weekSummary = document.getElementById('weekSummary');
+  var emptyState = document.getElementById('emptyState');
+  var form = document.getElementById('blockForm');
+  var formHeading = document.getElementById('formHeading');
+  var formNote = document.getElementById('formNote');
+  var editRow = document.getElementById('editRow');
+  var fTitle = document.getElementById('fTitle');
+  var fCat = document.getElementById('fCat');
+  var fDay = document.getElementById('fDay');
+  var fStart = document.getElementById('fStart');
+  var fEnd = document.getElementById('fEnd');
+  var dupDay = document.getElementById('dupDay');
+
+  function fillSelects() {
+    fCat.innerHTML = '';
+    CATS.forEach(function (c) {
+      var o = document.createElement('option');
+      o.value = c; o.textContent = catName(c);
+      fCat.appendChild(o);
+    });
+    [fDay, dupDay].forEach(function (sel) {
+      sel.innerHTML = '';
+      DAYS.forEach(function (d, i) {
+        var o = document.createElement('option');
+        o.value = String(i); o.textContent = dayName(i);
+        sel.appendChild(o);
+      });
+    });
+    fDay.value = String(todayIdx);
+    dupDay.value = String((todayIdx + 1) % 7);
+  }
+
+  function mondayOfWeek(d) {
+    var copy = new Date(d.getFullYear(), d.getMonth(), d.getDate());
+    copy.setDate(copy.getDate() - ((copy.getDay() + 6) % 7));
+    return copy;
+  }
+
+  function renderGrid() {
+    grid.innerHTML = '';
+    grid.appendChild(el('div', 'corner'));
+    var monday = mondayOfWeek(new Date());
+    for (var d = 0; d < 7; d++) {
+      var head = el('div', 'day-head' + (d === todayIdx ? ' today' : ''));
+      var date = new Date(monday.getFullYear(), monday.getMonth(), monday.getDate() + d);
+      head.appendChild(el('span', null, dayName(d) + (d === todayIdx ? ' · ' + t('today') : '')));
+      head.appendChild(el('span', 'day-date', (date.getMonth() + 1) + '/' + date.getDate()));
+      grid.appendChild(head);
+    }
+    var gutter = el('div', 'time-gutter');
+    for (var h = 7; h < 23; h++) {
+      gutter.appendChild(el('div', 'time-label', fmt(h * 60)));
+    }
+    grid.appendChild(gutter);
+    for (var day = 0; day < 7; day++) {
+      var col = el('div', 'day-col' + (day === todayIdx ? ' today' : ''));
+      state.blocks.filter(function (b) { return b.day === day; }).forEach(function (b) {
+        var s = Math.max(toMin(b.start), DAY_START);
+        var e = Math.min(toMin(b.end), DAY_END);
+        if (e <= s) return;
+        var top = ((s - DAY_START) / 60) * HOUR_REM;
+        var height = ((e - s) / 60) * HOUR_REM - 0.125;
+        var btn = el('button', 'block cat-' + b.cat);
+        btn.type = 'button';
+        btn.style.top = top.toFixed(2) + 'rem';
+        btn.style.height = Math.max(height, 0.75).toFixed(2) + 'rem';
+        btn.setAttribute('aria-label', b.title + ', ' + dayName(b.day) + ' ' + b.start + '–' + b.end + ', ' + catName(b.cat));
+        btn.appendChild(el('span', 'block-title', b.title));
+        btn.appendChild(el('span', 'block-time', b.start + '–' + b.end + ' · ' + catName(b.cat)));
+        btn.addEventListener('click', function () { openEdit(b.id); });
+        col.appendChild(btn);
+      });
+      grid.appendChild(col);
+    }
+    emptyState.classList.toggle('show', state.blocks.length === 0);
+  }
+
+  function renderTotals() {
+    totalsGrid.innerHTML = '';
+    var mins = {};
+    var total = 0;
+    CATS.forEach(function (c) { mins[c] = 0; });
+    state.blocks.forEach(function (b) {
+      var s = Math.max(toMin(b.start), DAY_START);
+      var e = Math.min(toMin(b.end), DAY_END);
+      if (e > s && mins[b.cat] != null) { mins[b.cat] += (e - s); total += (e - s); }
+    });
+    CATS.forEach(function (c) {
+      var card = el('div', 'total-card');
+      card.appendChild(el('h3', null, catName(c)));
+      var hours = (mins[c] / 60);
+      card.appendChild(el('p', 'total-hours', hours.toFixed(1) + ' ' + t('hoursUnit')));
+      var share = total > 0 ? Math.round(mins[c] / total * 100) : 0;
+      card.appendChild(el('p', 'total-share', share + '% ' + t('ofWeek')));
+      var bar = el('div', 'bar bar-' + c);
+      var fill = el('i');
+      fill.style.width = share + '%';
+      bar.appendChild(fill);
+      card.appendChild(bar);
+      totalsGrid.appendChild(card);
+    });
+    var totalHours = (total / 60).toFixed(1);
+    weekSummary.textContent = totalHours + ' ' + t('hoursUnit') + ' ' + t('weekTotal') + ' · ' + state.blocks.length + ' ' + t('blocksCount');
+  }
+
+  function applyI18n() {
+    document.documentElement.lang = state.lang === 'zh' ? 'zh-CN' : 'en';
+    document.querySelectorAll('[data-i18n]').forEach(function (n) {
+      n.textContent = t(n.getAttribute('data-i18n'));
+    });
+    document.querySelectorAll('[data-i18n-ph]').forEach(function (n) {
+      n.setAttribute('placeholder', t(n.getAttribute('data-i18n-ph')));
+    });
+    document.getElementById('langBtn').textContent = state.lang === 'zh' ? 'EN' : '中文';
+    formHeading.textContent = editingId ? t('editHeading') : t('formHeading');
+  }
+
+  function renderAll() {
+    fillSelects();
+    applyI18n();
+    renderGrid();
+    renderTotals();
+  }
+
+  function resetForm() {
+    editingId = null;
+    form.reset();
+    fDay.value = String(todayIdx);
+    fStart.value = '09:00';
+    fEnd.value = '10:00';
+    editRow.hidden = true;
+    formHeading.textContent = t('formHeading');
+    formNote.textContent = '';
+  }
+
+  function openEdit(id) {
+    var b = null;
+    state.blocks.forEach(function (x) { if (x.id === id) b = x; });
+    if (!b) return;
+    editingId = id;
+    fTitle.value = b.title;
+    fCat.value = b.cat;
+    fDay.value = String(b.day);
+    fStart.value = b.start;
+    fEnd.value = b.end;
+    dupDay.value = String((b.day + 1) % 7);
+    editRow.hidden = false;
+    formHeading.textContent = t('editHeading');
+    formNote.textContent = '';
+    form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    fTitle.focus();
+  }
+
+  form.addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    var title = fTitle.value.trim();
+    if (!title) { formNote.textContent = t('noteTitle'); fTitle.focus(); return; }
+    var s = toMin(fStart.value);
+    var e = toMin(fEnd.value);
+    if (isNaN(s) || isNaN(e) || e <= s || s < DAY_START || e > DAY_END) {
+      formNote.textContent = t('noteInvalid');
+      return;
+    }
+    var data = { title: title, cat: fCat.value, day: parseInt(fDay.value, 10), start: fmt(s), end: fmt(e) };
+    if (editingId) {
+      state.blocks.forEach(function (b) {
+        if (b.id === editingId) { b.title = data.title; b.cat = data.cat; b.day = data.day; b.start = data.start; b.end = data.end; }
+      });
+      formNote.textContent = t('noteUpdated');
+    } else {
+      data.id = newId();
+      state.blocks.push(data);
+      formNote.textContent = t('noteAdded');
+    }
+    save();
+    var keepNote = formNote.textContent;
+    resetForm();
+    renderAll();
+    formNote.textContent = keepNote;
+  });
+
+  document.getElementById('cancelBtn').addEventListener('click', resetForm);
+
+  document.getElementById('delBtn').addEventListener('click', function () {
+    if (!editingId) return;
+    state.blocks = state.blocks.filter(function (b) { return b.id !== editingId; });
+    save();
+    resetForm();
+    renderAll();
+    formNote.textContent = t('noteDeleted');
+  });
+
+  document.getElementById('dupBtn').addEventListener('click', function () {
+    if (!editingId) return;
+    var src = null;
+    state.blocks.forEach(function (b) { if (b.id === editingId) src = b; });
+    if (!src) return;
+    var copy = { id: newId(), title: src.title, cat: src.cat, day: parseInt(dupDay.value, 10), start: src.start, end: src.end };
+    state.blocks.push(copy);
+    save();
+    renderAll();
+    formNote.textContent = t('noteDuplicated');
+  });
+
+  document.getElementById('clearBtn').addEventListener('click', function () {
+    if (!state.blocks.length) return;
+    if (!window.confirm(t('confirmClear'))) return;
+    state.blocks = [];
+    save();
+    resetForm();
+    renderAll();
+    formNote.textContent = t('noteCleared');
+  });
+
+  document.getElementById('emptyAddBtn').addEventListener('click', function () {
+    form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    fTitle.focus();
+  });
+
+  document.getElementById('langBtn').addEventListener('click', function () {
+    state.lang = state.lang === 'zh' ? 'en' : 'zh';
+    save();
+    renderAll();
+  });
+
+  renderAll();
+})();
+</script>
+</body>
+</html>
