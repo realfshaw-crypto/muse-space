@@ -1,11 +1,11 @@
 ---
 name: muse-space
-description: Muse Space (muse空间) — generate a ready-to-use Muse Space from 29 mini-app templates, like WeChat Mini Programs. Use when the user asks to open, create or use a small daily tool: expense tracker, Pomodoro / focus timer, habit tracker, budget planner, subscription tracker, flashcards, workout log, trip planner, prompt library, meeting notes, and more. Triggers include muse空间, Muse Space, mini program, 小程序, and each template name in English or Chinese.
+description: Muse Space (muse空间) — generate a ready-to-use Muse Space from 34 mini-app templates, like WeChat Mini Programs. Use when the user asks to open, create or use a small daily tool: expense tracker, Pomodoro / focus timer, habit tracker, budget planner, subscription tracker, flashcards, workout log, trip planner, prompt library, meeting notes, and more. Triggers include muse空间, Muse Space, mini program, 小程序, and each template name in English or Chinese.
 ---
 
 # Muse Space — muse空间
 
-A Muse Skill that turns one sentence into a working Muse Space, using the 29 templates in this repository. The WeChat Mini Program idea, for Muse: no install, no coding, open and use.
+A Muse Skill that turns one sentence into a working Muse Space, using the 34 templates in this repository. The WeChat Mini Program idea, for Muse: no install, no coding, open and use.
 
 ## When to trigger
 
@@ -41,6 +41,11 @@ Trigger when the user wants a small, ready-to-use daily tool as a Space, includi
 - Idea Capture / 灵感收集箱: "idea capture", "capture idea", "灵感收集箱", "打开灵感收集箱"
 - Pet Day Tracker / 宠物日程: "pet day", "pet tracker", "宠物日程", "打开宠物日程"
 - Restaurant Wishlist / 餐厅心愿单: "restaurant wishlist", "餐厅心愿单", "打开餐厅心愿单"
+- Retro Organizer / 复古掌上电脑: "retro organizer", "Palm Pilot", "复古掌上电脑", "打开复古掌上电脑"
+- App Hub / 应用中心: "app hub", "应用中心", "打开应用中心"
+- Trivia Quiz / 趣味问答: "trivia quiz", "quiz", "趣味问答", "打开趣味问答"
+- Pantry Tracker / 食材库存: "pantry tracker", "食材库存", "打开食材库存"
+- Sudoku / 数独: "sudoku", "数独", "打开数独"
 
 If the request is ambiguous, match by keywords in `templates.json` (`keywords_en` / `keywords_zh`). If nothing matches, say so plainly and list the closest two templates. Do not invent a template that is not in `templates.json`.
 

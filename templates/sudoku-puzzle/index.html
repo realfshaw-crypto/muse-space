@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sudoku — A Classic 9×9 Number Puzzle | Muse Space</title>
+<meta name="description" content="Sudoku template for Muse Space: a classic 9x9 number puzzle with three difficulty levels, notes, hints and a timer. Bilingual EN/中文.">
+<meta property="og:title" content="Sudoku — A Classic 9×9 Number Puzzle | Muse Space">
+<meta property="og:description" content="Sudoku template for Muse Space: a classic 9x9 number puzzle with three difficulty levels, notes, hints and a timer. Bilingual EN/中文.">
+<meta property="og:type" content="website">
+<style>
+:root {
+  color-scheme: light dark;
+
+  /* ===== Color: core semantic ===== */
+  --color-accent: light-dark(#0064E0, #0171E3);
+  --color-accent-muted: light-dark(#0082FB33, #0082FB3F);
+  --color-on-accent: light-dark(#FFFFFF, #FFFFFF);
+  --color-neutral: light-dark(rgba(5, 54, 89, 0.1), rgba(223, 226, 229, 0.2));
+  --color-background-body: light-dark(#F1F4F7, #111112);
+  --color-background-surface: light-dark(#FFFFFF, #1F1F22);
+  --color-background-card: light-dark(#FFFFFF, #1F1F22);
+  --color-background-popover: light-dark(#FFFFFF, #28292C);
+  --color-background-muted: light-dark(#0536590C, #1111127F);
+  --color-background-inverted: light-dark(#0A1317, #FFFFFF);
+  --color-overlay: light-dark(#01122866, #11111299);
+  --color-overlay-hover: light-dark(#0536590C, #FFFFFF0C);
+  --color-overlay-pressed: light-dark(#05365919, #FFFFFF19);
+
+  /* Text */
+  --color-text-primary: light-dark(#0A1317, #DFE2E5);
+  --color-text-secondary: light-dark(#4E606F, #AAAFB5);
+  --color-text-disabled: light-dark(#A4B0BC, #6F747C);
+  --color-text-accent: light-dark(#0064E0, #3E9EFB);
+  --color-on-dark: light-dark(#FFFFFF, #FFFFFF);
+  --color-on-light: light-dark(#000000, #000000);
+
+  /* Icon（与 text 同值域） */
+  --color-icon-accent: light-dark(#0064E0, #2694FE);
+  --color-icon-primary: light-dark(#0A1317, #DFE2E5);
+  --color-icon-secondary: light-dark(#4E606F, #AAAFB5);
+  --color-icon-disabled: light-dark(#A4B0BC, #6F747C);
+
+  /* Status fills + muted + on-* */
+  --color-info: light-dark(#0064E0, #0064E0);
+  --color-info-muted: light-dark(#0082FB33, #0082FB3F);
+  --color-on-info: light-dark(#FFFFFF, #FFFFFF);
+  --color-success: light-dark(#0D8626, #0D8626);
+  --color-success-muted: light-dark(#0B991F33, #0B991F3F);
+  --color-on-success: light-dark(#FFFFFF, #FFFFFF);
+  --color-error: light-dark(#E3193B, #F5394F);
+  --color-error-muted: light-dark(#E3193B33, #F5394F3F);
+  --color-on-error: light-dark(#FFFFFF, #0A1317);
+  --color-background-error-inverted: light-dark(#AA071E, #E3193B);
+  --color-warning: light-dark(#E9AF08, #F2C00B);
+  --color-warning-muted: light-dark(#E2A40033, #E2A4003F);
+  --color-on-warning: light-dark(#0A1317, #0A1317);
+
+  /* Status text / icon / border（落在页面与卡片面上、对比 >= 4.5:1 的一档） */
+  --color-text-blue: light-dark(#042F97, #AFD7FF);
+  --color-text-green: light-dark(#09441F, #A5F690);
+  --color-text-yellow: light-dark(#753F07, #FBCE03);
+  --color-text-red: light-dark(#7B0210, #FFB2B8);
+  --color-text-info: var(--color-text-blue);
+  --color-text-success: var(--color-text-green);
+  --color-text-warning: var(--color-text-yellow);
+  --color-text-error: var(--color-text-red);
+  --color-icon-info: var(--color-text-info);
+  --color-icon-success: var(--color-text-success);
+  --color-icon-warning: var(--color-text-warning);
+  --color-icon-error: var(--color-text-error);
+  --color-border-info: var(--color-text-info);
+  --color-border-success: var(--color-text-success);
+  --color-border-warning: var(--color-text-warning);
+  --color-border-error: var(--color-text-error);
+  --color-on-info-muted: var(--color-text-blue);
+  --color-on-success-muted: var(--color-text-green);
+  --color-on-warning-muted: var(--color-text-yellow);
+  --color-on-error-muted: var(--color-text-red);
+
+  /* Border / effects */
+  --color-border: light-dark(#05365919, #F2F4F619);
+  --color-border-emphasized: light-dark(#CCD3DB, #494D53);
+  --color-skeleton: light-dark(#CCD3DB, #5A5E66);
+  --color-track: light-dark(#CCD3DB, #5A5E66);
+  --color-shadow: light-dark(rgba(5, 54, 89, 0.1), rgba(0, 0, 0, 0.3));
+  --color-tint-hover: light-dark(black, white);
+
+  /* Hue families: background(33 alpha) / border / icon / text */
+  --color-background-blue: light-dark(#0171E333, #0171E333);
+  --color-border-blue: light-dark(#0064E0, #2694FE);
+  --color-icon-blue: light-dark(#0064E0, #2694FE);
+  --color-background-cyan: light-dark(#03A7D733, #03A7D733);
+  --color-border-cyan: light-dark(#089DD0, #0171A4);
+  --color-icon-cyan: light-dark(#00ACC1, #26C6DA);
+  --color-text-cyan: light-dark(#014975, #A1EEF9);
+  --color-background-gray: light-dark(#0A131733, #666A724C);
+  --color-border-gray: light-dark(#647685, #748695);
+  --color-icon-gray: light-dark(#4E606F, #AAAFB5);
+  --color-text-gray: light-dark(#0A1317, #E7EAED);
+  --color-background-green: light-dark(#24BB5E33, #24BB5E33);
+  --color-border-green: light-dark(#0D8626, #0B991F);
+  --color-icon-green: light-dark(#0D8626, #26A756);
+  --color-background-orange: light-dark(#F2790233, #F2790233);
+  --color-border-orange: light-dark(#EB6E00, #B34A01);
+  --color-icon-orange: light-dark(#E9690B, #FB8C00);
+  --color-text-orange: light-dark(#6B2203, #FDB876);
+  --color-background-pink: light-dark(#E638B333, #E638B333);
+  --color-border-pink: light-dark(#F351C0, #C02294);
+  --color-icon-pink: light-dark(#C2185B, #EC407A);
+  --color-text-pink: light-dark(#650053, #FEADE3);
+  --color-background-purple: light-dark(#7952FF33, #7952FF33);
+  --color-border-purple: light-dark(#9081FF, #7340FE);
+  --color-icon-purple: light-dark(#5B08D8, #7952FF);
+  --color-text-purple: light-dark(#3E0697, #B3B0FE);
+  --color-background-red: light-dark(#E3193B33, #E3193B33);
+  --color-border-red: light-dark(#E3193B, #F5394F);
+  --color-icon-red: light-dark(#D31130, #E3193B);
+  --color-background-teal: light-dark(#0DB7AF33, #0DB7AF33);
+  --color-border-teal: light-dark(#08A3A3, #08767D);
+  --color-icon-teal: light-dark(#009688, #26A69A);
+  --color-text-teal: light-dark(#083943, #40DCCD);
+  --color-background-yellow: light-dark(#E2A40033, #E2A40033);
+  --color-border-yellow: light-dark(#C58600, #B47700);
+  --color-icon-yellow: light-dark(#FBC02D, #FFEE58);
+
+  /* ===== Spacing: 4px 基准、rem 制（随根字号缩放），步进 0..12 ===== */
+  --spacing-0: 0rem;
+  --spacing-0-5: 0.125rem;
+  --spacing-1: 0.25rem;
+  --spacing-1-5: 0.375rem;
+  --spacing-2: 0.5rem;
+  --spacing-3: 0.75rem;
+  --spacing-4: 1rem;
+  --spacing-5: 1.25rem;
+  --spacing-6: 1.5rem;
+  --spacing-7: 1.75rem;
+  --spacing-8: 2rem;
+  --spacing-9: 2.25rem;
+  --spacing-10: 2.5rem;
+  --spacing-11: 2.75rem;
+  --spacing-12: 3rem;
+
+  /* ===== Size: 控件高度 ===== */
+  --size-element-sm: 28px;
+  --size-element-md: 32px;
+  --size-element-lg: 36px;
+
+  /* ===== Border / Focus ===== */
+  --border-width: 1px;
+  --focus-outline-width: 2px;
+  --focus-outline-style: solid;
+  --focus-outline-color: var(--color-accent);
+  --focus-outline-offset: 3px;
+
+  /* ===== Radius（core 默认；neutral 主题的 6/10/12/28 变体不采用） ===== */
+  --radius-none: 0px;
+  --radius-inner: 4px;
+  --radius-element: 8px;
+  --radius-container: 12px;
+  --radius-page: 28px;
+  --radius-chat: 28px;
+  --radius-full: 9999px;
+
+  /* ===== Shadow ===== */
+  --shadow-low: 0px 1px 1px light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), 0px 2px 8px light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2));
+  --shadow-med: 0px 1px 2px light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), 0px 2px 12px light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2));
+  --shadow-high: 0px 2px 2px light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), 0px 8px 24px light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.3));
+  --shadow-inset-hover: inset 0px 0px 0px 2px light-dark(rgba(5, 54, 89, 0.15), rgba(223, 226, 229, 0.2));
+  --shadow-inset-selected: inset 0px 0px 0px 2px rgba(1, 113, 227, 0.5);
+  --shadow-inset-success: inset 0px 0px 0px 2px rgba(38, 167, 86, 0.3);
+  --shadow-inset-warning: inset 0px 0px 0px 2px rgba(226, 164, 0, 0.3);
+  --shadow-inset-error: inset 0px 0px 0px 2px rgba(227, 25, 59, 0.3);
+
+  /* ===== Motion ===== */
+  --duration-fast-min: 130ms;
+  --duration-fast: 175ms;
+  --duration-fast-max: 230ms;
+  --duration-medium-min: 310ms;
+  --duration-medium: 410ms;
+  --duration-medium-max: 550ms;
+  --duration-slow-min: 730ms;
+  --duration-slow: 975ms;
+  --duration-slow-max: 1300ms;
+  --duration-exit: var(--duration-fast);
+  --ease-standard: cubic-bezier(0.24, 1, 0.4, 1);
+  --ease-entrance: cubic-bezier(0.24, 1, 0.4, 1);
+  --ease-move: cubic-bezier(0.24, 1, 0.4, 1);
+  --ease-exit: cubic-bezier(0.3, 0, 0.6, 0.6);
+
+  /* ===== Typography ===== */
+  --font-family-body: "Figtree", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-family-heading: "Figtree", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-family-code: "SF Mono", Monaco, Consolas, monospace;
+
+  /* 几何字阶：round(14 x 1.2^step) */
+  --font-size-4xs: 0.375rem;
+  --font-size-3xs: 0.4375rem;
+  --font-size-2xs: 0.5rem;
+  --font-size-xs: 0.625rem;
+  --font-size-sm: 0.75rem;
+  --font-size-base: 0.875rem;
+  --font-size-lg: 1.0625rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.8125rem;
+  --font-size-4xl: 2.1875rem;
+  --font-size-5xl: 2.625rem;
+
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* 语义字型（size / weight / leading 三件套，组件只许用这一层） */
+  --text-heading-1-size: var(--font-size-2xl); --text-heading-1-weight: var(--font-weight-semibold); --text-heading-1-leading: 1.3333;
+  --text-heading-2-size: var(--font-size-xl); --text-heading-2-weight: var(--font-weight-semibold); --text-heading-2-leading: 1.4;
+  --text-heading-3-size: var(--font-size-lg); --text-heading-3-weight: var(--font-weight-semibold); --text-heading-3-leading: 1.4118;
+  --text-heading-4-size: var(--font-size-base); --text-heading-4-weight: var(--font-weight-semibold); --text-heading-4-leading: 1.4286;
+  --text-heading-5-size: var(--font-size-sm); --text-heading-5-weight: var(--font-weight-semibold); --text-heading-5-leading: 1.6667;
+  --text-heading-6-size: var(--font-size-xs); --text-heading-6-weight: var(--font-weight-semibold); --text-heading-6-leading: 1.6;
+  --text-body-size: var(--font-size-base); --text-body-weight: var(--font-weight-normal); --text-body-leading: 1.4286;
+  --text-large-size: var(--font-size-lg); --text-large-weight: var(--font-weight-semibold); --text-large-leading: 1.4118;
+  --text-label-size: var(--font-size-base); --text-label-weight: var(--font-weight-medium); --text-label-leading: 1.4286;
+  --text-code-size: var(--font-size-base); --text-code-weight: var(--font-weight-normal); --text-code-leading: 1.4286;
+  --text-supporting-size: var(--font-size-sm); --text-supporting-weight: var(--font-weight-normal); --text-supporting-leading: 1.6667;
+  --text-display-1-size: var(--font-size-5xl); --text-display-1-weight: var(--font-weight-normal); --text-display-1-leading: 1.2381;
+  --text-display-2-size: var(--font-size-4xl); --text-display-2-weight: var(--font-weight-normal); --text-display-2-leading: 1.2571;
+  --text-display-3-size: var(--font-size-3xl); --text-display-3-weight: var(--font-weight-normal); --text-display-3-leading: 1.2414;
+}
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--color-background-body);color:var(--color-text-primary);font-family:var(--font-family-body);font-size:var(--text-body-size);font-weight:var(--text-body-weight);line-height:var(--text-body-leading)}
+.wrap{max-width:32rem;margin:0 auto;padding:var(--spacing-6) var(--spacing-4) var(--spacing-12)}
+header.top{display:flex;align-items:flex-start;gap:var(--spacing-3);margin-bottom:var(--spacing-5)}
+.logo{color:var(--color-icon-accent);flex:none;margin-top:var(--spacing-1);animation:floaty var(--duration-slow) var(--ease-standard) infinite alternate}
+@keyframes floaty{from{transform:translateY(0)}to{transform:translateY(calc(var(--spacing-1) * -1))}}
+h1{font-size:var(--text-heading-1-size);font-weight:var(--text-heading-1-weight);line-height:var(--text-heading-1-leading);margin:0}
+.sub{color:var(--color-text-secondary);margin:var(--spacing-1) 0 0}
+.spacer{flex:1}
+.card{background:var(--color-background-card);border:var(--border-width) solid var(--color-border);border-radius:var(--radius-container);padding:var(--spacing-4);box-shadow:var(--shadow-low);margin-bottom:var(--spacing-4)}
+.btn{background:var(--color-accent);color:var(--color-on-accent);border:none;border-radius:var(--radius-element);min-height:var(--size-element-md);padding:0 var(--spacing-4);font-family:inherit;font-size:var(--text-label-size);font-weight:var(--text-label-weight);cursor:pointer;transition:opacity var(--duration-fast) var(--ease-standard)}
+.btn:hover{opacity:.88}
+.btn:disabled{opacity:.45;cursor:default}
+.btn.ghost{background:var(--color-background-muted);color:var(--color-text-primary)}
+.btn.small{min-height:var(--size-element-sm);padding:0 var(--spacing-3);font-size:var(--text-supporting-size)}
+.btn.block{width:100%;min-height:var(--size-element-lg)}
+.btn.on{background:var(--color-accent);color:var(--color-on-accent)}
+.diff{display:flex;gap:var(--spacing-2)}
+.diff .btn{flex:1}
+.diff .btn.on{box-shadow:var(--shadow-inset-selected)}
+.hud{display:flex;align-items:center;gap:var(--spacing-4);flex-wrap:wrap}
+.hud .stat{flex:1;min-width:6rem}
+.hud b{display:block;font-size:var(--text-heading-2-size);font-weight:var(--text-heading-2-weight);line-height:var(--text-heading-2-leading);font-family:var(--font-family-code)}
+.hud span{color:var(--color-text-secondary);font-size:var(--text-supporting-size)}
+.hud .mist{color:var(--color-text-error)}
+.boardwrap{position:relative}
+.board{display:grid;grid-template-columns:repeat(9,1fr);border:var(--focus-outline-width) solid var(--color-border-emphasized);border-radius:var(--radius-element);overflow:hidden;background:var(--color-background-surface)}
+.cell{position:relative;aspect-ratio:1;background:var(--color-background-surface);border:none;border-right:var(--border-width) solid var(--color-border);border-bottom:var(--border-width) solid var(--color-border);font-family:inherit;font-size:var(--font-size-xl);font-weight:var(--font-weight-semibold);color:var(--color-text-accent);cursor:pointer;padding:0;display:flex;align-items:center;justify-content:center;transition:background-color var(--duration-fast) var(--ease-standard)}
+.cell:nth-child(9n){border-right:none}
+.cell:nth-child(n+73){border-bottom:none}
+.cell:nth-child(3n){border-right-width:var(--focus-outline-width);border-right-color:var(--color-border-emphasized)}
+.cell:nth-child(9n+9){border-right:none}
+.cell:nth-child(n+19):nth-child(-n+27),.cell:nth-child(n+46):nth-child(-n+54){border-bottom-width:var(--focus-outline-width);border-bottom-color:var(--color-border-emphasized)}
+.cell.given{color:var(--color-text-primary);cursor:default}
+.cell.peer{background:var(--color-background-muted)}
+.cell.same{background:var(--color-accent-muted)}
+.cell.sel{background:var(--color-accent-muted);box-shadow:var(--shadow-inset-selected)}
+.cell.err{color:var(--color-text-error);animation:shake var(--duration-fast) var(--ease-standard)}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(calc(var(--spacing-0-5) * -1))}75%{transform:translateX(var(--spacing-0-5))}}
+.cell .notes{position:absolute;inset:0;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr);font-size:var(--font-size-xs);font-weight:var(--font-weight-normal);color:var(--color-text-secondary);pointer-events:none}
+.cell .notes span{display:flex;align-items:center;justify-content:center}
+.overlay{position:absolute;inset:0;background:var(--color-overlay);border-radius:var(--radius-element);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:var(--spacing-3);padding:var(--spacing-4);text-align:center;animation:fadein var(--duration-fast) var(--ease-entrance)}
+.overlay h2{font-size:var(--text-heading-2-size);font-weight:var(--text-heading-2-weight);line-height:var(--text-heading-2-leading);margin:0;color:var(--color-on-dark)}
+.overlay p{margin:0;color:var(--color-on-dark);font-size:var(--text-body-size)}
+@keyframes fadein{from{opacity:0}to{opacity:1}}
+.pad{display:grid;grid-template-columns:repeat(9,1fr);gap:var(--spacing-1);margin-top:var(--spacing-4)}
+.pad button{background:var(--color-background-muted);color:var(--color-text-primary);border:var(--border-width) solid var(--color-border);border-radius:var(--radius-element);min-height:var(--size-element-lg);font-family:inherit;font-size:var(--font-size-lg);font-weight:var(--font-weight-semibold);cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.2;transition:opacity var(--duration-fast) var(--ease-standard)}
+.pad button small{font-size:var(--font-size-xs);font-weight:var(--font-weight-normal);color:var(--color-text-secondary)}
+.pad button:disabled{opacity:.4;cursor:default}
+.pad button.selnum{background:var(--color-accent-muted);box-shadow:var(--shadow-inset-selected)}
+.actions{display:flex;gap:var(--spacing-2);flex-wrap:wrap;margin-top:var(--spacing-4)}
+.actions .btn{flex:1;white-space:nowrap}
+.best{color:var(--color-text-secondary);font-size:var(--text-supporting-size);text-align:center;margin-top:var(--spacing-3)}
+.muted{color:var(--color-text-secondary);font-size:var(--text-supporting-size)}
+footer{color:var(--color-text-disabled);font-size:var(--text-supporting-size);text-align:center;margin-top:var(--spacing-6)}
+@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation:none !important;transition:none !important}}
+
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+<span class="logo" aria-hidden="true"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="1"/><path d="M9 3v18M15 3v18M3 9h18M3 15h18"/></svg></span>
+<div><h1>Sudoku</h1><p class="sub" data-i="sub"></p></div>
+<div class="spacer"></div>
+<button class="btn ghost small" id="langBtn" type="button">中文</button>
+</header>
+<main>
+
+<section class="card" aria-label="Difficulty">
+<div class="diff" role="group" aria-label="Difficulty">
+<button class="btn ghost" type="button" data-diff="easy" data-i="easy"></button>
+<button class="btn ghost" type="button" data-diff="medium" data-i="medium"></button>
+<button class="btn ghost" type="button" data-diff="hard" data-i="hard"></button>
+</div>
+</section>
+
+<section class="card" aria-label="Game">
+<div class="hud">
+<div class="stat"><b id="timer">00:00</b><span data-i="time"></span></div>
+<div class="stat"><b id="mistakes">0 / 3</b><span class="mist" data-i="mistakes"></span></div>
+<div class="stat"><b id="hintsLeft">3</b><span data-i="hints"></span></div>
+<button class="btn ghost small" id="pauseBtn" type="button" data-i="pause"></button>
+</div>
+<div class="boardwrap" style="margin-top:var(--spacing-4)">
+<div class="board" id="board" role="grid" aria-label="Sudoku board"></div>
+<div class="overlay" id="overlay" hidden>
+<h2 id="ovTitle"></h2>
+<p id="ovText"></p>
+<button class="btn" id="ovBtn" type="button"></button>
+</div>
+</div>
+<div class="pad" id="pad" aria-label="Number pad"></div>
+<div class="actions">
+<button class="btn ghost" id="notesBtn" type="button" aria-pressed="false" data-i="notes"></button>
+<button class="btn ghost" id="eraseBtn" type="button" data-i="erase"></button>
+<button class="btn ghost" id="hintBtn" type="button" data-i="hint"></button>
+<button class="btn" id="newBtn" type="button" data-i="newGame"></button>
+</div>
+<p class="best" id="bestLine"></p>
+</section>
+</main>
+<footer>Muse Space · Sudoku</footer>
+</div>
+<script>
+
+const KEY='muse-space:sudoku-puzzle';
+const PUZZLES={"easy":[{"puzzle":[0,5,0,9,7,3,0,0,0,0,8,0,0,0,4,6,3,0,0,9,0,0,0,1,4,0,0,9,1,0,7,4,5,2,6,0,3,0,2,0,0,6,5,8,0,0,6,5,3,0,0,0,9,0,0,0,1,6,0,9,3,0,0,5,0,0,0,1,0,9,0,7,8,0,9,4,0,0,0,5,6],"solution":[6,5,4,9,7,3,8,1,2,1,8,7,5,2,4,6,3,9,2,9,3,8,6,1,4,7,5,9,1,8,7,4,5,2,6,3,3,7,2,1,9,6,5,8,4,4,6,5,3,8,2,7,9,1,7,4,1,6,5,9,3,2,8,5,3,6,2,1,8,9,4,7,8,2,9,4,3,7,1,5,6],"givens":40},{"puzzle":[9,3,0,0,5,8,0,2,4,0,5,0,0,1,0,0,0,3,1,0,0,4,0,0,7,0,0,0,0,3,0,4,0,0,7,9,0,0,9,8,0,0,3,0,0,2,7,0,0,0,9,0,4,5,0,2,0,0,6,0,5,0,7,7,6,5,3,0,1,4,9,0,4,0,0,2,7,5,0,0,8],"solution":[9,3,7,6,5,8,1,2,4,6,5,4,7,1,2,9,8,3,1,8,2,4,9,3,7,5,6,8,1,3,5,4,6,2,7,9,5,4,9,8,2,7,3,6,1,2,7,6,1,3,9,8,4,5,3,2,8,9,6,4,5,1,7,7,6,5,3,8,1,4,9,2,4,9,1,2,7,5,6,3,8],"givens":40}],"medium":[{"puzzle":[6,7,0,8,0,0,0,0,4,0,5,8,0,2,0,0,0,9,1,0,0,0,0,6,8,2,0,0,3,5,0,6,0,0,0,0,0,6,9,3,0,0,0,4,0,0,0,0,0,0,0,0,0,0,4,8,0,0,0,7,0,1,2,0,1,0,0,0,0,3,5,0,0,2,6,0,9,0,0,7,8],"solution":[6,7,2,8,1,9,5,3,4,3,5,8,7,2,4,1,6,9,1,9,4,5,3,6,8,2,7,8,3,5,4,6,2,7,9,1,7,6,9,3,8,1,2,4,5,2,4,1,9,7,5,6,8,3,4,8,3,6,5,7,9,1,2,9,1,7,2,4,8,3,5,6,5,2,6,1,9,3,4,7,8],"givens":32},{"puzzle":[1,7,8,0,9,5,0,0,4,0,0,0,0,4,0,0,1,0,0,4,6,2,0,0,9,0,8,0,0,3,0,0,0,0,2,9,2,0,0,0,0,0,4,0,0,0,8,7,0,0,0,5,0,0,5,3,0,0,0,1,0,4,2,0,0,2,0,0,9,6,0,0,0,0,0,0,0,8,1,9,0],"solution":[1,7,8,3,9,5,2,6,4,9,2,5,8,4,6,3,1,7,3,4,6,2,1,7,9,5,8,6,5,3,1,8,4,7,2,9,2,9,1,7,5,3,4,8,6,4,8,7,9,6,2,5,3,1,5,3,9,6,7,1,8,4,2,8,1,2,4,3,9,6,7,5,7,6,4,5,2,8,1,9,3],"givens":32}],"hard":[{"puzzle":[0,0,0,0,5,0,6,8,0,0,4,8,0,7,0,0,0,3,1,0,2,0,0,0,0,0,0,0,9,0,0,8,7,0,0,0,0,0,0,0,0,1,0,0,0,4,5,0,0,0,9,0,6,0,0,0,0,0,0,6,0,3,0,9,0,0,8,0,0,0,4,0,6,8,0,9,0,0,0,1,0],"solution":[7,3,9,1,5,4,6,8,2,5,4,8,6,7,2,1,9,3,1,6,2,3,9,8,5,7,4,3,9,6,5,8,7,4,2,1,8,2,7,4,6,1,3,5,9,4,5,1,2,3,9,8,6,7,2,1,5,7,4,6,9,3,8,9,7,3,8,1,5,2,4,6,6,8,4,9,2,3,7,1,5],"givens":26},{"puzzle":[0,4,0,6,0,0,5,0,0,0,0,0,0,3,7,0,0,1,7,5,2,0,0,1,0,0,6,0,0,0,7,0,9,0,0,0,0,0,7,1,0,0,0,0,8,0,0,5,0,0,0,0,0,0,0,0,0,8,0,0,0,0,4,8,0,0,0,0,5,1,0,0,0,0,1,0,9,2,7,0,0],"solution":[1,4,3,6,2,8,5,9,7,9,8,6,5,3,7,2,4,1,7,5,2,9,4,1,8,3,6,4,3,8,7,5,9,6,1,2,2,9,7,1,6,3,4,5,8,6,1,5,2,8,4,9,7,3,5,7,9,8,1,6,3,2,4,8,2,4,3,7,5,1,6,9,3,6,1,4,9,2,7,8,5],"givens":26}]};
+
+let lang='en';
+const t=k=>(T[lang]&&T[lang][k])||T.en[k]||k;
+const T={en:{sub:'Fill every row, column and 3×3 box with 1–9. No repeats.',easy:'Easy',medium:'Medium',hard:'Hard',time:'Time',mistakes:'Mistakes',hints:'Hints left',pause:'Pause',resume:'Resume',notes:'Notes: Off',notesOn:'Notes: On',erase:'Erase',hint:'Hint',newGame:'New Game',youWin:'Puzzle solved!',winText:'You finished in {time}.',bestTime:'Best time ({diff}): {time}',noBest:'No best time yet for {diff}.',gameOver:'Game over',overText:'Three mistakes. Take a breath and try again.',retry:'Try again',paused:'Paused',pausedText:'Take your time. The timer is stopped.',resumeBtn:'Resume',selectCell:'Select a cell first.',noHints:'No hints left.',diffName_easy:'Easy',diffName_medium:'Medium',diffName_hard:'Hard'},
+zh:{sub:'每行、每列、每个 3×3 宫都填满 1–9，不重复。',easy:'简单',medium:'中等',hard:'困难',time:'用时',mistakes:'错误',hints:'剩余提示',pause:'暂停',resume:'继续',notes:'笔记：关',notesOn:'笔记：开',erase:'擦除',hint:'提示',newGame:'新一局',youWin:'恭喜完成！',winText:'你用了 {time} 完成本局。',bestTime:'{diff} 最佳成绩：{time}',noBest:'{diff} 还没有最佳成绩。',gameOver:'游戏结束',overText:'已经错了 3 次。缓一缓，再试一次。',retry:'再试一次',paused:'已暂停',pausedText:'慢慢来，计时已停止。',resumeBtn:'继续',selectCell:'请先选一个格子。',noHints:'提示已用完。',diffName_easy:'简单',diffName_medium:'中等',diffName_hard:'困难'}};
+
+const emptyState=()=>({lang:'en',diff:'easy',idx:0,values:null,notes:null,mistakes:0,hintsUsed:0,elapsed:0,status:'playing',best:{easy:null,medium:null,hard:null}});
+let S;
+try{S=JSON.parse(localStorage.getItem(KEY))}catch(e){S=null}
+if(!S||!PUZZLES[S.diff]||!Array.isArray(PUZZLES[S.diff])||!PUZZLES[S.diff][S.idx]||!Array.isArray(S.values)||S.values.length!==81){S=emptyState()}
+if(!S.best)S.best={easy:null,medium:null,hard:null};
+if(!Array.isArray(S.notes)||S.notes.length!==81)S.notes=Array.from({length:81},()=>[]);
+if(!S.values)S.values=PUZZLES[S.diff][S.idx].puzzle.slice();
+lang=S.lang||'en';
+let sel=-1,notesMode=false,timerId=null;
+
+function save(){S.lang=lang;try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+function fmt(s){s=Math.max(0,Math.floor(s||0));return String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0')}
+function puzzle(){return PUZZLES[S.diff][S.idx]}
+function solution(){return puzzle().solution}
+function isGiven(i){return puzzle().puzzle[i]!==0}
+function startTimer(){stopTimer();if(S.status==='playing')timerId=setInterval(()=>{S.elapsed++;document.getElementById('timer').textContent=fmt(S.elapsed);if(S.elapsed%5===0)save()},1000)}
+function stopTimer(){if(timerId){clearInterval(timerId);timerId=null}}
+function peers(i){const r=Math.floor(i/9),c=i%9,br=Math.floor(r/3)*3,bc=Math.floor(c/3)*3,out=new Set();
+ for(let k=0;k<9;k++){out.add(r*9+k);out.add(k*9+c)}
+ for(let dr=0;dr<3;dr++)for(let dc=0;dc<3;dc++)out.add((br+dr)*9+bc+dc);
+ out.delete(i);return out}
+function remainingCounts(){const c=Array(10).fill(9);for(let i=0;i<81;i++){const v=S.values[i];if(v)c[v]--}return c}
+function conflicts(i,v){for(const j of peers(i))if(S.values[j]===v)return true;return false}
+
+function buildBoard(){
+ const b=document.getElementById('board');b.innerHTML='';
+ for(let i=0;i<81;i++){
+  const d=document.createElement('button');d.type='button';d.className='cell';d.setAttribute('role','gridcell');
+  d.dataset.i=i;
+  d.addEventListener('click',()=>{if(S.status!=='playing')return;sel=i;render()});
+  b.appendChild(d);}
+}
+function buildPad(){
+ const p=document.getElementById('pad');p.innerHTML='';
+ for(let n=1;n<=9;n++){
+  const b=document.createElement('button');b.type='button';b.dataset.n=n;
+  b.addEventListener('click',()=>enterDigit(n));
+  p.appendChild(b);}
+}
+function render(){
+ document.getElementById('timer').textContent=fmt(S.elapsed);
+ document.getElementById('mistakes').textContent=S.mistakes+' / 3';
+ document.getElementById('hintsLeft').textContent=Math.max(0,3-S.hintsUsed);
+ document.getElementById('pauseBtn').textContent=S.status==='paused'?t('resume'):t('pause');
+ document.getElementById('pauseBtn').disabled=S.status==='won'||S.status==='over';
+ document.getElementById('notesBtn').textContent=notesMode?t('notesOn'):t('notes');
+ document.getElementById('notesBtn').setAttribute('aria-pressed',String(notesMode));
+ document.getElementById('notesBtn').classList.toggle('on',notesMode);
+ document.getElementById('hintBtn').disabled=S.status!=='playing'||S.hintsUsed>=3;
+ document.getElementById('eraseBtn').disabled=S.status!=='playing';
+ document.querySelectorAll('[data-diff]').forEach(b=>b.classList.toggle('on',b.dataset.diff===S.diff));
+ const counts=remainingCounts();
+ const selVal=sel>=0?S.values[sel]:0;
+ const peerSet=sel>=0?peers(sel):new Set();
+ document.querySelectorAll('#board .cell').forEach(el=>{
+  const i=+el.dataset.i,v=S.values[i];
+  el.classList.toggle('given',isGiven(i));
+  el.classList.toggle('peer',peerSet.has(i));
+  el.classList.toggle('same',selVal>0&&v===selVal);
+  el.classList.toggle('sel',i===sel);
+  el.classList.toggle('err',v!==0&&!isGiven(i)&&v!==solution()[i]);
+  if(v){el.textContent=String(v)}
+  else if(S.notes[i].length){el.innerHTML='<span class="notes">'+[1,2,3,4,5,6,7,8,9].map(n=>'<span>'+(S.notes[i].includes(n)?n:'')+'</span>').join('')+'</span>'}
+  else{el.textContent=''}
+ });
+ document.querySelectorAll('#pad button').forEach(b=>{
+  const n=+b.dataset.n;
+  b.innerHTML=n+'<small>'+counts[n]+'</small>';
+  b.disabled=S.status!=='playing'||counts[n]<=0;
+  b.classList.toggle('selnum',n===selVal&&selVal>0);
+ });
+ const best=S.best[S.diff];
+ document.getElementById('bestLine').textContent=best!=null?t('bestTime').replace('{diff}',t('diffName_'+S.diff)).replace('{time}',fmt(best)):t('noBest').replace('{diff}',t('diffName_'+S.diff));
+}
+function showOverlay(title,text,btn){document.getElementById('ovTitle').textContent=title;document.getElementById('ovText').textContent=text;document.getElementById('ovBtn').textContent=btn;document.getElementById('overlay').hidden=false}
+function hideOverlay(){document.getElementById('overlay').hidden=true}
+function checkWin(){if(S.values.every((v,i)=>v===solution()[i])){S.status='won';stopTimer();save();
+ if(S.best[S.diff]==null||S.elapsed<S.best[S.diff]){S.best[S.diff]=S.elapsed;save()}
+ showOverlay(t('youWin'),t('winText').replace('{time}',fmt(S.elapsed)),t('newGame'));render();return true}return false}
+function gameOver(){S.status='over';stopTimer();save();showOverlay(t('gameOver'),t('overText'),t('retry'));render()}
+function enterDigit(n){
+ if(S.status!=='playing')return;
+ if(sel<0||isGiven(sel))return
+ if(notesMode){
+  const ns=S.notes[sel];
+  S.notes[sel]=ns.includes(n)?ns.filter(x=>x!==n):[...ns,n].sort((a,b)=>a-b);
+  save();render();return}
+ if(S.values[sel]===n){return}
+ if(n!==solution()[sel]){
+  S.values[sel]=n;S.mistakes++;save();render();
+  const el=document.querySelector('.cell[data-i="'+sel+'"]');if(el){el.classList.remove('err');void el.offsetWidth;el.classList.add('err')}
+  if(S.mistakes>=3)gameOver();
+  return}
+ S.values[sel]=n;S.notes[sel]=[];
+ for(const j of peers(sel)){if(S.notes[j].includes(n))S.notes[j]=S.notes[j].filter(x=>x!==n)}
+ save();render();checkWin();
+}
+function erase(){
+ if(S.status!=='playing'||sel<0||isGiven(sel))return;
+ S.values[sel]=0;S.notes[sel]=[];save();render();
+}
+function hint(){
+ if(S.status!=='playing')return;
+ if(S.hintsUsed>=3){return}
+ let target=sel>=0&&!isGiven(sel)&&S.values[sel]===0?sel:-1;
+ if(target<0){const empt=[];for(let i=0;i<81;i++)if(!isGiven(i)&&S.values[i]===0)empt.push(i);
+  if(!empt.length)return;
+  target=empt[Math.floor(Math.random()*empt.length)]}
+ S.values[target]=solution()[target];S.notes[target]=[];S.hintsUsed++;
+ for(const j of peers(target)){const n=solution()[target];if(S.notes[j].includes(n))S.notes[j]=S.notes[j].filter(x=>x!==n)}
+ sel=target;save();render();checkWin();
+}
+function newGame(diff,idx){
+ if(diff)S.diff=diff;
+ S.idx=idx!=null?idx:(S.idx+1)%PUZZLES[S.diff].length;
+ S.values=PUZZLES[S.diff][S.idx].puzzle.slice();
+ S.notes=Array.from({length:81},()=>[]);
+ S.mistakes=0;S.hintsUsed=0;S.elapsed=0;S.status='playing';
+ sel=-1;hideOverlay();save();render();startTimer();
+}
+function togglePause(){
+ if(S.status==='playing'){S.status='paused';stopTimer();save();showOverlay(t('paused'),t('pausedText'),t('resumeBtn'));render()}
+ else if(S.status==='paused'){S.status='playing';hideOverlay();save();render();startTimer()}
+}
+function applyLang(){
+ document.querySelectorAll('[data-i]').forEach(el=>{el.textContent=t(el.dataset.i)});
+ document.getElementById('langBtn').textContent=lang==='en'?'中文':'EN';
+ render();
+}
+document.getElementById('langBtn').addEventListener('click',()=>{lang=lang==='en'?'zh':'en';save();applyLang()});
+document.querySelectorAll('[data-diff]').forEach(b=>b.addEventListener('click',()=>{if(b.dataset.diff!==S.diff)newGame(b.dataset.diff,0)}));
+document.getElementById('notesBtn').addEventListener('click',()=>{notesMode=!notesMode;render()});
+document.getElementById('eraseBtn').addEventListener('click',erase);
+document.getElementById('hintBtn').addEventListener('click',hint);
+document.getElementById('newBtn').addEventListener('click',()=>newGame());
+document.getElementById('pauseBtn').addEventListener('click',togglePause);
+document.getElementById('ovBtn').addEventListener('click',()=>{
+ if(S.status==='paused'){togglePause();return}
+ newGame();
+});
+document.addEventListener('keydown',e=>{
+ if(S.status!=='playing')return;
+ if(/^[1-9]$/.test(e.key)){enterDigit(+e.key);return}
+ if(e.key==='Backspace'||e.key==='Delete'){erase();return}
+ if(sel<0)return;
+ const r=Math.floor(sel/9),c=sel%9;
+ if(e.key==='ArrowUp'&&r>0)sel-=9;
+ else if(e.key==='ArrowDown'&&r<8)sel+=9;
+ else if(e.key==='ArrowLeft'&&c>0)sel-=1;
+ else if(e.key==='ArrowRight'&&c<8)sel+=1;
+ else return;
+ e.preventDefault();render();
+});
+buildBoard();buildPad();
+if(S.status==='paused'){S.status='playing'}
+if(S.status==='won'||S.status==='over'){/* keep final board visible; overlay re-shown below */}
+if(S.status==='won'){showOverlay(t('youWin'),t('winText').replace('{time}',fmt(S.elapsed)),t('newGame'))}
+if(S.status==='over'){showOverlay(t('gameOver'),t('overText'),t('retry'))}
+save();applyLang();
+if(S.status==='playing')startTimer();
+
+</script>
+</body>
+</html>

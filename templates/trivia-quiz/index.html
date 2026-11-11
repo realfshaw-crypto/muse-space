@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trivia Quiz — Test Your Knowledge in 10 Quick Rounds | Muse Space</title>
+<meta name="description" content="Trivia Quiz template for Muse Space: 24 questions across General, Science, History and Food, with a timer, score and streak. Bilingual EN/中文.">
+<meta property="og:title" content="Trivia Quiz — Test Your Knowledge in 10 Quick Rounds | Muse Space">
+<meta property="og:description" content="Trivia Quiz template for Muse Space: 24 questions across General, Science, History and Food, with a timer, score and streak. Bilingual EN/中文.">
+<meta property="og:type" content="website">
+<style>
+:root {
+  color-scheme: light dark;
+
+  /* ===== Color: core semantic ===== */
+  --color-accent: light-dark(#0064E0, #0171E3);
+  --color-accent-muted: light-dark(#0082FB33, #0082FB3F);
+  --color-on-accent: light-dark(#FFFFFF, #FFFFFF);
+  --color-neutral: light-dark(rgba(5, 54, 89, 0.1), rgba(223, 226, 229, 0.2));
+  --color-background-body: light-dark(#F1F4F7, #111112);
+  --color-background-surface: light-dark(#FFFFFF, #1F1F22);
+  --color-background-card: light-dark(#FFFFFF, #1F1F22);
+  --color-background-popover: light-dark(#FFFFFF, #28292C);
+  --color-background-muted: light-dark(#0536590C, #1111127F);
+  --color-background-inverted: light-dark(#0A1317, #FFFFFF);
+  --color-overlay: light-dark(#01122866, #11111299);
+  --color-overlay-hover: light-dark(#0536590C, #FFFFFF0C);
+  --color-overlay-pressed: light-dark(#05365919, #FFFFFF19);
+
+  /* Text */
+  --color-text-primary: light-dark(#0A1317, #DFE2E5);
+  --color-text-secondary: light-dark(#4E606F, #AAAFB5);
+  --color-text-disabled: light-dark(#A4B0BC, #6F747C);
+  --color-text-accent: light-dark(#0064E0, #3E9EFB);
+  --color-on-dark: light-dark(#FFFFFF, #FFFFFF);
+  --color-on-light: light-dark(#000000, #000000);
+
+  /* Icon（与 text 同值域） */
+  --color-icon-accent: light-dark(#0064E0, #2694FE);
+  --color-icon-primary: light-dark(#0A1317, #DFE2E5);
+  --color-icon-secondary: light-dark(#4E606F, #AAAFB5);
+  --color-icon-disabled: light-dark(#A4B0BC, #6F747C);
+
+  /* Status fills + muted + on-* */
+  --color-info: light-dark(#0064E0, #0064E0);
+  --color-info-muted: light-dark(#0082FB33, #0082FB3F);
+  --color-on-info: light-dark(#FFFFFF, #FFFFFF);
+  --color-success: light-dark(#0D8626, #0D8626);
+  --color-success-muted: light-dark(#0B991F33, #0B991F3F);
+  --color-on-success: light-dark(#FFFFFF, #FFFFFF);
+  --color-error: light-dark(#E3193B, #F5394F);
+  --color-error-muted: light-dark(#E3193B33, #F5394F3F);
+  --color-on-error: light-dark(#FFFFFF, #0A1317);
+  --color-background-error-inverted: light-dark(#AA071E, #E3193B);
+  --color-warning: light-dark(#E9AF08, #F2C00B);
+  --color-warning-muted: light-dark(#E2A40033, #E2A4003F);
+  --color-on-warning: light-dark(#0A1317, #0A1317);
+
+  /* Status text / icon / border（落在页面与卡片面上、对比 >= 4.5:1 的一档） */
+  --color-text-blue: light-dark(#042F97, #AFD7FF);
+  --color-text-green: light-dark(#09441F, #A5F690);
+  --color-text-yellow: light-dark(#753F07, #FBCE03);
+  --color-text-red: light-dark(#7B0210, #FFB2B8);
+  --color-text-info: var(--color-text-blue);
+  --color-text-success: var(--color-text-green);
+  --color-text-warning: var(--color-text-yellow);
+  --color-text-error: var(--color-text-red);
+  --color-icon-info: var(--color-text-info);
+  --color-icon-success: var(--color-text-success);
+  --color-icon-warning: var(--color-text-warning);
+  --color-icon-error: var(--color-text-error);
+  --color-border-info: var(--color-text-info);
+  --color-border-success: var(--color-text-success);
+  --color-border-warning: var(--color-text-warning);
+  --color-border-error: var(--color-text-error);
+  --color-on-info-muted: var(--color-text-blue);
+  --color-on-success-muted: var(--color-text-green);
+  --color-on-warning-muted: var(--color-text-yellow);
+  --color-on-error-muted: var(--color-text-red);
+
+  /* Border / effects */
+  --color-border: light-dark(#05365919, #F2F4F619);
+  --color-border-emphasized: light-dark(#CCD3DB, #494D53);
+  --color-skeleton: light-dark(#CCD3DB, #5A5E66);
+  --color-track: light-dark(#CCD3DB, #5A5E66);
+  --color-shadow: light-dark(rgba(5, 54, 89, 0.1), rgba(0, 0, 0, 0.3));
+  --color-tint-hover: light-dark(black, white);
+
+  /* Hue families: background(33 alpha) / border / icon / text */
+  --color-background-blue: light-dark(#0171E333, #0171E333);
+  --color-border-blue: light-dark(#0064E0, #2694FE);
+  --color-icon-blue: light-dark(#0064E0, #2694FE);
+  --color-background-cyan: light-dark(#03A7D733, #03A7D733);
+  --color-border-cyan: light-dark(#089DD0, #0171A4);
+  --color-icon-cyan: light-dark(#00ACC1, #26C6DA);
+  --color-text-cyan: light-dark(#014975, #A1EEF9);
+  --color-background-gray: light-dark(#0A131733, #666A724C);
+  --color-border-gray: light-dark(#647685, #748695);
+  --color-icon-gray: light-dark(#4E606F, #AAAFB5);
+  --color-text-gray: light-dark(#0A1317, #E7EAED);
+  --color-background-green: light-dark(#24BB5E33, #24BB5E33);
+  --color-border-green: light-dark(#0D8626, #0B991F);
+  --color-icon-green: light-dark(#0D8626, #26A756);
+  --color-background-orange: light-dark(#F2790233, #F2790233);
+  --color-border-orange: light-dark(#EB6E00, #B34A01);
+  --color-icon-orange: light-dark(#E9690B, #FB8C00);
+  --color-text-orange: light-dark(#6B2203, #FDB876);
+  --color-background-pink: light-dark(#E638B333, #E638B333);
+  --color-border-pink: light-dark(#F351C0, #C02294);
+  --color-icon-pink: light-dark(#C2185B, #EC407A);
+  --color-text-pink: light-dark(#650053, #FEADE3);
+  --color-background-purple: light-dark(#7952FF33, #7952FF33);
+  --color-border-purple: light-dark(#9081FF, #7340FE);
+  --color-icon-purple: light-dark(#5B08D8, #7952FF);
+  --color-text-purple: light-dark(#3E0697, #B3B0FE);
+  --color-background-red: light-dark(#E3193B33, #E3193B33);
+  --color-border-red: light-dark(#E3193B, #F5394F);
+  --color-icon-red: light-dark(#D31130, #E3193B);
+  --color-background-teal: light-dark(#0DB7AF33, #0DB7AF33);
+  --color-border-teal: light-dark(#08A3A3, #08767D);
+  --color-icon-teal: light-dark(#009688, #26A69A);
+  --color-text-teal: light-dark(#083943, #40DCCD);
+  --color-background-yellow: light-dark(#E2A40033, #E2A40033);
+  --color-border-yellow: light-dark(#C58600, #B47700);
+  --color-icon-yellow: light-dark(#FBC02D, #FFEE58);
+
+  /* ===== Spacing: 4px 基准、rem 制（随根字号缩放），步进 0..12 ===== */
+  --spacing-0: 0rem;
+  --spacing-0-5: 0.125rem;
+  --spacing-1: 0.25rem;
+  --spacing-1-5: 0.375rem;
+  --spacing-2: 0.5rem;
+  --spacing-3: 0.75rem;
+  --spacing-4: 1rem;
+  --spacing-5: 1.25rem;
+  --spacing-6: 1.5rem;
+  --spacing-7: 1.75rem;
+  --spacing-8: 2rem;
+  --spacing-9: 2.25rem;
+  --spacing-10: 2.5rem;
+  --spacing-11: 2.75rem;
+  --spacing-12: 3rem;
+
+  /* ===== Size: 控件高度 ===== */
+  --size-element-sm: 28px;
+  --size-element-md: 32px;
+  --size-element-lg: 36px;
+
+  /* ===== Border / Focus ===== */
+  --border-width: 1px;
+  --focus-outline-width: 2px;
+  --focus-outline-style: solid;
+  --focus-outline-color: var(--color-accent);
+  --focus-outline-offset: 3px;
+
+  /* ===== Radius（core 默认；neutral 主题的 6/10/12/28 变体不采用） ===== */
+  --radius-none: 0px;
+  --radius-inner: 4px;
+  --radius-element: 8px;
+  --radius-container: 12px;
+  --radius-page: 28px;
+  --radius-chat: 28px;
+  --radius-full: 9999px;
+
+  /* ===== Shadow ===== */
+  --shadow-low: 0px 1px 1px light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), 0px 2px 8px light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2));
+  --shadow-med: 0px 1px 2px light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), 0px 2px 12px light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2));
+  --shadow-high: 0px 2px 2px light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), 0px 8px 24px light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.3));
+  --shadow-inset-hover: inset 0px 0px 0px 2px light-dark(rgba(5, 54, 89, 0.15), rgba(223, 226, 229, 0.2));
+  --shadow-inset-selected: inset 0px 0px 0px 2px rgba(1, 113, 227, 0.5);
+  --shadow-inset-success: inset 0px 0px 0px 2px rgba(38, 167, 86, 0.3);
+  --shadow-inset-warning: inset 0px 0px 0px 2px rgba(226, 164, 0, 0.3);
+  --shadow-inset-error: inset 0px 0px 0px 2px rgba(227, 25, 59, 0.3);
+
+  /* ===== Motion ===== */
+  --duration-fast-min: 130ms;
+  --duration-fast: 175ms;
+  --duration-fast-max: 230ms;
+  --duration-medium-min: 310ms;
+  --duration-medium: 410ms;
+  --duration-medium-max: 550ms;
+  --duration-slow-min: 730ms;
+  --duration-slow: 975ms;
+  --duration-slow-max: 1300ms;
+  --duration-exit: var(--duration-fast);
+  --ease-standard: cubic-bezier(0.24, 1, 0.4, 1);
+  --ease-entrance: cubic-bezier(0.24, 1, 0.4, 1);
+  --ease-move: cubic-bezier(0.24, 1, 0.4, 1);
+  --ease-exit: cubic-bezier(0.3, 0, 0.6, 0.6);
+
+  /* ===== Typography ===== */
+  --font-family-body: "Figtree", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-family-heading: "Figtree", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-family-code: "SF Mono", Monaco, Consolas, monospace;
+
+  /* 几何字阶：round(14 x 1.2^step) */
+  --font-size-4xs: 0.375rem;
+  --font-size-3xs: 0.4375rem;
+  --font-size-2xs: 0.5rem;
+  --font-size-xs: 0.625rem;
+  --font-size-sm: 0.75rem;
+  --font-size-base: 0.875rem;
+  --font-size-lg: 1.0625rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.8125rem;
+  --font-size-4xl: 2.1875rem;
+  --font-size-5xl: 2.625rem;
+
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* 语义字型（size / weight / leading 三件套，组件只许用这一层） */
+  --text-heading-1-size: var(--font-size-2xl); --text-heading-1-weight: var(--font-weight-semibold); --text-heading-1-leading: 1.3333;
+  --text-heading-2-size: var(--font-size-xl); --text-heading-2-weight: var(--font-weight-semibold); --text-heading-2-leading: 1.4;
+  --text-heading-3-size: var(--font-size-lg); --text-heading-3-weight: var(--font-weight-semibold); --text-heading-3-leading: 1.4118;
+  --text-heading-4-size: var(--font-size-base); --text-heading-4-weight: var(--font-weight-semibold); --text-heading-4-leading: 1.4286;
+  --text-heading-5-size: var(--font-size-sm); --text-heading-5-weight: var(--font-weight-semibold); --text-heading-5-leading: 1.6667;
+  --text-heading-6-size: var(--font-size-xs); --text-heading-6-weight: var(--font-weight-semibold); --text-heading-6-leading: 1.6;
+  --text-body-size: var(--font-size-base); --text-body-weight: var(--font-weight-normal); --text-body-leading: 1.4286;
+  --text-large-size: var(--font-size-lg); --text-large-weight: var(--font-weight-semibold); --text-large-leading: 1.4118;
+  --text-label-size: var(--font-size-base); --text-label-weight: var(--font-weight-medium); --text-label-leading: 1.4286;
+  --text-code-size: var(--font-size-base); --text-code-weight: var(--font-weight-normal); --text-code-leading: 1.4286;
+  --text-supporting-size: var(--font-size-sm); --text-supporting-weight: var(--font-weight-normal); --text-supporting-leading: 1.6667;
+  --text-display-1-size: var(--font-size-5xl); --text-display-1-weight: var(--font-weight-normal); --text-display-1-leading: 1.2381;
+  --text-display-2-size: var(--font-size-4xl); --text-display-2-weight: var(--font-weight-normal); --text-display-2-leading: 1.2571;
+  --text-display-3-size: var(--font-size-3xl); --text-display-3-weight: var(--font-weight-normal); --text-display-3-leading: 1.2414;
+}
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--color-background-body);color:var(--color-text-primary);font-family:var(--font-family-body);font-size:var(--text-body-size);font-weight:var(--text-body-weight);line-height:var(--text-body-leading)}
+.wrap{max-width:46rem;margin:0 auto;padding:var(--spacing-6) var(--spacing-4) var(--spacing-12)}
+header.top{display:flex;align-items:flex-start;gap:var(--spacing-3);margin-bottom:var(--spacing-5)}
+.logo{color:var(--color-icon-accent);flex:none;margin-top:var(--spacing-1);animation:floaty var(--duration-slow) var(--ease-standard) infinite alternate}
+@keyframes floaty{from{transform:translateY(0)}to{transform:translateY(calc(var(--spacing-1) * -1))}}
+h1{font-size:var(--text-heading-1-size);font-weight:var(--text-heading-1-weight);line-height:var(--text-heading-1-leading);margin:0}
+h2{font-size:var(--text-heading-3-size);font-weight:var(--text-heading-3-weight);line-height:var(--text-heading-3-leading);margin:0 0 var(--spacing-3)}
+.sub{color:var(--color-text-secondary);margin:var(--spacing-1) 0 0}
+.spacer{flex:1}
+.card{background:var(--color-background-card);border:var(--border-width) solid var(--color-border);border-radius:var(--radius-container);padding:var(--spacing-4);box-shadow:var(--shadow-low);margin-bottom:var(--spacing-4)}
+.btn{background:var(--color-accent);color:var(--color-on-accent);border:none;border-radius:var(--radius-element);min-height:var(--size-element-md);padding:0 var(--spacing-4);font-family:inherit;font-size:var(--text-label-size);font-weight:var(--text-label-weight);cursor:pointer;transition:opacity var(--duration-fast) var(--ease-standard)}
+.btn:hover{opacity:.88}
+.btn.ghost{background:var(--color-background-muted);color:var(--color-text-primary)}
+.btn.small{min-height:var(--size-element-sm);padding:0 var(--spacing-3);font-size:var(--text-supporting-size)}
+.btn.block{width:100%;min-height:var(--size-element-lg)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(9rem,1fr));gap:var(--spacing-3);margin-bottom:var(--spacing-4)}
+.stat{background:var(--color-background-card);border:var(--border-width) solid var(--color-border);border-radius:var(--radius-container);padding:var(--spacing-3) var(--spacing-4);box-shadow:var(--shadow-low)}
+.stat b{display:block;font-size:var(--text-heading-2-size);font-weight:var(--text-heading-2-weight);line-height:var(--text-heading-2-leading)}
+.stat span{color:var(--color-text-secondary);font-size:var(--text-supporting-size)}
+.muted{color:var(--color-text-secondary);font-size:var(--text-supporting-size)}
+.strong{font-weight:var(--font-weight-semibold)}
+.badge{display:inline-block;padding:var(--spacing-0-5) var(--spacing-2);border-radius:var(--radius-full);font-size:var(--text-supporting-size);background:var(--color-accent-muted);color:var(--color-text-accent)}
+footer{color:var(--color-text-disabled);font-size:var(--text-supporting-size);text-align:center;margin-top:var(--spacing-6)}
+.catrow{display:flex;flex-wrap:wrap;gap:var(--spacing-2);margin-bottom:var(--spacing-4)}
+.chip{background:var(--color-background-muted);color:var(--color-text-primary);border:var(--border-width) solid var(--color-border-emphasized);border-radius:var(--radius-full);min-height:var(--size-element-md);padding:0 var(--spacing-4);font-family:inherit;font-size:var(--text-label-size);font-weight:var(--text-label-weight);cursor:pointer;transition:background var(--duration-fast) var(--ease-standard),color var(--duration-fast) var(--ease-standard)}
+.chip.on{background:var(--color-accent);color:var(--color-on-accent);border-color:transparent}
+.qmeta{display:flex;justify-content:space-between;gap:var(--spacing-3);color:var(--color-text-secondary);font-size:var(--text-supporting-size);margin-bottom:var(--spacing-2)}
+.tbar{height:var(--spacing-2);background:var(--color-track);border-radius:var(--radius-full);overflow:hidden;margin-bottom:var(--spacing-4)}
+.tbar>i{display:block;height:100%;width:100%;background:var(--color-accent);border-radius:var(--radius-full)}
+.tbar>i.low{background:var(--color-error)}
+.qtext{font-size:var(--text-heading-2-size);font-weight:var(--text-heading-2-weight);line-height:var(--text-heading-2-leading);margin:0 0 var(--spacing-4);animation:fadein var(--duration-fast) var(--ease-entrance)}
+.opts{display:grid;gap:var(--spacing-2)}
+@media(min-width:40rem){.opts{grid-template-columns:1fr 1fr}}
+.opt{display:flex;align-items:center;gap:var(--spacing-3);width:100%;text-align:left;background:var(--color-background-surface);color:var(--color-text-primary);border:var(--border-width) solid var(--color-border-emphasized);border-radius:var(--radius-element);min-height:var(--size-element-lg);padding:var(--spacing-2) var(--spacing-3);font-family:inherit;font-size:var(--text-body-size);cursor:pointer;animation:fadein var(--duration-fast) var(--ease-entrance)}
+.opt:hover{box-shadow:var(--shadow-inset-hover)}
+.opt:disabled{cursor:default}
+.opt .key{flex:none;display:flex;align-items:center;justify-content:center;width:var(--size-element-sm);height:var(--size-element-sm);border-radius:var(--radius-full);background:var(--color-background-muted);color:var(--color-text-secondary);font-size:var(--text-supporting-size);font-weight:var(--font-weight-semibold)}
+.opt.correct{background:var(--color-success-muted);border-color:var(--color-border-success);color:var(--color-on-success-muted)}
+.opt.correct .key{background:var(--color-success);color:var(--color-on-success)}
+.opt.wrong{background:var(--color-error-muted);border-color:var(--color-border-error);color:var(--color-on-error-muted)}
+.opt.wrong .key{background:var(--color-error);color:var(--color-on-error)}
+.opt.dim{opacity:.55}
+.feed{font-size:var(--text-large-size);font-weight:var(--text-large-weight);line-height:var(--text-large-leading);margin:var(--spacing-4) 0 var(--spacing-3);min-height:var(--spacing-6);animation:pop var(--duration-fast) var(--ease-entrance)}
+.feed.good{color:var(--color-text-success)}
+.feed.bad{color:var(--color-text-error)}
+@keyframes fadein{from{opacity:0;transform:translateY(var(--spacing-1))}to{opacity:1;transform:none}}
+@keyframes pop{from{opacity:0;transform:scale(.97)}to{opacity:1;transform:scale(1)}}
+.bigscore{text-align:center;padding:var(--spacing-4) 0 var(--spacing-2)}
+.bigscore b{display:block;font-size:var(--text-display-2-size);font-weight:var(--text-display-2-weight);line-height:var(--text-display-2-leading)}
+.bigscore span{color:var(--color-text-secondary);font-size:var(--text-supporting-size)}
+.rev{padding:var(--spacing-3) 0;border-bottom:var(--border-width) solid var(--color-border);animation:fadein var(--duration-fast) var(--ease-entrance)}
+.rev:last-child{border-bottom:none}
+.rev .ans{margin-top:var(--spacing-1)}
+.rev .ans .ok{color:var(--color-text-success)}
+.rev .ans .no{color:var(--color-text-error)}
+.empty{border:var(--border-width) dashed var(--color-border-emphasized);border-radius:var(--radius-container);padding:var(--spacing-5);text-align:center;color:var(--color-text-secondary)}
+@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation:none !important;transition:none !important}}
+
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+<span class="logo" aria-hidden="true"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.6 9.2a2.5 2.5 0 1 1 3.7 2.2c-.8.5-1.3 1-1.3 1.8"/><path d="M12 17h.01"/></svg></span>
+<div><h1>Trivia Quiz</h1><p class="sub" data-i="sub"></p></div>
+<div class="spacer"></div>
+<button class="btn ghost small" id="langBtn" type="button">中文</button>
+</header>
+<main>
+
+<section class="stats" aria-label="Score">
+<div class="stat"><b id="stScore">0</b><span data-i="score"></span></div>
+<div class="stat"><b id="stStreak">0</b><span data-i="streak"></span></div>
+<div class="stat"><b id="stBest">0</b><span data-i="best"></span></div>
+</section>
+
+<section class="card" id="startCard" aria-label="Start">
+<h2 data-i="startTitle"></h2>
+<p class="muted" style="margin-top:0" data-i="pickCategory"></p>
+<div class="catrow" id="catRow" role="group" aria-label="Category">
+<button class="chip on" type="button" data-cat="all" data-i="catAll"></button>
+<button class="chip" type="button" data-cat="general" data-i="catGeneral"></button>
+<button class="chip" type="button" data-cat="science" data-i="catScience"></button>
+<button class="chip" type="button" data-cat="history" data-i="catHistory"></button>
+<button class="chip" type="button" data-cat="food" data-i="catFood"></button>
+</div>
+<p class="muted" id="roundInfo"></p>
+<button class="btn block" id="startBtn" type="button" data-i="startBtn"></button>
+</section>
+
+<section class="card" id="quizCard" aria-label="Quiz" hidden>
+<div class="qmeta"><span id="qCount"></span><span id="qCat"></span><span id="qTimer"></span></div>
+<div class="tbar" aria-hidden="true"><i id="tFill"></i></div>
+<p class="qtext" id="qText"></p>
+<div class="opts" id="opts"></div>
+<p class="feed" id="feed" aria-live="polite"></p>
+<button class="btn block" id="nextBtn" type="button" data-i="nextBtn" hidden></button>
+</section>
+
+<section class="card" id="resultCard" aria-label="Result" hidden>
+<h2 data-i="resultTitle"></h2>
+<div class="bigscore"><b id="rScore">0</b><span data-i="yourScore"></span></div>
+<section class="stats" aria-label="Result details">
+<div class="stat"><b id="rCorrect">0</b><span data-i="correctCount"></span></div>
+<div class="stat"><b id="rAcc">0%</b><span data-i="accuracy"></span></div>
+<div class="stat"><b id="rStreak">0</b><span data-i="bestStreak"></span></div>
+</section>
+<h2 data-i="reviewTitle"></h2>
+<div id="review"></div>
+<p class="empty" id="reviewEmpty" hidden data-i="reviewEmpty"></p>
+<button class="btn block" id="againBtn" type="button" data-i="newRound"></button>
+</section>
+
+</main>
+<footer>Muse Space · Trivia Quiz</footer>
+</div>
+<script>
+
+const KEY='muse-space:trivia-quiz';
+const TIME_LIMIT=15, TICK=100, POINTS=10;
+let S;try{S=JSON.parse(localStorage.getItem(KEY))}catch(e){S=null}
+if(!S||typeof S!=='object'){S={lang:'en',best:0,bestStreak:0}}
+let lang=S.lang==='zh'?'zh':'en';
+const T={en:{sub:'Ten quick questions. Fifteen seconds each. How far can your streak go?',score:'Score',streak:'Streak',best:'Best score',startTitle:'Pick a category, start a round',pickCategory:'Each round draws ten questions from the bank. A single category has six.',catAll:'All',catGeneral:'General',catScience:'Science',catHistory:'History',catFood:'Food',roundInfo:'{n} questions · 15 seconds each · 10 points per correct answer',startBtn:'Start quiz',nextBtn:'Next question',seeResult:'See result',resultTitle:'Round over',yourScore:'Your score',correctCount:'Correct answers',accuracy:'Accuracy',bestStreak:'Best streak',reviewTitle:'Review your misses',reviewEmpty:'A perfect round — nothing to review.',newRound:'New round',questionOf:'Question {a} of {b}',secondsLeft:'{n}s left',correctFb:'Correct! +10 points.',wrongFb:'Not quite — the right answer is marked.',timeoutFb:'Time is up — the right answer is marked.',yourAnswer:'Your answer',correctAnswer:'Correct answer',timedOut:'Timed out'},
+zh:{sub:'十道快问快答，每题 15 秒，看看你的连胜能走多远。',score:'得分',streak:'连胜',best:'最高分',startTitle:'选个分类，开始一轮',pickCategory:'每轮从题库抽 10 道题，单选一个分类时只有 6 道。',catAll:'全部',catGeneral:'常识',catScience:'科学',catHistory:'历史',catFood:'美食',roundInfo:'共 {n} 题 · 每题 15 秒 · 答对得 10 分',startBtn:'开始答题',nextBtn:'下一题',seeResult:'查看结果',resultTitle:'本轮结束',yourScore:'你的得分',correctCount:'答对题数',accuracy:'正确率',bestStreak:'最长连胜',reviewTitle:'错题回顾',reviewEmpty:'满分一轮，没有错题。',newRound:'再来一轮',questionOf:'第 {a} / {b} 题',secondsLeft:'还剩 {n} 秒',correctFb:'答对了！+10 分。',wrongFb:'不对，正确答案已标出。',timeoutFb:'时间到，正确答案已标出。',yourAnswer:'你的答案',correctAnswer:'正确答案',timedOut:'超时未答'}};
+
+const Q=[
+{c:'general',q:{en:'Which planet is known as the Red Planet?',zh:'哪颗行星被称为红色星球？'},o:[{en:'Venus',zh:'金星'},{en:'Mars',zh:'火星'},{en:'Jupiter',zh:'木星'},{en:'Saturn',zh:'土星'}],a:1},
+{c:'general',q:{en:'How many sides does a hexagon have?',zh:'六边形有几条边？'},o:[{en:'Five',zh:'五条'},{en:'Six',zh:'六条'},{en:'Seven',zh:'七条'},{en:'Eight',zh:'八条'}],a:1},
+{c:'general',q:{en:'What is the largest ocean on Earth?',zh:'地球上最大的海洋是哪个？'},o:[{en:'Atlantic Ocean',zh:'大西洋'},{en:'Indian Ocean',zh:'印度洋'},{en:'Pacific Ocean',zh:'太平洋'},{en:'Arctic Ocean',zh:'北冰洋'}],a:2},
+{c:'general',q:{en:'Which animal is the largest land mammal?',zh:'哪种动物是最大的陆生哺乳动物？'},o:[{en:'Giraffe',zh:'长颈鹿'},{en:'Hippopotamus',zh:'河马'},{en:'African elephant',zh:'非洲象'},{en:'Polar bear',zh:'北极熊'}],a:2},
+{c:'general',q:{en:'How many minutes are in a full day?',zh:'一天共有多少分钟？'},o:[{en:'720',zh:'720'},{en:'1200',zh:'1200'},{en:'1440',zh:'1440'},{en:'1600',zh:'1600'}],a:2},
+{c:'general',q:{en:'What is the capital of Australia?',zh:'澳大利亚的首都是哪里？'},o:[{en:'Sydney',zh:'悉尼'},{en:'Melbourne',zh:'墨尔本'},{en:'Canberra',zh:'堪培拉'},{en:'Perth',zh:'珀斯'}],a:2},
+{c:'science',q:{en:'What is the chemical symbol for gold?',zh:'金的化学符号是什么？'},o:[{en:'Ag',zh:'Ag'},{en:'Au',zh:'Au'},{en:'Gd',zh:'Gd'},{en:'Go',zh:'Go'}],a:1},
+{c:'science',q:{en:'Which gas do plants absorb from the air?',zh:'植物从空气中吸收哪种气体？'},o:[{en:'Oxygen',zh:'氧气'},{en:'Nitrogen',zh:'氮气'},{en:'Carbon dioxide',zh:'二氧化碳'},{en:'Hydrogen',zh:'氢气'}],a:2},
+{c:'science',q:{en:'How many legs does a spider have?',zh:'蜘蛛有几条腿？'},o:[{en:'Six',zh:'六条'},{en:'Eight',zh:'八条'},{en:'Ten',zh:'十条'},{en:'Twelve',zh:'十二条'}],a:1},
+{c:'science',q:{en:'What force keeps the planets in orbit around the Sun?',zh:'是什么力让行星绕太阳运转？'},o:[{en:'Magnetism',zh:'磁力'},{en:'Friction',zh:'摩擦力'},{en:'Gravity',zh:'引力'},{en:'Inertia',zh:'惯性'}],a:2},
+{c:'science',q:{en:'Which part of the cell is known as its powerhouse?',zh:'细胞中被称为能量工厂的是哪一部分？'},o:[{en:'Nucleus',zh:'细胞核'},{en:'Ribosome',zh:'核糖体'},{en:'Mitochondria',zh:'线粒体'},{en:'Golgi body',zh:'高尔基体'}],a:2},
+{c:'science',q:{en:'At what temperature Celsius does water boil at sea level?',zh:'海平面上，水在多少摄氏度沸腾？'},o:[{en:'90°C',zh:'90°C'},{en:'95°C',zh:'95°C'},{en:'100°C',zh:'100°C'},{en:'110°C',zh:'110°C'}],a:2},
+{c:'history',q:{en:'In which year did humans first land on the Moon?',zh:'人类在哪一年首次登上月球？'},o:[{en:'1959',zh:'1959年'},{en:'1969',zh:'1969年'},{en:'1975',zh:'1975年'},{en:'1981',zh:'1981年'}],a:1},
+{c:'history',q:{en:'Which ancient civilization built the pyramids of Giza?',zh:'吉萨金字塔是哪个古代文明建造的？'},o:[{en:'Romans',zh:'罗马人'},{en:'Greeks',zh:'希腊人'},{en:'Egyptians',zh:'埃及人'},{en:'Aztecs',zh:'阿兹特克人'}],a:2},
+{c:'history',q:{en:'Who painted the Mona Lisa?',zh:'《蒙娜丽莎》是谁画的？'},o:[{en:'Michelangelo',zh:'米开朗基罗'},{en:'Raphael',zh:'拉斐尔'},{en:'Leonardo da Vinci',zh:'列奥纳多·达·芬奇'},{en:'Rembrandt',zh:'伦勃朗'}],a:2},
+{c:'history',q:{en:'The Great Wall is located in which country?',zh:'长城位于哪个国家？'},o:[{en:'Japan',zh:'日本'},{en:'China',zh:'中国'},{en:'India',zh:'印度'},{en:'Korea',zh:'韩国'}],a:1},
+{c:'history',q:{en:'Which ship famously sank on its maiden voyage in 1912?',zh:'哪艘船在 1912 年首航时沉没？'},o:[{en:'Lusitania',zh:'卢西塔尼亚号'},{en:'Titanic',zh:'泰坦尼克号'},{en:'Queen Mary',zh:'玛丽女王号'},{en:'Bismarck',zh:'俾斯麦号'}],a:1},
+{c:'history',q:{en:'In which year did World War II end?',zh:'第二次世界大战在哪一年结束？'},o:[{en:'1943',zh:'1943年'},{en:'1944',zh:'1944年'},{en:'1945',zh:'1945年'},{en:'1947',zh:'1947年'}],a:2},
+{c:'food',q:{en:'Which fruit is called the king of fruits in Southeast Asia?',zh:'哪种水果被称为东南亚的水果之王？'},o:[{en:'Mango',zh:'芒果'},{en:'Durian',zh:'榴莲'},{en:'Papaya',zh:'木瓜'},{en:'Lychee',zh:'荔枝'}],a:1},
+{c:'food',q:{en:'What is the main ingredient in guacamole?',zh:'鳄梨酱的主要原料是什么？'},o:[{en:'Tomato',zh:'番茄'},{en:'Avocado',zh:'鳄梨'},{en:'Onion',zh:'洋葱'},{en:'Lime',zh:'青柠'}],a:1},
+{c:'food',q:{en:'Which country is the origin of sushi?',zh:'寿司起源于哪个国家？'},o:[{en:'China',zh:'中国'},{en:'Thailand',zh:'泰国'},{en:'Japan',zh:'日本'},{en:'Korea',zh:'韩国'}],a:2},
+{c:'food',q:{en:'What spice gives curry its yellow color?',zh:'哪种香料让咖喱呈现黄色？'},o:[{en:'Paprika',zh:'红椒粉'},{en:'Cumin',zh:'孜然'},{en:'Turmeric',zh:'姜黄'},{en:'Saffron',zh:'藏红花'}],a:2},
+{c:'food',q:{en:'Which cheese is traditionally used on pizza?',zh:'披萨传统上用哪种奶酪？'},o:[{en:'Cheddar',zh:'切达奶酪'},{en:'Mozzarella',zh:'马苏里拉奶酪'},{en:'Brie',zh:'布里奶酪'},{en:'Gouda',zh:'高达奶酪'}],a:1},
+{c:'food',q:{en:'What is the main ingredient in hummus?',zh:'鹰嘴豆泥的主要原料是什么？'},o:[{en:'Lentils',zh:'扁豆'},{en:'Chickpeas',zh:'鹰嘴豆'},{en:'Black beans',zh:'黑豆'},{en:'Peanuts',zh:'花生'}],a:1}
+];
+
+const t=(k,a,b)=>{let s=(T[lang]&&T[lang][k])||T.en[k]||k;if(a!==undefined){s=s.replace('{a}',a);s=s.replace('{n}',a)}if(b!==undefined){s=s.replace('{b}',b)}return s};
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const cap=s=>s.slice(0,1).toUpperCase()+s.slice(1);
+const $=id=>document.getElementById(id);
+const show=(el,on)=>{el.hidden=!on};
+let cat='all', round=[], idx=0, score=0, streak=0, maxStreak=0, correctN=0, wrong=[], answered=false, picked=-1, timerId=null, timeLeft=0;
+
+function save(){S.lang=lang;localStorage.setItem(KEY,JSON.stringify(S))}
+function pool(){return cat==='all'?Q:Q.filter(q=>q.c===cat)}
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const tmp=a[i];a[i]=a[j];a[j]=tmp}return a}
+function updateStats(){$('stScore').textContent=score;$('stStreak').textContent=streak;$('stBest').textContent=Math.max(S.best,score)}
+function updateRoundInfo(){const n=pool().length;document.getElementById('roundInfo').textContent=t('roundInfo',n>10?10:n)}
+function stopTimer(){if(timerId!==null){clearInterval(timerId);timerId=null}}
+function updateTimerUI(){const s=Math.ceil(timeLeft/1000);$('qTimer').textContent=t('secondsLeft',s);const f=$('tFill');f.style.width=(timeLeft/(TIME_LIMIT*1000)*100)+'%';f.classList.toggle('low',timeLeft<=5000)}
+function startTimer(){stopTimer();timeLeft=TIME_LIMIT*1000;updateTimerUI();timerId=setInterval(()=>{timeLeft-=TICK;if(timeLeft<=0){timeLeft=0;updateTimerUI();stopTimer();answer(-1)}else{updateTimerUI()}},TICK)}
+
+function renderQuestion(resetTimer){
+ const q=round[idx];
+ $('qCount').textContent=t('questionOf',idx+1,round.length);
+ $('qCat').textContent=t('cat'+cap(q.c));
+ $('qText').textContent=q.q[lang];
+ const opts=$('opts');opts.innerHTML='';
+ q.o.forEach((o,i)=>{
+  const b=document.createElement('button');b.type='button';b.className='opt';
+  b.innerHTML='<span class="key">'+'ABCD'[i]+'</span><span>'+esc(o[lang])+'</span>';
+  if(answered){b.disabled=true;if(i===q.a)b.classList.add('correct');else if(i===picked)b.classList.add('wrong');else b.classList.add('dim')}
+  else{b.addEventListener('click',()=>answer(i))}
+  opts.appendChild(b);});
+ const feed=$('feed');
+ if(answered){feed.textContent=picked===q.a?t('correctFb'):(picked===-1?t('timeoutFb'):t('wrongFb'));feed.className='feed '+(picked===q.a?'good':'bad')}
+ else{feed.textContent='';feed.className='feed'}
+ const next=$('nextBtn');next.hidden=!answered;next.textContent=idx===round.length-1?t('seeResult'):t('nextBtn');
+ if(resetTimer){startTimer()}else{updateTimerUI()}
+}
+
+function startRound(){
+ round=shuffle(pool().slice()).slice(0,10);
+ idx=0;score=0;streak=0;maxStreak=0;correctN=0;wrong=[];answered=false;picked=-1;
+ show($('startCard'),false);show($('resultCard'),false);show($('quizCard'),true);
+ updateStats();renderQuestion(true);
+}
+
+function answer(i){
+ if(answered)return;
+ answered=true;picked=i;stopTimer();
+ const q=round[idx];const btns=$('opts').children;
+ for(let j=0;j<btns.length;j++){const b=btns[j];b.disabled=true;if(j===q.a)b.classList.add('correct');else if(j===i)b.classList.add('wrong');else b.classList.add('dim')}
+ const feed=$('feed');
+ if(i===q.a){score+=POINTS;streak++;if(streak>maxStreak)maxStreak=streak;correctN++;feed.textContent=t('correctFb');feed.className='feed good'}
+ else{streak=0;feed.textContent=i===-1?t('timeoutFb'):t('wrongFb');feed.className='feed bad';wrong.push({q:q,picked:i})}
+ updateStats();const next=$('nextBtn');next.hidden=false;
+}
+
+function renderReview(){
+ const box=$('review');box.innerHTML='';
+ wrong.forEach(w=>{
+  const d=document.createElement('div');d.className='rev';
+  const yours=w.picked===-1?t('timedOut'):esc(w.q.o[w.picked][lang]);
+  d.innerHTML='<span class="strong">'+esc(w.q.q[lang])+'</span><div class="ans muted">'+t('yourAnswer')+': <span class="no">'+yours+'</span><br>'+t('correctAnswer')+': <span class="ok">'+esc(w.q.o[w.q.a][lang])+'</span></div>';
+  box.appendChild(d);});
+ $('reviewEmpty').hidden=wrong.length>0;
+}
+
+function showResult(){
+ stopTimer();show($('quizCard'),false);show($('resultCard'),true);
+ $('rScore').textContent=score;
+ $('rCorrect').textContent=correctN+' / '+round.length;
+ $('rAcc').textContent=Math.round(correctN/round.length*100)+'%';
+ if(score>S.best)S.best=score;
+ if(maxStreak>S.bestStreak)S.bestStreak=maxStreak;
+ $('rStreak').textContent=S.bestStreak;
+ save();renderReview();
+}
+
+function applyLang(){
+ document.querySelectorAll('[data-i]').forEach(el=>{el.textContent=t(el.dataset.i)});
+ $('langBtn').textContent=lang==='en'?'中文':'EN';
+ updateRoundInfo();updateStats();
+ if(!$('quizCard').hidden&&round.length)renderQuestion(false);
+ if(!$('resultCard').hidden)renderReview();
+}
+
+document.getElementById('langBtn').addEventListener('click',()=>{lang=lang==='en'?'zh':'en';save();applyLang()});
+document.getElementById('catRow').addEventListener('click',e=>{const b=e.target.closest('[data-cat]');if(!b)return;cat=b.dataset.cat;document.getElementById('catRow').querySelectorAll('.chip').forEach(c=>c.classList.toggle('on',c===b));updateRoundInfo()});
+document.getElementById('startBtn').addEventListener('click',startRound);
+document.getElementById('nextBtn').addEventListener('click',()=>{if(idx<round.length-1){idx++;answered=false;picked=-1;renderQuestion(true)}else{showResult()}});
+document.getElementById('againBtn').addEventListener('click',()=>{score=0;streak=0;show($('resultCard'),false);show($('startCard'),true);updateStats()});
+save();applyLang();
+</script>
+</body>
+</html>

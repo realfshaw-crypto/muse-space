@@ -1,16 +1,16 @@
 # Muse Space — muse空间
 
-**29 个开箱即用的 Muse Space 小程序模板，像微信小程序一样，为你的日常 AI 生活而备。**
+**34 个开箱即用的 Muse Space 小程序模板，像微信小程序一样，为你的日常 AI 生活而备。**
 
 [English → README.md](README.md) · [模板索引 → templates.json](templates.json) · [llms.txt](llms.txt)
 
-![License: MIT](https://img.shields.io/badge/License-MIT-green.svg) ![Templates: 29](https://img.shields.io/badge/Templates-29-blue.svg) ![Design: Astryx](https://img.shields.io/badge/Design-Astryx-black.svg)
+![License: MIT](https://img.shields.io/badge/License-MIT-green.svg) ![Templates: 34](https://img.shields.io/badge/Templates-34-blue.svg) ![Design: Astryx](https://img.shields.io/badge/Design-Astryx-black.svg)
 
 ## 截图
 
-![Muse Space 预览站首页 — 6 大分类共 29 个小程序模板，带搜索框](docs/screenshots/preview-home.png)
+![Muse Space 预览站首页 — 6 大分类共 34 个小程序模板，带搜索框](docs/screenshots/preview-home.png)
 
-*预览站首页：6 大分类、29 个模板，顶部带搜索框。*
+*预览站首页：6 大分类、34 个模板，顶部带搜索框。*
 
 | | |
 |---|---|---|
@@ -26,6 +26,12 @@
 | *餐厅心愿单：收藏餐厅的价格与评分。* | |
 | ![账单管家模板 — 账单、到期日与刷哪张卡](docs/screenshots/template-bill-tracker.png) | ![旅行足迹模板 — 每次旅行钉上地点与故事](docs/screenshots/template-travel-memory-map.png) |
 | *账单管家：账单、到期日与刷哪张卡。* | *旅行足迹：每次旅行钉上地点与故事。* |
+| ![食材库存模板 — 食材库存、数量与保质期提醒](docs/screenshots/template-pantry-tracker.png) | ![数独模板 — 能玩的数独，三档难度](docs/screenshots/template-sudoku-puzzle.png) |
+| *食材库存：库存、数量与保质期提醒。* | *数独：三档难度、笔记、提示与计时。* |
+| ![复古掌上电脑模板 — 掌上电脑风日程、待办、备忘与通讯录](docs/screenshots/template-retro-organizer.png) | ![应用中心模板 — 常用应用与链接收进一个中心](docs/screenshots/template-app-hub.png) |
+| *复古掌上电脑：日程、待办、备忘与通讯录合一。* | *应用中心：常用应用与链接，搜、钉、点开一步到位。* |
+| ![趣味问答模板 — 四分类限时问答，计分连胜](docs/screenshots/template-trivia-quiz.png) | |
+| *趣味问答：限时问答、计分连胜，答完复盘错题。* | |
 
 ## 这是什么？
 
@@ -33,18 +39,18 @@
 
 你对 Muse 说一句话——「打开记账」「给我一个番茄钟」——Muse 就从这个仓库取对应模板，填入你的数据，生成一个能直接用的空间。不用写代码，不用构建，打开就用。
 
-这个仓库同时是三样东西：一个 **Muse 技能**（`SKILL.md`）、一个 **模板库**（29 个单文件 HTML 模板）、一个 **预览站**（Astro，在 `site/` 目录）。
+这个仓库同时是三样东西：一个 **Muse 技能**（`SKILL.md`）、一个 **模板库**（34 个单文件 HTML 模板）、一个 **预览站**（Astro，在 `site/` 目录）。
 
 ### 常见问题
 
 **Muse Space 是什么？**
-Muse Space 是一个 Muse 技能加一个模板库，包含 29 个开箱即用的 Muse Space 小程序模板。它仿照微信小程序：单个用途的小应用，不用安装、不用写代码，打开就用。
+Muse Space 是一个 Muse 技能加一个模板库，包含 34 个开箱即用的 Muse Space 小程序模板。它仿照微信小程序：单个用途的小应用，不用安装、不用写代码，打开就用。
 
 **Muse Space 怎么工作？**
 你用中文或英文说一句话，说出你需要的工具。Muse 读取 `templates.json`，从 `templates/<slug>/index.html` 加载对应模板，填入你的数据，生成一个能直接用的空间。
 
 **Muse Space 包含哪些模板？**
-共 29 个模板、6 大分类：AI 工作（4 个）、效率（5 个）、财务（5 个）、健康（3 个）、学习（3 个）、生活与家庭（9 个）。每个模板都是一个独立的 HTML 文件，数据保存在浏览器本地（localStorage）。
+共 34 个模板、6 大分类：AI 工作（4 个）、效率（7 个）、财务（5 个）、健康（3 个）、学习（4 个）、生活与家庭（11 个）。每个模板都是一个独立的 HTML 文件，数据保存在浏览器本地（localStorage）。
 
 **Muse Space 免费且开源吗？**
 是。本项目以 MIT 许可证发布，可以复制、修改和复用任何模板。
@@ -56,7 +62,7 @@ Muse Space 是一个 Muse 技能加一个模板库，包含 29 个开箱即用�
 - **一套设计语言。** 全部模板用 Meta Astryx 设计令牌，语义颜色、深浅色自动适配、间距与动效统一。
 - **双语默认。** 英文为主、中文并行；界面文字简洁，按钮用动词：保存、记一笔、完成。
 
-## 模板清单 — 6 类 29 个
+## 模板清单 — 6 类 34 个
 
 ### AI 工作
 | 模板 | 用途 | 这样说 |
@@ -74,6 +80,8 @@ Muse Space 是一个 Muse 技能加一个模板库，包含 29 个开箱即用�
 | [任务看板](templates/task-kanban/) | 三列看板、优先级 | 打开任务看板 |
 | [循环待办](templates/recurring-todos/) | 周期待办，到期提醒，做完自动顺延 | 打开循环待办 |
 | [灵感收集箱](templates/idea-capture/) | 灵感随手记，稍后再归类 | 打开灵感收集箱 |
+| [复古掌上电脑](templates/retro-organizer/) | 掌上电脑风日程、待办、备忘与通讯录 | 打开复古掌上电脑 |
+| [应用中心](templates/app-hub/) | 常用应用与链接收进一个中心 | 打开应用中心 |
 
 ### 财务
 | 模板 | 用途 | 这样说 |
@@ -97,6 +105,7 @@ Muse Space 是一个 Muse 技能加一个模板库，包含 29 个开箱即用�
 | [学习计划](templates/study-planner/) | 课表转复习块 | 打开学习计划 |
 | [闪卡复习](templates/flashcard-review/) | 间隔重复与掌握度 | 打开闪卡 |
 | [阅读追踪](templates/reading-tracker/) | 书单、进度、摘录 | 打开阅读追踪 |
+| [趣味问答](templates/trivia-quiz/) | 限时问答、计分连胜、答完复盘 | 打开趣味问答 |
 
 ### 生活与家庭
 | 模板 | 用途 | 这样说 |
@@ -110,8 +119,10 @@ Muse Space 是一个 Muse 技能加一个模板库，包含 29 个开箱即用�
 | [餐厅心愿单](templates/restaurant-wishlist/) | 收藏餐厅的价格与评分 | 打开餐厅心愿单 |
 | [旅行足迹](templates/travel-memory-map/) | 每次旅行钉上地点与故事 | 打开旅行足迹 |
 | [活动倒计时](templates/event-countdown/) | 重要日子还剩几天，一眼看到 | 打开活动倒计时 |
+| [食材库存](templates/pantry-tracker/) | 食材库存、数量与保质期提醒 | 打开食材库存 |
+| [数独](templates/sudoku-puzzle/) | 能玩的数独，三档难度 | 打开数独 |
 
-> 29 个模板本体已全部包含，可直接打开使用。
+> 34 个模板本体已全部包含，可直接打开使用。
 
 ## 快速开始
 

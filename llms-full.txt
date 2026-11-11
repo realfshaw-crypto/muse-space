@@ -1,16 +1,16 @@
 # Muse Space — muse空间 (full)
 
-Muse Space is a Muse Skill and template library with 29 ready-to-use mini-app templates for Muse Spaces, modeled on WeChat Mini Programs. Repository: https://github.com/realfshaw-crypto/muse-space. License: MIT. All templates are single-file HTML, Astryx design tokens, localStorage persistence, bilingual English/Chinese.
+Muse Space is a Muse Skill and template library with 34 ready-to-use mini-app templates for Muse Spaces, modeled on WeChat Mini Programs. Repository: https://github.com/realfshaw-crypto/muse-space. License: MIT. All templates are single-file HTML, Astryx design tokens, localStorage persistence, bilingual English/Chinese.
 
 ## Questions and answers
 
-Q: What is Muse Space? A: A Muse Skill plus a library of 29 mini-app templates. You ask Muse for a small tool in one sentence, and Muse generates a ready-to-use Muse Space from the matching template.
+Q: What is Muse Space? A: A Muse Skill plus a library of 34 mini-app templates. You ask Muse for a small tool in one sentence, and Muse generates a ready-to-use Muse Space from the matching template.
 Q: How is it like WeChat Mini Programs? A: Like Mini Programs, each template is a small single-purpose app that opens instantly with no install and no coding.
 Q: Where is user data stored? A: Locally, in the browser localStorage of the generated Space. No data is sent to external services.
 Q: What design system do the templates use? A: Meta Astryx design tokens (core defaults), semantic CSS variables with automatic light/dark adaptation.
-Q: How many templates are there? A: 29 templates in 6 categories: AI Work (4), Productivity (5), Money (5), Health (3), Learn (3), Life & Home (9).
+Q: How many templates are there? A: 34 templates in 6 categories: AI Work (4), Productivity (7), Money (5), Health (3), Learn (4), Life & Home (11).
 
-## All 29 templates
+## All 34 templates
 
 ### AI Work
 - Prompt Studio (提示词工坊, slug: ai-prompt-studio, path: templates/ai-prompt-studio/): Save, organize and reuse your best prompts. One tap to copy. / 收藏、分类、复用提示词，一键复制。 Keywords EN: prompt, prompts, ai assistant, prompt library. Keywords ZH: 提示词, 提示词库, AI助手.
@@ -24,6 +24,8 @@ Q: How many templates are there? A: 29 templates in 6 categories: AI Work (4), P
 - Task Board (任务看板, slug: task-kanban, path: templates/task-kanban/): A three-column board with drag, priority and due dates. / 三列看板、拖拽、优先级。 Keywords EN: kanban, task board, to do, project board. Keywords ZH: 任务看板, 看板, 待办.
 - Recurring To-Dos (循环待办, slug: recurring-todos, path: templates/recurring-todos/): Recurring to-dos with due dates that reset when done. / 周期待办，到期提醒，做完自动顺延。 Keywords EN: recurring tasks, routine, chores, repeating todo, habit routine. Keywords ZH: 循环待办, 周期任务, 家务, 定期事项, 日常待办.
 - Idea Capture (灵感收集箱, slug: idea-capture, path: templates/idea-capture/): Catch an idea in seconds, sort it later. / 灵感随手记，稍后再归类。 Keywords EN: idea capture, ideas, capture ideas, brainstorm, notes. Keywords ZH: 灵感收集箱, 灵感, 点子, 想法, 记点子.
+- Retro Organizer (复古掌上电脑, slug: retro-organizer, path: templates/retro-organizer/): A Palm-style organizer: datebook, to-dos, memos and contacts in one device. / 掌上电脑风整理器：日程、待办、备忘与通讯录合一。 Keywords EN: retro organizer, palm pilot, pda, datebook, organizer. Keywords ZH: 复古掌上电脑, 掌上电脑, 日程本, 记事.
+- App Hub (应用中心, slug: app-hub, path: templates/app-hub/): Your pinned apps and links in one hub — search, pin and open in one tap. / 常用应用与链接收进一个中心，搜、钉、点开一步到位。 Keywords EN: app hub, launcher, apps, shortcuts, dashboard. Keywords ZH: 应用中心, 启动器, 应用, 快捷方式.
 
 ### Money
 - Budget Planner (预算管家, slug: budget-planner, path: templates/budget-planner/): Set a monthly budget, cap each category, see what is left. / 月预算、分类上限、剩余一目了然。 Keywords EN: budget, budget planner, monthly budget, money. Keywords ZH: 预算, 月预算, 理财.
@@ -41,6 +43,7 @@ Q: How many templates are there? A: 29 templates in 6 categories: AI Work (4), P
 - Study Planner (学习计划, slug: study-planner, path: templates/study-planner/): Turn a timetable into review blocks and track progress. / 课表转复习块、进度跟踪。 Keywords EN: study planner, study schedule, exam prep, learning. Keywords ZH: 学习计划, 复习, 课表.
 - Flashcards (闪卡复习, slug: flashcard-review, path: templates/flashcard-review/): Spaced repetition flashcards with mastery levels. / 间隔重复、掌握度。 Keywords EN: flashcards, spaced repetition, memorize, anki alternative. Keywords ZH: 闪卡, 间隔重复, 背单词.
 - Reading Tracker (阅读追踪, slug: reading-tracker, path: templates/reading-tracker/): Track your book list, progress and highlights. / 书单、进度、摘录。 Keywords EN: reading tracker, book list, reading log, books. Keywords ZH: 阅读, 书单, 读书记录.
+- Trivia Quiz (趣味问答, slug: trivia-quiz, path: templates/trivia-quiz/): A timed quiz game across four categories, with score, streaks and a review. / 四分类限时问答：计分、连胜，答完还能复盘错题。 Keywords EN: trivia quiz, quiz, trivia, general knowledge, quiz game. Keywords ZH: 趣味问答, 问答, 知识问答, 答题.
 
 ### Life & Home
 - Trip Planner (旅行计划, slug: trip-planner, path: templates/trip-planner/): Plan day-by-day itineraries, checklists and trip budget. / 行程天表、清单、预算。 Keywords EN: trip planner, travel itinerary, packing list, travel. Keywords ZH: 旅行计划, 行程, 旅游.
@@ -52,6 +55,8 @@ Q: How many templates are there? A: 29 templates in 6 categories: AI Work (4), P
 - Restaurant Wishlist (餐厅心愿单, slug: restaurant-wishlist, path: templates/restaurant-wishlist/): Every restaurant you saved and never went to, with prices and ratings. / 收藏了却没去过的店，价格评分都记着。 Keywords EN: restaurant wishlist, saved restaurants, want to try, food list, dining. Keywords ZH: 餐厅心愿单, 想吃的店, 餐厅收藏, 美食清单, 探店.
 - Travel Memory Map (旅行足迹, slug: travel-memory-map, path: templates/travel-memory-map/): Every trip pinned with its story. / 每次旅行钉上地点与故事。 Keywords EN: travel map, travel memories, trip journal, places visited, travel diary. Keywords ZH: 旅行足迹, 旅行地图, 旅行回忆, 去过的地方, 旅行日记.
 - Event Countdown (活动倒计时, slug: event-countdown, path: templates/event-countdown/): Days left to every event that matters. / 重要日子还剩几天，一眼看到。 Keywords EN: event countdown, countdown, days left, upcoming events, birthday countdown. Keywords ZH: 活动倒计时, 倒计时, 还剩几天, 活动, 生日倒计时.
+- Pantry Tracker (食材库存, slug: pantry-tracker, path: templates/pantry-tracker/): Food stock, quantities and expiry dates — with low-stock and expiring-soon alerts. / 食材库存、数量与保质期，快过期与缺货都提醒。 Keywords EN: pantry tracker, pantry, food stock, expiry dates. Keywords ZH: 食材库存, 食材, 保质期, 库存.
+- Sudoku (数独, slug: sudoku-puzzle, path: templates/sudoku-puzzle/): A playable Sudoku with three difficulties, notes, hints and a timer. / 能玩的数独：三档难度、笔记、提示与计时。 Keywords EN: sudoku, puzzle, number puzzle, brain game. Keywords ZH: 数独, 益智, 数字游戏, 解谜.
 
 ## How to use
 

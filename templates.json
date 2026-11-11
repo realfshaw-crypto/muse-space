@@ -1,8 +1,8 @@
 {
   "name": "Muse Space — muse空间",
   "version": "0.2.0",
-  "description_en": "25 ready-to-use mini-app templates for Muse Spaces.",
-  "description_zh": "25 个开箱即用的 Muse Space 小程序模板。",
+  "description_en": "34 ready-to-use mini-app templates for Muse Spaces.",
+  "description_zh": "34 个开箱即用的 Muse Space 小程序模板。",
   "categories": [
     "AI Work",
     "Productivity",
@@ -374,6 +374,28 @@
       "path": "templates/reading-tracker/"
     },
     {
+      "slug": "trivia-quiz",
+      "name_en": "Trivia Quiz",
+      "name_zh": "趣味问答",
+      "category": "Learn",
+      "keywords_en": [
+        "trivia quiz",
+        "quiz",
+        "trivia",
+        "general knowledge",
+        "quiz game"
+      ],
+      "keywords_zh": [
+        "趣味问答",
+        "问答",
+        "知识问答",
+        "答题"
+      ],
+      "description_en": "A timed quiz game across four categories, with score, streaks and a review.",
+      "description_zh": "四分类限时问答：计分、连胜，答完还能复盘错题。",
+      "path": "templates/trivia-quiz/"
+    },
+    {
       "slug": "trip-planner",
       "name_en": "Trip Planner",
       "name_zh": "旅行计划",
@@ -572,6 +594,50 @@
       "path": "templates/idea-capture/"
     },
     {
+      "slug": "retro-organizer",
+      "name_en": "Retro Organizer",
+      "name_zh": "复古掌上电脑",
+      "category": "Productivity",
+      "keywords_en": [
+        "retro organizer",
+        "palm pilot",
+        "pda",
+        "datebook",
+        "organizer"
+      ],
+      "keywords_zh": [
+        "复古掌上电脑",
+        "掌上电脑",
+        "日程本",
+        "记事"
+      ],
+      "description_en": "A Palm-style organizer: datebook, to-dos, memos and contacts in one device.",
+      "description_zh": "掌上电脑风整理器：日程、待办、备忘与通讯录合一。",
+      "path": "templates/retro-organizer/"
+    },
+    {
+      "slug": "app-hub",
+      "name_en": "App Hub",
+      "name_zh": "应用中心",
+      "category": "Productivity",
+      "keywords_en": [
+        "app hub",
+        "launcher",
+        "apps",
+        "shortcuts",
+        "dashboard"
+      ],
+      "keywords_zh": [
+        "应用中心",
+        "启动器",
+        "应用",
+        "快捷方式"
+      ],
+      "description_en": "Your pinned apps and links in one hub — search, pin and open in one tap.",
+      "description_zh": "常用应用与链接收进一个中心，搜、钉、点开一步到位。",
+      "path": "templates/app-hub/"
+    },
+    {
       "slug": "travel-memory-map",
       "name_en": "Travel Memory Map",
       "name_zh": "旅行足迹",
@@ -616,6 +682,48 @@
       "description_en": "Days left to every event that matters.",
       "description_zh": "重要日子还剩几天，一眼看到。",
       "path": "templates/event-countdown/"
+    },
+    {
+      "slug": "pantry-tracker",
+      "name_en": "Pantry Tracker",
+      "name_zh": "食材库存",
+      "category": "Life & Home",
+      "keywords_en": [
+        "pantry tracker",
+        "pantry",
+        "food stock",
+        "expiry dates"
+      ],
+      "keywords_zh": [
+        "食材库存",
+        "食材",
+        "保质期",
+        "库存"
+      ],
+      "description_en": "Food stock, quantities and expiry dates — with low-stock and expiring-soon alerts.",
+      "description_zh": "食材库存、数量与保质期，快过期与缺货都提醒。",
+      "path": "templates/pantry-tracker/"
+    },
+    {
+      "slug": "sudoku-puzzle",
+      "name_en": "Sudoku",
+      "name_zh": "数独",
+      "category": "Life & Home",
+      "keywords_en": [
+        "sudoku",
+        "puzzle",
+        "number puzzle",
+        "brain game"
+      ],
+      "keywords_zh": [
+        "数独",
+        "益智",
+        "数字游戏",
+        "解谜"
+      ],
+      "description_en": "A playable Sudoku with three difficulties, notes, hints and a timer.",
+      "description_zh": "能玩的数独：三档难度、笔记、提示与计时。",
+      "path": "templates/sudoku-puzzle/"
     }
   ]
 }
