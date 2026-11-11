@@ -288,6 +288,11 @@ footer{color:var(--color-text-disabled);font-size:var(--text-supporting-size);te
 <div class="stat"><b id="stCount">–</b><span data-i="sessions"></span></div>
 <div class="stat"><b id="stVolume">–</b><span data-i="volume"></span></div>
 <div class="stat"><b id="stLast">–</b><span data-i="lastDay"></span></div>
+<div class="stat"><b id="stStreak">–</b><span data-i="streak"></span></div>
+</section>
+<section class="card" aria-label="Coach tip">
+<h2 data-i="tipTitle"></h2>
+<p id="wTip" style="margin:0"></p>
 </section>
 <section class="card" aria-label="Add workout">
 <h2 data-i="addTitle"></h2>
@@ -324,18 +329,28 @@ const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&g
 const today=()=>new Date().toISOString().slice(0,10);
 const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,7);
 
-const T={en:{sub:'Log exercises, sets, reps and weight.',sessions:'Sessions logged',volume:'Total volume (kg)',lastDay:'Last workout',addTitle:'Log a workout',date:'Date',exercise:'Exercise',exPh:'e.g. Bench press',sets:'Sets',reps:'Reps',weight:'Weight (kg)',addBtn:'Add workout',listTitle:'History',byExercise:'Exercise:',all:'All exercises',emptyAll:'No workouts yet. Log your first one above.',setsWord:'sets',del:'Delete'},
-zh:{sub:'记录动作、组数、次数与重量。',sessions:'训练次数',volume:'总容量 (kg)',lastDay:'最近训练',addTitle:'记录训练',date:'日期',exercise:'动作',exPh:'如：卧推',sets:'组数',reps:'次数',weight:'重量 (kg)',addBtn:'添加记录',listTitle:'历史记录',byExercise:'按动作看：',all:'全部动作',emptyAll:'还没有训练记录，在上面记第一条。',setsWord:'组',del:'删除'}};
+const T={en:{sub:'Log exercises, sets, reps and weight — with streaks and a daily coach tip.',sessions:'Sessions logged',volume:'Total volume (kg)',lastDay:'Last workout',streak:'Day streak',tipTitle:'Coach tip',addTitle:'Log a workout',date:'Date',exercise:'Exercise',exPh:'e.g. Bench press',sets:'Sets',reps:'Reps',weight:'Weight (kg)',addBtn:'Add workout',listTitle:'History',byExercise:'Exercise:',all:'All exercises',emptyAll:'No workouts yet. Log your first one above.',setsWord:'sets',del:'Delete'},
+zh:{sub:'记录动作、组数、次数与重量，附连续打卡与每日教练提示。',sessions:'训练次数',volume:'总容量 (kg)',lastDay:'最近训练',streak:'连续打卡',tipTitle:'教练提示',addTitle:'记录训练',date:'日期',exercise:'动作',exPh:'如：卧推',sets:'组数',reps:'次数',weight:'重量 (kg)',addBtn:'添加记录',listTitle:'历史记录',byExercise:'按动作看：',all:'全部动作',emptyAll:'还没有训练记录，在上面记第一条。',setsWord:'组',del:'删除'}};
+const TIPS={en:['Rest 48 hours before training the same muscle hard again.','Add one rep or a little weight each week — small jumps add up.','Warm up 5 minutes before lifting; cold muscles tear first.','Breathe out on the effort, in on the way back.','Sleep is the rep you cannot skip — 7 to 9 hours grows muscle.','Form first, weight second. A clean rep beats a heavy cheat.','One rest day a week keeps the streak alive longer.'],
+zh:['同一肌群大强度训练后，休息 48 小时再练。','每周多做一次或加一点重量，小进步会累积。','举铁前热身 5 分钟，冷肌肉最容易拉伤。','发力时呼气，回落时吸气。','睡眠是不能跳过的那一组，7 到 9 小时才长肌肉。','动作先于重量，干净的一次胜过借力的重物。','每周留一天休息，连续打卡才能走得更远。']};
 let S;try{S=JSON.parse(localStorage.getItem(KEY))}catch(e){S=null}
 if(!S||!Array.isArray(S.items)){const d=n=>{const x=new Date();x.setDate(x.getDate()-n);return x.toISOString().slice(0,10)};
- S={lang:lang,items:[{id:uid(),date:d(1),ex:'Bench press',sets:4,reps:8,weight:60},{id:uid(),date:d(1),ex:'Squat',sets:4,reps:6,weight:80},{id:uid(),date:d(3),ex:'Deadlift',sets:3,reps:5,weight:100},{id:uid(),date:d(5),ex:'Bench press',sets:4,reps:8,weight:57.5},{id:uid(),date:d(5),ex:'Barbell row',sets:4,reps:10,weight:50}]}}
+ S={lang:lang,items:[{id:uid(),date:d(0),ex:'Bench press',sets:4,reps:8,weight:60},{id:uid(),date:d(1),ex:'Squat',sets:4,reps:6,weight:80},{id:uid(),date:d(1),ex:'Deadlift',sets:3,reps:5,weight:100},{id:uid(),date:d(2),ex:'Bench press',sets:4,reps:8,weight:57.5},{id:uid(),date:d(4),ex:'Barbell row',sets:4,reps:10,weight:50}]}}
 lang=S.lang||lang;
 function save(){S.lang=lang;localStorage.setItem(KEY,JSON.stringify(S))}
+function streak(){const days=[...new Set(S.items.map(i=>i.date))].sort().reverse();
+ let n=0;const cur=new Date();
+ if(!days.length)return 0;
+ if(days[0]!==today())cur.setDate(cur.getDate()-1);
+ while(days.includes(cur.toISOString().slice(0,10))){n++;cur.setDate(cur.getDate()-1);}
+ return n;}
 function render(){
  document.getElementById('stCount').textContent=S.items.length;
  document.getElementById('stVolume').textContent=S.items.reduce((a,i)=>a+ +i.sets* +i.reps* +i.weight,0).toLocaleString();
  const dates=[...new Set(S.items.map(i=>i.date))].sort();
  document.getElementById('stLast').textContent=dates.length?dates[dates.length-1].slice(5):'–';
+ document.getElementById('stStreak').textContent=streak();
+ document.getElementById('wTip').textContent=(TIPS[lang]||TIPS.en)[new Date().getDate()%7];
  const f=document.getElementById('wFilter'),cur=f.value;
  const exs=[...new Set(S.items.map(i=>i.ex))].sort();
  f.innerHTML='<option value="">'+t('all')+'</option>'+exs.map(e=>'<option value="'+esc(e)+'">'+esc(e)+'</option>').join('');

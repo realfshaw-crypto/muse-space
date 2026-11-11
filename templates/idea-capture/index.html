@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Idea Capture — Catch Ideas in Seconds | Muse Space</title>
+<meta name="description" content="Idea Capture template for Muse Space: catch an idea in seconds, tag it, and sort it later. Bilingual EN/中文.">
+<meta property="og:title" content="Idea Capture — Catch Ideas in Seconds | Muse Space">
+<meta property="og:description" content="Idea Capture template for Muse Space: catch an idea in seconds, tag it, and sort it later. Bilingual EN/中文.">
+<meta property="og:type" content="website">
+<style>
+:root {
+  color-scheme: light dark;
+
+  /* ===== Color: core semantic ===== */
+  --color-accent: light-dark(#0064E0, #0171E3);
+  --color-accent-muted: light-dark(#0082FB33, #0082FB3F);
+  --color-on-accent: light-dark(#FFFFFF, #FFFFFF);
+  --color-neutral: light-dark(rgba(5, 54, 89, 0.1), rgba(223, 226, 229, 0.2));
+  --color-background-body: light-dark(#F1F4F7, #111112);
+  --color-background-surface: light-dark(#FFFFFF, #1F1F22);
+  --color-background-card: light-dark(#FFFFFF, #1F1F22);
+  --color-background-popover: light-dark(#FFFFFF, #28292C);
+  --color-background-muted: light-dark(#0536590C, #1111127F);
+  --color-background-inverted: light-dark(#0A1317, #FFFFFF);
+  --color-overlay: light-dark(#01122866, #11111299);
+  --color-overlay-hover: light-dark(#0536590C, #FFFFFF0C);
+  --color-overlay-pressed: light-dark(#05365919, #FFFFFF19);
+
+  /* Text */
+  --color-text-primary: light-dark(#0A1317, #DFE2E5);
+  --color-text-secondary: light-dark(#4E606F, #AAAFB5);
+  --color-text-disabled: light-dark(#A4B0BC, #6F747C);
+  --color-text-accent: light-dark(#0064E0, #3E9EFB);
+  --color-on-dark: light-dark(#FFFFFF, #FFFFFF);
+  --color-on-light: light-dark(#000000, #000000);
+
+  /* Icon（与 text 同值域） */
+  --color-icon-accent: light-dark(#0064E0, #2694FE);
+  --color-icon-primary: light-dark(#0A1317, #DFE2E5);
+  --color-icon-secondary: light-dark(#4E606F, #AAAFB5);
+  --color-icon-disabled: light-dark(#A4B0BC, #6F747C);
+
+  /* Status fills + muted + on-* */
+  --color-info: light-dark(#0064E0, #0064E0);
+  --color-info-muted: light-dark(#0082FB33, #0082FB3F);
+  --color-on-info: light-dark(#FFFFFF, #FFFFFF);
+  --color-success: light-dark(#0D8626, #0D8626);
+  --color-success-muted: light-dark(#0B991F33, #0B991F3F);
+  --color-on-success: light-dark(#FFFFFF, #FFFFFF);
+  --color-error: light-dark(#E3193B, #F5394F);
+  --color-error-muted: light-dark(#E3193B33, #F5394F3F);
+  --color-on-error: light-dark(#FFFFFF, #0A1317);
+  --color-background-error-inverted: light-dark(#AA071E, #E3193B);
+  --color-warning: light-dark(#E9AF08, #F2C00B);
+  --color-warning-muted: light-dark(#E2A40033, #E2A4003F);
+  --color-on-warning: light-dark(#0A1317, #0A1317);
+
+  /* Status text / icon / border（落在页面与卡片面上、对比 >= 4.5:1 的一档） */
+  --color-text-blue: light-dark(#042F97, #AFD7FF);
+  --color-text-green: light-dark(#09441F, #A5F690);
+  --color-text-yellow: light-dark(#753F07, #FBCE03);
+  --color-text-red: light-dark(#7B0210, #FFB2B8);
+  --color-text-info: var(--color-text-blue);
+  --color-text-success: var(--color-text-green);
+  --color-text-warning: var(--color-text-yellow);
+  --color-text-error: var(--color-text-red);
+  --color-icon-info: var(--color-text-info);
+  --color-icon-success: var(--color-text-success);
+  --color-icon-warning: var(--color-text-warning);
+  --color-icon-error: var(--color-text-error);
+  --color-border-info: var(--color-text-info);
+  --color-border-success: var(--color-text-success);
+  --color-border-warning: var(--color-text-warning);
+  --color-border-error: var(--color-text-error);
+  --color-on-info-muted: var(--color-text-blue);
+  --color-on-success-muted: var(--color-text-green);
+  --color-on-warning-muted: var(--color-text-yellow);
+  --color-on-error-muted: var(--color-text-red);
+
+  /* Border / effects */
+  --color-border: light-dark(#05365919, #F2F4F619);
+  --color-border-emphasized: light-dark(#CCD3DB, #494D53);
+  --color-skeleton: light-dark(#CCD3DB, #5A5E66);
+  --color-track: light-dark(#CCD3DB, #5A5E66);
+  --color-shadow: light-dark(rgba(5, 54, 89, 0.1), rgba(0, 0, 0, 0.3));
+  --color-tint-hover: light-dark(black, white);
+
+  /* Hue families: background(33 alpha) / border / icon / text */
+  --color-background-blue: light-dark(#0171E333, #0171E333);
+  --color-border-blue: light-dark(#0064E0, #2694FE);
+  --color-icon-blue: light-dark(#0064E0, #2694FE);
+  --color-background-cyan: light-dark(#03A7D733, #03A7D733);
+  --color-border-cyan: light-dark(#089DD0, #0171A4);
+  --color-icon-cyan: light-dark(#00ACC1, #26C6DA);
+  --color-text-cyan: light-dark(#014975, #A1EEF9);
+  --color-background-gray: light-dark(#0A131733, #666A724C);
+  --color-border-gray: light-dark(#647685, #748695);
+  --color-icon-gray: light-dark(#4E606F, #AAAFB5);
+  --color-text-gray: light-dark(#0A1317, #E7EAED);
+  --color-background-green: light-dark(#24BB5E33, #24BB5E33);
+  --color-border-green: light-dark(#0D8626, #0B991F);
+  --color-icon-green: light-dark(#0D8626, #26A756);
+  --color-background-orange: light-dark(#F2790233, #F2790233);
+  --color-border-orange: light-dark(#EB6E00, #B34A01);
+  --color-icon-orange: light-dark(#E9690B, #FB8C00);
+  --color-text-orange: light-dark(#6B2203, #FDB876);
+  --color-background-pink: light-dark(#E638B333, #E638B333);
+  --color-border-pink: light-dark(#F351C0, #C02294);
+  --color-icon-pink: light-dark(#C2185B, #EC407A);
+  --color-text-pink: light-dark(#650053, #FEADE3);
+  --color-background-purple: light-dark(#7952FF33, #7952FF33);
+  --color-border-purple: light-dark(#9081FF, #7340FE);
+  --color-icon-purple: light-dark(#5B08D8, #7952FF);
+  --color-text-purple: light-dark(#3E0697, #B3B0FE);
+  --color-background-red: light-dark(#E3193B33, #E3193B33);
+  --color-border-red: light-dark(#E3193B, #F5394F);
+  --color-icon-red: light-dark(#D31130, #E3193B);
+  --color-background-teal: light-dark(#0DB7AF33, #0DB7AF33);
+  --color-border-teal: light-dark(#08A3A3, #08767D);
+  --color-icon-teal: light-dark(#009688, #26A69A);
+  --color-text-teal: light-dark(#083943, #40DCCD);
+  --color-background-yellow: light-dark(#E2A40033, #E2A40033);
+  --color-border-yellow: light-dark(#C58600, #B47700);
+  --color-icon-yellow: light-dark(#FBC02D, #FFEE58);
+
+  /* ===== Spacing: 4px 基准、rem 制（随根字号缩放），步进 0..12 ===== */
+  --spacing-0: 0rem;
+  --spacing-0-5: 0.125rem;
+  --spacing-1: 0.25rem;
+  --spacing-1-5: 0.375rem;
+  --spacing-2: 0.5rem;
+  --spacing-3: 0.75rem;
+  --spacing-4: 1rem;
+  --spacing-5: 1.25rem;
+  --spacing-6: 1.5rem;
+  --spacing-7: 1.75rem;
+  --spacing-8: 2rem;
+  --spacing-9: 2.25rem;
+  --spacing-10: 2.5rem;
+  --spacing-11: 2.75rem;
+  --spacing-12: 3rem;
+
+  /* ===== Size: 控件高度 ===== */
+  --size-element-sm: 28px;
+  --size-element-md: 32px;
+  --size-element-lg: 36px;
+
+  /* ===== Border / Focus ===== */
+  --border-width: 1px;
+  --focus-outline-width: 2px;
+  --focus-outline-style: solid;
+  --focus-outline-color: var(--color-accent);
+  --focus-outline-offset: 3px;
+
+  /* ===== Radius（core 默认；neutral 主题的 6/10/12/28 变体不采用） ===== */
+  --radius-none: 0px;
+  --radius-inner: 4px;
+  --radius-element: 8px;
+  --radius-container: 12px;
+  --radius-page: 28px;
+  --radius-chat: 28px;
+  --radius-full: 9999px;
+
+  /* ===== Shadow ===== */
+  --shadow-low: 0px 1px 1px light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), 0px 2px 8px light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2));
+  --shadow-med: 0px 1px 2px light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), 0px 2px 12px light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2));
+  --shadow-high: 0px 2px 2px light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), 0px 8px 24px light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.3));
+  --shadow-inset-hover: inset 0px 0px 0px 2px light-dark(rgba(5, 54, 89, 0.15), rgba(223, 226, 229, 0.2));
+  --shadow-inset-selected: inset 0px 0px 0px 2px rgba(1, 113, 227, 0.5);
+  --shadow-inset-success: inset 0px 0px 0px 2px rgba(38, 167, 86, 0.3);
+  --shadow-inset-warning: inset 0px 0px 0px 2px rgba(226, 164, 0, 0.3);
+  --shadow-inset-error: inset 0px 0px 0px 2px rgba(227, 25, 59, 0.3);
+
+  /* ===== Motion ===== */
+  --duration-fast-min: 130ms;
+  --duration-fast: 175ms;
+  --duration-fast-max: 230ms;
+  --duration-medium-min: 310ms;
+  --duration-medium: 410ms;
+  --duration-medium-max: 550ms;
+  --duration-slow-min: 730ms;
+  --duration-slow: 975ms;
+  --duration-slow-max: 1300ms;
+  --duration-exit: var(--duration-fast);
+  --ease-standard: cubic-bezier(0.24, 1, 0.4, 1);
+  --ease-entrance: cubic-bezier(0.24, 1, 0.4, 1);
+  --ease-move: cubic-bezier(0.24, 1, 0.4, 1);
+  --ease-exit: cubic-bezier(0.3, 0, 0.6, 0.6);
+
+  /* ===== Typography ===== */
+  --font-family-body: "Figtree", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-family-heading: "Figtree", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-family-code: "SF Mono", Monaco, Consolas, monospace;
+
+  /* 几何字阶：round(14 x 1.2^step) */
+  --font-size-4xs: 0.375rem;
+  --font-size-3xs: 0.4375rem;
+  --font-size-2xs: 0.5rem;
+  --font-size-xs: 0.625rem;
+  --font-size-sm: 0.75rem;
+  --font-size-base: 0.875rem;
+  --font-size-lg: 1.0625rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.8125rem;
+  --font-size-4xl: 2.1875rem;
+  --font-size-5xl: 2.625rem;
+
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* 语义字型（size / weight / leading 三件套，组件只许用这一层） */
+  --text-heading-1-size: var(--font-size-2xl); --text-heading-1-weight: var(--font-weight-semibold); --text-heading-1-leading: 1.3333;
+  --text-heading-2-size: var(--font-size-xl); --text-heading-2-weight: var(--font-weight-semibold); --text-heading-2-leading: 1.4;
+  --text-heading-3-size: var(--font-size-lg); --text-heading-3-weight: var(--font-weight-semibold); --text-heading-3-leading: 1.4118;
+  --text-heading-4-size: var(--font-size-base); --text-heading-4-weight: var(--font-weight-semibold); --text-heading-4-leading: 1.4286;
+  --text-heading-5-size: var(--font-size-sm); --text-heading-5-weight: var(--font-weight-semibold); --text-heading-5-leading: 1.6667;
+  --text-heading-6-size: var(--font-size-xs); --text-heading-6-weight: var(--font-weight-semibold); --text-heading-6-leading: 1.6;
+  --text-body-size: var(--font-size-base); --text-body-weight: var(--font-weight-normal); --text-body-leading: 1.4286;
+  --text-large-size: var(--font-size-lg); --text-large-weight: var(--font-weight-semibold); --text-large-leading: 1.4118;
+  --text-label-size: var(--font-size-base); --text-label-weight: var(--font-weight-medium); --text-label-leading: 1.4286;
+  --text-code-size: var(--font-size-base); --text-code-weight: var(--font-weight-normal); --text-code-leading: 1.4286;
+  --text-supporting-size: var(--font-size-sm); --text-supporting-weight: var(--font-weight-normal); --text-supporting-leading: 1.6667;
+  --text-display-1-size: var(--font-size-5xl); --text-display-1-weight: var(--font-weight-normal); --text-display-1-leading: 1.2381;
+  --text-display-2-size: var(--font-size-4xl); --text-display-2-weight: var(--font-weight-normal); --text-display-2-leading: 1.2571;
+  --text-display-3-size: var(--font-size-3xl); --text-display-3-weight: var(--font-weight-normal); --text-display-3-leading: 1.2414;
+}
+
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--color-background-body);color:var(--color-text-primary);font-family:var(--font-family-body);font-size:var(--text-body-size);font-weight:var(--text-body-weight);line-height:var(--text-body-leading)}
+.wrap{max-width:46rem;margin:0 auto;padding:var(--spacing-6) var(--spacing-4) var(--spacing-12)}
+header.top{display:flex;align-items:flex-start;gap:var(--spacing-3);margin-bottom:var(--spacing-5)}
+.logo{color:var(--color-icon-accent);flex:none;margin-top:var(--spacing-1);animation:floaty var(--duration-slow) var(--ease-standard) infinite alternate}
+@keyframes floaty{from{transform:translateY(0)}to{transform:translateY(calc(var(--spacing-1) * -1))}}
+h1{font-size:var(--text-heading-1-size);font-weight:var(--text-heading-1-weight);line-height:var(--text-heading-1-leading);margin:0}
+h2{font-size:var(--text-heading-3-size);font-weight:var(--text-heading-3-weight);line-height:var(--text-heading-3-leading);margin:0 0 var(--spacing-3)}
+.sub{color:var(--color-text-secondary);margin:var(--spacing-1) 0 0}
+.spacer{flex:1}
+.card{background:var(--color-background-card);border:var(--border-width) solid var(--color-border);border-radius:var(--radius-container);padding:var(--spacing-4);box-shadow:var(--shadow-low);margin-bottom:var(--spacing-4)}
+.btn{background:var(--color-accent);color:var(--color-on-accent);border:none;border-radius:var(--radius-element);min-height:var(--size-element-md);padding:0 var(--spacing-4);font-family:inherit;font-size:var(--text-label-size);font-weight:var(--text-label-weight);cursor:pointer;transition:opacity var(--duration-fast) var(--ease-standard)}
+.btn:hover{opacity:.88}
+.btn.ghost{background:var(--color-background-muted);color:var(--color-text-primary)}
+.btn.small{min-height:var(--size-element-sm);padding:0 var(--spacing-3);font-size:var(--text-supporting-size)}
+.btn.block{width:100%;min-height:var(--size-element-lg)}
+.input{width:100%;background:var(--color-background-surface);color:var(--color-text-primary);border:var(--border-width) solid var(--color-border-emphasized);border-radius:var(--radius-element);min-height:var(--size-element-lg);padding:0 var(--spacing-3);font-family:inherit;font-size:var(--text-body-size)}
+label{display:block;font-size:var(--text-supporting-size);color:var(--color-text-secondary);margin-bottom:var(--spacing-1)}
+.form{display:grid;gap:var(--spacing-3);margin-bottom:var(--spacing-3)}
+@media(min-width:40rem){.form{grid-template-columns:repeat(auto-fit,minmax(9rem,1fr))}.form .wide{grid-column:span 2}}
+.bar{height:var(--spacing-2);background:var(--color-track);border-radius:var(--radius-full);overflow:hidden}
+.bar>i{display:block;height:100%;background:var(--color-accent);border-radius:var(--radius-full);transition:width var(--duration-medium) var(--ease-standard)}
+.bar>i.over{background:var(--color-error)}
+.bar>i.good{background:var(--color-success)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(9rem,1fr));gap:var(--spacing-3);margin-bottom:var(--spacing-4)}
+.stat{background:var(--color-background-card);border:var(--border-width) solid var(--color-border);border-radius:var(--radius-container);padding:var(--spacing-3) var(--spacing-4);box-shadow:var(--shadow-low)}
+.stat b{display:block;font-size:var(--text-heading-2-size);font-weight:var(--text-heading-2-weight);line-height:var(--text-heading-2-leading)}
+.stat span{color:var(--color-text-secondary);font-size:var(--text-supporting-size)}
+.item{display:flex;align-items:center;justify-content:space-between;gap:var(--spacing-3);padding:var(--spacing-3) 0;border-bottom:var(--border-width) solid var(--color-border);animation:fadein var(--duration-fast) var(--ease-entrance)}
+.item:last-child{border-bottom:none}
+@keyframes fadein{from{opacity:0;transform:translateY(var(--spacing-1))}to{opacity:1;transform:none}}
+.muted{color:var(--color-text-secondary);font-size:var(--text-supporting-size)}
+.strong{font-weight:var(--font-weight-semibold)}
+.empty{border:var(--border-width) dashed var(--color-border-emphasized);border-radius:var(--radius-container);padding:var(--spacing-5);text-align:center;color:var(--color-text-secondary)}
+.badge{display:inline-block;padding:var(--spacing-0-5) var(--spacing-2);border-radius:var(--radius-full);font-size:var(--text-supporting-size);background:var(--color-warning-muted);color:var(--color-on-warning-muted);margin-left:var(--spacing-2)}
+.badge.ok{background:var(--color-success-muted);color:var(--color-on-success-muted)}
+.del{background:none;border:none;color:var(--color-text-error);cursor:pointer;font-family:inherit;font-size:var(--text-body-size);padding:var(--spacing-1)}
+.rowflex{display:flex;gap:var(--spacing-2);align-items:center}
+.mini{width:7rem}
+footer{color:var(--color-text-disabled);font-size:var(--text-supporting-size);text-align:center;margin-top:var(--spacing-6)}
+@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation:none !important;transition:none !important}}
+
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+<span class="logo" aria-hidden="true"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.8.7 1 1.5 1 2.5h6c0-1 .2-1.8 1-2.5A6 6 0 0 0 12 3z"/></svg></span>
+<div><h1>Idea Capture</h1><p class="sub" data-i="sub"></p></div>
+<div class="spacer"></div>
+<button class="btn ghost small" id="langBtn" type="button">中文</button>
+</header>
+<main>
+
+<section class="stats" aria-label="Summary">
+<div class="stat"><b id="stTotal">–</b><span data-i="total"></span></div>
+<div class="stat"><b id="stWeek">–</b><span data-i="thisWeek"></span></div>
+<div class="stat"><b id="stDoing">–</b><span data-i="exploring"></span></div>
+</section>
+<section class="card" aria-label="Capture idea">
+<h2 data-i="addTitle"></h2>
+<form class="form" id="iForm">
+<div class="wide"><label for="iTitle" data-i="title"></label><input class="input" id="iTitle" required data-ph="titlePh"></div>
+<div class="wide"><label for="iNote" data-i="note"></label><input class="input" id="iNote" data-ph="notePh"></div>
+<div><label for="iTag" data-i="tag"></label><select class="input" id="iTag"><option value="app" data-i="tagApp"></option><option value="writing" data-i="tagWriting"></option><option value="business" data-i="tagBusiness"></option><option value="life" data-i="tagLife"></option><option value="other" data-i="other"></option></select></div>
+<div><label for="iStatus" data-i="status"></label><select class="input" id="iStatus"><option value="spark" data-i="spark"></option><option value="exploring" data-i="exploringSt"></option><option value="done" data-i="done"></option></select></div>
+</form>
+<button class="btn block" id="iBtn" type="button" data-i="addBtn"></button>
+</section>
+<section class="card" aria-label="Ideas">
+<h2 data-i="listTitle"></h2>
+<div class="rowflex" style="margin-bottom:var(--spacing-2)"><select class="input" id="iFilter" style="max-width:10rem"><option value="" data-i="allTags"></option><option value="app" data-i="tagApp"></option><option value="writing" data-i="tagWriting"></option><option value="business" data-i="tagBusiness"></option><option value="life" data-i="tagLife"></option><option value="other" data-i="other"></option></select><input class="input" id="iSearch" data-ph="searchPh" style="flex:1"></div>
+<div id="iList"></div>
+<p class="empty" id="iEmpty" hidden data-i="emptyAll"></p>
+</section>
+</main>
+<footer>Muse Space · Idea Capture</footer>
+</div>
+<script>
+
+const KEY='muse-space:idea-capture';
+let lang=(JSON.parse(localStorage.getItem(KEY)||'null')||{}).lang||'en';
+const t=k=>(T[lang]&&T[lang][k])||T.en[k]||k;
+function applyLang(){document.querySelectorAll('[data-i]').forEach(el=>{el.textContent=t(el.dataset.i)});
+document.querySelectorAll('[data-ph]').forEach(el=>{el.placeholder=t(el.dataset.ph)});
+document.getElementById('langBtn').textContent=lang==='en'?'中文':'EN';render();}
+document.getElementById('langBtn').addEventListener('click',()=>{lang=lang==='en'?'zh':'en';save();applyLang();});
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const today=()=>new Date().toISOString().slice(0,10);
+const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,7);
+
+const STATUSES=['spark','exploring','done'];
+const TAGK={app:'tagApp',writing:'tagWriting',business:'tagBusiness',life:'tagLife',other:'other'};
+const T={en:{sub:'Catch an idea in seconds, sort it later.',total:'Ideas',thisWeek:'This week',exploring:'Exploring',addTitle:'Capture an idea',title:'Idea',titlePh:'e.g. Voice-first grocery list',note:'One-line note (optional)',notePh:'Why it matters, in one line',tag:'Tag',tagApp:'App idea',tagWriting:'Writing',tagBusiness:'Business',tagLife:'Life',other:'Other',status:'Status',spark:'Spark',exploringSt:'Exploring',done:'Done',addBtn:'Capture idea',listTitle:'Idea box',allTags:'All tags',searchPh:'Search ideas…',emptyAll:'No ideas yet. Capture your first spark above.',del:'Delete',tapStatus:'Tap status to advance'},
+zh:{sub:'灵感随手记，稍后再归类。',total:'点子总数',thisWeek:'本周新增',exploring:'探索中',addTitle:'记一个灵感',title:'灵感',titlePh:'如：语音买菜清单',note:'一句话备注（可选）',notePh:'它为什么值得做，一句话',tag:'标签',tagApp:'应用点子',tagWriting:'写作',tagBusiness:'生意',tagLife:'生活',other:'其他',status:'状态',spark:'火花',exploringSt:'探索中',done:'已完成',addBtn:'记下来',listTitle:'灵感箱',allTags:'全部标签',searchPh:'搜索灵感…',emptyAll:'还没有灵感，在上面记第一个火花。',del:'删除',tapStatus:'点状态可推进'}};
+let S;try{S=JSON.parse(localStorage.getItem(KEY))}catch(e){S=null}
+if(!S||!Array.isArray(S.ideas)){const d=n=>{const x=new Date();x.setDate(x.getDate()+n);return x.toISOString().slice(0,10)};
+ S={lang:lang,ideas:[{id:uid(),title:'Voice-first grocery list',note:'Talk while cooking, list builds itself.',tag:'app',status:'exploring',created:d(-1)},{id:uid(),title:'Neighborhood tool library',note:'Borrow a drill instead of buying one.',tag:'life',status:'spark',created:d(-2)},{id:uid(),title:'One-line daily journal',note:'One sentence a day, no pressure.',tag:'writing',status:'done',created:d(-6)},{id:uid(),title:'Podcast: why small apps win',note:'Small tools, big relief — episode outline.',tag:'business',status:'spark',created:d(-9)}]}}
+lang=S.lang||lang;
+function save(){S.lang=lang;localStorage.setItem(KEY,JSON.stringify(S))}
+function render(){
+ document.getElementById('stTotal').textContent=S.ideas.length;
+ const wk=new Date();wk.setDate(wk.getDate()-7);
+ document.getElementById('stWeek').textContent=S.ideas.filter(i=>i.created>=wk.toISOString().slice(0,10)).length;
+ document.getElementById('stDoing').textContent=S.ideas.filter(i=>i.status==='exploring').length;
+ const tag=document.getElementById('iFilter').value;
+ const q=document.getElementById('iSearch').value.trim().toLowerCase();
+ const list=document.getElementById('iList');list.innerHTML='';
+ const rows=[...S.ideas].filter(i=>(!tag||i.tag===tag)&&(!q||(i.title+' '+i.note).toLowerCase().includes(q))).sort((a,b)=>b.created.localeCompare(a.created));
+ document.getElementById('iEmpty').hidden=rows.length>0;
+ rows.forEach(i=>{const idx=STATUSES.indexOf(i.status);
+  const d=document.createElement('div');d.className='item';
+  d.innerHTML='<div><span class="strong">'+esc(i.title)+'</span> <span class="muted">· '+t(TAGK[i.tag])+'</span><br><span class="muted">'+esc(i.created)+(i.note?' · '+esc(i.note):'')+'</span></div><span class="rowflex"><button class="btn ghost small" type="button" title="'+t('tapStatus')+'">'+t(i.status)+'</button><button class="del" type="button" aria-label="'+t('del')+'">×</button></span>';
+  d.querySelector('.btn').addEventListener('click',()=>{i.status=STATUSES[(idx+1)%STATUSES.length];save();render();});
+  d.querySelector('.del').addEventListener('click',()=>{S.ideas=S.ideas.filter(x=>x.id!==i.id);save();render();});
+  list.appendChild(d);});
+}
+document.getElementById('iFilter').addEventListener('change',render);
+document.getElementById('iSearch').addEventListener('input',render);
+document.getElementById('iBtn').addEventListener('click',()=>{const ti=document.getElementById('iTitle').value.trim();
+ if(!ti)return;
+ S.ideas.push({id:uid(),title:ti,note:document.getElementById('iNote').value.trim(),tag:document.getElementById('iTag').value,status:document.getElementById('iStatus').value,created:today()});
+ document.getElementById('iTitle').value='';document.getElementById('iNote').value='';save();render();});
+save();applyLang();
+
+</script>
+</body>
+</html>

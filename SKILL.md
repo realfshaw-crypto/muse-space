@@ -1,11 +1,11 @@
 ---
 name: muse-space
-description: Muse Space (muse空间) — generate a ready-to-use Muse Space from 25 mini-app templates, like WeChat Mini Programs. Use when the user asks to open, create or use a small daily tool: expense tracker, Pomodoro / focus timer, habit tracker, budget planner, subscription tracker, flashcards, workout log, trip planner, prompt library, meeting notes, and more. Triggers include muse空间, Muse Space, mini program, 小程序, and each template name in English or Chinese.
+description: Muse Space (muse空间) — generate a ready-to-use Muse Space from 29 mini-app templates, like WeChat Mini Programs. Use when the user asks to open, create or use a small daily tool: expense tracker, Pomodoro / focus timer, habit tracker, budget planner, subscription tracker, flashcards, workout log, trip planner, prompt library, meeting notes, and more. Triggers include muse空间, Muse Space, mini program, 小程序, and each template name in English or Chinese.
 ---
 
 # Muse Space — muse空间
 
-A Muse Skill that turns one sentence into a working Muse Space, using the 25 templates in this repository. The WeChat Mini Program idea, for Muse: no install, no coding, open and use.
+A Muse Skill that turns one sentence into a working Muse Space, using the 29 templates in this repository. The WeChat Mini Program idea, for Muse: no install, no coding, open and use.
 
 ## When to trigger
 
@@ -23,6 +23,7 @@ Trigger when the user wants a small, ready-to-use daily tool as a Space, includi
 - Expense Tracker / 记账本: "expense tracker", "打开记账", "记账本", "记一笔"
 - Subscription Tracker / 订阅管家: "subscription tracker", "订阅管家", "我的订阅"
 - Savings Goals / 存钱目标: "savings goals", "存钱目标"
+- Bill Tracker / 账单管家: "bill tracker", "bills due", "账单管家", "打开账单管家"
 - Workout Log / 健身记录: "workout log", "健身记录"
 - Meal & Calorie / 饮食热量: "calorie tracker", "饮食热量", "记热量"
 - Sleep & Mood / 睡眠心情: "sleep tracker", "睡眠记录", "心情日记"
@@ -30,11 +31,14 @@ Trigger when the user wants a small, ready-to-use daily tool as a Space, includi
 - Flashcards / 闪卡复习: "flashcards", "闪卡", "背单词卡片"
 - Reading Tracker / 阅读追踪: "reading tracker", "阅读追踪", "书单"
 - Trip Planner / 旅行计划: "trip planner", "旅行计划", "做行程"
+- Travel Memory Map / 旅行足迹: "travel map", "travel memories", "旅行足迹", "打开旅行足迹"
+- Event Countdown / 活动倒计时: "event countdown", "countdown", "活动倒计时", "打开活动倒计时"
 - Grocery & Meals / 买菜食谱: "meal planner", "买菜清单", "一周食谱"
 - Home Inventory / 家庭库存: "home inventory", "家庭库存"
 - Gift Tracker / 礼物清单: "gift tracker", "gift list", "礼物清单", "打开礼物清单"
 - Game Score Tracker / 桌游记分: "game score", "scoreboard", "桌游记分", "打开记分板"
 - Recurring To-Dos / 循环待办: "recurring tasks", "循环待办", "打开循环待办"
+- Idea Capture / 灵感收集箱: "idea capture", "capture idea", "灵感收集箱", "打开灵感收集箱"
 - Pet Day Tracker / 宠物日程: "pet day", "pet tracker", "宠物日程", "打开宠物日程"
 - Restaurant Wishlist / 餐厅心愿单: "restaurant wishlist", "餐厅心愿单", "打开餐厅心愿单"
 

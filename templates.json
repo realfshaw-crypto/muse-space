@@ -269,8 +269,8 @@
         "训练记录",
         "力量训练"
       ],
-      "description_en": "Log exercises, sets, reps and weight.",
-      "description_zh": "动作、组数、重量记录。",
+      "description_en": "Log exercises, sets, reps and weight — with streaks and a daily coach tip.",
+      "description_zh": "动作、组数、重量记录，附连续打卡与教练提示。",
       "path": "templates/workout-log/"
     },
     {
@@ -524,6 +524,98 @@
       "description_en": "Every restaurant you saved and never went to, with prices and ratings.",
       "description_zh": "收藏了却没去过的店，价格评分都记着。",
       "path": "templates/restaurant-wishlist/"
+    },
+    {
+      "slug": "bill-tracker",
+      "name_en": "Bill Tracker",
+      "name_zh": "账单管家",
+      "category": "Money",
+      "keywords_en": [
+        "bill tracker",
+        "bills",
+        "due dates",
+        "best credit card",
+        "pay bills"
+      ],
+      "keywords_zh": [
+        "账单管家",
+        "账单",
+        "缴费",
+        "到期",
+        "刷卡"
+      ],
+      "description_en": "Every bill, its due date and the best card to pay with.",
+      "description_zh": "账单、到期日与刷哪张卡。",
+      "path": "templates/bill-tracker/"
+    },
+    {
+      "slug": "idea-capture",
+      "name_en": "Idea Capture",
+      "name_zh": "灵感收集箱",
+      "category": "Productivity",
+      "keywords_en": [
+        "idea capture",
+        "ideas",
+        "capture ideas",
+        "brainstorm",
+        "notes"
+      ],
+      "keywords_zh": [
+        "灵感收集箱",
+        "灵感",
+        "点子",
+        "想法",
+        "记点子"
+      ],
+      "description_en": "Catch an idea in seconds, sort it later.",
+      "description_zh": "灵感随手记，稍后再归类。",
+      "path": "templates/idea-capture/"
+    },
+    {
+      "slug": "travel-memory-map",
+      "name_en": "Travel Memory Map",
+      "name_zh": "旅行足迹",
+      "category": "Life & Home",
+      "keywords_en": [
+        "travel map",
+        "travel memories",
+        "trip journal",
+        "places visited",
+        "travel diary"
+      ],
+      "keywords_zh": [
+        "旅行足迹",
+        "旅行地图",
+        "旅行回忆",
+        "去过的地方",
+        "旅行日记"
+      ],
+      "description_en": "Every trip pinned with its story.",
+      "description_zh": "每次旅行钉上地点与故事。",
+      "path": "templates/travel-memory-map/"
+    },
+    {
+      "slug": "event-countdown",
+      "name_en": "Event Countdown",
+      "name_zh": "活动倒计时",
+      "category": "Life & Home",
+      "keywords_en": [
+        "event countdown",
+        "countdown",
+        "days left",
+        "upcoming events",
+        "birthday countdown"
+      ],
+      "keywords_zh": [
+        "活动倒计时",
+        "倒计时",
+        "还剩几天",
+        "活动",
+        "生日倒计时"
+      ],
+      "description_en": "Days left to every event that matters.",
+      "description_zh": "重要日子还剩几天，一眼看到。",
+      "path": "templates/event-countdown/"
     }
   ]
 }

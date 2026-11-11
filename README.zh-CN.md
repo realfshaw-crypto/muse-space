@@ -1,16 +1,16 @@
 # Muse Space — muse空间
 
-**25 个开箱即用的 Muse Space 小程序模板，像微信小程序一样，为你的日常 AI 生活而备。**
+**29 个开箱即用的 Muse Space 小程序模板，像微信小程序一样，为你的日常 AI 生活而备。**
 
 [English → README.md](README.md) · [模板索引 → templates.json](templates.json) · [llms.txt](llms.txt)
 
-![License: MIT](https://img.shields.io/badge/License-MIT-green.svg) ![Templates: 25](https://img.shields.io/badge/Templates-25-blue.svg) ![Design: Astryx](https://img.shields.io/badge/Design-Astryx-black.svg)
+![License: MIT](https://img.shields.io/badge/License-MIT-green.svg) ![Templates: 29](https://img.shields.io/badge/Templates-29-blue.svg) ![Design: Astryx](https://img.shields.io/badge/Design-Astryx-black.svg)
 
 ## 截图
 
-![Muse Space 预览站首页 — 6 大分类共 25 个小程序模板，带搜索框](docs/screenshots/preview-home.png)
+![Muse Space 预览站首页 — 6 大分类共 29 个小程序模板，带搜索框](docs/screenshots/preview-home.png)
 
-*预览站首页：6 大分类、25 个模板，顶部带搜索框。*
+*预览站首页：6 大分类、29 个模板，顶部带搜索框。*
 
 | | |
 |---|---|---|
@@ -24,6 +24,8 @@
 | *循环待办：做完自动顺延的到期日。* | *宠物日程：遛弯、吃饭、午睡一条时间线。* |
 | ![餐厅心愿单模板 — 收藏餐厅的价格与评分](docs/screenshots/template-restaurant-wishlist.png) | |
 | *餐厅心愿单：收藏餐厅的价格与评分。* | |
+| ![账单管家模板 — 账单、到期日与刷哪张卡](docs/screenshots/template-bill-tracker.png) | ![旅行足迹模板 — 每次旅行钉上地点与故事](docs/screenshots/template-travel-memory-map.png) |
+| *账单管家：账单、到期日与刷哪张卡。* | *旅行足迹：每次旅行钉上地点与故事。* |
 
 ## 这是什么？
 
@@ -31,18 +33,18 @@
 
 你对 Muse 说一句话——「打开记账」「给我一个番茄钟」——Muse 就从这个仓库取对应模板，填入你的数据，生成一个能直接用的空间。不用写代码，不用构建，打开就用。
 
-这个仓库同时是三样东西：一个 **Muse 技能**（`SKILL.md`）、一个 **模板库**（25 个单文件 HTML 模板）、一个 **预览站**（Astro，在 `site/` 目录）。
+这个仓库同时是三样东西：一个 **Muse 技能**（`SKILL.md`）、一个 **模板库**（29 个单文件 HTML 模板）、一个 **预览站**（Astro，在 `site/` 目录）。
 
 ### 常见问题
 
 **Muse Space 是什么？**
-Muse Space 是一个 Muse 技能加一个模板库，包含 25 个开箱即用的 Muse Space 小程序模板。它仿照微信小程序：单个用途的小应用，不用安装、不用写代码，打开就用。
+Muse Space 是一个 Muse 技能加一个模板库，包含 29 个开箱即用的 Muse Space 小程序模板。它仿照微信小程序：单个用途的小应用，不用安装、不用写代码，打开就用。
 
 **Muse Space 怎么工作？**
 你用中文或英文说一句话，说出你需要的工具。Muse 读取 `templates.json`，从 `templates/<slug>/index.html` 加载对应模板，填入你的数据，生成一个能直接用的空间。
 
 **Muse Space 包含哪些模板？**
-共 25 个模板、6 大分类：AI 工作（4 个）、效率（4 个）、财务（4 个）、健康（3 个）、学习（3 个）、生活与家庭（7 个）。每个模板都是一个独立的 HTML 文件，数据保存在浏览器本地（localStorage）。
+共 29 个模板、6 大分类：AI 工作（4 个）、效率（5 个）、财务（5 个）、健康（3 个）、学习（3 个）、生活与家庭（9 个）。每个模板都是一个独立的 HTML 文件，数据保存在浏览器本地（localStorage）。
 
 **Muse Space 免费且开源吗？**
 是。本项目以 MIT 许可证发布，可以复制、修改和复用任何模板。
@@ -54,7 +56,7 @@ Muse Space 是一个 Muse 技能加一个模板库，包含 25 个开箱即用�
 - **一套设计语言。** 全部模板用 Meta Astryx 设计令牌，语义颜色、深浅色自动适配、间距与动效统一。
 - **双语默认。** 英文为主、中文并行；界面文字简洁，按钮用动词：保存、记一笔、完成。
 
-## 模板清单 — 6 类 25 个
+## 模板清单 — 6 类 29 个
 
 ### AI 工作
 | 模板 | 用途 | 这样说 |
@@ -71,6 +73,7 @@ Muse Space 是一个 Muse 技能加一个模板库，包含 25 个开箱即用�
 | [习惯打卡](templates/habit-tracker/) | 连续天数与全年热力图 | 打开习惯打卡 |
 | [任务看板](templates/task-kanban/) | 三列看板、优先级 | 打开任务看板 |
 | [循环待办](templates/recurring-todos/) | 周期待办，到期提醒，做完自动顺延 | 打开循环待办 |
+| [灵感收集箱](templates/idea-capture/) | 灵感随手记，稍后再归类 | 打开灵感收集箱 |
 
 ### 财务
 | 模板 | 用途 | 这样说 |
@@ -79,11 +82,12 @@ Muse Space 是一个 Muse 技能加一个模板库，包含 25 个开箱即用�
 | [记账本](templates/expense-tracker/) | 几秒记一笔 | 打开记账 |
 | [订阅管家](templates/subscription-tracker/) | 续费提醒与年支出，不再被自动扣费吓一跳 | 看看我的订阅 |
 | [存钱目标](templates/savings-goals/) | 目标进度与里程碑 | 打开存钱目标 |
+| [账单管家](templates/bill-tracker/) | 账单、到期日与刷哪张卡 | 打开账单管家 |
 
 ### 健康
 | 模板 | 用途 | 这样说 |
 |---|---|---|
-| [健身记录](templates/workout-log/) | 组数、次数、重量 | 打开健身记录 |
+| [健身记录](templates/workout-log/) | 组数、次数、重量、连续打卡与教练提示 | 打开健身记录 |
 | [饮食热量](templates/meal-calorie/) | 每餐热量与蛋白质 | 打开饮食热量 |
 | [睡眠心情](templates/sleep-mood-journal/) | 睡眠时长与心情曲线 | 打开睡眠记录 |
 
@@ -104,8 +108,10 @@ Muse Space 是一个 Muse 技能加一个模板库，包含 25 个开箱即用�
 | [桌游记分](templates/game-score-tracker/) | 每局胜负与对手战绩 | 打开记分板 |
 | [宠物日程](templates/pet-day-tracker/) | 遛弯、吃饭、午睡一条时间线 | 打开宠物日程 |
 | [餐厅心愿单](templates/restaurant-wishlist/) | 收藏餐厅的价格与评分 | 打开餐厅心愿单 |
+| [旅行足迹](templates/travel-memory-map/) | 每次旅行钉上地点与故事 | 打开旅行足迹 |
+| [活动倒计时](templates/event-countdown/) | 重要日子还剩几天，一眼看到 | 打开活动倒计时 |
 
-> 25 个模板本体已全部包含，可直接打开使用。
+> 29 个模板本体已全部包含，可直接打开使用。
 
 ## 快速开始
 
