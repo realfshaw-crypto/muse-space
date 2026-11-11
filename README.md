@@ -1,82 +1,79 @@
-# Muse Space — muse空间
+<div align="center">
 
-**48 ready-to-use mini-app templates for Muse Spaces. Like WeChat Mini Programs, for your daily AI life.**
+# Muse Space
 
-[中文版 / Chinese version → README.zh-CN.md](README.zh-CN.md) · [Templates index → templates.json](templates.json) · [llms.txt](llms.txt)
+**muse空间 · Mini programs for Muse Spaces**
 
-![License: MIT](https://img.shields.io/badge/License-MIT-green.svg) ![Templates: 48](https://img.shields.io/badge/Templates-48-blue.svg) ![Design: Astryx](https://img.shields.io/badge/Design-Astryx-black.svg)
+48 ready-to-use mini-app templates. Say one sentence, and Muse builds the Space for you — no install, no setup, no code.
 
-## Screenshots
+[Live Preview](https://realfshaw-crypto.github.io/muse-space/) · [Templates](#templates) · [Quick Start](#quick-start) · [Design](#design--astryx) · [FAQ](#faq) · [中文版](README.zh-CN.md)
 
-![Muse Space preview site home page — 48 mini-app templates in 6 categories with search](docs/screenshots/preview-home.png)
+![License: MIT](https://img.shields.io/badge/License-MIT-green.svg) ![Templates: 48](https://img.shields.io/badge/Templates-48-blue.svg) ![Design: Astryx](https://img.shields.io/badge/Design-Astryx-black.svg) ![Format: Single-file HTML](https://img.shields.io/badge/Format-Single--file_HTML-lightgrey.svg)
 
-*The preview site home page: the 48 templates in 6 categories, with a search box.*
+![Muse Space preview site — 48 mini-app templates in 6 categories, with search](docs/screenshots/preview-home.png)
 
-| | |
-|---|---|---|
-| ![Expense Tracker template — log expenses by category, data stored locally](docs/screenshots/template-expense-tracker.png) | ![Focus Timer template — Pomodoro countdown ring with today's focus count](docs/screenshots/template-focus-pomodoro.png) |
-| *Expense Tracker: log an expense and see totals by category.* | *Focus Timer: a 25-minute Pomodoro countdown with a 7-day focus history.* |
-| ![Prompt Studio template — prompt list with categories and one-tap copy](docs/screenshots/template-ai-prompt-studio.png) | ![Habit Tracker template — habit list with streaks and 7-day check-in dots](docs/screenshots/template-habit-tracker.png) |
-| *Prompt Studio: saved prompts by category, one tap to copy.* | *Habit Tracker: today's check-ins, streaks, completion rates, and the last 7 days.* |
-| ![Gift Tracker template — gift ideas, sizes and budgets, sorted by person](docs/screenshots/template-gift-tracker.png) | ![Game Score Tracker template — match history, winners and the leaderboard](docs/screenshots/template-game-score-tracker.png) |
-| *Gift Tracker: gift ideas, sizes and budgets, sorted by person.* | *Game Score Tracker: match history, winners and the leaderboard.* |
-| ![Recurring To-Dos template — recurring tasks with due dates that reset when done](docs/screenshots/template-recurring-todos.png) | ![Pet Day Tracker template — walks, meals and naps on one timeline](docs/screenshots/template-pet-day-tracker.png) |
-| *Recurring To-Dos: due dates that reset when a task is done.* | *Pet Day Tracker: walks, meals and naps on one timeline.* |
-| ![Restaurant Wishlist template — saved restaurants with prices and ratings](docs/screenshots/template-restaurant-wishlist.png) | |
-| *Restaurant Wishlist: saved restaurants with prices and ratings.* | |
-| ![Bill Tracker template — every bill, its due date and the best card to pay with](docs/screenshots/template-bill-tracker.png) | ![Travel Memory Map template — every trip pinned with its place and story](docs/screenshots/template-travel-memory-map.png) |
-| *Bill Tracker: every bill, its due date and the best card to pay with.* | *Travel Memory Map: every trip pinned with its story.* |
-| ![Pantry Tracker template — food stock, quantities and expiry dates with alerts and a restock list](docs/screenshots/template-pantry-tracker.png) | ![Sudoku template — playable Sudoku with three difficulties and a daily challenge](docs/screenshots/template-sudoku-puzzle.png) |
-| *Pantry Tracker: food stock, quantities, expiry alerts and a restock list.* | *Sudoku: three difficulties, a daily challenge, notes, hints and best times.* |
-| ![Retro Organizer template — Palm-style datebook, to-dos, memos and contacts](docs/screenshots/template-retro-organizer.png) | ![App Hub template — pinned apps and links in one hub](docs/screenshots/template-app-hub.png) |
-| *Retro Organizer: datebook, to-dos, memos and contacts in one device.* | *App Hub: pinned apps and links, search and open in one tap.* |
-| ![Trivia Quiz template — timed quiz across five categories with score and streaks](docs/screenshots/template-trivia-quiz.png) | |
-| *Trivia Quiz: 50 timed questions, score, streaks and a review.* | |
-| ![Portfolio Tracker template — holdings, total value, gain/loss and allocation vs targets](docs/screenshots/template-portfolio-tracker.png) | ![Deal Hunter template — price watchlist with target prices and buy-now badges](docs/screenshots/template-deal-hunter.png) |
-| *Portfolio Tracker: holdings, total value, gain/loss and allocation vs targets.* | *Deal Hunter: target prices, discounts, categories, expiry dates and a buy-now badge when a price hits target.* |
-| ![Time Block Planner template — week planned as time blocks with hours per category](docs/screenshots/template-time-block-planner.png) | |
-| *Time Block Planner: week as time blocks, hours per category.* | |
-| ![Family Schedule Hub template — the whole family's week with who handles each pickup](docs/screenshots/template-family-schedule-hub.png) | ![Weight Tracker template — daily weigh-ins with a goal and trend line](docs/screenshots/template-weight-tracker.png) |
-| *Family Schedule Hub: the whole family's week, with who handles each pickup.* | *Weight Tracker: daily weigh-ins, goal weight and the trend line.* |
-| ![Sports Score Wall template — every game on one wall with a scrolling ticker](docs/screenshots/template-sports-score-wall.png) | ![Content Pipeline template — content moving from idea to published by stage](docs/screenshots/template-content-pipeline.png) |
-| *Sports Score Wall: every game you follow on one wall, with a ticker.* | *Content Pipeline: ideas to published, one flow, by stage and platform.* |
-| ![Meal & Calorie template — calories and protein per meal with a 7-day history](docs/screenshots/template-meal-calorie.png) | |
-| *Meal & Calorie: calories and protein per meal, editable daily goal and a 7-day history.* | |
-| ![Free Credit Radar template — AI free credits and trials with expiry countdowns](docs/screenshots/template-free-credit-radar.png) | ![Proxy Subscription Converter template — convert a proxy subscription across seven client formats](docs/screenshots/template-proxy-subscription-converter.png) |
-| *Free Credit Radar: AI free credits and trials, expiry countdowns, verified flags.* | *Proxy Subscription Converter: paste a subscription, convert it across seven client formats.* |
-| ![Holiday Feast Planner template — guests and diets, menu by course, prep timeline and shopping list](docs/screenshots/template-holiday-feast-planner.png) | |
-| *Holiday Feast Planner: guests and diets, menu by course, prep timeline and shopping list.* | |
+*The preview site — all 48 templates, searchable by name and category.*
 
-## What is Muse Space?
+</div>
 
-Think of WeChat Mini Programs — small apps you open instantly, no install, no setup. Muse Space does the same for Muse Spaces.
+---
 
-You say one sentence to Muse — "Open my expense tracker" or "Give me a focus timer" — and Muse picks the matching template from this repo, fills it with your data, and generates a ready-to-use Space. No coding. No build step. Open and use.
+## Highlights
+
+| Zero setup | Local-first |
+| --- | --- |
+| Every template is a single HTML file. Copy it, open it, use it. No build step, no server. | Your data stays in your browser (localStorage). Nothing is uploaded, nothing leaves your device. |
+
+| One design system | Bilingual by default |
+| --- | --- |
+| All 48 templates share Meta Astryx design tokens: semantic color, automatic light and dark, consistent spacing and motion. | English first, Chinese alongside. Short, plain UI text, with verbs on buttons: Save, Add, Done. |
+
+## How it works
+
+Think of WeChat Mini Programs: small, single-purpose apps that open instantly. Muse Space brings the same idea to Muse Spaces — this repository is the template library behind it.
+
+```mermaid
+flowchart LR
+    A["You say one sentence"] --> B["Muse picks the matching template"]
+    B --> C["Muse fills in your data"]
+    C --> D["A ready-to-use Space"]
+```
+
+1. **Say it.** Name the tool you need, in English or Chinese — "Open my expense tracker" or 「打开记账」.
+2. **Muse picks it.** Muse reads `templates.json`, loads the matching template from `templates/<slug>/`, and fills it with your data.
+3. **Open and use.** The result is a finished Space. No coding, no build step.
 
 This repository is three things in one: a **Muse Skill** (`SKILL.md`), a **template library** (48 single-file HTML templates), and a **preview site** (Astro, in `site/`).
 
-### Frequently asked questions
+## Quick Start
 
-**What is Muse Space?**
-Muse Space is a Muse Skill and a library of 48 ready-to-use mini-app templates for Muse Spaces. It is modeled on WeChat Mini Programs: small, single-purpose apps that open instantly, with no install and no coding.
+1. Add this repository as a Muse Skill — point Muse at [`SKILL.md`](SKILL.md) — or share the repository link with Muse.
+2. Say what you need, in English or Chinese:
+   - "Open my expense tracker" · 「打开记账」
+   - "Give me a Pomodoro timer" · 「给我一个番茄钟」
+   - "Start a habit tracker" · 「打开习惯打卡」
+3. Muse reads `templates.json`, loads the matching template, fills in your data, and creates your Space.
 
-**How does Muse Space work?**
-You name the tool you need in one sentence, in English or Chinese. Muse reads `templates.json`, loads the matching template from `templates/<slug>/index.html`, fills it with your data, and generates a ready-to-use Space.
+You can also use any template directly: open `templates/<slug>/index.html` in a browser. No server needed.
 
-**What templates does Muse Space include?**
-48 templates in 6 categories: AI Work (9), Productivity (10), Money (6), Health (4), Learn (4), and Life & Home (15). Every template is a single self-contained HTML file, and data is stored locally in the browser (`localStorage`).
+## Featured templates
 
-**Is Muse Space free and open source?**
-Yes. Muse Space is released under the MIT License. You can copy, adapt, and reuse any template.
+| | |
+| --- | --- |
+| ![Expense Tracker template — log expenses by category, data stored locally](docs/screenshots/template-expense-tracker.png) | ![Focus Timer template — Pomodoro countdown ring with today's focus count](docs/screenshots/template-focus-pomodoro.png) |
+| *Expense Tracker — log an expense in seconds, with totals by category.* | *Focus Timer — a 25-minute Pomodoro countdown with a 7-day focus history.* |
+| ![Prompt Studio template — prompt list with categories and one-tap copy](docs/screenshots/template-ai-prompt-studio.png) | ![Habit Tracker template — habit list with streaks and 7-day check-in dots](docs/screenshots/template-habit-tracker.png) |
+| *Prompt Studio — saved prompts by category, one tap to copy.* | *Habit Tracker — today's check-ins, streaks, completion rates, and the last 7 days.* |
+| ![Portfolio Tracker template — holdings, total value, gain/loss and allocation vs targets](docs/screenshots/template-portfolio-tracker.png) | ![Sudoku template — playable Sudoku with three difficulties and a daily challenge](docs/screenshots/template-sudoku-puzzle.png) |
+| *Portfolio Tracker — holdings, total value, gain/loss and allocation vs targets.* | *Sudoku — three difficulties, a daily challenge, notes, hints and best times.* |
+| ![Family Schedule Hub template — the whole family's week with who handles each pickup](docs/screenshots/template-family-schedule-hub.png) | ![Free Credit Radar template — AI free credits and trials with expiry countdowns](docs/screenshots/template-free-credit-radar.png) |
+| *Family Schedule Hub — the whole family's week, with who handles each pickup.* | *Free Credit Radar — AI free credits and trials, with expiry countdowns.* |
 
-## Why
+Every template has a screenshot like these — browse them all on the [preview site](https://realfshaw-crypto.github.io/muse-space/).
 
-- **Zero setup.** Every template is a single HTML file. Copy it, open it, use it.
-- **Your data stays local.** Templates use `localStorage`. Nothing leaves your browser.
-- **One design language.** All templates use Meta Astryx design tokens — semantic colors, automatic light/dark, consistent spacing and motion.
-- **Bilingual by default.** English first, Chinese alongside. Plain, short UI text. Verbs on buttons: Save, Add, Done.
+## Templates
 
-## Templates — 6 categories, 48 templates
+6 categories, 48 templates. The same index is available in machine-readable form as [`templates.json`](templates.json).
 
 ### AI Work
 | Template | What it does | Say it |
@@ -152,20 +149,9 @@ Yes. Muse Space is released under the MIT License. You can copy, adapt, and reus
 
 > All 48 template bodies are included and ready to open.
 
-## Quick Start
-
-1. Add this repo as a Muse Skill (point Muse at `SKILL.md`), or just link Muse to this repository.
-2. Say what you need, in English or Chinese:
-   - "Open my expense tracker" / 「打开记账」
-   - "Give me a Pomodoro timer" / 「给我一个番茄钟」
-   - "Start a habit tracker" / 「打开习惯打卡」
-3. Muse reads `templates.json`, loads the matching template, fills in your data, and creates your Space.
-
-You can also use any template directly: open `templates/<slug>/index.html` in a browser. No server needed.
-
 ## Design — Astryx
 
-All templates share one token file: [`assets/tokens.css`](assets/tokens.css) (Meta Astryx core defaults).
+All templates share one token file: [`assets/tokens.css`](assets/tokens.css) (Meta Astryx core defaults, verbatim).
 
 - Semantic tokens only — components use `var(--...)`, never raw hex or px values.
 - Surface layers: body → surface → card → popover.
@@ -175,7 +161,7 @@ All templates share one token file: [`assets/tokens.css`](assets/tokens.css) (Me
 
 ## Repository layout
 
-```
+```text
 SKILL.md          Muse Skill definition (triggers + generation rules)
 templates.json    Machine-readable index of all 48 templates
 assets/tokens.css Astryx design tokens (verbatim)
@@ -183,6 +169,20 @@ templates/        One folder per template: index.html + README.md
 site/             Astro 5 preview site (GitHub Pages)
 llms.txt          Plain-text project summary
 ```
+
+## FAQ
+
+**What is Muse Space?**
+Muse Space is a Muse Skill and a library of 48 ready-to-use mini-app templates for Muse Spaces. It is modeled on WeChat Mini Programs: small, single-purpose apps that open instantly, with no install and no coding.
+
+**How does Muse Space work?**
+You name the tool you need in one sentence, in English or Chinese. Muse reads `templates.json`, loads the matching template from `templates/<slug>/index.html`, fills it with your data, and generates a ready-to-use Space.
+
+**What templates does Muse Space include?**
+48 templates in 6 categories: AI Work (9), Productivity (10), Money (6), Health (4), Learn (4), and Life & Home (15). Every template is a single self-contained HTML file, and data is stored locally in the browser (`localStorage`).
+
+**Is Muse Space free and open source?**
+Yes. Muse Space is released under the MIT License. You can copy, adapt, and reuse any template.
 
 ## License
 
