@@ -275,17 +275,18 @@ textarea{resize:vertical}
 <div class="row"><input class="grow" data-f="title" data-i18n-ph="phTitle" aria-label="Title"><select data-f="cat" aria-label="Category"><option>Writing</option><option>Code</option><option>Marketing</option><option>Study</option></select></div>
 <textarea data-f="text" rows="3" data-i18n-ph="phText" aria-label="Prompt text"></textarea>
 <div class="row"><button type="button" class="btn" data-add data-i18n="add"></button>
-<select data-f="filter" aria-label="Filter"><option value="All">All</option><option>Writing</option><option>Code</option><option>Marketing</option><option>Study</option></select></div>
+<select data-f="filter" aria-label="Filter"><option value="All">All</option><option>Writing</option><option>Code</option><option>Marketing</option><option>Study</option></select>
+<select data-f="sort" aria-label="Sort"><option value="newest">Newest</option><option value="used">Most used</option><option value="fav">Favorites</option></select></div>
 </section>
 <section class="stack" data-list style="margin-top:var(--spacing-3)"></section>
 <p class="empty" data-empty hidden></p>
 </main></div>
 <script>
-
 const KEY='muse-space:ai-prompt-studio';
-const STR={en:{title:'Prompt Studio',sub:'Save, organize and reuse your best prompts.',add:'Add prompt',phTitle:'Prompt title',phText:'Paste your prompt here',copy:'Copy',del:'Delete',copied:'Copied',empty:'No prompts yet. Add your first prompt above.'},zh:{title:'提示词工坊',sub:'收藏、分类、复用提示词，一键复制。',add:'添加提示词',phTitle:'提示词标题',phText:'在这里粘贴提示词',copy:'复制',del:'删除',copied:'已复制',empty:'还没有提示词，在上面添加第一条。'}};
+const STR={en:{title:'Prompt Studio',sub:'Save, organize and reuse your best prompts.',add:'Add prompt',phTitle:'Prompt title',phText:'Paste your prompt here',copy:'Copy',del:'Delete',copied:'Copied',dup:'Duplicate',empty:'No prompts yet. Add your first prompt above.',uses:'uses',fav:'Favorite',unfav:'Unfavorite'},zh:{title:'提示词工坊',sub:'收藏、分类、复用提示词，一键复制。',add:'添加提示词',phTitle:'提示词标题',phText:'在这里粘贴提示词',copy:'复制',del:'删除',copied:'已复制',dup:'复制一份',empty:'还没有提示词，在上面添加第一条。',uses:'次使用',fav:'收藏',unfav:'取消收藏'}};
 let state; try{ state=JSON.parse(localStorage.getItem(KEY)); }catch(e){ state=null; }
-if(!state || !Array.isArray(state.items)){ state={lang:'en',items:[{id:uid(),title:'Blog outline helper',cat:'Writing',text:'Give me a clear outline for a blog post about [topic], with 5 sections and one example per section.'},{id:uid(),title:'Code reviewer',cat:'Code',text:'Review this code for bugs, edge cases and readability. List fixes by priority: [paste code]'},{id:uid(),title:'Product tagline',cat:'Marketing',text:'Write 10 short taglines for [product] aimed at [audience]. Keep each under 8 words.'}]}; }
+if(!state || !Array.isArray(state.items)){ state={lang:'en',items:[{id:uid(),title:'Blog outline helper',cat:'Writing',text:'Give me a clear outline for a blog post about [topic], with 5 sections and one example per section.',fav:true,uses:12},{id:uid(),title:'Code reviewer',cat:'Code',text:'Review this code for bugs, edge cases and readability. List fixes by priority: [paste code]',fav:false,uses:8},{id:uid(),title:'Product tagline',cat:'Marketing',text:'Write 10 short taglines for [product] aimed at [audience]. Keep each under 8 words.',fav:false,uses:3}]}; }
+state.items.forEach(function(x){ if(typeof x.fav!=='boolean'){ x.fav=false; } if(typeof x.uses!=='number'){ x.uses=0; } });
 
 let lang = (state && state.lang) || 'en';
 function t(k){ return STR[lang][k] || STR.en[k] || k; }
@@ -296,12 +297,12 @@ function uid(){ return Date.now().toString(36) + Math.random().toString(36).slic
 
 function save(){ localStorage.setItem(KEY, JSON.stringify(state)); }
 const listEl=document.querySelector('[data-list]'), emptyEl=document.querySelector('[data-empty]');
-function render(){ const f=document.querySelector('[data-f="filter"]').value; const items=state.items.filter(function(x){ return f==='All'||x.cat===f; }); emptyEl.hidden=items.length>0; emptyEl.textContent=t('empty'); listEl.innerHTML=items.map(function(x){ return '<article class="card stack"><div class="row"><h3 class="grow">'+esc(x.title)+'</h3><span class="chip">'+esc(x.cat)+'</span></div><p class="muted" style="margin:0">'+esc(x.text)+'</p><div class="row"><button type="button" class="btn" data-copy="'+x.id+'">'+t('copy')+'</button><button type="button" class="btn-danger" data-del="'+x.id+'">'+t('del')+'</button></div></article>'; }).join(''); }
-listEl.addEventListener('click', function(e){ const c=e.target.closest('[data-copy]'), d=e.target.closest('[data-del]'); if(c){ const it=state.items.find(function(x){return x.id===c.dataset.copy;}); if(it&&navigator.clipboard){ navigator.clipboard.writeText(it.text); } c.textContent=t('copied'); setTimeout(render,900); } if(d){ state.items=state.items.filter(function(x){return x.id!==d.dataset.del;}); save(); render(); } });
-document.querySelector('[data-add]').addEventListener('click', function(){ const ti=document.querySelector('[data-f="title"]'), te=document.querySelector('[data-f="text"]'); if(!ti.value.trim()||!te.value.trim()){ return; } state.items.unshift({id:uid(),title:ti.value.trim(),cat:document.querySelector('[data-f="cat"]').value,text:te.value.trim()}); ti.value=''; te.value=''; save(); render(); });
+function render(){ const f=document.querySelector('[data-f="filter"]').value; const s=document.querySelector('[data-f="sort"]').value; let items=state.items.filter(function(x){ return f==='All'||x.cat===f; }); if(s==='fav'){ items=items.filter(function(x){ return x.fav; }); } if(s==='used'){ items=items.slice().sort(function(a,b){ return b.uses-a.uses; }); } emptyEl.hidden=items.length>0; emptyEl.textContent=t('empty'); listEl.innerHTML=items.map(function(x){ return '<article class="card stack"><div class="row"><h3 class="grow">'+(x.fav?'★ ':'')+esc(x.title)+'</h3><span class="chip">'+esc(x.cat)+'</span><span class="chip-green">'+x.uses+' '+t('uses')+'</span></div><p class="muted" style="margin:0">'+esc(x.text)+'</p><div class="row"><button type="button" class="btn" data-copy="'+x.id+'">'+t('copy')+'</button><button type="button" class="btn-ghost" data-fav="'+x.id+'">'+(x.fav?t('unfav'):t('fav'))+'</button><button type="button" class="btn-ghost" data-dup="'+x.id+'">'+t('dup')+'</button><button type="button" class="btn-danger" data-del="'+x.id+'">'+t('del')+'</button></div></article>'; }).join(''); }
+listEl.addEventListener('click', function(e){ const c=e.target.closest('[data-copy]'), d=e.target.closest('[data-del]'), fv=e.target.closest('[data-fav]'), dp=e.target.closest('[data-dup]'); if(c){ const it=state.items.find(function(x){return x.id===c.dataset.copy;}); if(it){ it.uses=(it.uses||0)+1; save(); if(navigator.clipboard){ navigator.clipboard.writeText(it.text); } } c.textContent=t('copied'); setTimeout(render,900); } if(fv){ const it=state.items.find(function(x){return x.id===fv.dataset.fav;}); if(it){ it.fav=!it.fav; save(); render(); } } if(dp){ const it=state.items.find(function(x){return x.id===dp.dataset.dup;}); if(it){ state.items.unshift({id:uid(),title:it.title+' (copy)',cat:it.cat,text:it.text,fav:false,uses:0}); save(); render(); } } if(d){ state.items=state.items.filter(function(x){return x.id!==d.dataset.del;}); save(); render(); } });
+document.querySelector('[data-add]').addEventListener('click', function(){ const ti=document.querySelector('[data-f="title"]'), te=document.querySelector('[data-f="text"]'); if(!ti.value.trim()||!te.value.trim()){ return; } state.items.unshift({id:uid(),title:ti.value.trim(),cat:document.querySelector('[data-f="cat"]').value,text:te.value.trim(),fav:false,uses:0}); ti.value=''; te.value=''; save(); render(); });
 document.querySelector('[data-f="filter"]').addEventListener('change', render);
+document.querySelector('[data-f="sort"]').addEventListener('change', render);
 applyI18n(); render();
-
 </script>
 </body>
 </html>

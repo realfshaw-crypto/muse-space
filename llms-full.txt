@@ -1,23 +1,26 @@
 # Muse Space — muse空间 (full)
 
-Muse Space is a Muse Skill and template library with 41 ready-to-use mini-app templates for Muse Spaces, modeled on WeChat Mini Programs. Repository: https://github.com/realfshaw-crypto/muse-space. License: MIT. All templates are single-file HTML, Astryx design tokens, localStorage persistence, bilingual English/Chinese.
+Muse Space is a Muse Skill and template library with 45 ready-to-use mini-app templates for Muse Spaces, modeled on WeChat Mini Programs. Repository: https://github.com/realfshaw-crypto/muse-space. License: MIT. All templates are single-file HTML, Astryx design tokens, localStorage persistence, bilingual English/Chinese.
 
 ## Questions and answers
 
-Q: What is Muse Space? A: A Muse Skill plus a library of 41 mini-app templates. You ask Muse for a small tool in one sentence, and Muse generates a ready-to-use Muse Space from the matching template.
+Q: What is Muse Space? A: A Muse Skill plus a library of 45 mini-app templates. You ask Muse for a small tool in one sentence, and Muse generates a ready-to-use Muse Space from the matching template.
 Q: How is it like WeChat Mini Programs? A: Like Mini Programs, each template is a small single-purpose app that opens instantly with no install and no coding.
 Q: Where is user data stored? A: Locally, in the browser localStorage of the generated Space. No data is sent to external services.
 Q: What design system do the templates use? A: Meta Astryx design tokens (core defaults), semantic CSS variables with automatic light/dark adaptation.
-Q: How many templates are there? A: 41 templates in 6 categories: AI Work (5), Productivity (8), Money (6), Health (4), Learn (4), Life & Home (14).
+Q: How many templates are there? A: 45 templates in 6 categories: AI Work (8), Productivity (9), Money (6), Health (4), Learn (4), Life & Home (14).
 
-## All 41 templates
+## All 45 templates
 
 ### AI Work
-- Prompt Studio (提示词工坊, slug: ai-prompt-studio, path: templates/ai-prompt-studio/): Save, organize and reuse your best prompts. One tap to copy. / 收藏、分类、复用提示词，一键复制。 Keywords EN: prompt, prompts, ai assistant, prompt library. Keywords ZH: 提示词, 提示词库, AI助手.
+- Prompt Studio (提示词工坊, slug: ai-prompt-studio, path: templates/ai-prompt-studio/): Save, organize and reuse your best prompts. One tap to copy. Star favorites, see use counts and sort by most used. / 收藏、分类、复用提示词，一键复制。收藏常用提示词、看使用次数、按最常用排序。 Keywords EN: prompt, prompts, ai assistant, prompt library. Keywords ZH: 提示词, 提示词库, AI助手.
 - Meeting Notes (会议纪要, slug: ai-meeting-notes, path: templates/ai-meeting-notes/): Turn rough notes into decisions, actions and owners. / 纪要结构化：决议、待办、负责人。 Keywords EN: meeting notes, minutes, action items, summary. Keywords ZH: 会议纪要, 会议记录, 待办.
 - Resume Coach (简历教练, slug: ai-resume-coach, path: templates/ai-resume-coach/): Polish resume bullets and check fit against a target role. / 简历要点打磨与岗位匹配清单。 Keywords EN: resume, cv, job search, career. Keywords ZH: 简历, 求职, 岗位匹配.
 - Content Calendar (内容日历, slug: ai-content-calendar, path: templates/ai-content-calendar/): Plan topics, schedule posts and track publish status in one view. / 选题、排期、发布状态一屏管。 Keywords EN: content calendar, creator, publishing schedule, social media. Keywords ZH: 内容日历, 选题, 排期.
 - Content Pipeline (内容生产线, slug: content-pipeline, path: templates/content-pipeline/): Move each piece from idea to draft, editing, scheduled and published. / 每条内容从点子到草稿、编辑、排期、发布，一步步往前推。 Keywords EN: content pipeline, content studio, content queue, creator pipeline, publishing pipeline. Keywords ZH: 内容生产线, 内容工作室, 内容排队, 创作流程, 发布流程.
+- Space Prompt Generator (空间提示词生成器, slug: space-prompt-generator, path: templates/space-prompt-generator/): Type a topic and get a full Muse Space build prompt, ready to paste. / 输入一个赛道，得到一条能直接建 Space 的完整提示词。 Keywords EN: space prompt generator, prompt generator, build a space, muse space prompt, space builder. Keywords ZH: 空间提示词生成器, 提示词生成器, 建空间, 空间生成, 赛道提示词.
+- Pose Prompt Generator (姿势提示词生成器, slug: pose-prompt-generator, path: templates/pose-prompt-generator/): Pick a pose from the library and get a paste-ready prompt in four formats. / 从姿势库里点一个姿势，四种格式提示词直接复制。 Keywords EN: pose prompt generator, pose prompts, pose library, video pose, photo pose. Keywords ZH: 姿势提示词生成器, 姿势提示词, 姿势库, 视频姿势, 拍照姿势.
+- AI Video Workflow (AI 视频工作流, slug: ai-video-workflow, path: templates/ai-video-workflow/): Plan a short video: shot list, per-model prompts and a delivery checklist. / 排一部短视频：分镜表、各模型提示词与成片任务单。 Keywords EN: ai video workflow, video workflow, video planner, shot list, video production. Keywords ZH: AI 视频工作流, 视频工作流, 视频策划, 分镜表, 短视频制作.
 
 ### Productivity
 - Focus Timer (专注时钟, slug: focus-pomodoro, path: templates/focus-pomodoro/): A Pomodoro timer with a 7-day focus history and long breaks. / 番茄钟加近 7 天专注记录与长休。 Keywords EN: pomodoro, focus timer, deep work, productivity. Keywords ZH: 番茄钟, 专注, 计时.
@@ -28,6 +31,7 @@ Q: How many templates are there? A: 41 templates in 6 categories: AI Work (5), P
 - Retro Organizer (复古掌上电脑, slug: retro-organizer, path: templates/retro-organizer/): A Palm-style organizer: datebook, to-dos, memos and contacts in one device. / 掌上电脑风整理器：日程、待办、备忘与通讯录合一。 Keywords EN: retro organizer, palm pilot, pda, datebook, organizer. Keywords ZH: 复古掌上电脑, 掌上电脑, 日程本, 记事.
 - App Hub (应用中心, slug: app-hub, path: templates/app-hub/): Your pinned apps and links in one hub — search, pin and open in one tap. / 常用应用与链接收进一个中心，搜、钉、点开一步到位。 Keywords EN: app hub, launcher, apps, shortcuts, dashboard. Keywords ZH: 应用中心, 启动器, 应用, 快捷方式.
 - Time Block Planner (周时间块, slug: time-block-planner, path: templates/time-block-planner/): Plan the week as time blocks: work, study, health and rest, with hours per category. / 按周排时间块：工作、学习、健康与休息，各类时长一目了然。 Keywords EN: time block, time blocking, weekly planner, schedule, time management. Keywords ZH: 周时间块, 时间块, 周计划, 时间管理, 排时间.
+- Morning Briefing (晨间简报, slug: morning-briefing, path: templates/morning-briefing/): Today at a glance: agenda, top tasks, email triage and the news that matters. / 今天一眼看完：日程、要事、邮件分拣与值得看的新闻。 Keywords EN: morning briefing, daily briefing, morning routine, email triage, day planner. Keywords ZH: 晨间简报, 每日简报, 晨间, 邮件分拣, 今日安排.
 
 ### Money
 - Budget Planner (预算管家, slug: budget-planner, path: templates/budget-planner/): Set a monthly budget, cap each category, see what is left. / 月预算、分类上限、剩余一目了然。 Keywords EN: budget, budget planner, monthly budget, money. Keywords ZH: 预算, 月预算, 理财.

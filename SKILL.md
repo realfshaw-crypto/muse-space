@@ -1,11 +1,11 @@
 ---
 name: muse-space
-description: Muse Space (muse空间) — generate a ready-to-use Muse Space from 41 mini-app templates, like WeChat Mini Programs. Use when the user asks to open, create or use a small daily tool: expense tracker, Pomodoro / focus timer, habit tracker, budget planner, subscription tracker, flashcards, workout log, trip planner, prompt library, meeting notes, and more. Triggers include muse空间, Muse Space, mini program, 小程序, and each template name in English or Chinese.
+description: Muse Space (muse空间) — generate a ready-to-use Muse Space from 45 mini-app templates, like WeChat Mini Programs. Use when the user asks to open, create or use a small daily tool: expense tracker, Pomodoro / focus timer, habit tracker, budget planner, subscription tracker, flashcards, workout log, trip planner, prompt library, meeting notes, and more. Triggers include muse空间, Muse Space, mini program, 小程序, and each template name in English or Chinese.
 ---
 
 # Muse Space — muse空间
 
-A Muse Skill that turns one sentence into a working Muse Space, using the 41 templates in this repository. The WeChat Mini Program idea, for Muse: no install, no coding, open and use.
+A Muse Skill that turns one sentence into a working Muse Space, using the 45 templates in this repository. The WeChat Mini Program idea, for Muse: no install, no coding, open and use.
 
 ## When to trigger
 
@@ -45,6 +45,7 @@ Trigger when the user wants a small, ready-to-use daily tool as a Space, includi
 - Retro Organizer / 复古掌上电脑: "retro organizer", "Palm Pilot", "复古掌上电脑", "打开复古掌上电脑"
 - App Hub / 应用中心: "app hub", "应用中心", "打开应用中心"
 - Time Block Planner / 周时间块: "time block", "time blocking", "周时间块", "打开周时间块"
+- Morning Briefing / 晨间简报: "morning briefing", "daily briefing", "晨间简报", "打开晨间简报"
 - Trivia Quiz / 趣味问答: "trivia quiz", "quiz", "趣味问答", "打开趣味问答"
 - Pantry Tracker / 食材库存: "pantry tracker", "食材库存", "打开食材库存"
 - Sudoku / 数独: "sudoku", "数独", "打开数独"
@@ -53,6 +54,9 @@ Trigger when the user wants a small, ready-to-use daily tool as a Space, includi
 - Weight Tracker / 体重记录: "weight tracker", "weigh-in", "体重记录", "打开体重记录"
 - Sports Score Wall / 比赛记分墙: "sports scores", "score wall", "比分墙", "打开比分墙"
 - Content Pipeline / 内容生产线: "content pipeline", "content studio", "内容生产线", "打开内容生产线"
+- Space Prompt Generator / 空间提示词生成器: "space prompt generator", "prompt generator", "空间提示词生成器", "打开空间提示词生成器"
+- Pose Prompt Generator / 姿势提示词生成器: "pose prompt generator", "pose prompts", "姿势提示词生成器", "打开姿势提示词生成器"
+- AI Video Workflow / AI 视频工作流: "ai video workflow", "video workflow", "AI 视频工作流", "打开 AI 视频工作流"
 
 If the request is ambiguous, match by keywords in `templates.json` (`keywords_en` / `keywords_zh`). If nothing matches, say so plainly and list the closest two templates. Do not invent a template that is not in `templates.json`.
 

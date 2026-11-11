@@ -684,6 +684,29 @@
    "path": "templates/time-block-planner/"
   },
   {
+   "slug": "morning-briefing",
+   "name_en": "Morning Briefing",
+   "name_zh": "晨间简报",
+   "category": "Productivity",
+   "keywords_en": [
+    "morning briefing",
+    "daily briefing",
+    "morning routine",
+    "email triage",
+    "day planner"
+   ],
+   "keywords_zh": [
+    "晨间简报",
+    "每日简报",
+    "晨间",
+    "邮件分拣",
+    "今日安排"
+   ],
+   "description_en": "Today at a glance: agenda, top tasks, email triage and the news that matters.",
+   "description_zh": "今天一眼看完：日程、要事、邮件分拣与值得看的新闻。",
+   "path": "templates/morning-briefing/"
+  },
+  {
    "slug": "travel-memory-map",
    "name_en": "Travel Memory Map",
    "name_zh": "旅行足迹",
@@ -885,6 +908,75 @@
    "description_en": "Move each piece from idea to draft, editing, scheduled and published.",
    "description_zh": "每条内容从点子到草稿、编辑、排期、发布，一步步往前推。",
    "path": "templates/content-pipeline/"
+  },
+  {
+   "slug": "space-prompt-generator",
+   "name_en": "Space Prompt Generator",
+   "name_zh": "空间提示词生成器",
+   "category": "AI Work",
+   "keywords_en": [
+    "space prompt generator",
+    "prompt generator",
+    "build a space",
+    "muse space prompt",
+    "space builder"
+   ],
+   "keywords_zh": [
+    "空间提示词生成器",
+    "提示词生成器",
+    "建空间",
+    "空间生成",
+    "赛道提示词"
+   ],
+   "description_en": "Type a topic and get a full Muse Space build prompt, ready to paste.",
+   "description_zh": "输入一个赛道，得到一条能直接建 Space 的完整提示词。",
+   "path": "templates/space-prompt-generator/"
+  },
+  {
+   "slug": "pose-prompt-generator",
+   "name_en": "Pose Prompt Generator",
+   "name_zh": "姿势提示词生成器",
+   "category": "AI Work",
+   "keywords_en": [
+    "pose prompt generator",
+    "pose prompts",
+    "pose library",
+    "video pose",
+    "photo pose"
+   ],
+   "keywords_zh": [
+    "姿势提示词生成器",
+    "姿势提示词",
+    "姿势库",
+    "视频姿势",
+    "拍照姿势"
+   ],
+   "description_en": "Pick a pose from the library and get a paste-ready prompt in four formats.",
+   "description_zh": "从姿势库里点一个姿势，四种格式提示词直接复制。",
+   "path": "templates/pose-prompt-generator/"
+  },
+  {
+   "slug": "ai-video-workflow",
+   "name_en": "AI Video Workflow",
+   "name_zh": "AI 视频工作流",
+   "category": "AI Work",
+   "keywords_en": [
+    "ai video workflow",
+    "video workflow",
+    "video planner",
+    "shot list",
+    "video production"
+   ],
+   "keywords_zh": [
+    "AI 视频工作流",
+    "视频工作流",
+    "视频策划",
+    "分镜表",
+    "短视频制作"
+   ],
+   "description_en": "Plan a short video: shot list, per-model prompts and a delivery checklist.",
+   "description_zh": "排一部短视频：分镜表、各模型提示词与成片任务单。",
+   "path": "templates/ai-video-workflow/"
   }
  ]
 }

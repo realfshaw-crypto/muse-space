@@ -1,16 +1,16 @@
 # Muse Space — muse空间
 
-**41 个开箱即用的 Muse Space 小程序模板，像微信小程序一样，为你的日常 AI 生活而备。**
+**45 个开箱即用的 Muse Space 小程序模板，像微信小程序一样，为你的日常 AI 生活而备。**
 
 [English → README.md](README.md) · [模板索引 → templates.json](templates.json) · [llms.txt](llms.txt)
 
-![License: MIT](https://img.shields.io/badge/License-MIT-green.svg) ![Templates: 41](https://img.shields.io/badge/Templates-41-blue.svg) ![Design: Astryx](https://img.shields.io/badge/Design-Astryx-black.svg)
+![License: MIT](https://img.shields.io/badge/License-MIT-green.svg) ![Templates: 45](https://img.shields.io/badge/Templates-45-blue.svg) ![Design: Astryx](https://img.shields.io/badge/Design-Astryx-black.svg)
 
 ## 截图
 
-![Muse Space 预览站首页 — 6 大分类共 41 个小程序模板，带搜索框](docs/screenshots/preview-home.png)
+![Muse Space 预览站首页 — 6 大分类共 45 个小程序模板，带搜索框](docs/screenshots/preview-home.png)
 
-*预览站首页：6 大分类、41 个模板，顶部带搜索框。*
+*预览站首页：6 大分类、45 个模板，顶部带搜索框。*
 
 | | |
 |---|---|---|
@@ -49,18 +49,18 @@
 
 你对 Muse 说一句话——「打开记账」「给我一个番茄钟」——Muse 就从这个仓库取对应模板，填入你的数据，生成一个能直接用的空间。不用写代码，不用构建，打开就用。
 
-这个仓库同时是三样东西：一个 **Muse 技能**（`SKILL.md`）、一个 **模板库**（41 个单文件 HTML 模板）、一个 **预览站**（Astro，在 `site/` 目录）。
+这个仓库同时是三样东西：一个 **Muse 技能**（`SKILL.md`）、一个 **模板库**（45 个单文件 HTML 模板）、一个 **预览站**（Astro，在 `site/` 目录）。
 
 ### 常见问题
 
 **Muse Space 是什么？**
-Muse Space 是一个 Muse 技能加一个模板库，包含 41 个开箱即用的 Muse Space 小程序模板。它仿照微信小程序：单个用途的小应用，不用安装、不用写代码，打开就用。
+Muse Space 是一个 Muse 技能加一个模板库，包含 45 个开箱即用的 Muse Space 小程序模板。它仿照微信小程序：单个用途的小应用，不用安装、不用写代码，打开就用。
 
 **Muse Space 怎么工作？**
 你用中文或英文说一句话，说出你需要的工具。Muse 读取 `templates.json`，从 `templates/<slug>/index.html` 加载对应模板，填入你的数据，生成一个能直接用的空间。
 
 **Muse Space 包含哪些模板？**
-共 41 个模板、6 大分类：AI 工作（5 个）、效率（8 个）、财务（6 个）、健康（4 个）、学习（4 个）、生活与家庭（14 个）。每个模板都是一个独立的 HTML 文件，数据保存在浏览器本地（localStorage）。
+共 45 个模板、6 大分类：AI 工作（8 个）、效率（9 个）、财务（6 个）、健康（4 个）、学习（4 个）、生活与家庭（14 个）。每个模板都是一个独立的 HTML 文件，数据保存在浏览器本地（localStorage）。
 
 **Muse Space 免费且开源吗？**
 是。本项目以 MIT 许可证发布，可以复制、修改和复用任何模板。
@@ -72,7 +72,7 @@ Muse Space 是一个 Muse 技能加一个模板库，包含 41 个开箱即用�
 - **一套设计语言。** 全部模板用 Meta Astryx 设计令牌，语义颜色、深浅色自动适配、间距与动效统一。
 - **双语默认。** 英文为主、中文并行；界面文字简洁，按钮用动词：保存、记一笔、完成。
 
-## 模板清单 — 6 类 41 个
+## 模板清单 — 6 类 45 个
 
 ### AI 工作
 | 模板 | 用途 | 这样说 |
@@ -82,6 +82,9 @@ Muse Space 是一个 Muse 技能加一个模板库，包含 41 个开箱即用�
 | [简历教练](templates/ai-resume-coach/) | 打磨简历要点，核对岗位匹配 | 帮我改简历 |
 | [内容日历](templates/ai-content-calendar/) | 选题、排期、发布状态一屏管 | 打开内容日历 |
 | [内容生产线](templates/content-pipeline/) | 点子到发布，一条生产线按阶段推进 | 打开内容生产线 |
+| [空间提示词生成器](templates/space-prompt-generator/) | 输入赛道，得到一条能直接建 Space 的提示词 | 给咖啡折扣生成一条建空间提示词 |
+| [姿势提示词生成器](templates/pose-prompt-generator/) | 点一个姿势，四种格式提示词直接复制 | 打开姿势提示词生成器 |
+| [AI 视频工作流](templates/ai-video-workflow/) | 分镜表、各模型提示词与成片任务单 | 帮我排一部 AI 短视频 |
 
 ### 效率
 | 模板 | 用途 | 这样说 |
@@ -94,6 +97,7 @@ Muse Space 是一个 Muse 技能加一个模板库，包含 41 个开箱即用�
 | [复古掌上电脑](templates/retro-organizer/) | 掌上电脑风日程、待办、备忘与通讯录 | 打开复古掌上电脑 |
 | [应用中心](templates/app-hub/) | 常用应用与链接收进一个中心 | 打开应用中心 |
 | [周时间块](templates/time-block-planner/) | 一周排成时间块，各类时长一目了然 | 打开周时间块 |
+| [晨间简报](templates/morning-briefing/) | 日程、要事、邮件分拣与值得看的新闻 | 打开晨间简报 |
 
 ### 财务
 | 模板 | 用途 | 这样说 |
@@ -139,7 +143,7 @@ Muse Space 是一个 Muse 技能加一个模板库，包含 41 个开箱即用�
 | [家庭日程中心](templates/family-schedule-hub/) | 全家一周日程，谁负责接送一眼看清 | 打开家庭日程 |
 | [比赛记分墙](templates/sports-score-wall/) | 关注的比赛全在一面墙上，附滚动比分条 | 打开比分墙 |
 
-> 41 个模板本体已全部包含，可直接打开使用。
+> 45 个模板本体已全部包含，可直接打开使用。
 
 ## 快速开始
 
