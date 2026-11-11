@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free Credit Radar — 免费额度雷达 | Muse Space</title>
+<meta name="description" content="Free Credit Radar Muse Space template: track AI free credits, free trials and new-user bonuses with expiry countdowns and manual verification. A mini-app template for Muse Spaces.">
+<style>
+:root {
+  color-scheme: light dark;
+
+  /* ===== Color: core semantic ===== */
+  --color-accent: light-dark(#0064E0, #0171E3);
+  --color-accent-muted: light-dark(#0082FB33, #0082FB3F);
+  --color-on-accent: light-dark(#FFFFFF, #FFFFFF);
+  --color-neutral: light-dark(rgba(5, 54, 89, 0.1), rgba(223, 226, 229, 0.2));
+  --color-background-body: light-dark(#F1F4F7, #111112);
+  --color-background-surface: light-dark(#FFFFFF, #1F1F22);
+  --color-background-card: light-dark(#FFFFFF, #1F1F22);
+  --color-background-popover: light-dark(#FFFFFF, #28292C);
+  --color-background-muted: light-dark(#0536590C, #1111127F);
+  --color-background-inverted: light-dark(#0A1317, #FFFFFF);
+  --color-overlay: light-dark(#01122866, #11111299);
+  --color-overlay-hover: light-dark(#0536590C, #FFFFFF0C);
+  --color-overlay-pressed: light-dark(#05365919, #FFFFFF19);
+
+  /* Text */
+  --color-text-primary: light-dark(#0A1317, #DFE2E5);
+  --color-text-secondary: light-dark(#4E606F, #AAAFB5);
+  --color-text-disabled: light-dark(#A4B0BC, #6F747C);
+  --color-text-accent: light-dark(#0064E0, #3E9EFB);
+  --color-on-dark: light-dark(#FFFFFF, #FFFFFF);
+  --color-on-light: light-dark(#000000, #000000);
+
+  /* Icon（与 text 同值域） */
+  --color-icon-accent: light-dark(#0064E0, #2694FE);
+  --color-icon-primary: light-dark(#0A1317, #DFE2E5);
+  --color-icon-secondary: light-dark(#4E606F, #AAAFB5);
+  --color-icon-disabled: light-dark(#A4B0BC, #6F747C);
+
+  /* Status fills + muted + on-* */
+  --color-info: light-dark(#0064E0, #0064E0);
+  --color-info-muted: light-dark(#0082FB33, #0082FB3F);
+  --color-on-info: light-dark(#FFFFFF, #FFFFFF);
+  --color-success: light-dark(#0D8626, #0D8626);
+  --color-success-muted: light-dark(#0B991F33, #0B991F3F);
+  --color-on-success: light-dark(#FFFFFF, #FFFFFF);
+  --color-error: light-dark(#E3193B, #F5394F);
+  --color-error-muted: light-dark(#E3193B33, #F5394F3F);
+  --color-on-error: light-dark(#FFFFFF, #0A1317);
+  --color-background-error-inverted: light-dark(#AA071E, #E3193B);
+  --color-warning: light-dark(#E9AF08, #F2C00B);
+  --color-warning-muted: light-dark(#E2A40033, #E2A4003F);
+  --color-on-warning: light-dark(#0A1317, #0A1317);
+
+  /* Status text / icon / border（落在页面与卡片面上、对比 >= 4.5:1 的一档） */
+  --color-text-blue: light-dark(#042F97, #AFD7FF);
+  --color-text-green: light-dark(#09441F, #A5F690);
+  --color-text-yellow: light-dark(#753F07, #FBCE03);
+  --color-text-red: light-dark(#7B0210, #FFB2B8);
+  --color-text-info: var(--color-text-blue);
+  --color-text-success: var(--color-text-green);
+  --color-text-warning: var(--color-text-yellow);
+  --color-text-error: var(--color-text-red);
+  --color-icon-info: var(--color-text-info);
+  --color-icon-success: var(--color-text-success);
+  --color-icon-warning: var(--color-text-warning);
+  --color-icon-error: var(--color-text-error);
+  --color-border-info: var(--color-text-info);
+  --color-border-success: var(--color-text-success);
+  --color-border-warning: var(--color-text-warning);
+  --color-border-error: var(--color-text-error);
+  --color-on-info-muted: var(--color-text-blue);
+  --color-on-success-muted: var(--color-text-green);
+  --color-on-warning-muted: var(--color-text-yellow);
+  --color-on-error-muted: var(--color-text-red);
+
+  /* Border / effects */
+  --color-border: light-dark(#05365919, #F2F4F619);
+  --color-border-emphasized: light-dark(#CCD3DB, #494D53);
+  --color-skeleton: light-dark(#CCD3DB, #5A5E66);
+  --color-track: light-dark(#CCD3DB, #5A5E66);
+  --color-shadow: light-dark(rgba(5, 54, 89, 0.1), rgba(0, 0, 0, 0.3));
+  --color-tint-hover: light-dark(black, white);
+
+  /* Hue families: background(33 alpha) / border / icon / text */
+  --color-background-blue: light-dark(#0171E333, #0171E333);
+  --color-border-blue: light-dark(#0064E0, #2694FE);
+  --color-icon-blue: light-dark(#0064E0, #2694FE);
+  --color-background-cyan: light-dark(#03A7D733, #03A7D733);
+  --color-border-cyan: light-dark(#089DD0, #0171A4);
+  --color-icon-cyan: light-dark(#00ACC1, #26C6DA);
+  --color-text-cyan: light-dark(#014975, #A1EEF9);
+  --color-background-gray: light-dark(#0A131733, #666A724C);
+  --color-border-gray: light-dark(#647685, #748695);
+  --color-icon-gray: light-dark(#4E606F, #AAAFB5);
+  --color-text-gray: light-dark(#0A1317, #E7EAED);
+  --color-background-green: light-dark(#24BB5E33, #24BB5E33);
+  --color-border-green: light-dark(#0D8626, #0B991F);
+  --color-icon-green: light-dark(#0D8626, #26A756);
+  --color-background-orange: light-dark(#F2790233, #F2790233);
+  --color-border-orange: light-dark(#EB6E00, #B34A01);
+  --color-icon-orange: light-dark(#E9690B, #FB8C00);
+  --color-text-orange: light-dark(#6B2203, #FDB876);
+  --color-background-pink: light-dark(#E638B333, #E638B333);
+  --color-border-pink: light-dark(#F351C0, #C02294);
+  --color-icon-pink: light-dark(#C2185B, #EC407A);
+  --color-text-pink: light-dark(#650053, #FEADE3);
+  --color-background-purple: light-dark(#7952FF33, #7952FF33);
+  --color-border-purple: light-dark(#9081FF, #7340FE);
+  --color-icon-purple: light-dark(#5B08D8, #7952FF);
+  --color-text-purple: light-dark(#3E0697, #B3B0FE);
+  --color-background-red: light-dark(#E3193B33, #E3193B33);
+  --color-border-red: light-dark(#E3193B, #F5394F);
+  --color-icon-red: light-dark(#D31130, #E3193B);
+  --color-background-teal: light-dark(#0DB7AF33, #0DB7AF33);
+  --color-border-teal: light-dark(#08A3A3, #08767D);
+  --color-icon-teal: light-dark(#009688, #26A69A);
+  --color-text-teal: light-dark(#083943, #40DCCD);
+  --color-background-yellow: light-dark(#E2A40033, #E2A40033);
+  --color-border-yellow: light-dark(#C58600, #B47700);
+  --color-icon-yellow: light-dark(#FBC02D, #FFEE58);
+
+  /* ===== Spacing: 4px 基准、rem 制（随根字号缩放），步进 0..12 ===== */
+  --spacing-0: 0rem;
+  --spacing-0-5: 0.125rem;
+  --spacing-1: 0.25rem;
+  --spacing-1-5: 0.375rem;
+  --spacing-2: 0.5rem;
+  --spacing-3: 0.75rem;
+  --spacing-4: 1rem;
+  --spacing-5: 1.25rem;
+  --spacing-6: 1.5rem;
+  --spacing-7: 1.75rem;
+  --spacing-8: 2rem;
+  --spacing-9: 2.25rem;
+  --spacing-10: 2.5rem;
+  --spacing-11: 2.75rem;
+  --spacing-12: 3rem;
+
+  /* ===== Size: 控件高度 ===== */
+  --size-element-sm: 28px;
+  --size-element-md: 32px;
+  --size-element-lg: 36px;
+
+  /* ===== Border / Focus ===== */
+  --border-width: 1px;
+  --focus-outline-width: 2px;
+  --focus-outline-style: solid;
+  --focus-outline-color: var(--color-accent);
+  --focus-outline-offset: 3px;
+
+  /* ===== Radius（core 默认；neutral 主题的 6/10/12/28 变体不采用） ===== */
+  --radius-none: 0px;
+  --radius-inner: 4px;
+  --radius-element: 8px;
+  --radius-container: 12px;
+  --radius-page: 28px;
+  --radius-chat: 28px;
+  --radius-full: 9999px;
+
+  /* ===== Shadow ===== */
+  --shadow-low: 0px 1px 1px light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), 0px 2px 8px light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2));
+  --shadow-med: 0px 1px 2px light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), 0px 2px 12px light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2));
+  --shadow-high: 0px 2px 2px light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), 0px 8px 24px light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.3));
+  --shadow-inset-hover: inset 0px 0px 0px 2px light-dark(rgba(5, 54, 89, 0.15), rgba(223, 226, 229, 0.2));
+  --shadow-inset-selected: inset 0px 0px 0px 2px rgba(1, 113, 227, 0.5);
+  --shadow-inset-success: inset 0px 0px 0px 2px rgba(38, 167, 86, 0.3);
+  --shadow-inset-warning: inset 0px 0px 0px 2px rgba(226, 164, 0, 0.3);
+  --shadow-inset-error: inset 0px 0px 0px 2px rgba(227, 25, 59, 0.3);
+
+  /* ===== Motion ===== */
+  --duration-fast-min: 130ms;
+  --duration-fast: 175ms;
+  --duration-fast-max: 230ms;
+  --duration-medium-min: 310ms;
+  --duration-medium: 410ms;
+  --duration-medium-max: 550ms;
+  --duration-slow-min: 730ms;
+  --duration-slow: 975ms;
+  --duration-slow-max: 1300ms;
+  --duration-exit: var(--duration-fast);
+  --ease-standard: cubic-bezier(0.24, 1, 0.4, 1);
+  --ease-entrance: cubic-bezier(0.24, 1, 0.4, 1);
+  --ease-move: cubic-bezier(0.24, 1, 0.4, 1);
+  --ease-exit: cubic-bezier(0.3, 0, 0.6, 0.6);
+
+  /* ===== Typography ===== */
+  --font-family-body: "Figtree", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-family-heading: "Figtree", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-family-code: "SF Mono", Monaco, Consolas, monospace;
+
+  /* 几何字阶：round(14 x 1.2^step) */
+  --font-size-4xs: 0.375rem;
+  --font-size-3xs: 0.4375rem;
+  --font-size-2xs: 0.5rem;
+  --font-size-xs: 0.625rem;
+  --font-size-sm: 0.75rem;
+  --font-size-base: 0.875rem;
+  --font-size-lg: 1.0625rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.8125rem;
+  --font-size-4xl: 2.1875rem;
+  --font-size-5xl: 2.625rem;
+
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* 语义字型（size / weight / leading 三件套，组件只许用这一层） */
+  --text-heading-1-size: var(--font-size-2xl); --text-heading-1-weight: var(--font-weight-semibold); --text-heading-1-leading: 1.3333;
+  --text-heading-2-size: var(--font-size-xl); --text-heading-2-weight: var(--font-weight-semibold); --text-heading-2-leading: 1.4;
+  --text-heading-3-size: var(--font-size-lg); --text-heading-3-weight: var(--font-weight-semibold); --text-heading-3-leading: 1.4118;
+  --text-heading-4-size: var(--font-size-base); --text-heading-4-weight: var(--font-weight-semibold); --text-heading-4-leading: 1.4286;
+  --text-heading-5-size: var(--font-size-sm); --text-heading-5-weight: var(--font-weight-semibold); --text-heading-5-leading: 1.6667;
+  --text-heading-6-size: var(--font-size-xs); --text-heading-6-weight: var(--font-weight-semibold); --text-heading-6-leading: 1.6;
+  --text-body-size: var(--font-size-base); --text-body-weight: var(--font-weight-normal); --text-body-leading: 1.4286;
+  --text-large-size: var(--font-size-lg); --text-large-weight: var(--font-weight-semibold); --text-large-leading: 1.4118;
+  --text-label-size: var(--font-size-base); --text-label-weight: var(--font-weight-medium); --text-label-leading: 1.4286;
+  --text-code-size: var(--font-size-base); --text-code-weight: var(--font-weight-normal); --text-code-leading: 1.4286;
+  --text-supporting-size: var(--font-size-sm); --text-supporting-weight: var(--font-weight-normal); --text-supporting-leading: 1.6667;
+  --text-display-1-size: var(--font-size-5xl); --text-display-1-weight: var(--font-weight-normal); --text-display-1-leading: 1.2381;
+  --text-display-2-size: var(--font-size-4xl); --text-display-2-weight: var(--font-weight-normal); --text-display-2-leading: 1.2571;
+  --text-display-3-size: var(--font-size-3xl); --text-display-3-weight: var(--font-weight-normal); --text-display-3-leading: 1.2414;
+}
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--color-background-body);color:var(--color-text-primary);font-family:var(--font-family-body);font-size:var(--text-body-size);font-weight:var(--text-body-weight);line-height:var(--text-body-leading)}
+a{color:var(--color-text-accent)}
+:focus-visible{outline:var(--focus-outline-width) var(--focus-outline-style) var(--focus-outline-color);outline-offset:var(--focus-outline-offset)}
+.wrap{max-width:64rem;margin:0 auto;padding:var(--spacing-4)}
+.top{display:flex;align-items:flex-start;justify-content:space-between;gap:var(--spacing-3);flex-wrap:wrap;margin-bottom:var(--spacing-4)}
+.brand{display:flex;gap:var(--spacing-3);align-items:center}
+.logo{color:var(--color-icon-accent);display:grid;place-items:center;background:var(--color-accent-muted);border-radius:var(--radius-container);padding:var(--spacing-2);animation:pulse var(--duration-slow) var(--ease-standard) infinite}
+h1{font-size:var(--text-heading-1-size);font-weight:var(--text-heading-1-weight);line-height:var(--text-heading-1-leading);margin:0}
+h2{font-size:var(--text-heading-2-size);font-weight:var(--text-heading-2-weight);line-height:var(--text-heading-2-leading);margin:0}
+h3{font-size:var(--text-heading-3-size);font-weight:var(--text-heading-3-weight);line-height:var(--text-heading-3-leading);margin:0}
+.sub{color:var(--color-text-secondary);font-size:var(--text-supporting-size);margin:var(--spacing-1) 0 0}
+.card{background:var(--color-background-card);border:var(--border-width) solid var(--color-border);border-radius:var(--radius-container);padding:var(--spacing-4);box-shadow:var(--shadow-low);animation:rise var(--duration-medium) var(--ease-entrance)}
+.stack{display:grid;gap:var(--spacing-3)}
+.row{display:flex;gap:var(--spacing-2);flex-wrap:wrap;align-items:center}
+.grow{flex:1 1 auto}
+.muted{color:var(--color-text-secondary);font-size:var(--text-supporting-size)}
+.warn{color:var(--color-text-warning)}
+.err{color:var(--color-text-error)}
+.btn{background:var(--color-accent);color:var(--color-on-accent);border:var(--border-width) solid transparent;border-radius:var(--radius-element);min-height:var(--size-element-md);padding:var(--spacing-1) var(--spacing-3);font-size:var(--text-label-size);font-weight:var(--text-label-weight);cursor:pointer;transition:opacity var(--duration-fast) var(--ease-standard)}
+.btn:hover{opacity:.88}
+.btn-ghost{background:var(--color-background-surface);color:var(--color-text-primary);border:var(--border-width) solid var(--color-border-emphasized);border-radius:var(--radius-element);min-height:var(--size-element-md);padding:var(--spacing-1) var(--spacing-3);font-size:var(--text-label-size);cursor:pointer;transition:background var(--duration-fast) var(--ease-standard)}
+.btn-danger{background:var(--color-error-muted);color:var(--color-text-error);border:var(--border-width) solid var(--color-border-error);border-radius:var(--radius-element);min-height:var(--size-element-sm);padding:var(--spacing-1) var(--spacing-2);font-size:var(--text-supporting-size);cursor:pointer}
+input,select,textarea{background:var(--color-background-surface);color:var(--color-text-primary);border:var(--border-width) solid var(--color-border-emphasized);border-radius:var(--radius-element);min-height:var(--size-element-md);padding:var(--spacing-2);font-size:var(--text-body-size);font-family:var(--font-family-body);width:100%}
+textarea{resize:vertical}
+.chip{background:var(--color-background-blue);color:var(--color-text-blue);border-radius:var(--radius-full);padding:var(--spacing-0-5) var(--spacing-2);font-size:var(--text-supporting-size);white-space:nowrap}
+.chip-green{background:var(--color-background-green);color:var(--color-text-green);border-radius:var(--radius-full);padding:var(--spacing-0-5) var(--spacing-2);font-size:var(--text-supporting-size);white-space:nowrap}
+.chip-red{background:var(--color-background-red);color:var(--color-text-red);border-radius:var(--radius-full);padding:var(--spacing-0-5) var(--spacing-2);font-size:var(--text-supporting-size);white-space:nowrap}
+.chip-btn{background:var(--color-background-surface);color:var(--color-text-primary);border:var(--border-width) solid var(--color-border-emphasized);border-radius:var(--radius-full);min-height:var(--size-element-sm);padding:var(--spacing-0-5) var(--spacing-2);font-size:var(--text-supporting-size);cursor:pointer;transition:background var(--duration-fast) var(--ease-standard)}
+.chip-btn[aria-pressed="true"]{background:var(--color-accent);color:var(--color-on-accent);border-color:transparent}
+.score-badge{background:var(--color-background-yellow);color:var(--color-text-yellow);border-radius:var(--radius-full);padding:var(--spacing-0-5) var(--spacing-2);font-size:var(--text-supporting-size);white-space:nowrap}
+.empty{border:var(--border-width) dashed var(--color-border-emphasized);border-radius:var(--radius-container);padding:var(--spacing-6);text-align:center;color:var(--color-text-secondary)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--spacing-3)}
+.stat-num{font-size:var(--text-display-2-size);font-weight:var(--text-display-2-weight);line-height:var(--text-display-2-leading)}
+.stat-label{color:var(--color-text-secondary);font-size:var(--text-supporting-size)}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--spacing-3)}
+.field{display:grid;gap:var(--spacing-1);font-size:var(--text-label-size);font-weight:var(--text-label-weight)}
+.field-wide{grid-column:1 / -1}
+@keyframes rise{from{opacity:0;transform:translateY(var(--spacing-2))}to{opacity:1;transform:none}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.6}}
+@media (max-width:40rem){.stats{grid-template-columns:repeat(2,1fr)}.form-grid{grid-template-columns:1fr}}
+@media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important}}
+
+</style>
+</head>
+<body>
+<div class="wrap"><main>
+<header class="top"><div class="brand"><span class="logo" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><path d="M12 12 18 6"/><circle cx="12" cy="12" r="1.2" fill="currentColor"/></svg></span><div><h1 data-i18n="title"></h1><p class="sub" data-i18n="sub"></p></div></div><button type="button" class="btn-ghost" data-lang-btn>中文</button></header>
+<p class="card muted" style="margin:0 0 var(--spacing-3)" data-i18n="honest"></p>
+<section class="card" aria-label="Stats"><div class="stats">
+<div><div class="stat-num" data-stat-total>0</div><div class="stat-label" data-i18n="statsTotal"></div></div>
+<div><div class="stat-num" data-stat-soon>0</div><div class="stat-label" data-i18n="statsSoon"></div></div>
+<div><div class="stat-num" data-stat-expired>0</div><div class="stat-label" data-i18n="statsExpired"></div></div>
+</div></section>
+<section class="card stack" style="margin-top:var(--spacing-3)" aria-label="Search and filter">
+<div class="row"><input class="grow" data-f="q" data-i18n-ph="phSearch" aria-label="Search offers"><select data-f="sort" aria-label="Sort" style="max-width:14rem"><option value="expiry" data-i18n="sortExpiry"></option><option value="score" data-i18n="sortScore"></option></select><button type="button" class="btn-ghost" data-export data-i18n="exportMd"></button></div>
+<div class="row" data-chips></div>
+</section>
+<section class="card stack" style="margin-top:var(--spacing-3)" aria-label="Offer form">
+<h2 data-form-title></h2>
+<div class="form-grid">
+<label class="field"><span data-i18n="fTitle"></span><input data-f="title" data-i18n-ph="phTitle" aria-label="Title"></label>
+<label class="field"><span data-i18n="fProvider"></span><input data-f="provider" data-i18n-ph="phProvider" aria-label="Provider"></label>
+<label class="field"><span data-i18n="fCategory"></span><select data-f="category" aria-label="Category"></select></label>
+<label class="field"><span data-i18n="fScore"></span><input type="number" min="0" max="10" step="1" value="5" data-f="score" aria-label="Score"></label>
+<label class="field field-wide"><span data-i18n="fDetail"></span><input data-f="detail" data-i18n-ph="phDetail" aria-label="Amount or detail"></label>
+<label class="field"><span data-i18n="fUrl"></span><input type="url" data-f="url" data-i18n-ph="phUrl" aria-label="Source link"></label>
+<label class="field"><span data-i18n="fExpiry"></span><input type="date" data-f="expiry" aria-label="Expiry date"></label>
+<label class="field"><span data-i18n="fStatus"></span><select data-f="status" aria-label="Status"><option value="verified" data-i18n="statusVerified"></option><option value="unverified" data-i18n="statusUnverified"></option></select></label>
+<label class="field field-wide"><span data-i18n="fNotes"></span><textarea rows="2" data-f="notes" data-i18n-ph="phNotes" aria-label="Notes"></textarea></label>
+</div>
+<div class="row"><button type="button" class="btn" data-save></button><button type="button" class="btn-ghost" data-cancel hidden data-i18n="cancel"></button></div>
+</section>
+<section class="card stack" style="margin-top:var(--spacing-3)" aria-label="Active offers">
+<div class="row"><h2 class="grow" data-i18n="activeTitle"></h2><span class="chip" data-active-meta></span></div>
+<div class="stack" data-list></div>
+<div class="empty" data-empty hidden></div>
+</section>
+<section class="card stack" style="margin-top:var(--spacing-3)" aria-label="Expired offers">
+<div class="row"><h2 class="grow" data-i18n="expiredTitle"></h2><span class="chip chip-red" data-expired-meta></span></div>
+<div class="stack" data-expired></div>
+<p class="muted" style="margin:0" data-i18n="expiredHint"></p>
+</section>
+</main></div>
+<script>
+
+const KEY='muse-space:free-credit-radar';
+const CATS=['model-api','ai-app','cloud','dev-tools','compute'];
+function todayStr(){ var d=new Date(); return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
+function sampleOffers(){ var t=todayStr(); return [
+ {id:'sample-zcode',title:'ZCode — new-user free trial (sample)',provider:'ZCode',category:'ai-app',detail:'New-user free trial. Check the current terms on the official page before claiming.',url:'',expiry:'',status:'unverified',score:5,notes:'Sample entry. Verify on the official page before claiming, and replace it with your own finding.',sample:true,createdAt:t},
+ {id:'sample-openrouter',title:'OpenRouter Crouton Alpha — 1M context, currently free (sample)',provider:'OpenRouter',category:'model-api',detail:'1M context, currently free. Free offers change fast — verify on the official page.',url:'',expiry:'',status:'unverified',score:6,notes:'Sample entry. Verify on the official page before claiming, and replace it with your own finding.',sample:true,createdAt:t},
+ {id:'sample-qiniu',title:'Qiniu Conatus — fused models, free tier (sample)',provider:'Qiniu',category:'model-api',detail:'Fused models, free tier. Verify the current terms on the official page before claiming.',url:'',expiry:'',status:'unverified',score:5,notes:'Sample entry. Verify on the official page before claiming, and replace it with your own finding.',sample:true,createdAt:t},
+ {id:'sample-cloud',title:'Example Cloud — $10 new-user credit (sample)',provider:'Example Cloud',category:'cloud',detail:'Example $10 new-user credit. A placeholder shape, not a real offer.',url:'',expiry:'',status:'unverified',score:5,notes:'Sample entry. Verify on the official page before claiming, and replace it with your own finding.',sample:true,createdAt:t}
+]; }
+let state; try{ state=JSON.parse(localStorage.getItem(KEY)); }catch(e){ state=null; }
+if(!state || !Array.isArray(state.offers)){ state={lang:'en', offers:sampleOffers()}; }
+const STR={en:{"title": "Free Credit Radar", "sub": "Track free credits, trials and bonuses across AI services — manually kept, expiry-aware.", "honest": "This is a static page: it cannot check offers for you. Every entry is maintained by hand — verify the terms on the official page before claiming, and remove entries once they expire.", "statsTotal": "Total offers", "statsSoon": "Ending soon (7 days)", "statsExpired": "Expired", "phSearch": "Search offers…", "sortExpiry": "Sort: expiry date", "sortScore": "Sort: score", "exportMd": "Copy list as Markdown", "all": "All", "newToday": "New today", "endingSoon": "Ending soon", "catModelApi": "Model API free credit", "catAiApp": "AI app free trial", "catCloud": "Cloud free credit", "catDevTools": "Dev tools free", "catCompute": "Free compute", "formTitleAdd": "Add an offer", "formTitleEdit": "Edit offer", "fTitle": "Title", "fProvider": "Provider", "fCategory": "Category", "fDetail": "Amount / detail", "fUrl": "Source link (official page)", "fExpiry": "Expiry date (optional)", "fStatus": "Status", "fScore": "Score (0–10)", "fNotes": "Notes", "phTitle": "e.g. Example Cloud — $10 new-user credit", "phProvider": "e.g. Example Cloud", "phDetail": "e.g. $10 credit for new accounts", "phUrl": "https://… (add official link)", "phNotes": "Anything to remember — conditions, limits, how you found it…", "statusVerified": "Verified", "statusUnverified": "Unverified", "statusExpired": "Expired", "addOffer": "Add offer", "saveChanges": "Save changes", "cancel": "Cancel", "edit": "Edit", "del": "Delete", "confirmDel": "Delete this offer?", "sampleBadge": "Sample", "sampleNote": "Sample entry — verify on the official page before claiming, and replace it with your own finding.", "expiresIn": "expires in {n} days", "expiresToday": "expires today", "expiredAgo": "expired {n} days ago", "noExpiry": "no expiry", "activeTitle": "Active offers", "expiredTitle": "Expired / archived", "expiredHint": "Expired offers stay here until you delete them — they are not deleted automatically.", "emptyNone": "No offers yet — add your first one with the form above.", "emptyNoMatch": "No offers match this search or filter.", "noExpired": "Nothing expired yet.", "offers": "offers", "copied": "Copied", "addOfficialLink": "add official link", "scoreLabel": "Score", "sourceLabel": "Source", "mdNote": "Manually maintained list. Verify every offer on its official page before claiming.", "mdActive": "Active offers", "mdExpired": "Expired / archived", "noLinkYet": "no link yet"},zh:{"title": "免费额度雷达", "sub": "追踪各家 AI 服务的免费额度、试用与新人福利——人工维护、到期提醒。", "honest": "这是一个静态页面，无法替你自动核查。所有条目都靠人工维护——领取前请到官网核对条款，到期后请及时删除。", "statsTotal": "全部条目", "statsSoon": "7 天内到期", "statsExpired": "已过期", "phSearch": "搜索条目……", "sortExpiry": "按到期日排序", "sortScore": "按评分排序", "exportMd": "复制清单（Markdown）", "all": "全部", "newToday": "今日新增", "endingSoon": "即将到期", "catModelApi": "模型 API 免费额度", "catAiApp": "AI 应用免费试用", "catCloud": "云厂商免费额度", "catDevTools": "开发工具免费", "catCompute": "免费算力", "formTitleAdd": "添加一条福利", "formTitleEdit": "编辑福利", "fTitle": "标题", "fProvider": "提供方", "fCategory": "分类", "fDetail": "金额 / 详情", "fUrl": "来源链接（官网）", "fExpiry": "到期日（可选）", "fStatus": "状态", "fScore": "评分（0–10）", "fNotes": "备注", "phTitle": "例如：示例云 — 新人 $10 额度", "phProvider": "例如：示例云", "phDetail": "例如：新账号 $10 额度", "phUrl": "https://……（填官网链接）", "phNotes": "需要记住的事——条件、限制、从哪看到的……", "statusVerified": "已核验", "statusUnverified": "未核验", "statusExpired": "已过期", "addOffer": "添加", "saveChanges": "保存修改", "cancel": "取消", "edit": "编辑", "del": "删除", "confirmDel": "删除这条福利？", "sampleBadge": "示例", "sampleNote": "示例条目——领取前请到官网核对，核实后换成你自己的发现。", "expiresIn": "{n} 天后到期", "expiresToday": "今天到期", "expiredAgo": "已过期 {n} 天", "noExpiry": "无到期日", "activeTitle": "进行中的福利", "expiredTitle": "已过期 / 归档", "expiredHint": "过期条目会留在这里，直到你手动删除——不会自动删除。", "emptyNone": "还没有条目——用上面的表单添加第一条。", "emptyNoMatch": "没有符合搜索或筛选条件的条目。", "noExpired": "暂无过期条目。", "offers": "条", "copied": "已复制", "addOfficialLink": "添加官网链接", "scoreLabel": "评分", "sourceLabel": "来源", "mdNote": "人工维护的清单。领取前请到官网核对每一条。", "mdActive": "进行中的福利", "mdExpired": "已过期 / 归档", "noLinkYet": "暂无链接"}};
+let lang = (state && state.lang) || 'en';
+let filter = 'all';
+let editingId = null;
+function t(k){ return STR[lang][k] || STR.en[k] || k; }
+function catLabel(c){ return t('cat' + c.split('-').map(function(w){ return w.charAt(0).toUpperCase() + w.slice(1); }).join('')); }
+function applyI18n(){ document.querySelectorAll('[data-i18n]').forEach(function(el){ el.textContent = t(el.dataset.i18n); }); document.querySelectorAll('[data-i18n-ph]').forEach(function(el){ el.placeholder = t(el.dataset.i18nPh); }); document.querySelectorAll('[data-lang-btn]').forEach(function(b){ b.textContent = lang==='en' ? '中文' : 'EN'; }); document.documentElement.lang = lang==='en' ? 'en' : 'zh-CN'; renderCatOptions(); }
+function renderCatOptions(){ var sel=document.querySelector('[data-f="category"]'); var cur=sel.value; sel.innerHTML=CATS.map(function(c){ return '<option value="'+c+'">'+esc(catLabel(c))+'</option>'; }).join(''); if(cur){ sel.value=cur; } }
+document.querySelector('[data-lang-btn]').addEventListener('click', function(){ lang = lang==='en' ? 'zh' : 'en'; state.lang = lang; save(); applyI18n(); render(); });
+function esc(s){ return String(s==null?'':s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+function uid(){ return Date.now().toString(36) + Math.random().toString(36).slice(2,7); }
+function save(){ localStorage.setItem(KEY, JSON.stringify(state)); }
+function parseDate(s){ var p=s.split('-'); return new Date(Number(p[0]), Number(p[1])-1, Number(p[2])); }
+function daysUntil(s){ if(!s){ return null; } var now=new Date(); var today=new Date(now.getFullYear(), now.getMonth(), now.getDate()); return Math.round((parseDate(s)-today)/86400000); }
+function cmpExpiry(a,b){ var da=daysUntil(a.expiry), db=daysUntil(b.expiry); if(da===null && db===null){ return 0; } if(da===null){ return 1; } if(db===null){ return -1; } return da-db; }
+function statusOf(o){ var d=daysUntil(o.expiry); if(d!==null && d<0){ return 'expired'; } return o.status || 'unverified'; }
+function countdown(o){ var d=daysUntil(o.expiry); if(d===null){ return t('noExpiry'); } if(d>0){ return t('expiresIn').replace('{n}', String(d)); } if(d===0){ return t('expiresToday'); } return t('expiredAgo').replace('{n}', String(-d)); }
+function linkHref(u){ return (/^https?:\/\//i.test(u)) ? u : 'https://' + u; }
+function cardHtml(o){
+  var st=statusOf(o);
+  var chipCls=st==='verified' ? 'chip-green' : (st==='expired' ? 'chip-red' : 'chip');
+  var d=daysUntil(o.expiry);
+  var cdCls=d!==null && d>=0 && d<=7 ? 'warn' : (st==='expired' ? 'err' : 'muted');
+  var link=o.url ? '<a href="'+esc(linkHref(o.url))+'" target="_blank" rel="noopener">'+esc(o.url)+'</a>' : '<span class="muted">'+esc(t('addOfficialLink'))+'</span>';
+  return '<article class="card stack"><div class="row"><h3 class="grow">'+esc(o.title)+'</h3>'
+   +(o.sample ? '<span class="chip chip-green">'+esc(t('sampleBadge'))+'</span>' : '')
+   +'<span class="'+chipCls+'">'+esc(t('status'+st.charAt(0).toUpperCase()+st.slice(1)))+'</span>'
+   +'<span class="score-badge">'+esc(t('scoreLabel'))+' '+o.score+'/10</span></div>'
+   +'<p class="muted" style="margin:0">'+esc(o.provider)+' · '+esc(catLabel(o.category))+'</p>'
+   +'<p style="margin:0">'+esc(o.detail)+'</p>'
+   +'<p class="'+cdCls+'" style="margin:0">'+esc(countdown(o))+(o.expiry ? ' · '+esc(o.expiry) : '')+'</p>'
+   +(o.sample ? '<p class="warn" style="margin:0">'+esc(t('sampleNote'))+'</p>' : '')
+   +(o.notes ? '<p class="muted" style="margin:0">'+esc(o.notes)+'</p>' : '')
+   +'<p style="margin:0">'+esc(t('sourceLabel'))+': '+link+'</p>'
+   +'<div class="row"><button type="button" class="btn" data-edit="'+o.id+'">'+esc(t('edit'))+'</button><button type="button" class="btn-danger" data-del="'+o.id+'">'+esc(t('del'))+'</button></div></article>';
+}
+function render(){
+  var soon=0, expired=0;
+  state.offers.forEach(function(o){ var d=daysUntil(o.expiry); var st=statusOf(o); if(st==='expired'){ expired++; } else if(d!==null && d>=0 && d<=7){ soon++; } });
+  document.querySelector('[data-stat-total]').textContent=state.offers.length;
+  document.querySelector('[data-stat-soon]').textContent=soon;
+  document.querySelector('[data-stat-expired]').textContent=expired;
+  var chips=[{k:'all',label:t('all')},{k:'new',label:t('newToday')},{k:'soon',label:t('endingSoon')}].concat(CATS.map(function(c){ return {k:'cat:'+c,label:catLabel(c)}; }));
+  document.querySelector('[data-chips]').innerHTML=chips.map(function(c){ return '<button type="button" class="chip-btn" data-chip="'+c.k+'" aria-pressed="'+(filter===c.k ? 'true' : 'false')+'">'+esc(c.label)+'</button>'; }).join('');
+  document.querySelector('[data-form-title]').textContent=t(editingId ? 'formTitleEdit' : 'formTitleAdd');
+  document.querySelector('[data-save]').textContent=t(editingId ? 'saveChanges' : 'addOffer');
+  document.querySelector('[data-cancel]').hidden=!editingId;
+  var q=(document.querySelector('[data-f="q"]').value || '').toLowerCase();
+  var tdy=todayStr();
+  function matchQ(o){ return !q || (o.title+' '+o.provider+' '+o.detail+' '+(o.notes||'')).toLowerCase().indexOf(q)>=0; }
+  function matchF(o){ if(filter==='new'){ return o.createdAt===tdy; } if(filter==='soon'){ var d=daysUntil(o.expiry); return d!==null && d>=0 && d<=7; } if(filter.indexOf('cat:')===0){ return o.category===filter.slice(4); } return true; }
+  var active=state.offers.filter(function(o){ return statusOf(o)!=='expired'; });
+  var shown=active.filter(function(o){ return matchQ(o) && matchF(o); });
+  var sort=document.querySelector('[data-f="sort"]').value;
+  shown.sort(function(a,b){ if(sort==='score'){ return (b.score-a.score) || cmpExpiry(a,b); } return cmpExpiry(a,b) || (b.score-a.score); });
+  document.querySelector('[data-active-meta]').textContent=shown.length+' / '+active.length+' '+t('offers');
+  document.querySelector('[data-list]').innerHTML=shown.map(cardHtml).join('');
+  var empty=document.querySelector('[data-empty]');
+  if(state.offers.length===0){ empty.hidden=false; empty.textContent=t('emptyNone'); }
+  else if(shown.length===0){ empty.hidden=false; empty.textContent=t('emptyNoMatch'); }
+  else { empty.hidden=true; }
+  var exp=state.offers.filter(function(o){ return statusOf(o)==='expired'; });
+  exp.sort(function(a,b){ return cmpExpiry(b,a); });
+  document.querySelector('[data-expired-meta]').textContent=exp.length+' '+t('offers');
+  document.querySelector('[data-expired]').innerHTML=exp.length ? exp.map(cardHtml).join('') : '<p class="muted" style="margin:0">'+esc(t('noExpired'))+'</p>';
+}
+function clearForm(){ ['title','provider','detail','url','expiry','notes'].forEach(function(f){ document.querySelector('[data-f="'+f+'"]').value=''; }); document.querySelector('[data-f="score"]').value='5'; document.querySelector('[data-f="status"]').value='unverified'; }
+document.querySelector('[data-f="q"]').addEventListener('input', render);
+document.querySelector('[data-f="sort"]').addEventListener('change', render);
+document.querySelector('[data-chips]').addEventListener('click', function(e){ var c=e.target.closest('[data-chip]'); if(!c){ return; } filter=c.dataset.chip; render(); });
+document.querySelector('[data-save]').addEventListener('click', function(){
+  var title=document.querySelector('[data-f="title"]').value.trim(); if(!title){ return; }
+  var score=Math.max(0, Math.min(10, parseInt(document.querySelector('[data-f="score"]').value, 10) || 0));
+  var data={title:title, provider:document.querySelector('[data-f="provider"]').value.trim(), category:document.querySelector('[data-f="category"]').value, detail:document.querySelector('[data-f="detail"]').value.trim(), url:document.querySelector('[data-f="url"]').value.trim(), expiry:document.querySelector('[data-f="expiry"]').value, status:document.querySelector('[data-f="status"]').value, score:score, notes:document.querySelector('[data-f="notes"]').value.trim()};
+  if(editingId){ var o=state.offers.find(function(x){ return x.id===editingId; }); if(o){ Object.keys(data).forEach(function(k){ o[k]=data[k]; }); } editingId=null; }
+  else { data.id=uid(); data.sample=false; data.createdAt=todayStr(); state.offers.push(data); }
+  clearForm(); save(); render();
+});
+document.querySelector('[data-cancel]').addEventListener('click', function(){ editingId=null; clearForm(); render(); });
+function listClick(e){
+  var ed=e.target.closest('[data-edit]');
+  var dl=e.target.closest('[data-del]');
+  if(ed){ var o=state.offers.find(function(x){ return x.id===ed.dataset.edit; }); if(!o){ return; } editingId=o.id;
+    document.querySelector('[data-f="title"]').value=o.title;
+    document.querySelector('[data-f="provider"]').value=o.provider;
+    document.querySelector('[data-f="category"]').value=o.category;
+    document.querySelector('[data-f="detail"]').value=o.detail;
+    document.querySelector('[data-f="url"]').value=o.url;
+    document.querySelector('[data-f="expiry"]').value=o.expiry;
+    document.querySelector('[data-f="status"]').value=o.status;
+    document.querySelector('[data-f="score"]').value=o.score;
+    document.querySelector('[data-f="notes"]').value=o.notes || '';
+    render(); document.querySelector('[data-form-title]').scrollIntoView(); }
+  if(dl){ if(!window.confirm(t('confirmDel'))){ return; } state.offers=state.offers.filter(function(x){ return x.id!==dl.dataset.del; }); if(editingId===dl.dataset.del){ editingId=null; clearForm(); } save(); render(); }
+}
+document.querySelector('[data-list]').addEventListener('click', listClick);
+document.querySelector('[data-expired]').addEventListener('click', listClick);
+document.querySelector('[data-export]').addEventListener('click', function(e){
+  function mdLine(o){ return '- **'+o.title+'** ('+o.provider+' · '+catLabel(o.category)+') — '+o.detail+' — '+t('scoreLabel')+' '+o.score+'/10 — '+countdown(o)+(o.url ? ' — '+o.url : ' — '+t('noLinkYet'))+(o.notes ? ' — '+o.notes : ''); }
+  var lines=['# Free Credit Radar', '', t('mdNote'), ''];
+  var active=state.offers.filter(function(o){ return statusOf(o)!=='expired'; });
+  var exp=state.offers.filter(function(o){ return statusOf(o)==='expired'; });
+  lines.push('## '+t('mdActive'), '');
+  lines.push.apply(lines, active.map(mdLine));
+  lines.push('', '## '+t('mdExpired'), '');
+  lines.push.apply(lines, exp.map(mdLine));
+  if(navigator.clipboard){ navigator.clipboard.writeText(lines.join('\n')); }
+  e.target.textContent=t('copied'); setTimeout(function(){ e.target.textContent=t('exportMd'); }, 900);
+});
+applyI18n(); render();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Proxy Subscription Converter — 梯子订阅转换器 | Muse Space</title>
+<meta name="description" content="Proxy Subscription Converter Muse Space template: paste a proxy subscription, convert it between client formats, dedupe and rename nodes. Runs fully in your browser — nothing is uploaded.">
+<style>
+:root {
+  color-scheme: light dark;
+
+  /* ===== Color: core semantic ===== */
+  --color-accent: light-dark(#0064E0, #0171E3);
+  --color-accent-muted: light-dark(#0082FB33, #0082FB3F);
+  --color-on-accent: light-dark(#FFFFFF, #FFFFFF);
+  --color-neutral: light-dark(rgba(5, 54, 89, 0.1), rgba(223, 226, 229, 0.2));
+  --color-background-body: light-dark(#F1F4F7, #111112);
+  --color-background-surface: light-dark(#FFFFFF, #1F1F22);
+  --color-background-card: light-dark(#FFFFFF, #1F1F22);
+  --color-background-popover: light-dark(#FFFFFF, #28292C);
+  --color-background-muted: light-dark(#0536590C, #1111127F);
+  --color-background-inverted: light-dark(#0A1317, #FFFFFF);
+  --color-overlay: light-dark(#01122866, #11111299);
+  --color-overlay-hover: light-dark(#0536590C, #FFFFFF0C);
+  --color-overlay-pressed: light-dark(#05365919, #FFFFFF19);
+
+  /* Text */
+  --color-text-primary: light-dark(#0A1317, #DFE2E5);
+  --color-text-secondary: light-dark(#4E606F, #AAAFB5);
+  --color-text-disabled: light-dark(#A4B0BC, #6F747C);
+  --color-text-accent: light-dark(#0064E0, #3E9EFB);
+  --color-on-dark: light-dark(#FFFFFF, #FFFFFF);
+  --color-on-light: light-dark(#000000, #000000);
+
+  /* Icon（与 text 同值域） */
+  --color-icon-accent: light-dark(#0064E0, #2694FE);
+  --color-icon-primary: light-dark(#0A1317, #DFE2E5);
+  --color-icon-secondary: light-dark(#4E606F, #AAAFB5);
+  --color-icon-disabled: light-dark(#A4B0BC, #6F747C);
+
+  /* Status fills + muted + on-* */
+  --color-info: light-dark(#0064E0, #0064E0);
+  --color-info-muted: light-dark(#0082FB33, #0082FB3F);
+  --color-on-info: light-dark(#FFFFFF, #FFFFFF);
+  --color-success: light-dark(#0D8626, #0D8626);
+  --color-success-muted: light-dark(#0B991F33, #0B991F3F);
+  --color-on-success: light-dark(#FFFFFF, #FFFFFF);
+  --color-error: light-dark(#E3193B, #F5394F);
+  --color-error-muted: light-dark(#E3193B33, #F5394F3F);
+  --color-on-error: light-dark(#FFFFFF, #0A1317);
+  --color-background-error-inverted: light-dark(#AA071E, #E3193B);
+  --color-warning: light-dark(#E9AF08, #F2C00B);
+  --color-warning-muted: light-dark(#E2A40033, #E2A4003F);
+  --color-on-warning: light-dark(#0A1317, #0A1317);
+
+  /* Status text / icon / border（落在页面与卡片面上、对比 >= 4.5:1 的一档） */
+  --color-text-blue: light-dark(#042F97, #AFD7FF);
+  --color-text-green: light-dark(#09441F, #A5F690);
+  --color-text-yellow: light-dark(#753F07, #FBCE03);
+  --color-text-red: light-dark(#7B0210, #FFB2B8);
+  --color-text-info: var(--color-text-blue);
+  --color-text-success: var(--color-text-green);
+  --color-text-warning: var(--color-text-yellow);
+  --color-text-error: var(--color-text-red);
+  --color-icon-info: var(--color-text-info);
+  --color-icon-success: var(--color-text-success);
+  --color-icon-warning: var(--color-text-warning);
+  --color-icon-error: var(--color-text-error);
+  --color-border-info: var(--color-text-info);
+  --color-border-success: var(--color-text-success);
+  --color-border-warning: var(--color-text-warning);
+  --color-border-error: var(--color-text-error);
+  --color-on-info-muted: var(--color-text-blue);
+  --color-on-success-muted: var(--color-text-green);
+  --color-on-warning-muted: var(--color-text-yellow);
+  --color-on-error-muted: var(--color-text-red);
+
+  /* Border / effects */
+  --color-border: light-dark(#05365919, #F2F4F619);
+  --color-border-emphasized: light-dark(#CCD3DB, #494D53);
+  --color-skeleton: light-dark(#CCD3DB, #5A5E66);
+  --color-track: light-dark(#CCD3DB, #5A5E66);
+  --color-shadow: light-dark(rgba(5, 54, 89, 0.1), rgba(0, 0, 0, 0.3));
+  --color-tint-hover: light-dark(black, white);
+
+  /* Hue families: background(33 alpha) / border / icon / text */
+  --color-background-blue: light-dark(#0171E333, #0171E333);
+  --color-border-blue: light-dark(#0064E0, #2694FE);
+  --color-icon-blue: light-dark(#0064E0, #2694FE);
+  --color-background-cyan: light-dark(#03A7D733, #03A7D733);
+  --color-border-cyan: light-dark(#089DD0, #0171A4);
+  --color-icon-cyan: light-dark(#00ACC1, #26C6DA);
+  --color-text-cyan: light-dark(#014975, #A1EEF9);
+  --color-background-gray: light-dark(#0A131733, #666A724C);
+  --color-border-gray: light-dark(#647685, #748695);
+  --color-icon-gray: light-dark(#4E606F, #AAAFB5);
+  --color-text-gray: light-dark(#0A1317, #E7EAED);
+  --color-background-green: light-dark(#24BB5E33, #24BB5E33);
+  --color-border-green: light-dark(#0D8626, #0B991F);
+  --color-icon-green: light-dark(#0D8626, #26A756);
+  --color-background-orange: light-dark(#F2790233, #F2790233);
+  --color-border-orange: light-dark(#EB6E00, #B34A01);
+  --color-icon-orange: light-dark(#E9690B, #FB8C00);
+  --color-text-orange: light-dark(#6B2203, #FDB876);
+  --color-background-pink: light-dark(#E638B333, #E638B333);
+  --color-border-pink: light-dark(#F351C0, #C02294);
+  --color-icon-pink: light-dark(#C2185B, #EC407A);
+  --color-text-pink: light-dark(#650053, #FEADE3);
+  --color-background-purple: light-dark(#7952FF33, #7952FF33);
+  --color-border-purple: light-dark(#9081FF, #7340FE);
+  --color-icon-purple: light-dark(#5B08D8, #7952FF);
+  --color-text-purple: light-dark(#3E0697, #B3B0FE);
+  --color-background-red: light-dark(#E3193B33, #E3193B33);
+  --color-border-red: light-dark(#E3193B, #F5394F);
+  --color-icon-red: light-dark(#D31130, #E3193B);
+  --color-background-teal: light-dark(#0DB7AF33, #0DB7AF33);
+  --color-border-teal: light-dark(#08A3A3, #08767D);
+  --color-icon-teal: light-dark(#009688, #26A69A);
+  --color-text-teal: light-dark(#083943, #40DCCD);
+  --color-background-yellow: light-dark(#E2A40033, #E2A40033);
+  --color-border-yellow: light-dark(#C58600, #B47700);
+  --color-icon-yellow: light-dark(#FBC02D, #FFEE58);
+
+  /* ===== Spacing: 4px 基准、rem 制（随根字号缩放），步进 0..12 ===== */
+  --spacing-0: 0rem;
+  --spacing-0-5: 0.125rem;
+  --spacing-1: 0.25rem;
+  --spacing-1-5: 0.375rem;
+  --spacing-2: 0.5rem;
+  --spacing-3: 0.75rem;
+  --spacing-4: 1rem;
+  --spacing-5: 1.25rem;
+  --spacing-6: 1.5rem;
+  --spacing-7: 1.75rem;
+  --spacing-8: 2rem;
+  --spacing-9: 2.25rem;
+  --spacing-10: 2.5rem;
+  --spacing-11: 2.75rem;
+  --spacing-12: 3rem;
+
+  /* ===== Size: 控件高度 ===== */
+  --size-element-sm: 28px;
+  --size-element-md: 32px;
+  --size-element-lg: 36px;
+
+  /* ===== Border / Focus ===== */
+  --border-width: 1px;
+  --focus-outline-width: 2px;
+  --focus-outline-style: solid;
+  --focus-outline-color: var(--color-accent);
+  --focus-outline-offset: 3px;
+
+  /* ===== Radius（core 默认；neutral 主题的 6/10/12/28 变体不采用） ===== */
+  --radius-none: 0px;
+  --radius-inner: 4px;
+  --radius-element: 8px;
+  --radius-container: 12px;
+  --radius-page: 28px;
+  --radius-chat: 28px;
+  --radius-full: 9999px;
+
+  /* ===== Shadow ===== */
+  --shadow-low: 0px 1px 1px light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), 0px 2px 8px light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2));
+  --shadow-med: 0px 1px 2px light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), 0px 2px 12px light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2));
+  --shadow-high: 0px 2px 2px light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), 0px 8px 24px light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.3));
+  --shadow-inset-hover: inset 0px 0px 0px 2px light-dark(rgba(5, 54, 89, 0.15), rgba(223, 226, 229, 0.2));
+  --shadow-inset-selected: inset 0px 0px 0px 2px rgba(1, 113, 227, 0.5);
+  --shadow-inset-success: inset 0px 0px 0px 2px rgba(38, 167, 86, 0.3);
+  --shadow-inset-warning: inset 0px 0px 0px 2px rgba(226, 164, 0, 0.3);
+  --shadow-inset-error: inset 0px 0px 0px 2px rgba(227, 25, 59, 0.3);
+
+  /* ===== Motion ===== */
+  --duration-fast-min: 130ms;
+  --duration-fast: 175ms;
+  --duration-fast-max: 230ms;
+  --duration-medium-min: 310ms;
+  --duration-medium: 410ms;
+  --duration-medium-max: 550ms;
+  --duration-slow-min: 730ms;
+  --duration-slow: 975ms;
+  --duration-slow-max: 1300ms;
+  --duration-exit: var(--duration-fast);
+  --ease-standard: cubic-bezier(0.24, 1, 0.4, 1);
+  --ease-entrance: cubic-bezier(0.24, 1, 0.4, 1);
+  --ease-move: cubic-bezier(0.24, 1, 0.4, 1);
+  --ease-exit: cubic-bezier(0.3, 0, 0.6, 0.6);
+
+  /* ===== Typography ===== */
+  --font-family-body: "Figtree", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-family-heading: "Figtree", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-family-code: "SF Mono", Monaco, Consolas, monospace;
+
+  /* 几何字阶：round(14 x 1.2^step) */
+  --font-size-4xs: 0.375rem;
+  --font-size-3xs: 0.4375rem;
+  --font-size-2xs: 0.5rem;
+  --font-size-xs: 0.625rem;
+  --font-size-sm: 0.75rem;
+  --font-size-base: 0.875rem;
+  --font-size-lg: 1.0625rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.8125rem;
+  --font-size-4xl: 2.1875rem;
+  --font-size-5xl: 2.625rem;
+
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* 语义字型（size / weight / leading 三件套，组件只许用这一层） */
+  --text-heading-1-size: var(--font-size-2xl); --text-heading-1-weight: var(--font-weight-semibold); --text-heading-1-leading: 1.3333;
+  --text-heading-2-size: var(--font-size-xl); --text-heading-2-weight: var(--font-weight-semibold); --text-heading-2-leading: 1.4;
+  --text-heading-3-size: var(--font-size-lg); --text-heading-3-weight: var(--font-weight-semibold); --text-heading-3-leading: 1.4118;
+  --text-heading-4-size: var(--font-size-base); --text-heading-4-weight: var(--font-weight-semibold); --text-heading-4-leading: 1.4286;
+  --text-heading-5-size: var(--font-size-sm); --text-heading-5-weight: var(--font-weight-semibold); --text-heading-5-leading: 1.6667;
+  --text-heading-6-size: var(--font-size-xs); --text-heading-6-weight: var(--font-weight-semibold); --text-heading-6-leading: 1.6;
+  --text-body-size: var(--font-size-base); --text-body-weight: var(--font-weight-normal); --text-body-leading: 1.4286;
+  --text-large-size: var(--font-size-lg); --text-large-weight: var(--font-weight-semibold); --text-large-leading: 1.4118;
+  --text-label-size: var(--font-size-base); --text-label-weight: var(--font-weight-medium); --text-label-leading: 1.4286;
+  --text-code-size: var(--font-size-base); --text-code-weight: var(--font-weight-normal); --text-code-leading: 1.4286;
+  --text-supporting-size: var(--font-size-sm); --text-supporting-weight: var(--font-weight-normal); --text-supporting-leading: 1.6667;
+  --text-display-1-size: var(--font-size-5xl); --text-display-1-weight: var(--font-weight-normal); --text-display-1-leading: 1.2381;
+  --text-display-2-size: var(--font-size-4xl); --text-display-2-weight: var(--font-weight-normal); --text-display-2-leading: 1.2571;
+  --text-display-3-size: var(--font-size-3xl); --text-display-3-weight: var(--font-weight-normal); --text-display-3-leading: 1.2414;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--color-background-body);color:var(--color-text-primary);font-family:var(--font-family-body);font-size:var(--text-body-size);font-weight:var(--text-body-weight);line-height:var(--text-body-leading)}
+:focus-visible{outline:var(--focus-outline-width) var(--focus-outline-style) var(--focus-outline-color);outline-offset:var(--focus-outline-offset)}
+.wrap{max-width:64rem;margin:0 auto;padding:var(--spacing-4)}
+.top{display:flex;align-items:flex-start;justify-content:space-between;gap:var(--spacing-3);flex-wrap:wrap;margin-bottom:var(--spacing-4)}
+.brand{display:flex;gap:var(--spacing-3);align-items:center}
+.logo{color:var(--color-icon-accent);display:grid;place-items:center;background:var(--color-accent-muted);border-radius:var(--radius-container);padding:var(--spacing-2);animation:pulse var(--duration-slow) var(--ease-standard) infinite}
+h1{font-size:var(--text-heading-1-size);font-weight:var(--text-heading-1-weight);line-height:var(--text-heading-1-leading);margin:0}
+h2{font-size:var(--text-heading-2-size);font-weight:var(--text-heading-2-weight);line-height:var(--text-heading-2-leading);margin:0}
+h3{font-size:var(--text-heading-3-size);font-weight:var(--text-heading-3-weight);line-height:var(--text-heading-3-leading);margin:0}
+.sub{color:var(--color-text-secondary);font-size:var(--text-supporting-size);margin:var(--spacing-1) 0 0}
+.card{background:var(--color-background-card);border:var(--border-width) solid var(--color-border);border-radius:var(--radius-container);padding:var(--spacing-4);box-shadow:var(--shadow-low);animation:rise var(--duration-medium) var(--ease-entrance)}
+.stack{display:grid;gap:var(--spacing-3)}
+.row{display:flex;gap:var(--spacing-2);flex-wrap:wrap;align-items:center}
+.grow{flex:1 1 auto}
+.muted{color:var(--color-text-secondary);font-size:var(--text-supporting-size)}
+.btn{background:var(--color-accent);color:var(--color-on-accent);border:var(--border-width) solid transparent;border-radius:var(--radius-element);min-height:var(--size-element-md);padding:var(--spacing-1) var(--spacing-3);font-size:var(--text-label-size);font-weight:var(--text-label-weight);cursor:pointer;transition:opacity var(--duration-fast) var(--ease-standard)}
+.btn:hover{opacity:.88}
+.btn-ghost{background:var(--color-background-surface);color:var(--color-text-primary);border:var(--border-width) solid var(--color-border-emphasized);border-radius:var(--radius-element);min-height:var(--size-element-md);padding:var(--spacing-1) var(--spacing-3);font-size:var(--text-label-size);cursor:pointer;transition:background var(--duration-fast) var(--ease-standard)}
+.btn-danger{background:var(--color-error-muted);color:var(--color-text-error);border:var(--border-width) solid var(--color-border-error);border-radius:var(--radius-element);min-height:var(--size-element-sm);padding:var(--spacing-1) var(--spacing-2);font-size:var(--text-supporting-size);cursor:pointer}
+input,select,textarea{background:var(--color-background-surface);color:var(--color-text-primary);border:var(--border-width) solid var(--color-border-emphasized);border-radius:var(--radius-element);min-height:var(--size-element-md);padding:var(--spacing-2);font-size:var(--text-body-size);font-family:var(--font-family-body);width:100%}
+textarea{resize:vertical;font-family:var(--font-family-code);font-size:var(--text-code-size)}
+.chip{background:var(--color-background-blue);color:var(--color-text-blue);border-radius:var(--radius-full);padding:var(--spacing-0-5) var(--spacing-2);font-size:var(--text-supporting-size);white-space:nowrap}
+.chip-green{background:var(--color-background-green);color:var(--color-text-green);border-radius:var(--radius-full);padding:var(--spacing-0-5) var(--spacing-2);font-size:var(--text-supporting-size);white-space:nowrap}
+.chip-red{background:var(--color-background-red);color:var(--color-text-red);border-radius:var(--radius-full);padding:var(--spacing-0-5) var(--spacing-2);font-size:var(--text-supporting-size);white-space:nowrap}
+.chip-warn{background:var(--color-background-yellow);color:var(--color-text-yellow);border-radius:var(--radius-full);padding:var(--spacing-0-5) var(--spacing-2);font-size:var(--text-supporting-size);white-space:nowrap}
+.empty{border:var(--border-width) dashed var(--color-border-emphasized);border-radius:var(--radius-container);padding:var(--spacing-6);text-align:center;color:var(--color-text-secondary)}
+.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--spacing-3)}
+.stat{background:var(--color-background-muted);border-radius:var(--radius-element);padding:var(--spacing-3);text-align:center}
+.stat-num{font-size:var(--text-display-3-size);font-weight:var(--font-weight-semibold);line-height:1.2}
+.stat-label{color:var(--color-text-secondary);font-size:var(--text-supporting-size)}
+.node{display:flex;gap:var(--spacing-3);align-items:flex-start;justify-content:space-between;background:var(--color-background-surface);border:var(--border-width) solid var(--color-border);border-radius:var(--radius-element);padding:var(--spacing-3)}
+.node-meta{color:var(--color-text-secondary);font-size:var(--text-supporting-size);margin:var(--spacing-1) 0 0;word-break:break-all}
+.demo-badge{background:var(--color-background-yellow);color:var(--color-text-yellow);border-radius:var(--radius-full);padding:var(--spacing-0-5) var(--spacing-2);font-size:var(--text-supporting-size);white-space:nowrap}
+.form-grid{display:grid;grid-template-columns:2fr 1fr 2fr 1fr auto;gap:var(--spacing-2);align-items:end}
+@keyframes rise{from{opacity:0;transform:translateY(var(--spacing-2))}to{opacity:1;transform:none}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.6}}
+@media (max-width:40rem){.stat-grid{grid-template-columns:repeat(2,1fr)}.form-grid{grid-template-columns:1fr 1fr}}
+@media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important}}
+</style>
+</head>
+<body>
+<div class="wrap"><main>
+<header class="top"><div class="brand"><span class="logo" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h10"/><path d="M18 15l3 2-3 2"/></svg></span><div><h1 data-i18n="title"></h1><p class="sub" data-i18n="sub"></p></div></div><button type="button" class="btn-ghost" data-lang-btn>中文</button></header>
+<p class="card muted" style="margin:0 0 var(--spacing-3)" data-i18n="honest"></p>
+
+<section class="card stack" aria-label="Paste subscription">
+<div class="row"><h2 class="grow" data-i18n="pasteTitle"></h2><span class="chip" data-paste-meta></span></div>
+<textarea data-f="paste" rows="7" data-i18n-ph="phPaste" aria-label="Paste subscription content"></textarea>
+<div class="row">
+<button type="button" class="btn" data-parse data-i18n="parse"></button>
+<button type="button" class="btn-ghost" data-sample data-i18n="loadSample"></button>
+<button type="button" class="btn-ghost" data-clear-paste data-i18n="clearPaste"></button>
+</div>
+<p class="muted" style="margin:0" data-skipped></p>
+</section>
+
+<section class="card stack" style="margin-top:var(--spacing-3)" aria-label="Health check">
+<div class="row"><h2 class="grow" data-i18n="healthTitle"></h2><span class="chip-green" data-health-ok></span></div>
+<div class="stat-grid">
+<div class="stat"><div class="stat-num" data-stat-total>0</div><div class="stat-label" data-i18n="statTotal"></div></div>
+<div class="stat"><div class="stat-num" data-stat-dup>0</div><div class="stat-label" data-i18n="statDup"></div></div>
+<div class="stat"><div class="stat-num" data-stat-sus>0</div><div class="stat-label" data-i18n="statSus"></div></div>
+<div class="stat"><div class="stat-num" data-stat-proto>0</div><div class="stat-label" data-i18n="statProto"></div></div>
+</div>
+<div class="row" data-proto-chips></div>
+<p class="muted" style="margin:0" data-sus-list></p>
+</section>
+
+<section class="card stack" style="margin-top:var(--spacing-3)" aria-label="Node list">
+<div class="row"><h2 class="grow" data-i18n="nodesTitle"></h2><span class="chip" data-nodes-meta></span></div>
+<div class="row">
+<select data-f="proto" aria-label="Filter by protocol" style="max-width:12rem"><option value="all">All</option></select>
+<input class="grow" data-f="q" data-i18n-ph="phSearch" aria-label="Search nodes" style="max-width:16rem">
+<button type="button" class="btn-ghost" data-dedupe data-i18n="dedupe"></button>
+<button type="button" class="btn-danger" data-clear-all data-i18n="clearAll"></button>
+</div>
+<div class="row">
+<input data-f="prefix" data-i18n-ph="phPrefix" aria-label="Name prefix" style="max-width:12rem">
+<input data-f="suffix" data-i18n-ph="phSuffix" aria-label="Name suffix" style="max-width:12rem">
+<button type="button" class="btn" data-rename data-i18n="rename"></button>
+<span class="muted" data-rename-msg></span>
+</div>
+<div class="stack" data-nodes></div>
+<div class="empty" data-empty hidden><strong data-i18n="emptyTitle"></strong><p style="margin:var(--spacing-1) 0 0" data-i18n="emptyBody"></p></div>
+<h3 data-i18n="addTitle"></h3>
+<div class="form-grid">
+<label><span class="muted" data-i18n="fName"></span><input data-f="aname" data-i18n-ph="phName" aria-label="Node name"></label>
+<label><span class="muted" data-i18n="fProto"></span><select data-f="aproto" aria-label="Protocol"><option>vmess</option><option>vless</option><option>ss</option><option>ssr</option><option>trojan</option><option>hysteria2</option></select></label>
+<label><span class="muted" data-i18n="fAddr"></span><input data-f="aaddr" data-i18n-ph="phAddr" aria-label="Address"></label>
+<label><span class="muted" data-i18n="fPort"></span><input data-f="aport" inputmode="numeric" data-i18n-ph="phPort" aria-label="Port"></label>
+<button type="button" class="btn" data-add data-i18n="addNode"></button>
+</div>
+</section>
+
+<section class="card stack" style="margin-top:var(--spacing-3)" aria-label="Convert output">
+<div class="row"><h2 class="grow" data-i18n="outTitle"></h2>
+<select data-f="fmt" aria-label="Target format" style="max-width:16rem">
+<option value="clash">Clash YAML</option>
+<option value="clash-meta">Clash Meta YAML</option>
+<option value="singbox">sing-box JSON</option>
+<option value="surge">Surge</option>
+<option value="qx">Quantumult X</option>
+<option value="shadowrocket">Shadowrocket</option>
+<option value="v2ray">V2Ray base64 subscription</option>
+</select>
+<button type="button" class="btn" data-convert data-i18n="convert"></button>
+</div>
+<textarea data-f="out" rows="10" readonly data-i18n-ph="phOut" aria-label="Converted output"></textarea>
+<div class="row">
+<button type="button" class="btn" data-copy-out data-i18n="copy"></button>
+<button type="button" class="btn-ghost" data-download data-i18n="download"></button>
+<span class="muted" data-out-msg></span>
+</div>
+<p class="muted" style="margin:0" data-i18n="outNote"></p>
+</section>
+</main></div>
+<script>
+
+const KEY='muse-space:proxy-subscription-converter';
+const PROTOCOLS=['vmess','vless','ss','ssr','trojan','hysteria2'];
+const DEMO=[
+ {id:'demo-vmess',name:'Demo VMess',protocol:'vmess',address:'demo1.example.com',port:443,uuid:'11111111-2222-3333-4444-555555555555',demo:true},
+ {id:'demo-trojan',name:'Demo Trojan',protocol:'trojan',address:'demo2.example.com',port:443,password:'demo-password',demo:true},
+ {id:'demo-ss',name:'Demo Shadowsocks',protocol:'ss',address:'demo3.example.com',port:8388,method:'aes-256-gcm',password:'demo-password',demo:true}
+];
+let state; try{ state=JSON.parse(localStorage.getItem(KEY)); }catch(e){ state=null; }
+if(!state || !Array.isArray(state.nodes)){ state={lang:'en', nodes:DEMO.map(function(n){ return Object.assign({}, n); })}; }
+const STR={en:{"title":"Proxy Subscription Converter","sub":"Paste a proxy subscription, convert it between client formats, dedupe and rename nodes.","honest":"Everything runs in your browser: nothing is uploaded, this page never fetches a subscription URL — paste the content instead. It does no latency or speed test (a static page cannot), and conversions are best-effort.","pasteTitle":"Paste subscription","phPaste":"Paste node links (vmess://, vless://, ss://, trojan:// …), a base64 subscription blob, Clash YAML or sing-box JSON…","parse":"Parse","loadSample":"Load sample","clearPaste":"Clear","skipped":"Skipped","skippedNone":"All lines parsed.","healthTitle":"Health check","healthOk":"No problems found","statTotal":"Total nodes","statDup":"Duplicates","statSus":"Suspicious","statProto":"Protocols","nodesTitle":"Nodes","dedupe":"Dedupe","clearAll":"Clear all","phPrefix":"Prefix, e.g. HK-","phSuffix":"Suffix, e.g. -01","rename":"Batch rename","renamed":"renamed","emptyTitle":"No nodes yet","emptyBody":"Paste a subscription above, load the sample, or add a node manually.","addTitle":"Add a node","fName":"Name","fProto":"Protocol","fAddr":"Address","fPort":"Port","phName":"Node name","phAddr":"example.com","phPort":"443","addNode":"Add","outTitle":"Convert output","convert":"Convert","copy":"Copy","copied":"Copied","download":"Download","phOut":"Converted output appears here…","outNote":"Conversions are best-effort: check the result in your client before importing. Unknown protocols are skipped in the output.","del":"Delete","demo":"Demo","search":"Search nodes…","phSearch":"Search by name or address…","all":"All","badPort":"bad port","noAddr":"missing address","unknownProto":"unknown protocol","removedDup":"duplicates removed","noNodes":"No nodes to convert yet.","needNameAddr":"Name and address are required.","added":"added"},zh:{"title":"梯子订阅转换器","sub":"粘贴一份代理订阅，在不同客户端格式之间转换，并去重、批量改名。","honest":"全部在浏览器本地运行：不上传任何内容，本页从不拉取订阅链接——请直接粘贴订阅内容。它不做延迟或测速（静态页面做不到），格式转换尽力而为。","pasteTitle":"粘贴订阅","phPaste":"粘贴节点链接（vmess://、vless://、ss://、trojan://……）、base64 订阅、Clash YAML 或 sing-box JSON……","parse":"解析","loadSample":"加载示例","clearPaste":"清空","skipped":"已跳过","skippedNone":"全部行都已解析。","healthTitle":"健康检查","healthOk":"没有发现问题","statTotal":"节点总数","statDup":"重复节点","statSus":"可疑节点","statProto":"协议种数","nodesTitle":"节点列表","dedupe":"去重","clearAll":"清空全部","phPrefix":"前缀，例如 HK-","phSuffix":"后缀，例如 -01","rename":"批量改名","renamed":"个已改名","emptyTitle":"还没有节点","emptyBody":"在上方粘贴订阅、加载示例，或手动添加一个节点。","addTitle":"手动添加节点","fName":"名称","fProto":"协议","fAddr":"地址","fPort":"端口","phName":"节点名称","phAddr":"example.com","phPort":"443","addNode":"添加","outTitle":"转换结果","convert":"转换","copy":"复制","copied":"已复制","download":"下载","phOut":"转换结果显示在这里……","outNote":"转换尽力而为：导入客户端前请先检查结果，未知协议在输出中会被跳过。","del":"删除","demo":"示例","search":"搜索节点…","phSearch":"按名称或地址搜索……","all":"全部","badPort":"端口异常","noAddr":"缺少地址","unknownProto":"未知协议","removedDup":"个重复节点已移除","noNodes":"还没有可转换的节点。","needNameAddr":"名称和地址必填。","added":"已添加"}};
+let lang = (state && state.lang) || 'en';
+function t(k){ return (STR[lang] && STR[lang][k]) || STR.en[k] || k; }
+function applyI18n(){ document.querySelectorAll('[data-i18n]').forEach(function(el){ el.textContent = t(el.dataset.i18n); }); document.querySelectorAll('[data-i18n-ph]').forEach(function(el){ el.placeholder = t(el.dataset.i18nPh); }); document.querySelectorAll('[data-lang-btn]').forEach(function(b){ b.textContent = lang==='en' ? '中文' : 'EN'; }); document.documentElement.lang = lang==='en' ? 'en' : 'zh-CN'; var sel=document.querySelector('[data-f="proto"]'); if(sel && sel.options.length){ sel.options[0].textContent = t('all'); } }
+document.querySelector('[data-lang-btn]').addEventListener('click', function(){ lang = lang==='en' ? 'zh' : 'en'; state.lang = lang; save(); applyI18n(); render(); });
+function esc(s){ return String(s==null?'':s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+function uid(){ return Date.now().toString(36) + Math.random().toString(36).slice(2,7); }
+function save(){ localStorage.setItem(KEY, JSON.stringify(state)); }
+function b64dec(s){ s=String(s||'').trim().replace(/-/g,'+').replace(/_/g,'/'); while(s.length%4){ s+='='; } try{ return atob(s); }catch(e){ return ''; } }
+function b64enc(s){ return btoa(unescape(encodeURIComponent(s))); }
+function b64encAscii(s){ try{ return btoa(s); }catch(e){ return b64enc(s); } }
+function urlDecode(s){ try{ return decodeURIComponent(s); }catch(e){ return s; } }
+function splitName(line){ var i=line.indexOf('#'); if(i<0){ return {body:line, name:''}; } return {body:line.slice(0,i), name:urlDecode(line.slice(i+1))}; }
+function parseLink(line){
+  var m=line.match(/^([a-z0-9+.-]+):\/\/(.*)$/i);
+  if(!m){ return null; }
+  var scheme=m[1].toLowerCase(), rest=m[2], sn=splitName(rest), body=sn.body, name=sn.name;
+  try{
+    if(scheme==='vmess'){
+      var j=JSON.parse(b64dec(body));
+      return {name:name||j.ps||j.add||'vmess', protocol:'vmess', address:j.add||'', port:Number(j.port)||0, uuid:j.id||'', method:j.method||''};
+    }
+    if(scheme==='vless' || scheme==='trojan' || scheme==='hysteria2' || scheme==='hy2'){
+      var u=new URL(scheme+'://'+body);
+      var proto = scheme==='hy2' ? 'hysteria2' : scheme;
+      var n={name:name||u.hostname||proto, protocol:proto, address:u.hostname||'', port:Number(u.port)||0};
+      if(proto==='trojan' || proto==='hysteria2'){ n.password=urlDecode(u.username); }
+      if(proto==='vless'){ n.uuid=urlDecode(u.username); }
+      return n;
+    }
+    if(scheme==='ss'){
+      var at=body.indexOf('@');
+      var userinfo, hostport;
+      if(at>=0){ userinfo=body.slice(0,at); hostport=body.slice(at+1); if(userinfo.indexOf(':')<0){ userinfo=b64dec(userinfo); } }
+      else { var dec=b64dec(body); var at2=dec.indexOf('@'); if(at2<0){ return null; } userinfo=dec.slice(0,at2); hostport=dec.slice(at2+1); }
+      var c=userinfo.indexOf(':'); if(c<0){ return null; }
+      var hp=hostport.split(':'); if(hp.length<2){ return null; }
+      return {name:name||hp[0], protocol:'ss', address:hp[0], port:Number(hp[1])||0, method:userinfo.slice(0,c), password:userinfo.slice(c+1)};
+    }
+    if(scheme==='ssr'){
+      var dec2=b64dec(body).split('/?')[0].split('/');
+      var parts=dec2.split(':'); if(parts.length<6){ return null; }
+      return {name:name||parts[0], protocol:'ssr', address:parts[0], port:Number(parts[1])||0, method:parts[3]||'', password:b64dec(parts[5])};
+    }
+  }catch(e){ return null; }
+  var u2=null; try{ u2=new URL(scheme+'://'+body); }catch(e2){}
+  return {name:name||(u2&&u2.hostname)||scheme, protocol:'unknown', address:(u2&&u2.hostname)||'', port:(u2&&Number(u2.port))||0, scheme:scheme};
+}
+function setYamlField(cur, k, v){
+  if(k==='name'){ cur.name=v; } else if(k==='type'){ cur.protocol=v; }
+  else if(k==='server'){ cur.address=v; } else if(k==='port'){ cur.port=Number(v); }
+  else if(k==='uuid'){ cur.uuid=v; } else if(k==='password'){ cur.password=v; }
+  else if(k==='cipher'){ cur.method=v; }
+}
+function parseClashYaml(text){
+  var out=[], cur=null, inProxies=false;
+  text.split('\n').forEach(function(raw){
+    var line=raw.replace(/\t/g,'  ');
+    if(/^proxies\s*:/.test(line)){ inProxies=true; return; }
+    if(inProxies && /^[a-zA-Z]/.test(line) && !/^\s/.test(line)){ inProxies=false; }
+    if(!inProxies){ return; }
+    var item=line.match(/^\s*-\s*(.*)$/);
+    if(item){
+      if(cur){ out.push(cur); }
+      cur={};
+      var rest=item[1].trim();
+      if(rest.indexOf('{')===0){ var mm=rest.match(/name\s*:\s*([^,}]+)/); if(mm){ cur.name=mm[1].trim().replace(/^['"]|['"]$/g,''); } var mt=rest.match(/type\s*:\s*([^,}]+)/); if(mt){ cur.protocol=mt[1].trim(); } var ms=rest.match(/server\s*:\s*([^,}]+)/); if(ms){ cur.address=ms[1].trim(); } var mp=rest.match(/port\s*:\s*(\d+)/); if(mp){ cur.port=Number(mp[1]); } }
+      else { var kv0=rest.match(/^([a-zA-Z0-9_-]+)\s*:\s*(.+?)\s*$/); if(kv0){ setYamlField(cur, kv0[1], kv0[2].replace(/^['"]|['"]$/g,'')); } }
+      return;
+    }
+    if(cur){
+      var kv=line.match(/^\s+([a-zA-Z0-9_-]+)\s*:\s*(.+?)\s*$/);
+      if(kv){ setYamlField(cur, kv[1], kv[2].replace(/^['"]|['"]$/g,'')); }
+    }
+  });
+  if(cur){ out.push(cur); }
+  return out.filter(function(n){ return n.address || n.name; }).map(function(n){ return {name:n.name||n.address||'node', protocol:(n.protocol||'unknown').toLowerCase(), address:n.address||'', port:n.port||0, uuid:n.uuid||'', password:n.password||'', method:n.method||''}; });
+}
+function parseSingboxJson(text){
+  var j; try{ j=JSON.parse(text); }catch(e){ return null; }
+  if(!j || !Array.isArray(j.outbounds)){ return null; }
+  return j.outbounds.filter(function(o){ return o && o.server; }).map(function(o){
+    var p=String(o.type||'unknown').toLowerCase();
+    return {name:o.tag||o.server, protocol:p, address:o.server||'', port:Number(o.server_port)||0, uuid:o.uuid||'', password:o.password||'', method:o.method||''};
+  });
+}
+function parseInput(text){
+  var nodes=[], skipped=[];
+  var trimmed=text.trim();
+  if(!trimmed){ return {nodes:nodes, skipped:skipped}; }
+  var sb=parseSingboxJson(trimmed);
+  if(sb){ return {nodes:sb, skipped:skipped}; }
+  if(/^proxies\s*:/m.test(trimmed)){ return {nodes:parseClashYaml(trimmed), skipped:skipped}; }
+  var lines=trimmed.split('\n').map(function(l){ return l.trim(); }).filter(function(l){ return l; });
+  var linkLines=lines.filter(function(l){ return /^[a-z0-9+.-]+:\/\//i.test(l); });
+  if(!linkLines.length){
+    var dec=b64dec(trimmed.replace(/\s+/g,''));
+    if(dec){ var dl=dec.split('\n').map(function(l){ return l.trim(); }).filter(function(l){ return /^[a-z0-9+.-]+:\/\//i.test(l); }); if(dl.length){ lines=dl; linkLines=dl; } }
+  }
+  lines.forEach(function(l){
+    var n=parseLink(l);
+    if(n){ n.id=uid(); nodes.push(n); }
+    else { skipped.push(l); }
+  });
+  return {nodes:nodes, skipped:skipped};
+}
+
+function suspiciousOf(n){
+  var reasons=[];
+  if(!n.address){ reasons.push(t('noAddr')); }
+  if(!(n.port>=1 && n.port<=65535)){ reasons.push(t('badPort')); }
+  if(n.protocol==='unknown'){ reasons.push(t('unknownProto')); }
+  return reasons;
+}
+function dupCount(nodes){
+  var seen={}, d=0;
+  nodes.forEach(function(n){ var k=(n.address||'').toLowerCase()+':'+n.port; if(seen[k]){ d++; } else { seen[k]=1; } });
+  return d;
+}
+function yamlStr(s){ return '"' + String(s).replace(/"/g,'\\"') + '"'; }
+function clashYaml(nodes, meta){
+  var lines=['proxies:'];
+  nodes.forEach(function(n){
+    if(n.protocol==='unknown'){ lines.push('  # skipped: '+n.name+' (unknown protocol)'); return; }
+    lines.push('  - name: '+yamlStr(n.name));
+    lines.push('    type: '+n.protocol);
+    lines.push('    server: '+n.address);
+    lines.push('    port: '+n.port);
+    if(n.protocol==='vmess'){ lines.push('    uuid: '+(n.uuid||'')); lines.push('    alterId: 0'); lines.push('    cipher: auto'); }
+    if(n.protocol==='vless'){ lines.push('    uuid: '+(n.uuid||'')); lines.push('    tls: true'); }
+    if(n.protocol==='trojan'){ lines.push('    password: '+yamlStr(n.password||'')); lines.push('    sni: '+n.address); }
+    if(n.protocol==='ss'){ lines.push('    cipher: '+(n.method||'aes-256-gcm')); lines.push('    password: '+yamlStr(n.password||'')); }
+    if(n.protocol==='ssr'){ lines.push('    cipher: '+(n.method||'aes-256-cfb')); lines.push('    password: '+yamlStr(n.password||'')); }
+    if(n.protocol==='hysteria2'){ lines.push('    password: '+yamlStr(n.password||'')); }
+    if(meta){ lines.push('    udp: true'); }
+  });
+  lines.push('proxy-groups:');
+  lines.push('  - name: PROXY');
+  lines.push('    type: select');
+  lines.push('    proxies:');
+  nodes.forEach(function(n){ if(n.protocol!=='unknown'){ lines.push('      - '+yamlStr(n.name)); } });
+  return lines.join('\n')+'\n';
+}
+function singboxJson(nodes){
+  var obs=nodes.filter(function(n){ return n.protocol!=='unknown'; }).map(function(n){
+    var o={type:n.protocol, tag:n.name, server:n.address, server_port:n.port};
+    if(n.protocol==='vmess'){ o.uuid=n.uuid||''; o.security='auto'; }
+    if(n.protocol==='vless'){ o.uuid=n.uuid||''; o.flow=''; }
+    if(n.protocol==='trojan'){ o.password=n.password||''; }
+    if(n.protocol==='ss'){ o.method=n.method||'aes-256-gcm'; o.password=n.password||''; }
+    if(n.protocol==='hysteria2'){ o.password=n.password||''; }
+    return o;
+  });
+  obs.push({type:'direct', tag:'direct'});
+  return JSON.stringify({outbounds:obs}, null, 2)+'\n';
+}
+function surgeLines(nodes){
+  return nodes.filter(function(n){ return n.protocol!=='unknown'; }).map(function(n){
+    if(n.protocol==='vmess'){ return n.name+' = vmess, '+n.address+', '+n.port+', username='+(n.uuid||''); }
+    if(n.protocol==='vless'){ return n.name+' = vless, '+n.address+', '+n.port+', username='+(n.uuid||''); }
+    if(n.protocol==='trojan'){ return n.name+' = trojan, '+n.address+', '+n.port+', password='+(n.password||''); }
+    if(n.protocol==='ss'){ return n.name+' = ss, '+n.address+', '+n.port+', encrypt-method='+(n.method||'aes-256-gcm')+', password='+(n.password||''); }
+    if(n.protocol==='ssr'){ return n.name+' = ss, '+n.address+', '+n.port+', encrypt-method='+(n.method||'aes-256-cfb')+', password='+(n.password||''); }
+    if(n.protocol==='hysteria2'){ return n.name+' = hysteria2, '+n.address+', '+n.port+', password='+(n.password||''); }
+    return n.name+' = '+n.protocol+', '+n.address+', '+n.port;
+  }).join('\n')+'\n';
+}
+function qxLines(nodes){
+  return nodes.filter(function(n){ return n.protocol!=='unknown'; }).map(function(n){
+    if(n.protocol==='vmess'){ return 'vmess='+n.address+':'+n.port+', method=auto, password='+(n.uuid||'')+', tag='+n.name; }
+    if(n.protocol==='vless'){ return 'vless='+n.address+':'+n.port+', method=auto, password='+(n.uuid||'')+', tag='+n.name; }
+    if(n.protocol==='trojan'){ return 'trojan='+n.address+':'+n.port+', password='+(n.password||'')+', tag='+n.name; }
+    if(n.protocol==='ss'){ return 'shadowsocks='+n.address+':'+n.port+', method='+(n.method||'aes-256-gcm')+', password='+(n.password||'')+', tag='+n.name; }
+    if(n.protocol==='hysteria2'){ return 'hysteria2='+n.address+':'+n.port+', password='+(n.password||'')+', tag='+n.name; }
+    return n.protocol+'='+n.address+':'+n.port+', tag='+n.name;
+  }).join('\n')+'\n';
+}
+function toLink(n){
+  var frag=encodeURIComponent(n.name);
+  if(n.protocol==='vmess'){ return 'vmess://'+b64enc(JSON.stringify({v:'2',ps:n.name,add:n.address,port:String(n.port),id:n.uuid||'',aid:'0',net:'tcp',type:'none',host:'',path:'',tls:''})); }
+  if(n.protocol==='vless'){ return 'vless://'+(n.uuid||'')+'@'+n.address+':'+n.port+'#'+frag; }
+  if(n.protocol==='trojan'){ return 'trojan://'+encodeURIComponent(n.password||'')+'@'+n.address+':'+n.port+'#'+frag; }
+  if(n.protocol==='ss'){ return 'ss://'+b64encAscii((n.method||'aes-256-gcm')+':'+(n.password||''))+'@'+n.address+':'+n.port+'#'+frag; }
+  if(n.protocol==='hysteria2'){ return 'hysteria2://'+encodeURIComponent(n.password||'')+'@'+n.address+':'+n.port+'#'+frag; }
+  return '';
+}
+function convert(nodes, fmt){
+  if(fmt==='clash'){ return clashYaml(nodes, false); }
+  if(fmt==='clash-meta'){ return clashYaml(nodes, true); }
+  if(fmt==='singbox'){ return singboxJson(nodes); }
+  if(fmt==='surge'){ return surgeLines(nodes); }
+  if(fmt==='qx'){ return qxLines(nodes); }
+  if(fmt==='shadowrocket'){ return nodes.filter(function(n){ return n.protocol!=='unknown'; }).map(toLink).filter(Boolean).join('\n')+'\n'; }
+  if(fmt==='v2ray'){ return b64enc(nodes.filter(function(n){ return n.protocol!=='unknown'; }).map(toLink).filter(Boolean).join('\n'))+'\n'; }
+  return '';
+}
+function fmtFilename(fmt){
+  return {clash:'clash.yaml','clash-meta':'clash-meta.yaml',singbox:'sing-box.json',surge:'surge.conf',qx:'quantumult-x.conf',shadowrocket:'shadowrocket.txt',v2ray:'v2ray-subscription.txt'}[fmt]||'output.txt';
+}
+function render(){
+  var q=(document.querySelector('[data-f="q"]').value||'').toLowerCase();
+  var proto=document.querySelector('[data-f="proto"]').value;
+  var nodes=state.nodes;
+  document.querySelector('[data-paste-meta]').textContent=nodes.length+' nodes';
+  var protos={}; nodes.forEach(function(n){ protos[n.protocol]=(protos[n.protocol]||0)+1; });
+  var protoKeys=Object.keys(protos);
+  document.querySelector('[data-stat-total]').textContent=nodes.length;
+  document.querySelector('[data-stat-dup]').textContent=dupCount(nodes);
+  var sus=nodes.filter(function(n){ return suspiciousOf(n).length; });
+  document.querySelector('[data-stat-sus]').textContent=sus.length;
+  document.querySelector('[data-stat-proto]').textContent=protoKeys.length;
+  document.querySelector('[data-health-ok]').textContent = sus.length ? sus.length+' suspicious' : t('healthOk');
+  document.querySelector('[data-proto-chips]').innerHTML=protoKeys.map(function(p){ return '<span class="chip">'+esc(p)+' · '+protos[p]+'</span>'; }).join('');
+  document.querySelector('[data-sus-list]').innerHTML=sus.map(function(n){ return '<span class="chip-warn">'+esc(n.name)+': '+esc(suspiciousOf(n).join(', '))+'</span>'; }).join(' ');
+  var sel=document.querySelector('[data-f="proto"]');
+  var cur=sel.value;
+  sel.innerHTML='<option value="all">'+esc(t('all'))+'</option>'+protoKeys.map(function(p){ return '<option value="'+esc(p)+'">'+esc(p)+'</option>'; }).join('');
+  sel.value=protoKeys.indexOf(cur)>=0?cur:'all';
+  var shown=nodes.filter(function(n){ return (proto==='all'||n.protocol===proto) && (!q || n.name.toLowerCase().indexOf(q)>=0 || n.address.toLowerCase().indexOf(q)>=0); });
+  document.querySelector('[data-nodes-meta]').textContent=shown.length+' / '+nodes.length;
+  document.querySelector('[data-empty]').hidden=nodes.length>0;
+  document.querySelector('[data-nodes]').innerHTML=shown.map(function(n){
+    var chipCls=n.protocol==='unknown'?'chip-red':(n.demo?'chip-warn':'chip');
+    return '<div class="node"><div class="grow"><strong>'+esc(n.name)+'</strong> <span class="'+chipCls+'">'+esc(n.protocol)+'</span>'+(n.demo?' <span class="demo-badge">'+esc(t('demo'))+'</span>':'')+'<p class="node-meta">'+esc(n.address||'—')+':'+esc(String(n.port||'—'))+'</p></div><button type="button" class="btn-danger" data-del="'+n.id+'">'+t('del')+'</button></div>';
+  }).join('');
+}
+document.querySelector('[data-f="q"]').addEventListener('input', render);
+document.querySelector('[data-f="proto"]').addEventListener('change', render);
+document.querySelector('[data-parse]').addEventListener('click', function(){
+  var r=parseInput(document.querySelector('[data-f="paste"]').value);
+  state.nodes=r.nodes; save();
+  document.querySelector('[data-skipped]').textContent = r.skipped.length ? t('skipped')+': '+r.skipped.length+' — '+r.skipped.slice(0,3).map(function(s){ return s.slice(0,60); }).join(' | ') : t('skippedNone');
+  render();
+});
+document.querySelector('[data-sample]').addEventListener('click', function(){
+  document.querySelector('[data-f="paste"]').value='vmess://'+b64enc(JSON.stringify({v:'2',ps:'Demo VMess',add:'demo1.example.com',port:'443',id:'11111111-2222-3333-4444-555555555555',aid:'0',net:'tcp',type:'none',host:'',path:'',tls:''}))+'\ntrojan://demo-password@demo2.example.com:443#Demo%20Trojan\nss://'+b64encAscii('aes-256-gcm:demo-password')+'@demo3.example.com:8388#Demo%20Shadowsocks';
+});
+document.querySelector('[data-clear-paste]').addEventListener('click', function(){ document.querySelector('[data-f="paste"]').value=''; document.querySelector('[data-skipped]').textContent=''; });
+document.querySelector('[data-dedupe]').addEventListener('click', function(){
+  var seen={}, kept=[], removed=0;
+  state.nodes.forEach(function(n){ var k=(n.address||'').toLowerCase()+':'+n.port; if(seen[k]){ removed++; } else { seen[k]=1; kept.push(n); } });
+  state.nodes=kept; save(); render();
+  document.querySelector('[data-rename-msg]').textContent=removed+' '+t('removedDup');
+});
+document.querySelector('[data-clear-all]').addEventListener('click', function(){ state.nodes=[]; save(); render(); });
+document.querySelector('[data-rename]').addEventListener('click', function(){
+  var pre=document.querySelector('[data-f="prefix"]').value, suf=document.querySelector('[data-f="suffix"]').value;
+  state.nodes.forEach(function(n){ n.name=pre+n.name+suf; });
+  save(); render();
+  document.querySelector('[data-rename-msg]').textContent=state.nodes.length+' '+t('renamed');
+});
+document.querySelector('[data-nodes]').addEventListener('click', function(e){
+  var d=e.target.closest('[data-del]'); if(!d){ return; }
+  state.nodes=state.nodes.filter(function(n){ return n.id!==d.dataset.del; }); save(); render();
+});
+document.querySelector('[data-add]').addEventListener('click', function(){
+  var name=document.querySelector('[data-f="aname"]').value.trim();
+  var addr=document.querySelector('[data-f="aaddr"]').value.trim();
+  var port=Number(document.querySelector('[data-f="aport"]').value);
+  if(!name || !addr){ document.querySelector('[data-rename-msg]').textContent=t('needNameAddr'); return; }
+  state.nodes.push({id:uid(), name:name, protocol:document.querySelector('[data-f="aproto"]').value, address:addr, port:port||0});
+  document.querySelector('[data-f="aname"]').value=''; document.querySelector('[data-f="aaddr"]').value=''; document.querySelector('[data-f="aport"]').value='';
+  save(); render();
+  document.querySelector('[data-rename-msg]').textContent=name+' '+t('added');
+});
+document.querySelector('[data-convert]').addEventListener('click', function(){
+  var fmt=document.querySelector('[data-f="fmt"]').value;
+  if(!state.nodes.length){ document.querySelector('[data-f="out"]').value=''; document.querySelector('[data-out-msg]').textContent=t('noNodes'); return; }
+  document.querySelector('[data-f="out"]').value=convert(state.nodes, fmt);
+  document.querySelector('[data-out-msg]').textContent='';
+});
+document.querySelector('[data-copy-out]').addEventListener('click', function(e){
+  var v=document.querySelector('[data-f="out"]').value; if(!v){ return; }
+  if(navigator.clipboard){ navigator.clipboard.writeText(v); }
+  e.target.textContent=t('copied'); setTimeout(function(){ e.target.textContent=t('copy'); }, 900);
+});
+document.querySelector('[data-download]').addEventListener('click', function(){
+  var v=document.querySelector('[data-f="out"]').value; if(!v){ return; }
+  var fmt=document.querySelector('[data-f="fmt"]').value;
+  var a=document.createElement('a');
+  a.href=URL.createObjectURL(new Blob([v], {type:'text/plain'}));
+  a.download=fmtFilename(fmt); a.click();
+  setTimeout(function(){ URL.revokeObjectURL(a.href); }, 1000);
+});
+applyI18n(); render();
+</script>
+</body>
+</html>

@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Trivia Quiz — Test Your Knowledge in 10 Quick Rounds | Muse Space</title>
-<meta name="description" content="Trivia Quiz template for Muse Space: 24 questions across General, Science, History and Food, with a timer, score and streak. Bilingual EN/中文.">
+<meta name="description" content="Trivia Quiz template for Muse Space: 50 questions across General, Science, History, Food and Tech, with a timer, score and streak. Bilingual EN/中文.">
 <meta property="og:title" content="Trivia Quiz — Test Your Knowledge in 10 Quick Rounds | Muse Space">
-<meta property="og:description" content="Trivia Quiz template for Muse Space: 24 questions across General, Science, History and Food, with a timer, score and streak. Bilingual EN/中文.">
+<meta property="og:description" content="Trivia Quiz template for Muse Space: 50 questions across General, Science, History, Food and Tech, with a timer, score and streak. Bilingual EN/中文.">
 <meta property="og:type" content="website">
 <style>
 :root {
@@ -315,6 +315,7 @@ footer{color:var(--color-text-disabled);font-size:var(--text-supporting-size);te
 <button class="chip" type="button" data-cat="science" data-i="catScience"></button>
 <button class="chip" type="button" data-cat="history" data-i="catHistory"></button>
 <button class="chip" type="button" data-cat="food" data-i="catFood"></button>
+<button class="chip" type="button" data-cat="tech" data-i="catTech"></button>
 </div>
 <p class="muted" id="roundInfo"></p>
 <button class="btn block" id="startBtn" type="button" data-i="startBtn"></button>
@@ -353,8 +354,8 @@ const TIME_LIMIT=15, TICK=100, POINTS=10;
 let S;try{S=JSON.parse(localStorage.getItem(KEY))}catch(e){S=null}
 if(!S||typeof S!=='object'){S={lang:'en',best:0,bestStreak:0}}
 let lang=S.lang==='zh'?'zh':'en';
-const T={en:{sub:'Ten quick questions. Fifteen seconds each. How far can your streak go?',score:'Score',streak:'Streak',best:'Best score',startTitle:'Pick a category, start a round',pickCategory:'Each round draws ten questions from the bank. Every category has ten.',catAll:'All',catGeneral:'General',catScience:'Science',catHistory:'History',catFood:'Food',roundInfo:'{n} questions · 15 seconds each · 10 points per correct answer',startBtn:'Start quiz',nextBtn:'Next question',seeResult:'See result',resultTitle:'Round over',yourScore:'Your score',correctCount:'Correct answers',accuracy:'Accuracy',bestStreak:'Best streak',reviewTitle:'Review your misses',reviewEmpty:'A perfect round — nothing to review.',newRound:'New round',questionOf:'Question {a} of {b}',secondsLeft:'{n}s left',correctFb:'Correct! +10 points.',wrongFb:'Not quite — the right answer is marked.',timeoutFb:'Time is up — the right answer is marked.',yourAnswer:'Your answer',correctAnswer:'Correct answer',timedOut:'Timed out'},
-zh:{sub:'十道快问快答，每题 15 秒，看看你的连胜能走多远。',score:'得分',streak:'连胜',best:'最高分',startTitle:'选个分类，开始一轮',pickCategory:'每轮从题库抽 10 道题，每个分类都有 10 道。',catAll:'全部',catGeneral:'常识',catScience:'科学',catHistory:'历史',catFood:'美食',roundInfo:'共 {n} 题 · 每题 15 秒 · 答对得 10 分',startBtn:'开始答题',nextBtn:'下一题',seeResult:'查看结果',resultTitle:'本轮结束',yourScore:'你的得分',correctCount:'答对题数',accuracy:'正确率',bestStreak:'最长连胜',reviewTitle:'错题回顾',reviewEmpty:'满分一轮，没有错题。',newRound:'再来一轮',questionOf:'第 {a} / {b} 题',secondsLeft:'还剩 {n} 秒',correctFb:'答对了！+10 分。',wrongFb:'不对，正确答案已标出。',timeoutFb:'时间到，正确答案已标出。',yourAnswer:'你的答案',correctAnswer:'正确答案',timedOut:'超时未答'}};
+const T={en:{sub:'Ten quick questions. Fifteen seconds each. How far can your streak go?',score:'Score',streak:'Streak',best:'Best score',startTitle:'Pick a category, start a round',pickCategory:'Each round draws ten questions from the bank. Every category has ten.',catAll:'All',catGeneral:'General',catScience:'Science',catHistory:'History',catFood:'Food',catTech:'Tech',roundInfo:'{n} questions · 15 seconds each · 10 points per correct answer',startBtn:'Start quiz',nextBtn:'Next question',seeResult:'See result',resultTitle:'Round over',yourScore:'Your score',correctCount:'Correct answers',accuracy:'Accuracy',bestStreak:'Best streak',reviewTitle:'Review your misses',reviewEmpty:'A perfect round — nothing to review.',newRound:'New round',questionOf:'Question {a} of {b}',secondsLeft:'{n}s left',correctFb:'Correct! +10 points.',wrongFb:'Not quite — the right answer is marked.',timeoutFb:'Time is up — the right answer is marked.',yourAnswer:'Your answer',correctAnswer:'Correct answer',timedOut:'Timed out'},
+zh:{sub:'十道快问快答，每题 15 秒，看看你的连胜能走多远。',score:'得分',streak:'连胜',best:'最高分',startTitle:'选个分类，开始一轮',pickCategory:'每轮从题库抽 10 道题，每个分类都有 10 道。',catAll:'全部',catGeneral:'常识',catScience:'科学',catHistory:'历史',catFood:'美食',catTech:'科技',roundInfo:'共 {n} 题 · 每题 15 秒 · 答对得 10 分',startBtn:'开始答题',nextBtn:'下一题',seeResult:'查看结果',resultTitle:'本轮结束',yourScore:'你的得分',correctCount:'答对题数',accuracy:'正确率',bestStreak:'最长连胜',reviewTitle:'错题回顾',reviewEmpty:'满分一轮，没有错题。',newRound:'再来一轮',questionOf:'第 {a} / {b} 题',secondsLeft:'还剩 {n} 秒',correctFb:'答对了！+10 分。',wrongFb:'不对，正确答案已标出。',timeoutFb:'时间到，正确答案已标出。',yourAnswer:'你的答案',correctAnswer:'正确答案',timedOut:'超时未答'}};
 
 const Q=[
 {c:'general',q:{en:'Which planet is known as the Red Planet?',zh:'哪颗行星被称为红色星球？'},o:[{en:'Venus',zh:'金星'},{en:'Mars',zh:'火星'},{en:'Jupiter',zh:'木星'},{en:'Saturn',zh:'土星'}],a:1},
@@ -396,7 +397,17 @@ const Q=[
 {c:'food',q:{en:'Which vegetable is Popeye famous for eating?',zh:'大力水手最爱吃什么蔬菜？'},o:[{en:'Broccoli',zh:'西兰花'},{en:'Spinach',zh:'菠菜'},{en:'Carrots',zh:'胡萝卜'},{en:'Peas',zh:'豌豆'}],a:1},
 {c:'food',q:{en:'What is tofu made from?',zh:'豆腐是用什么做的？'},o:[{en:'Wheat',zh:'小麦'},{en:'Rice',zh:'大米'},{en:'Soybeans',zh:'大豆'},{en:'Chickpeas',zh:'鹰嘴豆'}],a:2},
 {c:'food',q:{en:'Which country is famous for the dish paella?',zh:'海鲜饭是哪个国家的名菜？'},o:[{en:'Italy',zh:'意大利'},{en:'Portugal',zh:'葡萄牙'},{en:'Spain',zh:'西班牙'},{en:'Greece',zh:'希腊'}],a:2},
-{c:'food',q:{en:'Which fruit is said to keep the doctor away?',zh:'按俗语说，哪种水果能让医生远离你？'},o:[{en:'Banana',zh:'香蕉'},{en:'Apple',zh:'苹果'},{en:'Orange',zh:'橙子'},{en:'Grapes',zh:'葡萄'}],a:1}
+{c:'food',q:{en:'Which fruit is said to keep the doctor away?',zh:'按俗语说，哪种水果能让医生远离你？'},o:[{en:'Banana',zh:'香蕉'},{en:'Apple',zh:'苹果'},{en:'Orange',zh:'橙子'},{en:'Grapes',zh:'葡萄'}],a:1},
+{c:'tech',q:{en:'What does "HTTP" stand for?',zh:'HTTP 是什么的缩写？'},o:[{en:'HyperText Transfer Protocol',zh:'超文本传输协议'},{en:'High Transfer Text Process',zh:'高速传输文本进程'},{en:'Hyperlink Text Tool Protocol',zh:'超链接文本工具协议'},{en:'Host Transfer Terminal Program',zh:'主机传输终端程序'}],a:0},
+{c:'tech',q:{en:'Which company makes the iPhone?',zh:'iPhone 是哪家公司的产品？'},o:[{en:'Samsung',zh:'三星'},{en:'Google',zh:'谷歌'},{en:'Apple',zh:'苹果'},{en:'Microsoft',zh:'微软'}],a:2},
+{c:'tech',q:{en:'What does "AI" stand for?',zh:'AI 是什么的缩写？'},o:[{en:'Automated Internet',zh:'自动化互联网'},{en:'Artificial Intelligence',zh:'人工智能'},{en:'Advanced Interface',zh:'高级界面'},{en:'Analog Input',zh:'模拟输入'}],a:1},
+{c:'tech',q:{en:'How many bits are in one byte?',zh:'一个字节有多少位（bit）？'},o:[{en:'4',zh:'4'},{en:'8',zh:'8'},{en:'16',zh:'16'},{en:'32',zh:'32'}],a:1},
+{c:'tech',q:{en:'What does "www" stand for in a web address?',zh:'网址里的 www 是什么的缩写？'},o:[{en:'World Wide Web',zh:'万维网'},{en:'World Web Window',zh:'世界网络窗口'},{en:'Wide World Web',zh:'宽世界网'},{en:'Web World Wide',zh:'网络世界网'}],a:0},
+{c:'tech',q:{en:'Which language is mainly used to style web pages?',zh:'主要用来给网页写样式的是哪种语言？'},o:[{en:'Python',zh:'Python'},{en:'CSS',zh:'CSS'},{en:'SQL',zh:'SQL'},{en:'C++',zh:'C++'}],a:1},
+{c:'tech',q:{en:'In which year was the first iPhone released?',zh:'第一代 iPhone 是在哪一年发布的？'},o:[{en:'2005',zh:'2005年'},{en:'2007',zh:'2007年'},{en:'2009',zh:'2009年'},{en:'2011',zh:'2011年'}],a:1},
+{c:'tech',q:{en:'What does "USB" stand for?',zh:'USB 是什么的缩写？'},o:[{en:'Universal Serial Bus',zh:'通用串行总线'},{en:'Unified System Board',zh:'统一系统板'},{en:'Universal Storage Box',zh:'通用存储盒'},{en:'United Signal Bridge',zh:'联合信号桥'}],a:0},
+{c:'tech',q:{en:'Which of these is a programming language?',zh:'下面哪一个是编程语言？'},o:[{en:'JPEG',zh:'JPEG'},{en:'HTTP',zh:'HTTP'},{en:'Python',zh:'Python'},{en:'Wi-Fi',zh:'Wi-Fi'}],a:2},
+{c:'tech',q:{en:'What does "CPU" stand for?',zh:'CPU 是什么的缩写？'},o:[{en:'Central Processing Unit',zh:'中央处理器'},{en:'Computer Personal Unit',zh:'计算机个人单元'},{en:'Central Program Utility',zh:'中央程序工具'},{en:'Core Processing Utility',zh:'核心处理工具'}],a:0}
 ];
 
 const t=(k,a,b)=>{let s=(T[lang]&&T[lang][k])||T.en[k]||k;if(a!==undefined){s=s.replace('{a}',a);s=s.replace('{n}',a)}if(b!==undefined){s=s.replace('{b}',b)}return s};

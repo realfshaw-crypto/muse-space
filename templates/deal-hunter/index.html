@@ -349,7 +349,7 @@ body { margin: 0; }
   font-weight: var(--text-label-weight);
   line-height: var(--text-label-leading);
 }
-.field input {
+.field input, .field select {
   height: var(--size-element-lg);
   padding: 0 var(--spacing-3);
   border: var(--border-width) solid var(--color-border-emphasized);
@@ -553,6 +553,22 @@ body { margin: 0; }
   line-height: var(--text-supporting-leading);
   margin: var(--spacing-2) 0 var(--spacing-4);
 }
+.badge-warn {
+  background: var(--color-warning);
+  color: var(--color-on-warning);
+}
+.badge-expired {
+  background: var(--color-error);
+  color: var(--color-on-error);
+}
+.card-expired { opacity: .62; }
+.meta-line {
+  color: var(--color-text-secondary);
+  font-size: var(--text-supporting-size);
+  line-height: var(--text-supporting-leading);
+  margin: var(--spacing-1) 0 0;
+}
+.meta-line a { color: var(--color-text-accent); }
 @media (prefers-reduced-motion: reduce) {
   .tag-svg, .badge, .progress-fill { animation: none; transition: none; }
 }
@@ -577,6 +593,7 @@ body { margin: 0; }
     <div class="stat"><div class="stat-num" id="stat-items">0</div><div class="stat-label" data-i18n="statItems">Watched items</div></div>
     <div class="stat"><div class="stat-num" id="stat-ready">0</div><div class="stat-label" data-i18n="statReady">Ready to buy</div></div>
     <div class="stat"><div class="stat-num" id="stat-savings">$0</div><div class="stat-label" data-i18n="statSavings">Saved vs list price</div></div>
+    <div class="stat"><div class="stat-num" id="stat-ending">0</div><div class="stat-label" data-i18n="statEnding">Ending soon</div></div>
   </section>
 
   <p class="note" data-i18n="note">Prices here are entered by you, by hand. This space never fetches live prices from stores and never crawls the web — update a price whenever you spot a better one.</p>
@@ -605,6 +622,30 @@ body { margin: 0; }
         <input id="f-target" type="number" min="0.01" step="0.01" required placeholder="300.00">
       </div>
       <div class="field">
+        <label for="f-category" data-i18n="fCategory">Category</label>
+        <select id="f-category">
+          <option value="shopping" data-i18n="catShopping">Shopping</option>
+          <option value="ai" data-i18n="catAi">AI credits</option>
+          <option value="cloud" data-i18n="catCloud">Cloud &amp; VPS</option>
+          <option value="subs" data-i18n="catSubs">Subscriptions</option>
+          <option value="other" data-i18n="catOther">Other</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="f-expires" data-i18n="fExpires">Deal ends (optional)</label>
+        <input id="f-expires" type="date">
+      </div>
+      <div class="field field-wide">
+        <label for="f-source" data-i18n="fSource">Source link (optional)</label>
+        <input id="f-source" type="url" maxlength="200" data-i18n-ph="phSource" placeholder="https://…">
+      </div>
+      <div class="field">
+        <label class="check-label" for="f-verified">
+          <input type="checkbox" id="f-verified">
+          <span data-i18n="fVerified">Verified on the official page</span>
+        </label>
+      </div>
+      <div class="field">
         <label aria-hidden="true">&nbsp;</label>
         <button class="btn-primary" type="submit" data-i18n="addBtn">Add to watchlist</button>
       </div>
@@ -616,7 +657,16 @@ body { margin: 0; }
     <select id="sort-select">
       <option value="discount" data-i18n="sortDiscount">Biggest discount</option>
       <option value="savings" data-i18n="sortSavings">Biggest savings</option>
+      <option value="expiry" data-i18n="sortExpiry">Ending soonest</option>
       <option value="name" data-i18n="sortName">Name A–Z</option>
+    </select>
+    <select id="cat-filter" aria-label="Category">
+      <option value="all" data-i18n="filterAll">All categories</option>
+      <option value="shopping" data-i18n="catShopping">Shopping</option>
+      <option value="ai" data-i18n="catAi">AI credits</option>
+      <option value="cloud" data-i18n="catCloud">Cloud &amp; VPS</option>
+      <option value="subs" data-i18n="catSubs">Subscriptions</option>
+      <option value="other" data-i18n="catOther">Other</option>
     </select>
     <label class="check-label">
       <input type="checkbox" id="ready-only">
@@ -638,7 +688,7 @@ body { margin: 0; }
       statItems: 'Watched items',
       statReady: 'Ready to buy',
       statSavings: 'Saved vs list price',
-      note: 'Prices here are entered by you, by hand. This space never fetches live prices from stores and never crawls the web — update a price whenever you spot a better one.',
+      note: 'Prices here are entered by you, by hand. This space never fetches live prices from stores and never crawls the web — update a price whenever you spot a better one. Deals can carry a category, an expiry date and a verified flag: check the official page before you buy, and expired deals stay visible but faded.',
       addTitle: 'Add an item to watch',
       fName: 'Item name',
       phName: 'e.g. Sony WH-1000XM5 headphones',
@@ -653,6 +703,25 @@ body { margin: 0; }
       sortSavings: 'Biggest savings',
       sortName: 'Name A–Z',
       readyOnly: 'Ready to buy only',
+      statEnding: 'Ending soon',
+      fCategory: 'Category',
+      catShopping: 'Shopping',
+      catAi: 'AI credits',
+      catCloud: 'Cloud & VPS',
+      catSubs: 'Subscriptions',
+      catOther: 'Other',
+      fExpires: 'Deal ends (optional)',
+      fSource: 'Source link (optional)',
+      phSource: 'https://…',
+      fVerified: 'Verified on the official page',
+      filterAll: 'All categories',
+      sortExpiry: 'Ending soonest',
+      endingSoon: 'Ending soon',
+      expired: 'Expired',
+      verified: 'Verified',
+      unverified: 'Unverified',
+      endsOn: 'Ends',
+      daysLeft: 'days left',
       buyNow: 'Buy now',
       off: 'off',
       saved: 'saved',
@@ -678,7 +747,7 @@ body { margin: 0; }
       statItems: '关注商品',
       statReady: '可以下手',
       statSavings: '相对原价已省',
-      note: '这里的价格都由你手动填写。本空间不会从商店拉取实时价格，也不会爬取任何网站——看到更低价时，随时回来更新。',
+      note: '这里的价格都由你手动填写。本空间不会从商店拉取实时价格，也不会爬取任何网站——看到更低价时，随时回来更新。每条优惠可以带分类、截止日期与核实标记：下单前先去官方页面核对，过期优惠会保留但变淡显示。',
       addTitle: '添加关注商品',
       fName: '商品名称',
       phName: '例如：索尼 WH-1000XM5 耳机',
@@ -693,6 +762,25 @@ body { margin: 0; }
       sortSavings: '省钱最多',
       sortName: '名称 A–Z',
       readyOnly: '只看可以下手的',
+      statEnding: '即将截止',
+      fCategory: '分类',
+      catShopping: '购物',
+      catAi: 'AI 额度',
+      catCloud: '云服务',
+      catSubs: '订阅',
+      catOther: '其他',
+      fExpires: '优惠截止（可选）',
+      fSource: '来源链接（可选）',
+      phSource: 'https://…',
+      fVerified: '已在官方页面核实',
+      filterAll: '全部分类',
+      sortExpiry: '最近截止',
+      endingSoon: '即将截止',
+      expired: '已过期',
+      verified: '已核实',
+      unverified: '未核实',
+      endsOn: '截止',
+      daysLeft: '天后截止',
       buyNow: '可以下手',
       off: '折扣',
       saved: '已省',
@@ -723,6 +811,10 @@ body { margin: 0; }
         list: 399.99,
         current: 328.00,
         target: 300.00,
+        category: 'shopping',
+        expires: '2026-11-30',
+        verified: true,
+        source: 'https://www.amazon.com',
         history: [
           { date: '2026-11-02', price: 399.99 },
           { date: '2026-11-07', price: 348.00 },
@@ -736,6 +828,10 @@ body { margin: 0; }
         list: 140.00,
         current: 112.00,
         target: 99.00,
+        category: 'shopping',
+        expires: '',
+        verified: false,
+        source: '',
         history: [
           { date: '2026-11-03', price: 140.00 },
           { date: '2026-11-09', price: 126.00 },
@@ -749,6 +845,10 @@ body { margin: 0; }
         list: 449.99,
         current: 349.99,
         target: 329.00,
+        category: 'shopping',
+        expires: '2026-12-15',
+        verified: true,
+        source: 'https://www.bestbuy.com',
         history: [
           { date: '2026-11-01', price: 449.99 },
           { date: '2026-11-08', price: 379.99 },
@@ -767,11 +867,19 @@ body { margin: 0; }
           parsed.lang = parsed.lang === 'zh' ? 'zh' : 'en';
           parsed.sort = parsed.sort || 'discount';
           parsed.readyOnly = !!parsed.readyOnly;
+          parsed.catFilter = parsed.catFilter || 'all';
+          var CATS = ['shopping', 'ai', 'cloud', 'subs', 'other'];
+          parsed.items.forEach(function (it) {
+            if (CATS.indexOf(it.category) < 0) it.category = 'shopping';
+            it.verified = !!it.verified;
+            if (typeof it.source !== 'string') it.source = '';
+            if (typeof it.expires !== 'string') it.expires = '';
+          });
           return parsed;
         }
       }
     } catch (e) { /* fall through to samples */ }
-    return { lang: 'en', sort: 'discount', readyOnly: false, items: samples() };
+    return { lang: 'en', sort: 'discount', readyOnly: false, catFilter: 'all', items: samples() };
   }
 
   var state = load();
@@ -788,6 +896,13 @@ body { margin: 0; }
   }
   function savings(item) { return Math.max(0, item.list - item.current); }
   function isReady(item) { return item.current <= item.target; }
+  function daysToExpiry(item) {
+    if (!item.expires) return null;
+    var ms = new Date(item.expires + 'T23:59:59') - new Date();
+    return Math.ceil(ms / 86400000);
+  }
+  function isExpired(item) { var d = daysToExpiry(item); return d !== null && d < 0; }
+  function isEndingSoon(item) { var d = daysToExpiry(item); return d !== null && d >= 0 && d <= 7; }
   function esc(s) {
     return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
   }
@@ -800,11 +915,20 @@ body { margin: 0; }
 
   function sortedItems() {
     var list = state.items.slice();
+    if (state.catFilter && state.catFilter !== 'all') list = list.filter(function (it) { return it.category === state.catFilter; });
     if (state.readyOnly) list = list.filter(isReady);
     if (state.sort === 'savings') {
       list.sort(function (a, b) { return savings(b) - savings(a); });
     } else if (state.sort === 'name') {
       list.sort(function (a, b) { return a.name.localeCompare(b.name); });
+    } else if (state.sort === 'expiry') {
+      list.sort(function (a, b) {
+        var da = daysToExpiry(a), db = daysToExpiry(b);
+        if (da === null && db === null) return 0;
+        if (da === null) return 1;
+        if (db === null) return -1;
+        return da - db;
+      });
     } else {
       list.sort(function (a, b) { return discountPct(b) - discountPct(a); });
     }
@@ -817,6 +941,7 @@ body { margin: 0; }
     document.getElementById('stat-items').textContent = String(state.items.length);
     document.getElementById('stat-ready').textContent = String(ready);
     document.getElementById('stat-savings').textContent = money(total);
+    document.getElementById('stat-ending').textContent = String(state.items.filter(isEndingSoon).length);
   }
 
   function renderList() {
@@ -846,11 +971,17 @@ body { margin: 0; }
       var histHtml = history.map(function (h) {
         return '<li><span>' + esc(h.date) + '</span><span>' + money(h.price) + '</span></li>';
       }).join('');
-      return '<article class="card' + (ready ? ' card-ready' : '') + '">' +
+      var exp = isExpired(item), soon = isEndingSoon(item), dleft = daysToExpiry(item);
+      var meta = esc(t('cat' + item.category.charAt(0).toUpperCase() + item.category.slice(1))) + ' · ' + esc(item.verified ? t('verified') : t('unverified'));
+      if (item.expires) meta += ' · ' + esc(t('endsOn')) + ' ' + esc(item.expires) + (exp ? ' · ' + esc(t('expired')) : ' · ' + dleft + ' ' + esc(t('daysLeft')));
+      if (item.source) meta += ' · <a href="' + esc(item.source) + '" target="_blank" rel="noopener">' + esc(t('fSource').replace(' (optional)', '').replace('（可选）', '')) + '</a>';
+      return '<article class="card' + (ready ? ' card-ready' : '') + (exp ? ' card-expired' : '') + '">' +
         '<div class="card-head"><div>' +
         '<h2 class="card-name">' + esc(item.name) + '</h2>' +
-        '<p class="card-store">' + esc(item.store) + '</p></div>' +
+        '<p class="card-store">' + esc(item.store) + '</p>' +
+        '<p class="meta-line">' + meta + '</p></div>' +
         (ready ? '<span class="badge">' + esc(t('buyNow')) + '</span>' : '') +
+        (exp ? '<span class="badge badge-expired">' + esc(t('expired')) + '</span>' : (soon ? '<span class="badge badge-warn">' + esc(t('endingSoon')) + ' · ' + dleft + 'd</span>' : '')) +
         '</div>' +
         '<div class="price-row">' +
         '<span class="price-now">' + money(item.current) + '</span>' +
@@ -882,6 +1013,7 @@ body { margin: 0; }
     });
     document.getElementById('lang-btn').textContent = state.lang === 'zh' ? 'EN' : '中文';
     document.getElementById('sort-select').value = state.sort;
+    document.getElementById('cat-filter').value = state.catFilter || 'all';
     document.getElementById('ready-only').checked = state.readyOnly;
   }
 
@@ -899,6 +1031,12 @@ body { margin: 0; }
 
   document.getElementById('sort-select').addEventListener('change', function (e) {
     state.sort = e.target.value;
+    save();
+    render();
+  });
+
+  document.getElementById('cat-filter').addEventListener('change', function (e) {
+    state.catFilter = e.target.value;
     save();
     render();
   });
@@ -924,6 +1062,10 @@ body { margin: 0; }
       list: list,
       current: current,
       target: target,
+      category: document.getElementById('f-category').value,
+      expires: document.getElementById('f-expires').value,
+      verified: document.getElementById('f-verified').checked,
+      source: document.getElementById('f-source').value.trim(),
       history: [{ date: todayStr(), price: current }]
     });
     save();

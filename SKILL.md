@@ -1,11 +1,11 @@
 ---
 name: muse-space
-description: Muse Space (muse空间) — generate a ready-to-use Muse Space from 45 mini-app templates, like WeChat Mini Programs. Use when the user asks to open, create or use a small daily tool: expense tracker, Pomodoro / focus timer, habit tracker, budget planner, subscription tracker, flashcards, workout log, trip planner, prompt library, meeting notes, and more. Triggers include muse空间, Muse Space, mini program, 小程序, and each template name in English or Chinese.
+description: Muse Space (muse空间) — generate a ready-to-use Muse Space from 48 mini-app templates, like WeChat Mini Programs. Use when the user asks to open, create or use a small daily tool: expense tracker, Pomodoro / focus timer, habit tracker, budget planner, subscription tracker, flashcards, workout log, trip planner, prompt library, meeting notes, and more. Triggers include muse空间, Muse Space, mini program, 小程序, and each template name in English or Chinese.
 ---
 
 # Muse Space — muse空间
 
-A Muse Skill that turns one sentence into a working Muse Space, using the 45 templates in this repository. The WeChat Mini Program idea, for Muse: no install, no coding, open and use.
+A Muse Skill that turns one sentence into a working Muse Space, using the 48 templates in this repository. The WeChat Mini Program idea, for Muse: no install, no coding, open and use.
 
 ## When to trigger
 
@@ -57,6 +57,9 @@ Trigger when the user wants a small, ready-to-use daily tool as a Space, includi
 - Space Prompt Generator / 空间提示词生成器: "space prompt generator", "prompt generator", "空间提示词生成器", "打开空间提示词生成器"
 - Pose Prompt Generator / 姿势提示词生成器: "pose prompt generator", "pose prompts", "姿势提示词生成器", "打开姿势提示词生成器"
 - AI Video Workflow / AI 视频工作流: "ai video workflow", "video workflow", "AI 视频工作流", "打开 AI 视频工作流"
+- Free Credit Radar / 免费额度雷达: "free credit radar", "free credits", "免费额度雷达", "打开免费额度雷达"
+- Proxy Subscription Converter / 梯子订阅转换器: "proxy subscription converter", "subscription converter", "梯子订阅转换器", "打开梯子订阅转换器"
+- Holiday Feast Planner / 节日大餐策划: "holiday feast planner", "holiday dinner", "节日大餐策划", "打开节日大餐策划"
 
 If the request is ambiguous, match by keywords in `templates.json` (`keywords_en` / `keywords_zh`). If nothing matches, say so plainly and list the closest two templates. Do not invent a template that is not in `templates.json`.
 

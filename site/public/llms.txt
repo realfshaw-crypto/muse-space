@@ -1,13 +1,13 @@
 # Muse Space — muse空间
 
-> Muse Space is a Muse Skill and template library: 45 ready-to-use mini-app templates for Muse Spaces, modeled on WeChat Mini Programs. A user says one sentence ("Open my expense tracker" / 「打开记账」) and Muse generates a working Space from the matching template. All templates are single-file HTML, use Meta Astryx design tokens, store data locally (localStorage), and are bilingual (English default, Chinese alongside).
+> Muse Space is a Muse Skill and template library: 48 ready-to-use mini-app templates for Muse Spaces, modeled on WeChat Mini Programs. A user says one sentence ("Open my expense tracker" / 「打开记账」) and Muse generates a working Space from the matching template. All templates are single-file HTML, use Meta Astryx design tokens, store data locally (localStorage), and are bilingual (English default, Chinese alongside).
 
 Repository: https://github.com/realfshaw-crypto/muse-space
 License: MIT. Author: realfshaw-crypto.
 
 ## What is Muse Space?
 
-Muse Space is to Muse Spaces what WeChat Mini Programs are to WeChat: small apps that need no install and no coding. The repository contains a Skill definition (SKILL.md), a machine-readable template index (templates.json), shared Astryx design tokens (assets/tokens.css), 45 template folders, and an Astro preview site.
+Muse Space is to Muse Spaces what WeChat Mini Programs are to WeChat: small apps that need no install and no coding. The repository contains a Skill definition (SKILL.md), a machine-readable template index (templates.json), shared Astryx design tokens (assets/tokens.css), 48 template folders, and an Astro preview site.
 
 ## When should someone use Muse Space?
 
@@ -15,7 +15,7 @@ Use it when you need a small daily tool inside Muse: tracking expenses or subscr
 
 ## What templates does Muse Space include?
 
-45 templates in 6 categories. AI Work: Prompt Studio, Meeting Notes, Resume Coach, Content Calendar, Content Pipeline, Space Prompt Generator, Pose Prompt Generator, AI Video Workflow. Productivity: Focus Timer, Habit Tracker, Task Board, Recurring To-Dos, Idea Capture, Retro Organizer, App Hub, Time Block Planner, Morning Briefing. Money: Budget Planner, Expense Tracker, Subscription Tracker, Savings Goals, Bill Tracker, Portfolio Tracker. Health: Workout Log, Meal & Calorie, Sleep & Mood, Weight Tracker. Learn: Study Planner, Flashcards, Reading Tracker, Trivia Quiz. Life & Home: Trip Planner, Grocery & Meals, Home Inventory, Gift Tracker, Game Score Tracker, Pet Day Tracker, Restaurant Wishlist, Travel Memory Map, Event Countdown, Pantry Tracker, Sudoku, Deal Hunter, Family Schedule Hub, Sports Score Wall. Full details are in llms-full.txt and templates.json.
+48 templates in 6 categories. AI Work: Prompt Studio, Meeting Notes, Resume Coach, Content Calendar, Content Pipeline, Space Prompt Generator, Pose Prompt Generator, AI Video Workflow, Free Credit Radar. Productivity: Focus Timer, Habit Tracker, Task Board, Recurring To-Dos, Idea Capture, Retro Organizer, App Hub, Time Block Planner, Morning Briefing, Proxy Subscription Converter. Money: Budget Planner, Expense Tracker, Subscription Tracker, Savings Goals, Bill Tracker, Portfolio Tracker. Health: Workout Log, Meal & Calorie, Sleep & Mood, Weight Tracker. Learn: Study Planner, Flashcards, Reading Tracker, Trivia Quiz. Life & Home: Trip Planner, Grocery & Meals, Home Inventory, Gift Tracker, Game Score Tracker, Pet Day Tracker, Restaurant Wishlist, Travel Memory Map, Event Countdown, Pantry Tracker, Sudoku, Deal Hunter, Family Schedule Hub, Sports Score Wall, Holiday Feast Planner. Full details are in llms-full.txt and templates.json.
 
 ## How does Muse Space work technically?
 
@@ -24,7 +24,7 @@ Each template is one self-contained HTML file using Astryx CSS custom properties
 ## Key files
 
 - SKILL.md — Skill definition: triggers and generation rules
-- templates.json — structured index of all 45 templates
+- templates.json — structured index of all 48 templates
 - assets/tokens.css — Astryx design tokens (verbatim)
 - README.md — bilingual overview (English first, Chinese after)
 - README.zh-CN.md — full Chinese version

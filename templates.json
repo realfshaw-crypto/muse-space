@@ -1,8 +1,8 @@
 {
  "name": "Muse Space — muse空间",
  "version": "0.2.0",
- "description_en": "41 ready-to-use mini-app templates for Muse Spaces.",
- "description_zh": "41 个开箱即用的 Muse Space 小程序模板。",
+ "description_en": "48 ready-to-use mini-app templates for Muse Spaces.",
+ "description_zh": "48 个开箱即用的 Muse Space 小程序模板。",
  "categories": [
   "AI Work",
   "Productivity",
@@ -391,8 +391,8 @@
     "知识问答",
     "答题"
    ],
-   "description_en": "A timed quiz game across four categories — 40 questions — with score, streaks and a review.",
-   "description_zh": "四分类限时问答共 40 题：计分、连胜，答完还能复盘错题。",
+   "description_en": "A timed quiz game across five categories — 50 questions — with score, streaks and a review.",
+   "description_zh": "五分类限时问答共 50 题：计分、连胜，答完还能复盘错题。",
    "path": "templates/trivia-quiz/"
   },
   {
@@ -813,8 +813,8 @@
     "降价",
     "目标价"
    ],
-   "description_en": "A price watchlist: target prices, discounts and a buy-now badge when a logged price hits target.",
-   "description_zh": "价格关注清单：目标价、折扣，记录的价格降到目标价就亮下手标记。",
+   "description_en": "A price watchlist: target prices, discounts and a buy-now badge when a logged price hits target — with categories, expiry dates and a verified flag.",
+   "description_zh": "价格关注清单：目标价、折扣，记录的价格降到目标价就亮下手标记；可按分类筛选，带截止日期与核实标记。",
    "path": "templates/deal-hunter/"
   },
   {
@@ -977,6 +977,75 @@
    "description_en": "Plan a short video: shot list, per-model prompts and a delivery checklist.",
    "description_zh": "排一部短视频：分镜表、各模型提示词与成片任务单。",
    "path": "templates/ai-video-workflow/"
+  },
+  {
+   "slug": "free-credit-radar",
+   "name_en": "Free Credit Radar",
+   "name_zh": "免费额度雷达",
+   "category": "AI Work",
+   "keywords_en": [
+    "free credit radar",
+    "free credits",
+    "ai free trial",
+    "free tier",
+    "credits"
+   ],
+   "keywords_zh": [
+    "免费额度雷达",
+    "免费额度",
+    "免费试用",
+    "免费层",
+    "额度"
+   ],
+   "description_en": "Track AI free credits and trials with expiry countdowns — manually verified, expired offers archived.",
+   "description_zh": "盯住各家 AI 免费额度与试用：到期倒计时、手动核实，过期自动归档。",
+   "path": "templates/free-credit-radar/"
+  },
+  {
+   "slug": "proxy-subscription-converter",
+   "name_en": "Proxy Subscription Converter",
+   "name_zh": "梯子订阅转换器",
+   "category": "Productivity",
+   "keywords_en": [
+    "proxy subscription converter",
+    "subscription converter",
+    "clash",
+    "sing-box",
+    "proxy nodes"
+   ],
+   "keywords_zh": [
+    "梯子订阅转换器",
+    "订阅转换",
+    "Clash",
+    "sing-box",
+    "节点"
+   ],
+   "description_en": "Paste a proxy subscription, convert it across seven client formats — with dedupe, batch rename and a health check.",
+   "description_zh": "粘贴梯子订阅，一键转成 Clash、sing-box 等七种格式，去重、批量重命名、订阅体检。",
+   "path": "templates/proxy-subscription-converter/"
+  },
+  {
+   "slug": "holiday-feast-planner",
+   "name_en": "Holiday Feast Planner",
+   "name_zh": "节日大餐策划",
+   "category": "Life & Home",
+   "keywords_en": [
+    "holiday feast planner",
+    "thanksgiving planner",
+    "holiday dinner",
+    "feast planner",
+    "menu planner"
+   ],
+   "keywords_zh": [
+    "节日大餐策划",
+    "感恩节策划",
+    "节日大餐",
+    "菜单策划",
+    "年夜饭"
+   ],
+   "description_en": "Plan a holiday feast: guests and diets, menu by course, prep timeline and shopping list.",
+   "description_zh": "节日大餐指挥中心：宾客与忌口、分菜式菜单、备菜时间线与采购清单。",
+   "path": "templates/holiday-feast-planner/"
   }
  ]
 }

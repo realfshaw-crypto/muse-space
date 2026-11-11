@@ -1,16 +1,16 @@
 # Muse Space — muse空间
 
-**45 个开箱即用的 Muse Space 小程序模板，像微信小程序一样，为你的日常 AI 生活而备。**
+**48 个开箱即用的 Muse Space 小程序模板，像微信小程序一样，为你的日常 AI 生活而备。**
 
 [English → README.md](README.md) · [模板索引 → templates.json](templates.json) · [llms.txt](llms.txt)
 
-![License: MIT](https://img.shields.io/badge/License-MIT-green.svg) ![Templates: 45](https://img.shields.io/badge/Templates-45-blue.svg) ![Design: Astryx](https://img.shields.io/badge/Design-Astryx-black.svg)
+![License: MIT](https://img.shields.io/badge/License-MIT-green.svg) ![Templates: 48](https://img.shields.io/badge/Templates-48-blue.svg) ![Design: Astryx](https://img.shields.io/badge/Design-Astryx-black.svg)
 
 ## 截图
 
-![Muse Space 预览站首页 — 6 大分类共 45 个小程序模板，带搜索框](docs/screenshots/preview-home.png)
+![Muse Space 预览站首页 — 6 大分类共 48 个小程序模板，带搜索框](docs/screenshots/preview-home.png)
 
-*预览站首页：6 大分类、45 个模板，顶部带搜索框。*
+*预览站首页：6 大分类、48 个模板，顶部带搜索框。*
 
 | | |
 |---|---|---|
@@ -30,10 +30,10 @@
 | *食材库存：库存、数量、保质期提醒与待采购清单。* | *数独：三档难度、每日一题、笔记、提示与最佳成绩。* |
 | ![复古掌上电脑模板 — 掌上电脑风日程、待办、备忘与通讯录](docs/screenshots/template-retro-organizer.png) | ![应用中心模板 — 常用应用与链接收进一个中心](docs/screenshots/template-app-hub.png) |
 | *复古掌上电脑：日程、待办、备忘与通讯录合一。* | *应用中心：常用应用与链接，搜、钉、点开一步到位。* |
-| ![趣味问答模板 — 四分类限时问答，计分连胜](docs/screenshots/template-trivia-quiz.png) | |
-| *趣味问答：40 道限时问答、计分连胜，答完复盘错题。* | |
+| ![趣味问答模板 — 五分类限时问答，计分连胜](docs/screenshots/template-trivia-quiz.png) | |
+| *趣味问答：50 道限时问答、计分连胜，答完复盘错题。* | |
 | ![投资组合模板 — 持仓、总资产、盈亏与目标配置对比](docs/screenshots/template-portfolio-tracker.png) | ![折扣猎手模板 — 价格关注清单、目标价与下手标记](docs/screenshots/template-deal-hunter.png) |
-| *投资组合：持仓、总资产、盈亏与目标配置对比。* | *折扣猎手：目标价、折扣，降到目标价就亮下手标记。* |
+| *投资组合：持仓、总资产、盈亏与目标配置对比。* | *折扣猎手：目标价、折扣、分类与截止日期，降到目标价就亮下手标记。* |
 | ![周时间块模板 — 一周排成时间块，各类时长一目了然](docs/screenshots/template-time-block-planner.png) | |
 | *周时间块：一周排成时间块，各类时长一目了然。* | |
 | ![家庭日程中心模板 — 全家一周日程，谁负责接送一眼看清](docs/screenshots/template-family-schedule-hub.png) | ![体重记录模板 — 每天称重，目标体重与趋势线](docs/screenshots/template-weight-tracker.png) |
@@ -42,6 +42,10 @@
 | *比赛记分墙：关注的比赛全在一面墙上，附滚动比分条。* | *内容生产线：点子到发布，一条生产线按阶段推进。* |
 | ![饮食热量模板 — 每餐热量与蛋白质，可改每日目标与最近 7 天记录](docs/screenshots/template-meal-calorie.png) | |
 | *饮食热量：每餐热量与蛋白质，可改每日目标与最近 7 天记录。* | |
+| ![免费额度雷达模板 — 各家 AI 免费额度与试用，到期倒计时](docs/screenshots/template-free-credit-radar.png) | ![梯子订阅转换器模板 — 粘贴订阅，一键转成七种客户端格式](docs/screenshots/template-proxy-subscription-converter.png) |
+| *免费额度雷达：各家 AI 免费额度与试用，到期倒计时、手动核实。* | *梯子订阅转换器：粘贴订阅，一键转成七种客户端格式。* |
+| ![节日大餐策划模板 — 宾客与忌口、分菜式菜单、备菜时间线与采购清单](docs/screenshots/template-holiday-feast-planner.png) | |
+| *节日大餐策划：宾客与忌口、分菜式菜单、备菜时间线与采购清单。* | |
 
 ## 这是什么？
 
@@ -49,18 +53,18 @@
 
 你对 Muse 说一句话——「打开记账」「给我一个番茄钟」——Muse 就从这个仓库取对应模板，填入你的数据，生成一个能直接用的空间。不用写代码，不用构建，打开就用。
 
-这个仓库同时是三样东西：一个 **Muse 技能**（`SKILL.md`）、一个 **模板库**（45 个单文件 HTML 模板）、一个 **预览站**（Astro，在 `site/` 目录）。
+这个仓库同时是三样东西：一个 **Muse 技能**（`SKILL.md`）、一个 **模板库**（48 个单文件 HTML 模板）、一个 **预览站**（Astro，在 `site/` 目录）。
 
 ### 常见问题
 
 **Muse Space 是什么？**
-Muse Space 是一个 Muse 技能加一个模板库，包含 45 个开箱即用的 Muse Space 小程序模板。它仿照微信小程序：单个用途的小应用，不用安装、不用写代码，打开就用。
+Muse Space 是一个 Muse 技能加一个模板库，包含 48 个开箱即用的 Muse Space 小程序模板。它仿照微信小程序：单个用途的小应用，不用安装、不用写代码，打开就用。
 
 **Muse Space 怎么工作？**
 你用中文或英文说一句话，说出你需要的工具。Muse 读取 `templates.json`，从 `templates/<slug>/index.html` 加载对应模板，填入你的数据，生成一个能直接用的空间。
 
 **Muse Space 包含哪些模板？**
-共 45 个模板、6 大分类：AI 工作（8 个）、效率（9 个）、财务（6 个）、健康（4 个）、学习（4 个）、生活与家庭（14 个）。每个模板都是一个独立的 HTML 文件，数据保存在浏览器本地（localStorage）。
+共 48 个模板、6 大分类：AI 工作（9 个）、效率（10 个）、财务（6 个）、健康（4 个）、学习（4 个）、生活与家庭（15 个）。每个模板都是一个独立的 HTML 文件，数据保存在浏览器本地（localStorage）。
 
 **Muse Space 免费且开源吗？**
 是。本项目以 MIT 许可证发布，可以复制、修改和复用任何模板。
@@ -72,7 +76,7 @@ Muse Space 是一个 Muse 技能加一个模板库，包含 45 个开箱即用�
 - **一套设计语言。** 全部模板用 Meta Astryx 设计令牌，语义颜色、深浅色自动适配、间距与动效统一。
 - **双语默认。** 英文为主、中文并行；界面文字简洁，按钮用动词：保存、记一笔、完成。
 
-## 模板清单 — 6 类 45 个
+## 模板清单 — 6 类 48 个
 
 ### AI 工作
 | 模板 | 用途 | 这样说 |
@@ -85,6 +89,7 @@ Muse Space 是一个 Muse 技能加一个模板库，包含 45 个开箱即用�
 | [空间提示词生成器](templates/space-prompt-generator/) | 输入赛道，得到一条能直接建 Space 的提示词 | 给咖啡折扣生成一条建空间提示词 |
 | [姿势提示词生成器](templates/pose-prompt-generator/) | 点一个姿势，四种格式提示词直接复制 | 打开姿势提示词生成器 |
 | [AI 视频工作流](templates/ai-video-workflow/) | 分镜表、各模型提示词与成片任务单 | 帮我排一部 AI 短视频 |
+| [免费额度雷达](templates/free-credit-radar/) | 各家 AI 免费额度与试用，到期倒计时、手动核实 | 追踪免费 AI 额度 |
 
 ### 效率
 | 模板 | 用途 | 这样说 |
@@ -98,6 +103,7 @@ Muse Space 是一个 Muse 技能加一个模板库，包含 45 个开箱即用�
 | [应用中心](templates/app-hub/) | 常用应用与链接收进一个中心 | 打开应用中心 |
 | [周时间块](templates/time-block-planner/) | 一周排成时间块，各类时长一目了然 | 打开周时间块 |
 | [晨间简报](templates/morning-briefing/) | 日程、要事、邮件分拣与值得看的新闻 | 打开晨间简报 |
+| [梯子订阅转换器](templates/proxy-subscription-converter/) | 粘贴梯子订阅，一键转成七种客户端格式 | 转换我的梯子订阅 |
 
 ### 财务
 | 模板 | 用途 | 这样说 |
@@ -123,7 +129,7 @@ Muse Space 是一个 Muse 技能加一个模板库，包含 45 个开箱即用�
 | [学习计划](templates/study-planner/) | 课表转复习块 | 打开学习计划 |
 | [闪卡复习](templates/flashcard-review/) | 间隔重复、掌握度，先练最弱卡片 | 打开闪卡 |
 | [阅读追踪](templates/reading-tracker/) | 书单、进度、摘录 | 打开阅读追踪 |
-| [趣味问答](templates/trivia-quiz/) | 40 道限时问答、计分连胜、答完复盘 | 打开趣味问答 |
+| [趣味问答](templates/trivia-quiz/) | 50 道限时问答、计分连胜、答完复盘 | 打开趣味问答 |
 
 ### 生活与家庭
 | 模板 | 用途 | 这样说 |
@@ -139,11 +145,12 @@ Muse Space 是一个 Muse 技能加一个模板库，包含 45 个开箱即用�
 | [活动倒计时](templates/event-countdown/) | 重要日子还剩几天，一眼看到 | 打开活动倒计时 |
 | [食材库存](templates/pantry-tracker/) | 食材库存、数量、保质期提醒与待采购清单 | 打开食材库存 |
 | [数独](templates/sudoku-puzzle/) | 能玩的数独，三档难度、每日一题与最佳成绩 | 打开数独 |
-| [折扣猎手](templates/deal-hunter/) | 价格关注清单，目标价与下手标记 | 打开折扣猎手 |
+| [折扣猎手](templates/deal-hunter/) | 价格关注清单，目标价、下手标记、分类与截止日期 | 打开折扣猎手 |
 | [家庭日程中心](templates/family-schedule-hub/) | 全家一周日程，谁负责接送一眼看清 | 打开家庭日程 |
 | [比赛记分墙](templates/sports-score-wall/) | 关注的比赛全在一面墙上，附滚动比分条 | 打开比分墙 |
+| [节日大餐策划](templates/holiday-feast-planner/) | 宾客与忌口、分菜式菜单、备菜时间线与采购清单 | 帮我策划节日大餐 |
 
-> 45 个模板本体已全部包含，可直接打开使用。
+> 48 个模板本体已全部包含，可直接打开使用。
 
 ## 快速开始
 

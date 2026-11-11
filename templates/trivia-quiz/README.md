@@ -1,8 +1,8 @@
 # Trivia Quiz — 趣味问答
 
-**What is Trivia Quiz?** A multiple-choice quiz game: ten quick questions from a bank of 40 across four categories, fifteen seconds each, with score, streak and a review of your misses.
+**What is Trivia Quiz?** A multiple-choice quiz game: ten quick questions from a bank of 50 across five categories, fifteen seconds each, with score, streak and a review of your misses.
 
-**趣味问答是什么？** 一款选择题问答游戏：四分类共 40 道题，每轮十道快问快答，每题 15 秒，带得分、连胜与错题回顾。
+**趣味问答是什么？** 一款选择题问答游戏：五分类共 50 道题，每轮十道快问快答，每题 15 秒，带得分、连胜与错题回顾。
 
 Category / 分类: Learn
 
